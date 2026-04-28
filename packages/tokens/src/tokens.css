@@ -1,41 +1,108 @@
 :root {
   --ds-color-white: #ffffff;
+  --ds-color-black: #070b12;
+
+  --ds-color-gray-0: #ffffff;
   --ds-color-gray-50: #f7f8fb;
-  --ds-color-gray-100: #f1f5f9;
-  --ds-color-gray-200: #d9e2ec;
+  --ds-color-gray-100: #eef3f8;
+  --ds-color-gray-150: #e6edf4;
+  --ds-color-gray-200: #d8e2ec;
+  --ds-color-gray-300: #bdc9d6;
+  --ds-color-gray-400: #94a3b8;
   --ds-color-gray-500: #64748b;
+  --ds-color-gray-600: #475569;
   --ds-color-gray-700: #334155;
+  --ds-color-gray-800: #1e293b;
   --ds-color-gray-900: #101827;
-  --ds-color-blue-50: #e8f0fe;
-  --ds-color-blue-600: #1f6feb;
-  --ds-color-blue-700: #174ea6;
+
+  --ds-color-brand-50: #eaf2ff;
+  --ds-color-brand-100: #d6e7ff;
+  --ds-color-brand-200: #a9ccff;
+  --ds-color-brand-500: #2f7df6;
+  --ds-color-brand-600: #1f6feb;
+  --ds-color-brand-700: #174ea6;
+  --ds-color-brand-800: #123b7e;
+
+  --ds-color-green-50: #ecfdf3;
+  --ds-color-green-100: #d4f7df;
   --ds-color-green-600: #188038;
+  --ds-color-green-700: #116329;
+
+  --ds-color-amber-50: #fff8eb;
+  --ds-color-amber-100: #ffedc2;
   --ds-color-amber-600: #d97706;
+  --ds-color-amber-700: #a85505;
+
+  --ds-color-red-50: #fff1f2;
+  --ds-color-red-100: #ffe0e3;
   --ds-color-red-600: #dc2626;
+  --ds-color-red-700: #b91c1c;
 
   --ds-color-bg-canvas: var(--ds-color-gray-50);
   --ds-color-bg-surface: var(--ds-color-white);
+  --ds-color-bg-elevated: var(--ds-color-white);
   --ds-color-bg-muted: var(--ds-color-gray-100);
+  --ds-color-bg-inverse: var(--ds-color-gray-900);
+
   --ds-color-text-primary: var(--ds-color-gray-900);
+  --ds-color-text-secondary: var(--ds-color-gray-700);
   --ds-color-text-muted: var(--ds-color-gray-500);
+  --ds-color-text-inverse: var(--ds-color-white);
+
+  --ds-color-border-subtle: var(--ds-color-gray-150);
   --ds-color-border-default: var(--ds-color-gray-200);
-  --ds-color-action-primary-bg: var(--ds-color-blue-600);
-  --ds-color-action-primary-bg-hover: var(--ds-color-blue-700);
+  --ds-color-border-strong: var(--ds-color-gray-300);
+
+  --ds-color-action-primary-bg: var(--ds-color-brand-600);
+  --ds-color-action-primary-bg-hover: var(--ds-color-brand-700);
+  --ds-color-action-primary-bg-active: var(--ds-color-brand-800);
+  --ds-color-action-primary-border: var(--ds-color-brand-600);
+  --ds-color-action-primary-fg: var(--ds-color-white);
+
+  --ds-color-action-neutral-bg: var(--ds-color-white);
+  --ds-color-action-neutral-bg-hover: var(--ds-color-gray-100);
+  --ds-color-action-neutral-bg-active: var(--ds-color-gray-150);
+  --ds-color-action-neutral-border: var(--ds-color-border-default);
+  --ds-color-action-neutral-fg: var(--ds-color-text-primary);
+
+  --ds-color-feedback-info-bg: var(--ds-color-brand-50);
+  --ds-color-feedback-info-border: var(--ds-color-brand-100);
+  --ds-color-feedback-info-text: var(--ds-color-brand-700);
+  --ds-color-feedback-success-bg: var(--ds-color-green-50);
+  --ds-color-feedback-success-border: var(--ds-color-green-100);
+  --ds-color-feedback-success-text: var(--ds-color-green-700);
   --ds-color-feedback-success: var(--ds-color-green-600);
+  --ds-color-feedback-warning-bg: var(--ds-color-amber-50);
+  --ds-color-feedback-warning-border: var(--ds-color-amber-100);
+  --ds-color-feedback-warning-text: var(--ds-color-amber-700);
   --ds-color-feedback-warning: var(--ds-color-amber-600);
+  --ds-color-feedback-danger-bg: var(--ds-color-red-50);
+  --ds-color-feedback-danger-border: var(--ds-color-red-100);
+  --ds-color-feedback-danger-text: var(--ds-color-red-700);
   --ds-color-feedback-danger: var(--ds-color-red-600);
+
+  --ds-state-hover-bg: var(--ds-color-bg-muted);
+  --ds-state-hover-border: var(--ds-color-border-strong);
+  --ds-state-active-bg: var(--ds-color-gray-150);
+  --ds-state-selected-bg: var(--ds-color-brand-50);
+  --ds-state-selected-border: var(--ds-color-brand-600);
+  --ds-state-disabled-opacity: 0.56;
 
   --ds-font-family-sans: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
   --ds-font-family-mono: "SFMono-Regular", Consolas, "Liberation Mono", monospace;
+  --ds-font-size-11: 0.6875rem;
   --ds-font-size-12: 0.75rem;
   --ds-font-size-13: 0.8125rem;
   --ds-font-size-14: 0.875rem;
   --ds-font-size-16: 1rem;
   --ds-font-size-17: 1.0625rem;
+  --ds-font-size-20: 1.25rem;
   --ds-font-size-28: 1.75rem;
   --ds-line-height-tight: 1.2;
+  --ds-line-height-heading: 1.35;
   --ds-line-height-body: 1.6;
 
+  --ds-space-0: 0;
   --ds-space-1: 0.25rem;
   --ds-space-2: 0.5rem;
   --ds-space-3: 0.75rem;
@@ -45,6 +112,20 @@
   --ds-space-8: 2rem;
   --ds-space-10: 2.5rem;
   --ds-space-12: 3rem;
+  --ds-space-16: 4rem;
+
+  --ds-size-0: 0;
+  --ds-size-1: 0.0625rem;
+  --ds-size-control-sm: 2rem;
+  --ds-size-control-md: 2.5rem;
+  --ds-size-control-lg: 3rem;
+  --ds-size-icon-sm: 1rem;
+  --ds-size-icon-md: 1.25rem;
+  --ds-size-icon-lg: 1.5rem;
+  --ds-size-check-control: 1.125rem;
+  --ds-size-switch-width: 2.625rem;
+  --ds-size-switch-height: 1.5rem;
+  --ds-size-switch-thumb: 1.1rem;
 
   --ds-radius-2: 0.125rem;
   --ds-radius-4: 0.25rem;
@@ -52,13 +133,65 @@
   --ds-radius-8: 0.5rem;
   --ds-radius-pill: 999px;
 
-  --ds-shadow-raised: 0 18px 42px rgba(15, 23, 42, 0.08);
-  --ds-focus-ring: 0 0 0 3px rgba(31, 111, 235, 0.32);
+  --ds-shadow-low: 0 0.0625rem 0.125rem rgba(16, 24, 39, 0.08);
+  --ds-shadow-raised: 0 1.125rem 2.625rem rgba(15, 23, 42, 0.08);
+  --ds-shadow-selected: 0 0.0625rem 0.125rem rgba(16, 24, 39, 0.12);
+  --ds-color-overlay-backdrop: rgba(16, 24, 39, 0.4);
+  --ds-color-focus-ring: rgba(31, 111, 235, 0.32);
+  --ds-focus-ring: 0 0 0 0.1875rem var(--ds-color-focus-ring);
+
   --ds-motion-duration-fast: 120ms;
   --ds-motion-duration-normal: 180ms;
+  --ds-motion-duration-slow: 240ms;
   --ds-motion-easing-standard: cubic-bezier(0.2, 0, 0, 1);
+  --ds-motion-easing-enter: cubic-bezier(0.16, 1, 0.3, 1);
+
+  --ds-breakpoint-sm: 40rem;
+  --ds-breakpoint-md: 48rem;
+  --ds-breakpoint-lg: 64rem;
+  --ds-breakpoint-xl: 80rem;
+  --ds-breakpoint-2xl: 96rem;
+  --ds-container-sm: 40rem;
+  --ds-container-md: 48rem;
+  --ds-container-lg: 64rem;
+  --ds-container-xl: 80rem;
+  --ds-container-2xl: 96rem;
+  --ds-page-gutter: var(--ds-space-4);
+  --ds-page-gutter-lg: var(--ds-space-8);
+  --ds-layout-gap-sm: var(--ds-space-2);
+  --ds-layout-gap-md: var(--ds-space-4);
+  --ds-layout-gap-lg: var(--ds-space-6);
+
+  --ds-button-height-sm: var(--ds-size-control-sm);
+  --ds-button-height-md: var(--ds-size-control-md);
+  --ds-button-height-lg: var(--ds-size-control-lg);
+  --ds-button-padding-x-sm: var(--ds-space-3);
+  --ds-button-padding-x-md: var(--ds-space-4);
+  --ds-button-padding-x-lg: var(--ds-space-5);
+  --ds-button-radius: var(--ds-radius-6);
+
+  --ds-field-width: 22rem;
+  --ds-textarea-min-height: 6rem;
+  --ds-alert-width: 30rem;
+  --ds-dialog-width-sm: 26rem;
+  --ds-dialog-width-md: 34rem;
+  --ds-dialog-width-lg: 44rem;
+  --ds-overlay-width: 14rem;
+  --ds-tooltip-width: 16rem;
+  --ds-tabs-width: 32rem;
+  --ds-card-width: 24rem;
+  --ds-empty-state-width: 26rem;
+  --ds-list-width: 28rem;
+  --ds-table-min-width: 28rem;
+
   --ds-z-dropdown: 1000;
   --ds-z-popover: 1100;
   --ds-z-dialog: 1200;
   --ds-z-toast: 1300;
+}
+
+@media (min-width: 48rem) {
+  :root {
+    --ds-page-gutter: var(--ds-page-gutter-lg);
+  }
 }

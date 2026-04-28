@@ -1,16 +1,18 @@
-# Dialog
+# Dialog 컴포넌트 / Dialog
 
-> Status: `planned` | Priority: `P1` | Category: Overlays
+> 상태 / Status: `ready` | 우선순위 / Priority: `P1` | 카테고리 / Category: 오버레이 / Overlays
 
-## Purpose
+## 목적 / Purpose
 
+확인, 짧은 form, 돌아가기 전에 끝내야 하는 task에 사용합니다.
 Use for confirmation, short forms, or tasks that must be completed before returning.
 
-## Summary
+## 요약 / Summary
 
+사용자의 집중이 필요한 modal surface입니다.
 Modal surface that requires focused user attention.
 
-## Public API Draft
+## 공개 API 초안 / Public API Draft
 
 - `open`
 - `defaultOpen`
@@ -19,39 +21,39 @@ Modal surface that requires focused user attention.
 - `size`
 - `initialFocus`
 
-## States
+## 상태 / States
 
 - `closed`
 - `opening`
 - `open`
 - `closing`
 
-## Accessibility Contract
+## 접근성 계약 / Accessibility Contract
 
-- Base primitive: `dialog or modal dialog pattern`
-- Reference pattern: https://www.w3.org/WAI/ARIA/apg/patterns/dialog-modal/
-- Must expose an accessible name whenever the visible label is not enough.
-- Must support keyboard operation before the component can move to `ready`.
-- Must document focus movement when the component opens, closes, selects, or dismisses content.
+- 기본 primitive / Base primitive: `dialog or modal dialog pattern`
+- 참고 pattern / Reference pattern: https://www.w3.org/WAI/ARIA/apg/patterns/dialog-modal/
+- visible label이 충분하지 않으면 accessible name을 반드시 제공합니다. / Must expose an accessible name whenever the visible label is not enough.
+- 컴포넌트가 `ready`로 이동하기 전 keyboard operation을 지원해야 합니다. / Must support keyboard operation before the component can move to `ready`.
+- content를 open, close, select, dismiss할 때 focus movement를 문서화합니다. / Must document focus movement when the component opens, closes, selects, or dismisses content.
 
-## Token Hooks
+## 토큰 hook / Token Hooks
 
 - `--ds-z-dialog`
 - `--ds-shadow-raised`
 - `--ds-radius-8`
 
-## Implementation Notes
+## 구현 메모 / Implementation Notes
 
-- Keep source colocated in this folder.
-- Prefer native elements before custom ARIA widgets.
-- Use `data-state`, `data-disabled`, `data-invalid`, `data-orientation`, and `data-size` for styling state.
-- Avoid hard-coded color, spacing, radius, or z-index values; use `--ds-*` tokens.
+- source는 이 폴더 안에 colocate합니다. / Keep source colocated in this folder.
+- custom ARIA widget보다 native element를 우선합니다. / Prefer native elements before custom ARIA widgets.
+- styling state에는 `data-state`, `data-disabled`, `data-invalid`, `data-orientation`, `data-size`를 사용합니다. / Use `data-state`, `data-disabled`, `data-invalid`, `data-orientation`, and `data-size` for styling state.
+- hard-coded color, spacing, radius, z-index 값은 피하고 `--ds-*` token을 사용합니다. / Avoid hard-coded color, spacing, radius, or z-index values; use `--ds-*` tokens.
 
-## Examples
+## 예시 / Examples
 
-TODO: Add usage examples when implementation starts.
+TODO: 구현 시작 시 사용 예시를 추가합니다. / TODO: Add usage examples when implementation starts.
 
-## Open Questions
+## 열린 질문 / Open Questions
 
-- TODO: Confirm required variants with product usage.
-- TODO: Confirm mobile density and keyboard behavior.
+- TODO: 제품 사용처에 필요한 variant를 확인합니다. / TODO: Confirm required variants with product usage.
+- TODO: mobile density와 keyboard behavior를 확인합니다. / TODO: Confirm mobile density and keyboard behavior.

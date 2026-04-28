@@ -1,29 +1,29 @@
-# ComponentName Spec
+# ComponentName 스펙 / ComponentName Spec
 
-## Anatomy
+## 구조 / Anatomy
 
-- Root
+- 루트 / Root
 
-## Variants
+## variant / Variants
 
-TODO
+TODO: 허용되는 variant와 사용 기준을 정의합니다. / TODO: Define allowed variants and usage criteria.
 
-## Behavior
+## 동작 / Behavior
 
-TODO
+TODO: 기본 상태, 상호작용, disabled/read-only, validation/error behavior를 정의합니다. / TODO: Define default state, interactions, disabled/read-only behavior, and validation/error behavior.
 
-## Accessibility
+## 접근성 / Accessibility
 
-TODO
+TODO: semantic element, ARIA pattern, keyboard, focus, screen reader announcement를 정의합니다. / TODO: Define semantic elements, ARIA patterns, keyboard behavior, focus behavior, and screen reader announcements.
 
-## Tokens
+## 토큰 / Tokens
 
-TODO
+TODO: 사용하는 semantic/component token을 나열합니다. / TODO: List semantic and component tokens used.
 
-## Test Plan
+## 테스트 계획 / Test Plan
 
-TODO
+TODO: unit behavior, keyboard navigation, focus-visible, high contrast, reduced motion, responsive layout 검증을 적습니다. / TODO: Document checks for unit behavior, keyboard navigation, focus-visible, high contrast, reduced motion, and responsive layout.
 
-## Decision Log
+## 결정 기록 / Decision Log
 
-TODO
+TODO: 구현 전 API와 behavior 결정을 기록합니다. / TODO: Record API and behavior decisions before implementation.

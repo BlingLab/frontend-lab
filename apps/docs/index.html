@@ -3,17 +3,19 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Design System Docs</title>
+    <title>디자인 시스템 문서 / Design System Docs</title>
+    <link rel="stylesheet" href="/tokens/tokens.css">
+    <link rel="stylesheet" href="/ui/styles.css">
     <link rel="stylesheet" href="./styles.css">
   </head>
   <body>
     <div class="shell">
-      <aside class="sidebar" aria-label="문서 메뉴">
+      <aside class="sidebar" aria-label="문서 메뉴 / Documentation menu">
         <div class="brand">
           <span class="brand-mark" aria-hidden="true">DS</span>
           <div>
-            <strong>Design System</strong>
-            <span>Local docs</span>
+            <strong>디자인 시스템 / Design System</strong>
+            <span>로컬 문서 / Local docs</span>
           </div>
         </div>
 
@@ -23,72 +25,74 @@
       <main class="content">
         <section class="intro" aria-labelledby="page-title">
           <div>
-            <p class="eyebrow">Local component catalog</p>
-            <h1 id="page-title">디자인 시스템을 로컬에서 확인하는 문서 앱</h1>
+            <p class="eyebrow">로컬 컴포넌트 카탈로그 / Local component catalog</p>
+            <h1 id="page-title">디자인 시스템을 로컬에서 확인하는 문서 앱 / Local Design System Docs App</h1>
             <p class="intro-copy">
               컴포넌트 구성, 설명, 시각 예시, 코드 샘플을 한 화면에서 확인할 수 있습니다.
+              You can review component structure, descriptions, visual examples, and code samples in one place.
               이제 컴포넌트 로드맵과 작성 규약을 함께 관리하며, 실제 UI 패키지가 추가되면 이 앱에서 그대로 import해 검증하는 구조로 확장합니다.
+              The app manages the component roadmap and authoring rules together, and it can later import real UI package exports for verification.
             </p>
           </div>
-          <div class="intro-panel" aria-label="실행 명령어">
-            <span>Run locally</span>
+          <div class="intro-panel" aria-label="실행 명령어 / Run command">
+            <span>로컬 실행 / Run locally</span>
             <code>npm run dev</code>
           </div>
         </section>
 
         <section class="section" id="overview" aria-labelledby="overview-title">
           <div class="section-heading">
-            <p class="eyebrow">Overview</p>
-            <h2 id="overview-title">구성 원칙</h2>
+            <p class="eyebrow">개요 / Overview</p>
+            <h2 id="overview-title">구성 원칙 / Principles</h2>
           </div>
           <div class="principles">
             <article>
-              <strong>실제 컴포넌트 기준</strong>
-              <p>문서는 별도 그림이 아니라 실제 컴포넌트와 토큰을 보여주는 쇼케이스가 됩니다.</p>
+              <strong>실제 컴포넌트 기준 / Real Component Reference</strong>
+              <p>문서는 별도 그림이 아니라 실제 컴포넌트와 토큰을 보여주는 쇼케이스가 됩니다. / Docs act as a showcase for real components and tokens, not separate illustrations.</p>
             </article>
             <article>
-              <strong>로컬 우선</strong>
-              <p>레포를 받은 뒤 Node 명령어만으로 실행해 디자인 시스템을 빠르게 확인합니다.</p>
+              <strong>로컬 우선 / Local First</strong>
+              <p>레포를 받은 뒤 Node 명령어만으로 실행해 디자인 시스템을 빠르게 확인합니다. / After receiving the repo, contributors can inspect the design system quickly with Node commands only.</p>
             </article>
             <article>
-              <strong>확장 가능한 골조</strong>
-              <p>컴포넌트 폴더, 스펙 문서, 토큰 계약을 먼저 고정하고 이후 구현을 연결합니다.</p>
+              <strong>확장 가능한 골조 / Extensible Skeleton</strong>
+              <p>컴포넌트 폴더, 스펙 문서, 토큰 계약을 먼저 고정하고 이후 구현을 연결합니다. / Component folders, spec docs, and token contracts are fixed first, then connected to implementation.</p>
             </article>
           </div>
         </section>
 
         <section class="section" id="tokens" aria-labelledby="tokens-title">
           <div class="section-heading">
-            <p class="eyebrow">Foundations</p>
-            <h2 id="tokens-title">디자인 토큰</h2>
+            <p class="eyebrow">기반 / Foundations</p>
+            <h2 id="tokens-title">디자인 토큰 / Design Tokens</h2>
           </div>
           <div class="token-grid">
             <article class="token-card">
-              <h3>Colors</h3>
-              <div class="swatches" aria-label="컬러 토큰">
-                <span style="--swatch: #1f6feb">Primary</span>
-                <span style="--swatch: #188038">Success</span>
-                <span style="--swatch: #d97706">Warning</span>
-                <span style="--swatch: #dc2626">Danger</span>
-                <span style="--swatch: #334155">Neutral</span>
+              <h3>색상 / Colors</h3>
+              <div class="swatches" aria-label="컬러 토큰 / Color tokens">
+                <span style="--swatch: var(--ds-color-action-primary-bg)">주요 / Primary</span>
+                <span style="--swatch: var(--ds-color-feedback-success)">성공 / Success</span>
+                <span style="--swatch: var(--ds-color-feedback-warning)">경고 / Warning</span>
+                <span style="--swatch: var(--ds-color-feedback-danger)">위험 / Danger</span>
+                <span style="--swatch: var(--ds-color-gray-700)">중립 / Neutral</span>
               </div>
             </article>
             <article class="token-card">
-              <h3>Typography</h3>
+              <h3>타이포그래피 / Typography</h3>
               <div class="type-samples">
-                <span class="type-display">Display</span>
-                <span class="type-title">Title text</span>
-                <span class="type-body">Body text for product interfaces.</span>
-                <span class="type-caption">Caption / metadata</span>
+                <span class="type-display">디스플레이 / Display</span>
+                <span class="type-title">제목 텍스트 / Title text</span>
+                <span class="type-body">제품 인터페이스 본문입니다. / Body text for product interfaces.</span>
+                <span class="type-caption">캡션 / Caption / metadata</span>
               </div>
             </article>
             <article class="token-card">
-              <h3>Spacing</h3>
-              <div class="spacing-samples" aria-label="간격 토큰">
-                <span style="--space-width: 8px">8</span>
-                <span style="--space-width: 16px">16</span>
-                <span style="--space-width: 24px">24</span>
-                <span style="--space-width: 32px">32</span>
+              <h3>간격 / Spacing</h3>
+              <div class="spacing-samples" aria-label="간격 토큰 / Spacing tokens">
+                <span style="--space-width: var(--ds-space-2)">8</span>
+                <span style="--space-width: var(--ds-space-4)">16</span>
+                <span style="--space-width: var(--ds-space-6)">24</span>
+                <span style="--space-width: var(--ds-space-8)">32</span>
               </div>
             </article>
           </div>
@@ -96,73 +100,51 @@
 
         <section class="section" id="rules" aria-labelledby="rules-title">
           <div class="section-heading">
-            <p class="eyebrow">Conventions</p>
-            <h2 id="rules-title">개발 규약</h2>
+            <p class="eyebrow">규약 / Conventions</p>
+            <h2 id="rules-title">개발 규약 / Development Conventions</h2>
           </div>
           <div class="rule-grid">
             <article>
-              <strong>명명</strong>
-              <p>컴포넌트는 PascalCase, 폴더와 파일은 kebab-case, 공개 CSS class는 ds- prefix를 사용합니다.</p>
+              <strong>명명 / Naming</strong>
+              <p>컴포넌트는 PascalCase, 폴더와 파일은 kebab-case, 공개 CSS class는 ds- prefix를 사용합니다. / Components use PascalCase, folders and files use kebab-case, and public CSS classes use the ds- prefix.</p>
             </article>
             <article>
-              <strong>상태</strong>
-              <p>동적 스타일은 data-state, data-disabled, data-invalid, data-orientation 같은 속성으로 표현합니다.</p>
+              <strong>상태 / State</strong>
+              <p>동적 스타일은 data-state, data-disabled, data-invalid, data-orientation 같은 속성으로 표현합니다. / Dynamic styles use attributes such as data-state, data-disabled, data-invalid, and data-orientation.</p>
             </article>
             <article>
-              <strong>토큰</strong>
-              <p>컴포넌트는 원시 색상값 대신 --ds-color-*, --ds-space-*, --ds-radius-* 토큰을 참조합니다.</p>
+              <strong>토큰 / Tokens</strong>
+              <p>컴포넌트는 원시 색상값 대신 --ds-color-*, --ds-space-*, --ds-radius-* 토큰을 참조합니다. / Components reference --ds-color-*, --ds-space-*, and --ds-radius-* tokens instead of raw style values.</p>
             </article>
             <article>
-              <strong>접근성</strong>
-              <p>네이티브 HTML을 먼저 사용하고, 커스텀 상호작용은 WAI-ARIA APG 패턴을 기준으로 정의합니다.</p>
+              <strong>접근성 / Accessibility</strong>
+              <p>네이티브 HTML을 먼저 사용하고, 커스텀 상호작용은 WAI-ARIA APG 패턴을 기준으로 정의합니다. / Use native HTML first, and define custom interaction with WAI-ARIA APG patterns.</p>
             </article>
           </div>
         </section>
 
         <section class="section" id="roadmap" aria-labelledby="roadmap-title">
           <div class="section-heading">
-            <p class="eyebrow">Roadmap</p>
-            <h2 id="roadmap-title">컴포넌트 개발 로드맵</h2>
+            <p class="eyebrow">로드맵 / Roadmap</p>
+            <h2 id="roadmap-title">컴포넌트 개발 로드맵 / Component Development Roadmap</h2>
           </div>
           <div class="roadmap-list" id="roadmap-list"></div>
         </section>
 
         <section class="section" id="components" aria-labelledby="components-title">
           <div class="section-heading">
-            <p class="eyebrow">Components</p>
-            <h2 id="components-title">컴포넌트 카탈로그</h2>
+            <p class="eyebrow">컴포넌트 / Components</p>
+            <h2 id="components-title">컴포넌트 카탈로그 / Component Catalog</h2>
           </div>
           <div class="component-list" id="component-list"></div>
         </section>
 
         <section class="section" id="example" aria-labelledby="example-title">
           <div class="section-heading">
-            <p class="eyebrow">Example</p>
-            <h2 id="example-title">조합 예시</h2>
+            <p class="eyebrow">예시 / Example</p>
+            <h2 id="example-title">조합 예시 / Composition Example</h2>
           </div>
-          <div class="workflow-preview">
-            <form class="sample-form">
-              <label>
-                프로젝트 이름
-                <input type="text" value="Design System Docs">
-              </label>
-              <label>
-                상태
-                <select>
-                  <option>Ready</option>
-                  <option>Draft</option>
-                </select>
-              </label>
-              <div class="form-actions">
-                <button class="button secondary" type="button">취소</button>
-                <button class="button primary" type="button">저장</button>
-              </div>
-            </form>
-            <aside class="usage-note">
-              <strong>문서 앱의 역할</strong>
-              <p>사용자가 메뉴에서 컴포넌트를 탐색하고, 설명과 예시를 보면서 디자인 시스템의 기준을 이해할 수 있게 합니다.</p>
-            </aside>
-          </div>
+          <div class="workflow-preview" id="workflow-example"></div>
         </section>
       </main>
     </div>

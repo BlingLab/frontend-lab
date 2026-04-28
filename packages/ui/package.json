@@ -6,6 +6,8 @@
   "main": "./src/index.js",
   "exports": {
     ".": "./src/index.js",
-    "./components/catalog": "./src/components/catalog.js"
+    "./components/catalog": "./src/components/catalog.js",
+    "./components/*": "./src/components/*/index.js",
+    "./styles.css": "./src/styles.css"
   }
 }

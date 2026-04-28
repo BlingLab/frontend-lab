@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>컴포넌트 smoke 확인 / Component Smoke Check</title>
+    <link rel="stylesheet" href="/tokens/tokens.css">
+    <link rel="stylesheet" href="/ui/styles.css">
+    <style>
+      body {
+        margin: 0;
+        background: var(--ds-color-bg-canvas);
+        color: var(--ds-color-text-primary);
+        font-family: var(--ds-font-family-sans);
+      }
+
+      main {
+        display: grid;
+        gap: var(--ds-space-6);
+        max-width: 960px;
+        padding: var(--ds-space-8);
+      }
+
+      .smoke-grid {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: var(--ds-space-4);
+      }
+
+      .smoke-card {
+        display: grid;
+        gap: var(--ds-space-4);
+        border: 1px solid var(--ds-color-border-default);
+        border-radius: var(--ds-radius-8);
+        background: var(--ds-color-bg-surface);
+        padding: var(--ds-space-4);
+      }
+
+      .smoke-card h2 {
+        margin: 0;
+        font-size: var(--ds-font-size-17);
+      }
+
+      @media (max-width: 720px) {
+        .smoke-grid {
+          grid-template-columns: 1fr;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <header>
+        <h1>컴포넌트 smoke 확인 / Component Smoke Check</h1>
+        <p>이 화면은 실제 `@workspace/ui` export만 사용합니다. / This page uses only real `@workspace/ui` exports.</p>
+      </header>
+      <section class="smoke-grid" id="smoke-root"></section>
+    </main>
+    <script src="./component-smoke.js" type="module"></script>
+  </body>
+</html>

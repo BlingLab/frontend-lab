@@ -1,44 +1,44 @@
-# Progress Spec
+# Progress 스펙 / Progress Spec
 
-## Anatomy
+## 구조 / Anatomy
 
-- Root
-- Content
-- Optional accessory or action region
+- 루트 / Root
+- 콘텐츠 / Content
+- 선택적 accessory 또는 action 영역 / Optional accessory or action region
 
-## Variants
+## variant / Variants
 
-TODO: Define allowed variants and when each one is appropriate.
+TODO: 허용되는 variant와 각 variant가 적합한 상황을 정의합니다. / TODO: Define allowed variants and when each one is appropriate.
 
-## Behavior
+## 동작 / Behavior
 
-- Default state: TODO
-- Interaction: TODO
-- Disabled/read-only behavior: TODO
-- Validation or error behavior: TODO
+- 기본 상태 / Default state: TODO
+- 상호작용 / Interaction: TODO
+- disabled/read-only 동작 / Disabled/read-only behavior: TODO
+- validation 또는 error 동작 / Validation or error behavior: TODO
 
-## Accessibility
+## 접근성 / Accessibility
 
-- Primitive: `progress`
-- Pattern reference: native semantic HTML
-- Keyboard support: TODO
-- Focus management: TODO
-- Screen reader announcement: TODO
+- primitive / Primitive: `progress`
+- 참고 pattern / Pattern reference: native semantic HTML
+- 키보드 지원 / Keyboard support: TODO
+- 포커스 관리 / Focus management: TODO
+- 스크린 리더 알림 / Screen reader announcement: TODO
 
-## Tokens
+## 토큰 / Tokens
 
 - `--ds-color-action-primary-bg`
 - `--ds-color-bg-muted`
 - `--ds-motion-duration-normal`
 
-## Test Plan
+## 테스트 계획 / Test Plan
 
-- Unit behavior: TODO
-- Keyboard navigation: TODO
-- Focus visible state: TODO
-- High contrast and reduced motion: TODO
-- Responsive layout: TODO
+- 단위 동작 / Unit behavior: TODO
+- 키보드 내비게이션 / Keyboard navigation: TODO
+- focus-visible 상태 / Focus visible state: TODO
+- 고대비와 reduced motion / High contrast and reduced motion: TODO
+- 반응형 레이아웃 / Responsive layout: TODO
 
-## Decision Log
+## 결정 기록 / Decision Log
 
-- TODO: Record API and behavior decisions before implementation.
+- TODO: 구현 전에 API와 behavior 결정을 기록합니다. / TODO: Record API and behavior decisions before implementation.

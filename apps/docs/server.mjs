@@ -6,6 +6,9 @@ import { fileURLToPath } from "node:url";
 
 const __dirname = fileURLToPath(new URL(".", import.meta.url));
 const root = normalize(__dirname);
+const workspaceRoot = normalize(join(root, "..", ".."));
+const uiRoot = normalize(join(workspaceRoot, "packages", "ui", "src"));
+const tokensRoot = normalize(join(workspaceRoot, "packages", "tokens", "src"));
 const preferredPort = Number.parseInt(process.env.PORT || "5173", 10);
 
 const mimeTypes = {
@@ -23,6 +26,27 @@ const mimeTypes = {
 function resolvePath(requestUrl) {
   const url = new URL(requestUrl, "http://localhost");
   const pathname = decodeURIComponent(url.pathname);
+
+  if (pathname.startsWith("/ui/")) {
+    const filePath = normalize(join(uiRoot, pathname.replace(/^\/ui\//, "")));
+
+    if (relative(uiRoot, filePath).startsWith("..")) {
+      return null;
+    }
+
+    return filePath;
+  }
+
+  if (pathname.startsWith("/tokens/")) {
+    const filePath = normalize(join(tokensRoot, pathname.replace(/^\/tokens\//, "")));
+
+    if (relative(tokensRoot, filePath).startsWith("..")) {
+      return null;
+    }
+
+    return filePath;
+  }
+
   const cleanPath = pathname === "/" ? "/index.html" : pathname;
   const filePath = normalize(join(root, cleanPath));
 
@@ -37,7 +61,7 @@ function createDocsServer() {
   return createServer(async (req, res) => {
     if (!req.url) {
       res.writeHead(400);
-      res.end("Bad request");
+      res.end("잘못된 요청입니다. / Bad request");
       return;
     }
 
@@ -45,7 +69,7 @@ function createDocsServer() {
 
     if (!filePath) {
       res.writeHead(403);
-      res.end("Forbidden");
+      res.end("접근할 수 없습니다. / Forbidden");
       return;
     }
 
@@ -59,7 +83,7 @@ function createDocsServer() {
       res.writeHead(404, {
         "Content-Type": "text/plain; charset=utf-8"
       });
-      res.end("Not found");
+      res.end("파일을 찾을 수 없습니다. / Not found");
     }
   });
 }
@@ -78,7 +102,7 @@ function listen(port) {
 
   server.listen(port, () => {
     const address = `http://localhost:${port}`;
-    console.log(`Docs site is running at ${address}`);
+    console.log(`문서 사이트가 실행 중입니다: ${address} / Docs site is running at ${address}`);
   });
 }
 
