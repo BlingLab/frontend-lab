@@ -8,6 +8,8 @@
     "packages/*"
   ],
   "scripts": {
+    "components:scaffold": "node scripts/scaffold-component-docs.mjs",
+    "components:validate": "node scripts/validate-component-system.mjs",
     "dev": "node apps/docs/server.mjs",
     "docs:dev": "node apps/docs/server.mjs"
   },

@@ -1,5 +1,13 @@
 # @workspace/tokens
 
-추후 color, typography, spacing, radius 같은 디자인 토큰을 배치할 패키지입니다.
+color, typography, spacing, radius, shadow, motion 같은 디자인 토큰을 관리하는 패키지입니다.
 
-초기 단계에서는 `apps/docs` 안의 CSS 변수로 기준을 보여주고, 토큰이 확정되면 이 패키지에서 공통 토큰을 관리하도록 분리합니다.
+초기 CSS 토큰은 `src/tokens.css`에 정의합니다. 컴포넌트는 원시 색상값을 직접 쓰지 않고 `--ds-*` 토큰을 통해 값을 참조해야 합니다.
+
+## 토큰 레이어
+
+- `primitive`: 원시 값입니다. 예: `--ds-color-blue-600`
+- `semantic`: 제품 의미를 가진 값입니다. 예: `--ds-color-action-primary-bg`
+- `component`: 특정 컴포넌트가 재정의할 수 있는 값입니다. 예: `--ds-button-bg`
+
+컴포넌트 구현은 가능한 한 `semantic` 토큰을 사용하고, 컴포넌트별 세부 조정이 필요할 때만 `component` 토큰을 추가합니다.

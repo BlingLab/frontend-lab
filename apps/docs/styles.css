@@ -1,17 +1,30 @@
 :root {
-  --bg: #f7f8fb;
-  --surface: #ffffff;
-  --surface-muted: #f1f5f9;
-  --text: #101827;
-  --muted: #64748b;
-  --border: #d9e2ec;
-  --primary: #1f6feb;
-  --primary-dark: #174ea6;
-  --success: #188038;
-  --warning: #d97706;
-  --danger: #dc2626;
-  --shadow: 0 18px 42px rgba(15, 23, 42, 0.08);
-  --radius: 8px;
+  --ds-color-bg-canvas: #f7f8fb;
+  --ds-color-bg-surface: #ffffff;
+  --ds-color-bg-muted: #f1f5f9;
+  --ds-color-text-primary: #101827;
+  --ds-color-text-muted: #64748b;
+  --ds-color-border-default: #d9e2ec;
+  --ds-color-action-primary-bg: #1f6feb;
+  --ds-color-action-primary-bg-hover: #174ea6;
+  --ds-color-feedback-success: #188038;
+  --ds-color-feedback-warning: #d97706;
+  --ds-color-feedback-danger: #dc2626;
+  --ds-shadow-raised: 0 18px 42px rgba(15, 23, 42, 0.08);
+  --ds-radius-8: 8px;
+  --bg: var(--ds-color-bg-canvas);
+  --surface: var(--ds-color-bg-surface);
+  --surface-muted: var(--ds-color-bg-muted);
+  --text: var(--ds-color-text-primary);
+  --muted: var(--ds-color-text-muted);
+  --border: var(--ds-color-border-default);
+  --primary: var(--ds-color-action-primary-bg);
+  --primary-dark: var(--ds-color-action-primary-bg-hover);
+  --success: var(--ds-color-feedback-success);
+  --warning: var(--ds-color-feedback-warning);
+  --danger: var(--ds-color-feedback-danger);
+  --shadow: var(--ds-shadow-raised);
+  --radius: var(--ds-radius-8);
   --sidebar-width: 280px;
   font-family:
     Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
@@ -215,14 +228,18 @@ pre {
 }
 
 .principles,
-.token-grid {
+.token-grid,
+.rule-grid,
+.roadmap-list {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 16px;
 }
 
 .principles article,
+.rule-grid article,
 .token-card,
+.roadmap-card,
 .component-card,
 .usage-note {
   border: 1px solid var(--border);
@@ -230,16 +247,21 @@ pre {
   background: var(--surface);
 }
 
-.principles article {
+.principles article,
+.rule-grid article,
+.roadmap-card {
   padding: 20px;
 }
 
-.principles strong {
+.principles strong,
+.rule-grid strong {
   display: block;
   margin-bottom: 8px;
 }
 
 .principles p,
+.rule-grid p,
+.roadmap-card p,
 .usage-note p,
 .component-copy,
 .component-meta {
@@ -249,6 +271,49 @@ pre {
 
 .token-card {
   padding: 20px;
+}
+
+.roadmap-card-header {
+  display: flex;
+  align-items: start;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.roadmap-card-header h3 {
+  margin-bottom: 8px;
+}
+
+.status-pill {
+  display: inline-flex;
+  min-height: 24px;
+  align-items: center;
+  border-radius: 999px;
+  background: var(--surface-muted);
+  color: var(--primary-dark);
+  padding: 0 9px;
+  font-size: 12px;
+  font-weight: 800;
+}
+
+.roadmap-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 16px;
+}
+
+.roadmap-tags span {
+  display: inline-flex;
+  min-height: 28px;
+  align-items: center;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  background: #ffffff;
+  color: var(--text);
+  padding: 0 10px;
+  font-size: 13px;
+  font-weight: 700;
 }
 
 .swatches {
@@ -571,7 +636,9 @@ pre {
   }
 
   .principles,
-  .token-grid {
+  .token-grid,
+  .rule-grid,
+  .roadmap-list {
     grid-template-columns: 1fr;
   }
 }

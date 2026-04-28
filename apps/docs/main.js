@@ -1,6 +1,8 @@
 const navItems = [
   { id: "overview", label: "구성 원칙" },
   { id: "tokens", label: "디자인 토큰" },
+  { id: "rules", label: "개발 규약" },
+  { id: "roadmap", label: "로드맵" },
   { id: "components", label: "컴포넌트" },
   { id: "example", label: "조합 예시" }
 ];
@@ -37,7 +39,7 @@ const components = [
 <span class="badge success">Active</span>`
   },
   {
-    name: "Input",
+    name: "TextField",
     meta: "텍스트 입력을 위한 기본 필드",
     description:
       "라벨과 함께 사용해 사용자가 어떤 값을 입력해야 하는지 명확히 보여줍니다.",
@@ -111,11 +113,71 @@ const components = [
   }
 ];
 
+const roadmapGroups = [
+  {
+    category: "Actions",
+    priority: "P0",
+    components: ["Button", "IconButton"],
+    note: "명령 실행과 툴바 액션의 기준"
+  },
+  {
+    category: "Forms",
+    priority: "P0",
+    components: ["Field", "TextField", "Select", "Checkbox", "RadioGroup", "Switch"],
+    note: "라벨, 검증, 선택 입력의 공통 계약"
+  },
+  {
+    category: "Feedback",
+    priority: "P0/P1",
+    components: ["Alert", "Badge", "Toast", "Progress", "Skeleton"],
+    note: "상태, 결과, 로딩, 알림 표현"
+  },
+  {
+    category: "Overlays",
+    priority: "P1",
+    components: ["Dialog", "Popover", "Tooltip", "DropdownMenu"],
+    note: "포커스 관리와 레이어 규칙이 필요한 컴포넌트"
+  },
+  {
+    category: "Navigation",
+    priority: "P0/P1",
+    components: ["Tabs", "Breadcrumb", "Pagination"],
+    note: "위치 이동과 패널 전환"
+  },
+  {
+    category: "Layout / Data",
+    priority: "P0/P1",
+    components: ["Card", "Divider", "Table", "EmptyState", "List"],
+    note: "반복 콘텐츠, 구획, 데이터 표시"
+  }
+];
+
 function renderNav() {
   const nav = document.querySelector("#nav");
 
   nav.innerHTML = navItems
     .map((item) => `<a href="#${item.id}" data-section="${item.id}">${item.label}</a>`)
+    .join("");
+}
+
+function renderRoadmap() {
+  const list = document.querySelector("#roadmap-list");
+
+  list.innerHTML = roadmapGroups
+    .map(
+      (group) => `
+        <article class="roadmap-card">
+          <div class="roadmap-card-header">
+            <h3>${group.category}</h3>
+            <span class="status-pill">${group.priority}</span>
+          </div>
+          <p>${group.note}</p>
+          <div class="roadmap-tags">
+            ${group.components.map((component) => `<span>${component}</span>`).join("")}
+          </div>
+        </article>
+      `
+    )
     .join("");
 }
 
@@ -185,6 +247,7 @@ function escapeHtml(value) {
 }
 
 renderNav();
+renderRoadmap();
 renderComponents();
 wireTabs();
 updateActiveNav();
