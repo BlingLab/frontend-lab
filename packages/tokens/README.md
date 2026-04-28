@@ -14,3 +14,26 @@ Initial CSS tokens are defined in `src/tokens.css`. Components should reference 
 
 컴포넌트 구현은 가능한 한 `semantic` 토큰을 사용하고, 컴포넌트별 세부 조정이 필요할 때만 `component` 토큰을 추가합니다.
 Component implementations should use `semantic` tokens whenever possible and add `component` tokens only when component-level customization is needed.
+
+## 외부 프로젝트 사용 / External Project Usage
+
+소비자 프로젝트는 앱 entry에서 token CSS를 먼저 import합니다.
+Consumer projects import token CSS first in the app entry.
+
+```tsx
+import "@workspace/tokens/tokens.css";
+import "@workspace/ui/styles.css";
+```
+
+제품별 theme은 `:root` 또는 theme container에서 `--ds-*` 값을 override합니다.
+Product themes override `--ds-*` values on `:root` or a theme container.
+
+```css
+:root {
+  --ds-color-action-primary-bg: #1f6feb;
+  --ds-radius-8: 0.5rem;
+}
+```
+
+raw color 값은 token source에서만 관리하고, UI component CSS에는 직접 쓰지 않습니다.
+Raw color values are managed only in token sources and are not written directly in UI component CSS.

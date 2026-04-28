@@ -2,7 +2,7 @@ import { mkdir, writeFile } from "node:fs/promises";
 import { existsSync } from "node:fs";
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
-import { componentCatalog, componentCategories } from "../packages/ui/src/components/catalog.js";
+import { componentCatalog, componentCategories } from "../packages/ui/src/components/catalog.ts";
 
 const rootDir = fileURLToPath(new URL("..", import.meta.url));
 const force = process.argv.includes("--force");
@@ -238,7 +238,18 @@ ${renderList(component.tokens)}
 }
 
 function renderEntry(component) {
-  return `export { ${component.name} } from "../../../components.js";
+  return `export { ${component.name}, type ${component.name}Props } from "./${component.slug}";
+`;
+}
+
+function renderComponentStub(component) {
+  return `import type { HTMLAttributes } from "react";
+
+export interface ${component.name}Props extends HTMLAttributes<HTMLDivElement> {}
+
+export function ${component.name}({ children, ...props }: ${component.name}Props) {
+  return <div {...props}>{children}</div>;
+}
 `;
 }
 
@@ -274,7 +285,10 @@ for (const component of componentCatalog) {
     written += 1;
   }
 
-  if (await writeIfMissing(join(componentDir, "index.js"), renderEntry(component))) {
+  if (await writeIfMissing(join(componentDir, "index.ts"), renderEntry(component))) {
+    written += 1;
+  }
+  if (await writeIfMissing(join(componentDir, `${component.slug}.tsx`), renderComponentStub(component))) {
     written += 1;
   }
 }

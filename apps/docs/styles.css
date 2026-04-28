@@ -465,6 +465,33 @@ pre {
   padding: 20px;
 }
 
+.smoke-page {
+  display: grid;
+  max-width: var(--ds-container-lg);
+  gap: var(--ds-space-6);
+  padding: var(--ds-space-8);
+}
+
+.smoke-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--ds-space-4);
+}
+
+.smoke-card {
+  display: grid;
+  gap: var(--ds-space-4);
+  border: 1px solid var(--ds-color-border-default);
+  border-radius: var(--ds-radius-8);
+  background: var(--ds-color-bg-surface);
+  padding: var(--ds-space-4);
+}
+
+.smoke-card h2 {
+  margin: 0;
+  font-size: var(--ds-font-size-17);
+}
+
 @media (max-width: 960px) {
   .shell {
     grid-template-columns: 1fr;
@@ -490,7 +517,8 @@ pre {
   .principles,
   .token-grid,
   .rule-grid,
-  .roadmap-list {
+  .roadmap-list,
+  .smoke-grid {
     grid-template-columns: 1fr;
   }
 }

@@ -11,8 +11,11 @@ This directory stores design standards that should be agreed on before component
 - [시스템 아키텍처 / System Architecture](./system-architecture.md): workspace 구조와 각 패키지 책임 / Workspace structure and package responsibilities
 - [컴포넌트 분류 / Component Taxonomy](./component-taxonomy.md): 컴포넌트 분류와 성숙도 모델 / Component categories and maturity model
 - [컴포넌트 작성 규약 / Component Authoring](./component-authoring.md): 컴포넌트 폴더, 코드 구성, 문서 작성 방식 / Component folders, source composition, and documentation rules
+- [Prop API 설계 가이드 / Prop API Guidelines](./prop-api-guidelines.md): 재사용 가능한 prop 축, slot, render prop 기준 / Reusable prop axes, slots, and render prop rules
 - [명명 규칙 / Naming Conventions](./naming-conventions.md): 이름, prop, CSS class, data attribute 규칙 / Rules for names, props, CSS classes, and data attributes
 - [토큰 계약 / Token Contract](./token-contract.md): 디자인 토큰 레이어와 CSS 변수 사용 방식 / Design token layers and CSS variable usage
+- [패키지 사용 가이드 / Package Consumption Guide](./package-consumption.md): 외부 React 프로젝트에서 패키지를 사용하는 방식 / How external React projects consume the package
+- [릴리즈 체크리스트 / Release Checklist](./release-checklist.md): 배포 전 검증과 산출물 확인 / Pre-release validation and output checks
 - [접근성 체크리스트 / Accessibility Checklist](./accessibility-checklist.md): 구현 전후 접근성 확인 항목 / Accessibility checks before and after implementation
 - [반응형 레이아웃 시스템 / Responsive Layout System](./responsive-layout-system.md): flex-first 반응형 레이아웃 방향 / Flex-first responsive layout direction
 - [ADR 0001](./adr/0001-use-npm-workspace-packages.md): npm workspace 우선 결정 / Decision to use npm workspaces first

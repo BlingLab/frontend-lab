@@ -5,8 +5,8 @@ The layout system is implemented as mobile-first and flex-first.
 
 ## 실제 primitive / Implemented Primitives
 
-`packages/ui/src/components.js`에서 아래 primitive를 export합니다.
-The following primitives are exported from `packages/ui/src/components.js`.
+각 primitive는 `packages/ui/src/components/layout/{primitive}/{primitive}.tsx`에서 구현하고, `packages/ui/src/index.ts`에서 export합니다.
+Each primitive is implemented in `packages/ui/src/components/layout/{primitive}/{primitive}.tsx` and exported from `packages/ui/src/index.ts`.
 
 ```js
 import { Container, Row, Col, Stack, Inline } from "@frontend-lab/ui";

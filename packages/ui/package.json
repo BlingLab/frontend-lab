@@ -3,11 +3,34 @@
   "version": "0.1.0",
   "private": true,
   "type": "module",
-  "main": "./src/index.js",
+  "main": "./dist/index.js",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "files": [
+    "dist",
+    "README.md"
+  ],
+  "scripts": {
+    "build": "tsc -p tsconfig.json && node ../../scripts/copy-ui-assets.mjs",
+    "typecheck": "tsc -p tsconfig.json --noEmit"
+  },
   "exports": {
-    ".": "./src/index.js",
-    "./components/catalog": "./src/components/catalog.js",
-    "./components/*": "./src/components/*/index.js",
-    "./styles.css": "./src/styles.css"
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    },
+    "./components/catalog": {
+      "types": "./dist/components/catalog.d.ts",
+      "import": "./dist/components/catalog.js"
+    },
+    "./components/*": {
+      "types": "./dist/components/*/index.d.ts",
+      "import": "./dist/components/*/index.js"
+    },
+    "./styles.css": "./dist/styles.css"
+  },
+  "peerDependencies": {
+    "react": ">=18",
+    "react-dom": ">=18"
   }
 }

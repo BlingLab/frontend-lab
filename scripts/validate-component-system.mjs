@@ -1,7 +1,7 @@
 import { access, readFile } from "node:fs/promises";
 import { join } from "node:path";
 import { fileURLToPath } from "node:url";
-import { componentCatalog, componentCategories, componentStatuses } from "../packages/ui/src/components/catalog.js";
+import { componentCatalog, componentCategories, componentStatuses } from "../packages/ui/src/components/catalog.ts";
 
 const rootDir = fileURLToPath(new URL("..", import.meta.url));
 const categoryIds = new Set(componentCategories.map((category) => category.id));
@@ -53,6 +53,13 @@ const requiredExports = [
   "EmptyState",
   "List"
 ];
+const implementationPaths = new Map([
+  ["Container", ["layout", "container"]],
+  ["Row", ["layout", "row"]],
+  ["Col", ["layout", "col"]],
+  ["Stack", ["layout", "stack"]],
+  ["Inline", ["layout", "inline"]]
+]);
 
 async function mustExist(path) {
   try {
@@ -94,22 +101,23 @@ for (const component of componentCatalog) {
     component.category,
     component.slug
   );
+  implementationPaths.set(component.name, [component.category, component.slug]);
 
   await mustExist(join(componentDir, "README.md"));
   await mustExist(join(componentDir, "spec.md"));
-  await mustExist(join(componentDir, "index.js"));
+  await mustExist(join(componentDir, "index.ts"));
 }
 
 const tokensPath = join(rootDir, "packages", "tokens", "src", "tokens.css");
-const componentsPath = join(rootDir, "packages", "ui", "src", "components.js");
+const indexPath = join(rootDir, "packages", "ui", "src", "index.ts");
 const stylesPath = join(rootDir, "packages", "ui", "src", "styles.css");
 
 await mustExist(tokensPath);
-await mustExist(componentsPath);
+await mustExist(indexPath);
 await mustExist(stylesPath);
 
 const tokensCss = await readFile(tokensPath, "utf8");
-const componentsJs = await readFile(componentsPath, "utf8");
+const indexTs = await readFile(indexPath, "utf8");
 const stylesCss = await readFile(stylesPath, "utf8");
 
 for (const tokenName of requiredTokenNames) {
@@ -119,9 +127,39 @@ for (const tokenName of requiredTokenNames) {
 }
 
 for (const exportName of requiredExports) {
-  if (!componentsJs.includes(`export function ${exportName}`)) {
-    failures.push(`컴포넌트 export가 없습니다. / Missing component export: ${exportName}`);
+  const implementationPath = implementationPaths.get(exportName);
+  if (!implementationPath) {
+    failures.push(`구현 경로를 알 수 없습니다. / Missing implementation path mapping: ${exportName}`);
+    continue;
   }
+
+  const [category, slug] = implementationPath;
+  const componentFile = join(rootDir, "packages", "ui", "src", "components", category, slug, `${slug}.tsx`);
+  const entryFile = join(rootDir, "packages", "ui", "src", "components", category, slug, "index.ts");
+
+  await mustExist(componentFile);
+  await mustExist(entryFile);
+
+  const componentSource = await readFile(componentFile, "utf8").catch(() => "");
+  const entrySource = await readFile(entryFile, "utf8").catch(() => "");
+
+  if (!componentSource.includes(`export function ${exportName}`)) {
+    failures.push(`${exportName} 구현은 자기 폴더의 ${slug}.tsx에 있어야 합니다. / ${exportName} implementation must live in its own ${slug}.tsx file.`);
+  }
+  if (!entrySource.includes(`./${slug}`)) {
+    failures.push(`${exportName} index.ts는 같은 폴더의 ${slug}.tsx를 export해야 합니다. / ${exportName} index.ts must export from ./${slug}.`);
+  }
+  if (!indexTs.includes(exportName)) {
+    failures.push(`index.ts에서 컴포넌트를 export해야 합니다. / index.ts must export component: ${exportName}`);
+  }
+}
+
+const forbiddenMonolithPath = join(rootDir, "packages", "ui", "src", "components.tsx");
+try {
+  await access(forbiddenMonolithPath);
+  failures.push("컴포넌트 구현을 src/components.tsx 한 파일에 모으지 않습니다. / Do not centralize component implementations in src/components.tsx.");
+} catch {
+  // 파일이 없으면 정상입니다. / Missing file is expected.
 }
 
 const rawUiValuePattern = /#[0-9a-fA-F]{3,8}\b|rgba?\(/g;

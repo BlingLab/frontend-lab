@@ -17,14 +17,15 @@ frontend-lab
 
 ### `apps/docs`
 
-로컬 문서와 쇼케이스 앱입니다. 현재는 별도 프레임워크 없이 정적 HTML/CSS/JS와 Node 서버로 실행합니다.
-Local documentation and showcase app. It currently runs with static HTML/CSS/JS and a Node server without an additional framework.
+Vite 기반 React 문서와 쇼케이스 앱입니다.
+Vite-based React documentation and showcase app.
 
 책임 / Responsibilities:
 
 - 디자인 시스템의 원칙과 토큰을 시각화합니다. / Visualizes design system principles and tokens.
 - 컴포넌트 카탈로그와 로드맵을 보여줍니다. / Shows the component catalog and roadmap.
-- 구현이 시작되면 `packages/ui`의 실제 컴포넌트를 import해 preview로 검증합니다. / When implementation starts, imports real components from `packages/ui` and verifies them in previews.
+- `packages/ui`의 실제 React 컴포넌트를 import해 preview로 검증합니다. / Imports real React components from `packages/ui` and verifies them in previews.
+- workspace 개발 중에는 Vite alias로 `packages/ui/src`를 직접 참조합니다. / During workspace development, Vite aliases directly to `packages/ui/src`.
 
 ### `docs`
 
@@ -50,14 +51,15 @@ Design token package.
 
 ### `packages/ui`
 
-컴포넌트 카탈로그와 구현 소스가 들어갈 패키지입니다.
-Package for the component catalog and implementation source.
+React + TypeScript 컴포넌트 패키지입니다.
+React + TypeScript component package.
 
 책임 / Responsibilities:
 
-- 컴포넌트 카테고리, 우선순위, 상태, 접근성 참조를 `catalog.js`에 기록합니다. / Records component categories, priorities, statuses, and accessibility references in `catalog.js`.
-- 컴포넌트별 `README.md`와 `spec.md`를 유지합니다. / Maintains per-component `README.md` and `spec.md` files.
-- 구현이 시작되면 컴포넌트 소스, 스타일, 테스트, 예시를 같은 폴더에 둡니다. / When implementation starts, colocates source, styles, tests, and examples in the same folder.
+- 컴포넌트 카테고리, 우선순위, 상태, 접근성 참조를 `catalog.ts`에 기록합니다. / Records component categories, priorities, statuses, and accessibility references in `catalog.ts`.
+- 각 컴포넌트 폴더에 `{slug}.tsx`, `index.ts`, `README.md`, `spec.md`를 둡니다. / Keeps `{slug}.tsx`, `index.ts`, `README.md`, and `spec.md` in each component folder.
+- `src/index.ts`는 public API barrel만 담당합니다. / `src/index.ts` only manages the public API barrel.
+- `dist`에 외부 프로젝트가 소비할 JS, declaration, CSS를 생성합니다. / Generates JS, declarations, and CSS in `dist` for external projects.
 
 ### `scripts`
 
@@ -67,7 +69,8 @@ Repeatable maintenance scripts.
 책임 / Responsibilities:
 
 - `components:scaffold`로 카탈로그 기반 문서 골조를 생성합니다. / Generates catalog-based documentation skeletons with `components:scaffold`.
-- `components:validate`로 필수 폴더와 문서가 있는지 확인합니다. / Checks required folders and docs with `components:validate`.
+- `components:validate`로 필수 폴더, `.tsx` 구현, entry export, token/CSS 규칙을 확인합니다. / Checks required folders, `.tsx` implementations, entry exports, and token/CSS rules with `components:validate`.
+- `copy-ui-assets.mjs`로 UI CSS를 build 산출물에 복사합니다. / Copies UI CSS to build output with `copy-ui-assets.mjs`.
 
 ## 패키지 전략 / Package Strategy
 
@@ -77,12 +80,12 @@ The current standard is npm workspaces.
 - 패키지 매니저 / Package manager: npm
 - lockfile / Lockfile: `package-lock.json`
 - workspace / Workspaces: `apps/*`, `packages/*`
-- 배포 방식: 초기에는 로컬 문서와 소스 관리 중심, 이후 필요할 때 npm package 또는 copy-owned registry 방식을 별도 ADR로 결정합니다. / Distribution: Start with local docs and source management, then decide npm package or copy-owned registry strategy in a separate ADR when needed.
+- 배포 방식: 현재는 workspace package와 `dist` 산출물을 기준으로 하며, npm/GitHub Packages 배포 여부는 별도 ADR로 결정합니다. / Distribution: Currently based on workspace packages and `dist` output; npm or GitHub Packages publishing should be decided in a separate ADR.
 
 ## 성장 경로 / Growth Path
 
-1. 문서와 컴포넌트 스펙 정리 / Organize docs and component specs
-2. P0 컴포넌트 구현 / Implement P0 components
-3. 문서 앱 preview를 실제 컴포넌트 import 방식으로 전환 / Convert docs app previews to real component imports
-4. 접근성/키보드 테스트 추가 / Add accessibility and keyboard tests
+1. React + TypeScript 컴포넌트 구조 유지 / Maintain React + TypeScript component structure
+2. 패키지 소비 문서와 릴리즈 체크리스트 유지 / Maintain package consumption docs and release checklist
+3. 접근성/키보드 테스트 추가 / Add accessibility and keyboard tests
+4. 빌드 산출물 검증 자동화 / Automate build output validation
 5. 패키지 배포 또는 registry 전략 결정 / Decide package distribution or registry strategy

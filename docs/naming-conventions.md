@@ -9,6 +9,8 @@ Korean is the primary documentation language, while code identifiers follow cons
 - 일반 파일 / General files: `kebab-case`
 - 문서 진입 파일 / Documentation entry files: `README.md`, `CHANGELOG.md`
 - component folder path: `packages/ui/src/components/{category}/{component-slug}`
+- component implementation file: `{component-slug}.tsx`
+- component entry file: `index.ts`
 
 예시 / Examples:
 
@@ -22,6 +24,7 @@ responsive-layout-system.md
 ## 컴포넌트 / Components
 
 - export name: `PascalCase`
+- props interface: `{ComponentName}Props`
 - DOM class root: `.ds-PascalCase`
 - DOM class element: `.ds-PascalCase-element`
 - dynamic state: class modifier보다 `data-*`를 우선합니다. / Prefer `data-*` over class modifiers for dynamic state.
@@ -34,11 +37,19 @@ DropdownMenu -> .ds-DropdownMenu-content
 RadioGroup -> .ds-RadioGroup-list
 ```
 
+구현 위치 예시 / Implementation path examples:
+
+```text
+Button -> components/actions/button/button.tsx
+TextField -> components/forms/text-field/text-field.tsx
+DropdownMenu -> components/overlays/dropdown-menu/dropdown-menu.tsx
+```
+
 ## 변수와 함수 / Variables and Functions
 
 - local variable: `camelCase`
 - function: `camelCase`
-- exported component/factory: `PascalCase`
+- exported React component: `PascalCase`
 - true constant: `UPPER_SNAKE_CASE`
 - boolean: 긍정형 이름을 사용합니다. / Use positive boolean names.
 
@@ -135,3 +146,4 @@ Tokens use either `--ds-{category}-{role}-{scale}` or `--ds-{component}-{part}-{
 - public CSS class: `.ds-PascalCase` 또는 `.ds-PascalCase-element`
 - UI CSS raw color 금지 / No raw colors in UI CSS
 - 필수 token과 component export 존재 / Required token and component export presence
+- 각 컴포넌트가 자기 폴더의 `{slug}.tsx`에서 구현되는지 확인 / Checks that each component is implemented in its own `{slug}.tsx`

@@ -1,0 +1,9 @@
+export type Tone = "neutral" | "brand" | "info" | "success" | "warning" | "danger";
+export type ActionTone = Exclude<Tone, "info">;
+export type Size = "sm" | "md" | "lg";
+export type Variant = "solid" | "outline" | "ghost";
+export type Gap = "sm" | "md" | "lg";
+export type Align = "start" | "center" | "end" | "stretch";
+export type Justify = "start" | "center" | "end" | "between";
+export type Density = "compact" | "comfortable" | "spacious";
+export type FieldWidth = "auto" | "full";

@@ -17,13 +17,13 @@ This directory contains the component catalog, documentation, and individual imp
 
 ```text
 {category}/{component-slug}/
-├── index.js
+├── index.ts
 ├── README.md
 └── spec.md
 ```
 
-현재 공통 구현은 `src/components.js`, 공통 스타일은 `src/styles.css`에 있습니다. 각 컴포넌트 폴더의 `index.js`는 해당 component factory를 다시 export합니다.
-The shared implementation currently lives in `src/components.js`, and shared styles live in `src/styles.css`. Each component folder `index.js` re-exports its component factory.
+각 컴포넌트 구현은 자기 폴더의 `{component-slug}.tsx`에 있습니다. 각 컴포넌트 폴더의 `index.ts`는 해당 React component를 다시 export합니다.
+Each component implementation lives in its own `{component-slug}.tsx` file. Each component folder `index.ts` re-exports its React component.
 
-`catalog.js`의 컴포넌트 카탈로그가 초기 scaffolding과 validation의 기준입니다.
-The component catalog in `catalog.js` is the source for initial scaffolding and validation.
+`catalog.ts`의 컴포넌트 카탈로그가 초기 scaffolding과 validation의 기준입니다.
+The component catalog in `catalog.ts` is the source for initial scaffolding and validation.

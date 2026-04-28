@@ -8,10 +8,25 @@
     "packages/*"
   ],
   "scripts": {
-    "components:scaffold": "node scripts/scaffold-component-docs.mjs",
-    "components:validate": "node scripts/validate-component-system.mjs",
-    "dev": "node apps/docs/server.mjs",
-    "docs:dev": "node apps/docs/server.mjs"
+    "components:scaffold": "tsx scripts/scaffold-component-docs.mjs",
+    "components:validate": "tsx scripts/validate-component-system.mjs",
+    "build": "npm --workspace @workspace/ui run build",
+    "dev": "npm --workspace @workspace/docs run dev",
+    "docs:dev": "npm --workspace @workspace/docs run dev",
+    "typecheck": "npm --workspace @workspace/ui run typecheck && npm --workspace @workspace/docs run typecheck"
+  },
+  "dependencies": {
+    "@vitejs/plugin-react": "^5.0.0",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
+    "rollup": "npm:@rollup/wasm-node@^4.60.2",
+    "tsx": "^4.20.0",
+    "typescript": "^5.8.0",
+    "vite": "^7.0.0"
+  },
+  "devDependencies": {
+    "@types/react": "^19.0.0",
+    "@types/react-dom": "^19.0.0"
   },
   "engines": {
     "node": ">=18"
