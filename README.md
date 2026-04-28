@@ -1,4 +1,6 @@
-# Design System Workspace
+# frontend-lab
+
+Frontend experiments, reusable UI components, and interaction patterns.
 
 이 레포지토리는 디자인 시스템을 개발하고, 로컬 문서 사이트에서 컴포넌트 구성과 사용 예시를 확인할 수 있도록 구성합니다.
 
