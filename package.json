@@ -1,0 +1,17 @@
+{
+  "name": "design-system-workspace",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
+  "scripts": {
+    "dev": "node apps/docs/server.mjs",
+    "docs:dev": "node apps/docs/server.mjs"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}

@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Design System Docs</title>
+    <link rel="stylesheet" href="./styles.css">
+  </head>
+  <body>
+    <div class="shell">
+      <aside class="sidebar" aria-label="문서 메뉴">
+        <div class="brand">
+          <span class="brand-mark" aria-hidden="true">DS</span>
+          <div>
+            <strong>Design System</strong>
+            <span>Local docs</span>
+          </div>
+        </div>
+
+        <nav class="nav" id="nav"></nav>
+      </aside>
+
+      <main class="content">
+        <section class="intro" aria-labelledby="page-title">
+          <div>
+            <p class="eyebrow">Local component catalog</p>
+            <h1 id="page-title">디자인 시스템을 로컬에서 확인하는 문서 앱</h1>
+            <p class="intro-copy">
+              컴포넌트 구성, 설명, 시각 예시, 코드 샘플을 한 화면에서 확인할 수 있습니다.
+              추후 실제 UI 패키지가 추가되면 이 앱에서 그대로 import해 검증하는 구조로 확장합니다.
+            </p>
+          </div>
+          <div class="intro-panel" aria-label="실행 명령어">
+            <span>Run locally</span>
+            <code>npm run dev</code>
+          </div>
+        </section>
+
+        <section class="section" id="overview" aria-labelledby="overview-title">
+          <div class="section-heading">
+            <p class="eyebrow">Overview</p>
+            <h2 id="overview-title">구성 원칙</h2>
+          </div>
+          <div class="principles">
+            <article>
+              <strong>실제 컴포넌트 기준</strong>
+              <p>문서는 별도 그림이 아니라 실제 컴포넌트와 토큰을 보여주는 쇼케이스가 됩니다.</p>
+            </article>
+            <article>
+              <strong>로컬 우선</strong>
+              <p>레포를 받은 뒤 Node 명령어만으로 실행해 디자인 시스템을 빠르게 확인합니다.</p>
+            </article>
+            <article>
+              <strong>확장 가능한 골조</strong>
+              <p>초기에는 정적 문서로 시작하고, 이후 packages/ui와 packages/tokens를 연결합니다.</p>
+            </article>
+          </div>
+        </section>
+
+        <section class="section" id="tokens" aria-labelledby="tokens-title">
+          <div class="section-heading">
+            <p class="eyebrow">Foundations</p>
+            <h2 id="tokens-title">디자인 토큰</h2>
+          </div>
+          <div class="token-grid">
+            <article class="token-card">
+              <h3>Colors</h3>
+              <div class="swatches" aria-label="컬러 토큰">
+                <span style="--swatch: #1f6feb">Primary</span>
+                <span style="--swatch: #188038">Success</span>
+                <span style="--swatch: #d97706">Warning</span>
+                <span style="--swatch: #dc2626">Danger</span>
+                <span style="--swatch: #334155">Neutral</span>
+              </div>
+            </article>
+            <article class="token-card">
+              <h3>Typography</h3>
+              <div class="type-samples">
+                <span class="type-display">Display</span>
+                <span class="type-title">Title text</span>
+                <span class="type-body">Body text for product interfaces.</span>
+                <span class="type-caption">Caption / metadata</span>
+              </div>
+            </article>
+            <article class="token-card">
+              <h3>Spacing</h3>
+              <div class="spacing-samples" aria-label="간격 토큰">
+                <span style="--space-width: 8px">8</span>
+                <span style="--space-width: 16px">16</span>
+                <span style="--space-width: 24px">24</span>
+                <span style="--space-width: 32px">32</span>
+              </div>
+            </article>
+          </div>
+        </section>
+
+        <section class="section" id="components" aria-labelledby="components-title">
+          <div class="section-heading">
+            <p class="eyebrow">Components</p>
+            <h2 id="components-title">컴포넌트 카탈로그</h2>
+          </div>
+          <div class="component-list" id="component-list"></div>
+        </section>
+
+        <section class="section" id="example" aria-labelledby="example-title">
+          <div class="section-heading">
+            <p class="eyebrow">Example</p>
+            <h2 id="example-title">조합 예시</h2>
+          </div>
+          <div class="workflow-preview">
+            <form class="sample-form">
+              <label>
+                프로젝트 이름
+                <input type="text" value="Design System Docs">
+              </label>
+              <label>
+                상태
+                <select>
+                  <option>Ready</option>
+                  <option>Draft</option>
+                </select>
+              </label>
+              <div class="form-actions">
+                <button class="button secondary" type="button">취소</button>
+                <button class="button primary" type="button">저장</button>
+              </div>
+            </form>
+            <aside class="usage-note">
+              <strong>문서 앱의 역할</strong>
+              <p>사용자가 메뉴에서 컴포넌트를 탐색하고, 설명과 예시를 보면서 디자인 시스템의 기준을 이해할 수 있게 합니다.</p>
+            </aside>
+          </div>
+        </section>
+      </main>
+    </div>
+
+    <script src="./main.js" type="module"></script>
+  </body>
+</html>
