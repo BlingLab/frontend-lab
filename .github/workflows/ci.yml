@@ -34,3 +34,16 @@ jobs:
 
       - name: 문서 앱 빌드 / Build docs app
         run: npm --workspace @workspace/docs run build
+
+      - name: Playwright 브라우저 설치 / Install Playwright browser
+        run: npx playwright install --with-deps chromium
+
+      - name: 시각 회귀 검증 / Visual regression
+        run: npm run test:visual
+
+      - name: 시각 회귀 산출물 업로드 / Upload visual artifacts
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: visual-regression
+          path: artifacts/visual-regression

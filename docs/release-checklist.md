@@ -11,6 +11,7 @@ npm run test
 npm run typecheck
 npm run build
 npm --workspace @workspace/docs run build
+npm run test:visual
 npm pack --workspace @workspace/ui --dry-run
 ```
 
@@ -21,6 +22,7 @@ npm pack --workspace @workspace/ui --dry-run
 - UI CSS에는 raw color 값을 직접 쓰지 않습니다. / UI CSS must not contain raw color values.
 - `test:a11y`는 핵심 accessible markup을 server render 기준으로 확인해야 합니다. / `test:a11y` must verify core accessible markup through server rendering.
 - `test:interaction`은 keyboard, focus return, highlighted option 같은 상호작용 접근성 흐름을 확인해야 합니다. / `test:interaction` must verify interaction accessibility flows such as keyboard, focus return, and highlighted options.
+- `test:visual`은 docs app home, theme compare, DataGrid screenshot과 horizontal overflow를 확인해야 합니다. / `test:visual` must verify docs app home, theme compare, DataGrid screenshots, and horizontal overflow.
 - `test:exports`는 root export와 per-component export가 실제 `dist` 파일과 맞는지 확인해야 합니다. / `test:exports` must verify that root and per-component exports match real `dist` files.
 - React는 dependency가 아니라 peer dependency로 유지합니다. / React must remain a peer dependency, not a bundled dependency.
 

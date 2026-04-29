@@ -24,7 +24,16 @@ Before releasing the docs app and component package, verify visual baselines acr
 - raw color나 theme name 분기 없이 `--ds-*` token이 실제 색상 변화를 담당합니다. / `--ds-*` tokens drive color changes without raw colors or theme-name branches.
 - screenshot 차이가 생기면 의도한 변경인지 PR description에 적습니다. / If screenshots differ, document whether the change is intentional in the PR description.
 
-## 자동화 후보 / Automation Candidate
+## 자동화 / Automation
 
-- Playwright screenshot 검증은 별도 이슈에서 도입합니다. / Introduce Playwright screenshot validation in a separate issue.
-- 첫 자동화 범위는 docs app home, theme compare, DataGrid example 세 화면으로 제한합니다. / Limit the first automated scope to docs app home, theme compare, and DataGrid example screens.
+Playwright screenshot 검증은 `npm run test:visual`로 실행합니다.
+Run Playwright screenshot validation with `npm run test:visual`.
+
+- 첫 자동화 범위는 docs app home, theme compare, DataGrid example 세 화면입니다. / The first automated scope covers docs app home, theme compare, and DataGrid example screens.
+- NORMAL/DARK theme와 mobile/tablet/desktop viewport 조합을 screenshot으로 저장합니다. / Stores screenshots for NORMAL/DARK themes across mobile/tablet/desktop viewports.
+- 산출물은 `artifacts/visual-regression`에 생성되고 CI에서는 artifact로 업로드됩니다. / Outputs are generated in `artifacts/visual-regression` and uploaded as CI artifacts.
+- 현재 단계는 screenshot artifact와 layout overflow 검증을 수행하고, pixel baseline comparison은 별도 기준이 안정화되면 추가합니다. / This stage performs screenshot artifact and layout overflow checks; pixel baseline comparison should be added after baseline criteria stabilize.
+
+```bash
+npm run test:visual
+```
