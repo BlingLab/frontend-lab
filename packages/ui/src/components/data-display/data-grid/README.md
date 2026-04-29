@@ -1,6 +1,6 @@
 # DataGrid 컴포넌트 / DataGrid Component
 
-정렬, 선택, 행 action을 포함한 interactive tabular grid입니다. / Interactive tabular grid with sorting, selection, and row actions.
+정렬, 선택, 행 action, keyboard row navigation, column resize를 포함한 interactive tabular grid입니다. / Interactive tabular grid with sorting, selection, row actions, keyboard row navigation, and column resize.
 
 ## 역할 / Role
 
@@ -15,7 +15,7 @@
 
 ## Prop 축 / Prop Axes
 
-`columns`, `rows`, `density`, `sortable`, `selectionMode`, `striped`, `stickyHeader`, `emptyMessage`, `rowKey`, `rowActions`, `sortState`, `defaultSortState`, `selectedRowKeys`, `defaultSelectedRowKeys`, `onSortChange`, `onSelectedRowKeysChange`, `onSelectionChange`
+`columns`, `rows`, `density`, `sortable`, `selectionMode`, `striped`, `stickyHeader`, `emptyMessage`, `rowKey`, `rowActions`, `sortState`, `defaultSortState`, `selectedRowKeys`, `defaultSelectedRowKeys`, `activeRowKey`, `defaultActiveRowKey`, `keyboardNavigation`, `resizableColumns`, `onSortChange`, `onSelectedRowKeysChange`, `onSelectionChange`, `onActiveRowKeyChange`, `onColumnResize`
 
 ## 상태 / States
 
@@ -23,14 +23,18 @@
 - `hover`
 - `sorted`
 - `selected`
+- `active`
 - `empty`
 - `loading`
+- `resizing`
 
 ## 접근성 / Accessibility
 
 - 기본 기준 / Base reference: [https://www.w3.org/WAI/ARIA/apg/patterns/grid/](https://www.w3.org/WAI/ARIA/apg/patterns/grid/)
 - accessible name이 필요한 control은 `label`, `aria-label`, visible text 중 하나로 이름을 제공합니다. / Controls that need an accessible name receive it through `label`, `aria-label`, or visible text.
-- 내부 table의 정렬/선택 API를 그대로 전달하고 key 기반 controlled state를 지원합니다. / It forwards the inner table sorting/selection API and supports key-based controlled state.
+- 행 focus는 roving `tabIndex`로 한 행만 tab stop이 되며 `ArrowUp`, `ArrowDown`, `Home`, `End`로 이동합니다. / Row focus uses roving `tabIndex` so only one row is a tab stop, and `ArrowUp`, `ArrowDown`, `Home`, and `End` move focus.
+- `selectionMode="multiple"`일 때 행 focus 상태에서 Space로 선택을 토글할 수 있습니다. / When `selectionMode="multiple"`, Space toggles selection from the focused row.
+- `resizableColumns`와 column의 `resizable` 설정으로 pointer 기반 열 너비 조절을 제어합니다. / `resizableColumns` and each column's `resizable` setting control pointer-based column resizing.
 - focus-visible은 `--ds-focus-ring`을 사용하고 keyboard navigation에서 사라지지 않아야 합니다. / Focus-visible uses `--ds-focus-ring` and must remain visible during keyboard navigation.
 
 ## 토큰 / Tokens
@@ -45,7 +49,16 @@
 import { DataGrid } from "@workspace/ui/components/data-display/data-grid";
 
 export function Example() {
-  return <DataGrid columns={columns} rows={rows} selectionMode="multiple" />;
+  return (
+    <DataGrid
+      columns={columns}
+      rows={rows}
+      rowKey={(row) => row.id}
+      selectionMode="multiple"
+      keyboardNavigation="row"
+      resizableColumns
+    />
+  );
 }
 ```
 
@@ -54,3 +67,4 @@ export function Example() {
 - 구현 파일은 `data-grid.tsx`, public entry는 `index.ts`입니다. / Implementation lives in `data-grid.tsx`, and the public entry is `index.ts`.
 - controlled/uncontrolled 값이 있는 경우 `onValueChange`, `onOpenChange`, `onSelectionChange`처럼 `onPascalCase` event prop을 사용합니다. / Controlled or uncontrolled values use `onPascalCase` event props such as `onValueChange`, `onOpenChange`, and `onSelectionChange`.
 - hover, active, selected, disabled는 shared state token과 `data-*` hook으로 표현합니다. / Hover, active, selected, and disabled are represented with shared state tokens and `data-*` hooks.
+- virtual scroll은 이번 범위에서 제외하고, large data가 실제 요구될 때 별도 이슈로 설계합니다. / Virtual scroll is excluded from this scope and should be designed in a separate issue when large data is a real requirement.

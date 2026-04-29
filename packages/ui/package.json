@@ -11,7 +11,7 @@
     "README.md"
   ],
   "scripts": {
-    "build": "tsc -p tsconfig.json && node ../../scripts/copy-ui-assets.mjs",
+    "build": "node ../../scripts/clean-ui-dist.mjs && tsc -p tsconfig.json && node ../../scripts/copy-ui-assets.mjs",
     "typecheck": "tsc -p tsconfig.json --noEmit"
   },
   "exports": {

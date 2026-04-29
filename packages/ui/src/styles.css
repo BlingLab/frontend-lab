@@ -1414,6 +1414,55 @@
   color: var(--ds-color-action-primary-bg-hover);
 }
 
+.ds-DataGrid-wrap {
+  border: var(--ds-size-1) solid var(--ds-table-border);
+  border-radius: var(--ds-radius-8);
+}
+
+.ds-DataGrid-table {
+  table-layout: fixed;
+}
+
+.ds-DataGrid-columnHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--ds-space-2);
+  min-inline-size: 100%;
+}
+
+.ds-DataGrid-columnLabel,
+.ds-DataGrid .ds-Table-sort {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.ds-DataGrid-resizeHandle {
+  inline-size: var(--ds-space-2);
+  align-self: stretch;
+  min-block-size: var(--ds-space-5);
+  flex: 0 0 auto;
+  border: var(--ds-size-0);
+  border-inline-end: var(--ds-size-1) solid var(--ds-color-border-strong);
+  background: transparent;
+  cursor: col-resize;
+}
+
+.ds-DataGrid-resizeHandle:hover,
+.ds-DataGrid-resizeHandle:focus-visible {
+  border-inline-end-color: var(--ds-color-action-primary-bg);
+}
+
+.ds-DataGrid-row[data-active="true"] {
+  background: var(--ds-state-selected-bg);
+}
+
+.ds-DataGrid-row:focus-visible {
+  outline: var(--ds-focus-ring);
+  outline-offset: calc(var(--ds-size-1) * -1);
+}
+
 .ds-Table-empty {
   color: var(--ds-color-text-muted);
   text-align: center;
