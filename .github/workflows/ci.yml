@@ -35,6 +35,9 @@ jobs:
       - name: 문서 앱 빌드 / Build docs app
         run: npm --workspace @workspace/docs run build
 
+      - name: 소비자 fixture 빌드 / Build consumer fixture
+        run: npm run test:consumer
+
       - name: Playwright 브라우저 설치 / Install Playwright browser
         run: npx playwright install --with-deps chromium
 

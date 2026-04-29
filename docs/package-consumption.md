@@ -107,6 +107,19 @@ packages/ui/dist/
 export 경로는 릴리즈 전에 `npm run test:exports`로 확인합니다.
 Validate export paths before release with `npm run test:exports`.
 
+## 소비자 fixture / Consumer Fixture
+
+`apps/consumer-fixture`는 source alias 없이 빌드된 package entry를 가져오는 Vite 앱입니다.
+`apps/consumer-fixture` is a Vite app that consumes built package entries without source aliases.
+
+```bash
+npm run test:consumer
+```
+
+- root export에서 `Button`, `Card`, `DataGrid`, `TextField`, `componentCatalog`를 가져옵니다. / Imports `Button`, `Card`, `DataGrid`, `TextField`, and `componentCatalog` from the root export.
+- per-component export에서 `Button`과 `DataGrid`를 가져옵니다. / Imports `Button` and `DataGrid` from per-component exports.
+- `@workspace/tokens/tokens.css`와 `@workspace/ui/styles.css`를 함께 import하고 `data-ds-theme="dark"`에서 build가 통과해야 합니다. / Imports `@workspace/tokens/tokens.css` with `@workspace/ui/styles.css`, and the build must pass with `data-ds-theme="dark"`.
+
 ## API 상태 제어 / API State Control
 
 상태를 외부에서 제어해야 하는 화면은 controlled prop과 `on*Change` callback을 함께 사용합니다.

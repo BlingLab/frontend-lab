@@ -12,6 +12,7 @@ All notable changes are documented in this file.
 - UI package build 전에 stale `dist`를 정리하는 스크립트를 추가했습니다. / Added a script that cleans stale `dist` output before building the UI package.
 - Playwright 기반 docs app screenshot 검증을 추가했습니다. / Added Playwright-based docs app screenshot validation.
 - 상호작용 접근성 검증 범위를 Select, DatePicker, FileUploader, Tabs, Stepper, NavigationRail, SideNav로 확장했습니다. / Expanded interaction accessibility validation to Select, DatePicker, FileUploader, Tabs, Stepper, NavigationRail, and SideNav.
+- 외부 소비자 fixture 앱과 `test:consumer` 검증을 추가했습니다. / Added an external consumer fixture app and `test:consumer` validation.
 
 ### Changed
 
