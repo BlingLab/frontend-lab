@@ -7,6 +7,7 @@ Check the items below before releasing `@workspace/ui` for use in other projects
 
 ```bash
 npm run components:validate
+npm run lint
 npm run test
 npm run typecheck
 npm run build
@@ -20,6 +21,7 @@ npm pack --workspace @workspace/ui --dry-run
 ```
 
 - component folder마다 `{slug}.tsx`, `index.ts`, `README.md`, `spec.md`가 있어야 합니다. / Each component folder must have `{slug}.tsx`, `index.ts`, `README.md`, and `spec.md`.
+- `lint`는 TypeScript/TSX/MJS, CSS, Markdown, JSON/YAML의 기본 format 회귀를 확인해야 합니다. / `lint` must verify basic format regressions across TypeScript/TSX/MJS, CSS, Markdown, and JSON/YAML.
 - `packages/ui/src/index.ts`는 public export만 담당해야 합니다. / `packages/ui/src/index.ts` should only manage public exports.
 - `packages/ui/src/components.tsx` 같은 중앙 구현 파일은 만들지 않습니다. / Do not create central implementation files such as `packages/ui/src/components.tsx`.
 - build는 `packages/ui/dist`를 먼저 정리해 stale output이 tarball에 들어가지 않아야 합니다. / Build must clean `packages/ui/dist` first so stale output does not enter the tarball.
