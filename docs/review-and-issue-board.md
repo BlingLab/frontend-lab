@@ -13,13 +13,15 @@ This document is a lightweight backlog for items that should become GitHub Issue
 
 ## 현재 이슈 후보 / Current Issue Candidates
 
-| 우선순위 / Priority | 제목 / Title | 유형 / Type | 기준 / Acceptance Criteria |
-| --- | --- | --- | --- |
-| P0 | CI workflow 추가 / Add CI workflow | infra | `npm run test`, `npm run typecheck`, docs build가 push와 PR에서 실행됩니다. / Runs `npm run test`, `npm run typecheck`, and docs build on push and PR. |
-| P0 | 접근성 회귀 테스트 확장 / Expand accessibility regression tests | quality | `Dialog`, `CommandPalette`, `Combobox`, `DataGrid` keyboard 흐름을 자동화합니다. / Automates keyboard flows for `Dialog`, `CommandPalette`, `Combobox`, and `DataGrid`. |
-| P1 | 시각 회귀 기준 추가 / Add visual regression criteria | quality | NORMAL/DARK, mobile/tablet/desktop screenshots 기준을 정의합니다. / Defines screenshot criteria for NORMAL/DARK and mobile/tablet/desktop. |
-| P1 | 패키지 릴리즈 정책 확정 / Define package release policy | release | package scope, registry, versioning, changelog 방식을 결정합니다. / Defines package scope, registry, versioning, and changelog flow. |
-| P1 | DataGrid 고급 상호작용 설계 / Design advanced DataGrid interactions | component | column resize, row keyboard navigation, virtual scroll 여부를 결정합니다. / Decides column resize, row keyboard navigation, and virtual scroll scope. |
+| Issue | 우선순위 / Priority | 제목 / Title | 유형 / Type | 기준 / Acceptance Criteria |
+| --- | --- | --- | --- | --- |
+| [#1](https://github.com/BlingLab/frontend-lab/issues/1) | P0 | CI workflow 추가 / Add CI workflow | infra | `npm run test`, `npm run typecheck`, docs build가 push와 PR에서 실행됩니다. / Runs `npm run test`, `npm run typecheck`, and docs build on push and PR. |
+| [#2](https://github.com/BlingLab/frontend-lab/issues/2) | P0 | 접근성 회귀 테스트 확장 / Expand accessibility regression tests | quality | `Dialog`, `CommandPalette`, `Combobox`, `DataGrid` keyboard 흐름을 자동화합니다. / Automates keyboard flows for `Dialog`, `CommandPalette`, `Combobox`, and `DataGrid`. |
+| [#3](https://github.com/BlingLab/frontend-lab/issues/3) | P0 | 브랜치 보호와 PR 리뷰 규칙 설정 / Configure branch protection and PR review rules | review | main branch protection, required checks, PR review rule을 설정합니다. / Configures main branch protection, required checks, and PR review rules. |
+| [#4](https://github.com/BlingLab/frontend-lab/issues/4) | P1 | 시각 회귀 기준 추가 / Add visual regression criteria | quality | NORMAL/DARK, mobile/tablet/desktop screenshots 기준을 정의합니다. / Defines screenshot criteria for NORMAL/DARK and mobile/tablet/desktop. |
+| [#5](https://github.com/BlingLab/frontend-lab/issues/5) | P1 | 패키지 릴리즈 정책 확정 / Define package release policy | release | package scope, registry, versioning, changelog 방식을 결정합니다. / Defines package scope, registry, versioning, and changelog flow. |
+| [#6](https://github.com/BlingLab/frontend-lab/issues/6) | P1 | DataGrid 고급 상호작용 설계 / Design advanced DataGrid interactions | component | column resize, row keyboard navigation, virtual scroll 여부를 결정합니다. / Decides column resize, row keyboard navigation, and virtual scroll scope. |
+| [#7](https://github.com/BlingLab/frontend-lab/issues/7) | Done | React 컴포넌트 시스템 하드닝 완료 기록 / Track completed hardening work | tracking | 완료된 component hardening 작업을 closed issue로 기록했습니다. / Completed component hardening work is recorded as a closed issue. |
 
 ## PR 후보 / Pull Request Candidates
 
@@ -27,25 +29,31 @@ This document is a lightweight backlog for items that should become GitHub Issue
 
 - 범위 / Scope: GitHub Actions workflow, npm cache, test/typecheck/docs build job.
 - 리뷰 포인트 / Review points: workflow runtime, cache key, failure output, branch protection readiness.
-- 연결 이슈 / Linked issue: `CI workflow 추가 / Add CI workflow`.
+- 연결 이슈 / Linked issue: [#1](https://github.com/BlingLab/frontend-lab/issues/1)
 
 ### 2. 접근성 상호작용 테스트 / Accessibility Interaction Tests
 
 - 범위 / Scope: keyboard simulation test runner 또는 Playwright 기반 docs app 검증.
 - 리뷰 포인트 / Review points: focus order, Escape close, Arrow navigation, `aria-activedescendant`.
-- 연결 이슈 / Linked issue: `접근성 회귀 테스트 확장 / Expand accessibility regression tests`.
+- 연결 이슈 / Linked issue: [#2](https://github.com/BlingLab/frontend-lab/issues/2)
 
-### 3. 릴리즈 준비 / Release Readiness
+### 3. PR 보호와 리뷰 규칙 / PR Protection And Review Rules
+
+- 범위 / Scope: branch protection, required checks, PR review requirement.
+- 리뷰 포인트 / Review points: main direct push 제한, required CI, reviewer rule.
+- 연결 이슈 / Linked issue: [#3](https://github.com/BlingLab/frontend-lab/issues/3)
+
+### 4. 릴리즈 준비 / Release Readiness
 
 - 범위 / Scope: package name/scope, changelog, version policy, publish target.
 - 리뷰 포인트 / Review points: consumer import path, peer dependency, generated `dist` structure.
-- 연결 이슈 / Linked issue: `패키지 릴리즈 정책 확정 / Define package release policy`.
+- 연결 이슈 / Linked issue: [#5](https://github.com/BlingLab/frontend-lab/issues/5)
 
-### 4. DataGrid 성숙도 향상 / DataGrid Maturity
+### 5. DataGrid 성숙도 향상 / DataGrid Maturity
 
 - 범위 / Scope: keyboard row navigation, resize handle API, optional virtualized body decision.
 - 리뷰 포인트 / Review points: table semantics 유지, prop API 폭발 방지, responsive overflow.
-- 연결 이슈 / Linked issue: `DataGrid 고급 상호작용 설계 / Design advanced DataGrid interactions`.
+- 연결 이슈 / Linked issue: [#6](https://github.com/BlingLab/frontend-lab/issues/6)
 
 ## 운영 방식 / Operating Flow
 
