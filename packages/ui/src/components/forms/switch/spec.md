@@ -12,6 +12,16 @@
 - priority/status: `P0` / `ready`
 - props: `checked`, `defaultChecked`, `disabled`, `label`, `onCheckedChange`
 
+## Prop 표 / Prop Table
+
+| Prop | Type | Default | 설명 / Description |
+| --- | --- | --- | --- |
+| `checked` | `boolean` | `-` | controlled 선택 상태입니다. / Controlled checked state. |
+| `defaultChecked` | `boolean` | `-` | uncontrolled 초기 선택 상태입니다. / Initial uncontrolled checked state. |
+| `disabled` | `boolean` | `false` | 사용자 interaction을 비활성화합니다. / Disables user interaction. |
+| `label` | `ReactNode` | `-` | 사용자에게 보이는 label 또는 accessible name입니다. / Visible label or accessible name. |
+| `onCheckedChange` | `component-specific` | `-` | 컴포넌트별 확장 prop입니다. / Component-specific extension prop. |
+
 ## 변형 / Variants
 
 - 시각 변형은 이미 정의된 `variant`, `tone`, `size`, `density`, `orientation` prop이 있을 때만 사용합니다. / Visual variants use existing props such as `variant`, `tone`, `size`, `density`, and `orientation` only when they are defined.

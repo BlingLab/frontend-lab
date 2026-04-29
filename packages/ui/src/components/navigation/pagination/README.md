@@ -17,6 +17,17 @@
 
 `page`, `defaultPage`, `totalPages`, `siblingCount`, `disabled`, `onPageChange`
 
+## Prop 표 / Prop Table
+
+| Prop | Type | Default | 설명 / Description |
+| --- | --- | --- | --- |
+| `page` | `number` | `-` | 현재 page 값입니다. / Current page value. |
+| `defaultPage` | `number` | `-` | uncontrolled 초기 page 값입니다. / Initial uncontrolled page value. |
+| `totalPages` | `number` | `-` | 전체 page 수입니다. / Total number of pages. |
+| `siblingCount` | `component-specific` | `-` | 컴포넌트별 확장 prop입니다. / Component-specific extension prop. |
+| `disabled` | `boolean` | `false` | 사용자 interaction을 비활성화합니다. / Disables user interaction. |
+| `onPageChange` | `(page: number) => void` | `-` | page 값이 바뀔 때 호출됩니다. / Called when page changes. |
+
 ## 상태 / States
 
 - `current`

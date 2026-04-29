@@ -25,7 +25,6 @@
 | `emptyMessage` | `ReactNode` | `"명령이 없습니다. / No commands."` | 검색 결과가 없을 때 표시합니다. / Shown when no commands match. |
 | `onOpenChange` | `(open: boolean) => void` | `-` | open 상태가 바뀔 때 호출됩니다. / Called when open state changes. |
 | `onCommandSelect` | `(command: CommandPaletteCommand) => void` | `-` | command가 선택될 때 호출됩니다. / Called when a command is selected. |
-
 ## 변형 / Variants
 
 - 시각 변형은 이미 정의된 `variant`, `tone`, `size`, `density`, `orientation` prop이 있을 때만 사용합니다. / Visual variants use existing props such as `variant`, `tone`, `size`, `density`, and `orientation` only when they are defined.

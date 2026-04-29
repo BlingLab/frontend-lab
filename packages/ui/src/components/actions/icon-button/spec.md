@@ -12,6 +12,19 @@
 - priority/status: `P0` / `ready`
 - props: `label`, `icon`, `variant`, `tone`, `size`, `shape`, `disabled`, `loading`
 
+## Prop 표 / Prop Table
+
+| Prop | Type | Default | 설명 / Description |
+| --- | --- | --- | --- |
+| `label` | `ReactNode` | `-` | 사용자에게 보이는 label 또는 accessible name입니다. / Visible label or accessible name. |
+| `icon` | `ReactNode` | `-` | 시각적으로 함께 표시할 icon입니다. / Icon displayed with the content. |
+| `variant` | `variant` | `-` | 시각 variant입니다. / Visual variant. |
+| `tone` | `tone` | `-` | semantic color tone입니다. / Semantic color tone. |
+| `size` | `Size` | `"md"` | control 크기와 밀도입니다. / Control size and density. |
+| `shape` | `string` | `-` | 컴포넌트 외형 형태입니다. / Visual shape of the component. |
+| `disabled` | `boolean` | `false` | 사용자 interaction을 비활성화합니다. / Disables user interaction. |
+| `loading` | `boolean` | `false` | loading 상태를 표시합니다. / Shows loading state. |
+
 ## 변형 / Variants
 
 - 시각 변형은 이미 정의된 `variant`, `tone`, `size`, `density`, `orientation` prop이 있을 때만 사용합니다. / Visual variants use existing props such as `variant`, `tone`, `size`, `density`, and `orientation` only when they are defined.

@@ -17,6 +17,23 @@ Field composition을 포함한 여러 줄 텍스트 입력입니다. / Multi-lin
 
 `value`, `defaultValue`, `placeholder`, `rows`, `resize`, `size`, `width`, `fieldProps`, `textareaClassName`, `disabled`, `readOnly`, `invalid`
 
+## Prop 표 / Prop Table
+
+| Prop | Type | Default | 설명 / Description |
+| --- | --- | --- | --- |
+| `value` | `string \| number` | `-` | controlled 값입니다. / Controlled value. |
+| `defaultValue` | `string` | `-` | uncontrolled 초기 값입니다. / Initial uncontrolled value. |
+| `placeholder` | `string` | `-` | 입력 전 표시할 placeholder입니다. / Placeholder shown before input. |
+| `rows` | `row[] \| number` | `-` | row data 또는 textarea row 수입니다. / Row data or textarea row count. |
+| `resize` | `component-specific` | `-` | 컴포넌트별 확장 prop입니다. / Component-specific extension prop. |
+| `size` | `Size` | `"md"` | control 크기와 밀도입니다. / Control size and density. |
+| `width` | `FieldWidth \| CSSProperties["width"]` | `-` | 렌더링 width 값입니다. / Rendered width value. |
+| `fieldProps` | `FieldProps` | `-` | Field wrapper에 전달할 추가 설정입니다. / Additional settings passed to the Field wrapper. |
+| `textareaClassName` | `component-specific` | `-` | 컴포넌트별 확장 prop입니다. / Component-specific extension prop. |
+| `disabled` | `boolean` | `false` | 사용자 interaction을 비활성화합니다. / Disables user interaction. |
+| `readOnly` | `boolean` | `false` | 값을 읽기 전용으로 만듭니다. / Makes the value read-only. |
+| `invalid` | `boolean` | `false` | validation 실패 상태를 표시합니다. / Shows validation failure state. |
+
 ## 상태 / States
 
 - `default`

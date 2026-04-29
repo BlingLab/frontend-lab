@@ -196,6 +196,7 @@ for (const exportName of requiredExports) {
   const componentSource = await readFile(componentFile, "utf8").catch(() => "");
   const entrySource = await readFile(entryFile, "utf8").catch(() => "");
   const readmeSource = await readFile(join(rootDir, "packages", "ui", "src", "components", category, slug, "README.md"), "utf8").catch(() => "");
+  const specSource = await readFile(join(rootDir, "packages", "ui", "src", "components", category, slug, "spec.md"), "utf8").catch(() => "");
 
   if (!componentSource.includes(`export function ${exportName}`) && !componentSource.includes(`export const ${exportName}`)) {
     failures.push(`${exportName} 구현은 자기 폴더의 ${slug}.tsx에서 named export여야 합니다. / ${exportName} implementation must be a named export in its own ${slug}.tsx file.`);
@@ -205,6 +206,26 @@ for (const exportName of requiredExports) {
   }
   if (!indexTs.includes(exportName)) {
     failures.push(`index.ts에서 컴포넌트를 export해야 합니다. / index.ts must export component: ${exportName}`);
+  }
+
+  if (componentCatalog.some((component) => component.name === exportName && component.status === "ready")) {
+    const component = componentCatalog.find((catalogItem) => catalogItem.name === exportName);
+    const propDocs = component ? getComponentPropDocs(component) : [];
+    const readmeHasPropTable = readmeSource.includes("## Prop 표 / Prop Table") && readmeSource.includes(propTableHeader);
+    if (!readmeHasPropTable) {
+      failures.push(`${exportName} README에 Prop 표가 없습니다. / ${exportName} README is missing a prop table.`);
+    }
+    if (!specSource.includes("## Prop 표 / Prop Table") || !specSource.includes(propTableHeader)) {
+      failures.push(`${exportName} spec에 Prop 표가 없습니다. / ${exportName} spec is missing a prop table.`);
+    }
+    for (const propDoc of propDocs) {
+      if (!readmeSource.includes(`| \`${propDoc.name}\``)) {
+        failures.push(`${exportName} README Prop 표에 prop이 없습니다. / ${exportName} README prop table is missing prop: ${propDoc.name}`);
+      }
+      if (!specSource.includes(`| \`${propDoc.name}\``)) {
+        failures.push(`${exportName} spec Prop 표에 prop이 없습니다. / ${exportName} spec prop table is missing prop: ${propDoc.name}`);
+      }
+    }
   }
 
   if (componentPropDocs[exportName]) {

@@ -12,6 +12,16 @@
 - priority/status: `P0` / `ready`
 - props: `checked`, `defaultChecked`, `indeterminate`, `disabled`, `invalid`
 
+## Prop 표 / Prop Table
+
+| Prop | Type | Default | 설명 / Description |
+| --- | --- | --- | --- |
+| `checked` | `boolean` | `-` | controlled 선택 상태입니다. / Controlled checked state. |
+| `defaultChecked` | `boolean` | `-` | uncontrolled 초기 선택 상태입니다. / Initial uncontrolled checked state. |
+| `indeterminate` | `boolean` | `false` | 부분 선택 상태를 표시합니다. / Shows a partially selected state. |
+| `disabled` | `boolean` | `false` | 사용자 interaction을 비활성화합니다. / Disables user interaction. |
+| `invalid` | `boolean` | `false` | validation 실패 상태를 표시합니다. / Shows validation failure state. |
+
 ## 변형 / Variants
 
 - 시각 변형은 이미 정의된 `variant`, `tone`, `size`, `density`, `orientation` prop이 있을 때만 사용합니다. / Visual variants use existing props such as `variant`, `tone`, `size`, `density`, and `orientation` only when they are defined.

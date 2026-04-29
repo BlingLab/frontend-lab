@@ -17,6 +17,13 @@
 
 `orientation`, `decorative`
 
+## Prop 표 / Prop Table
+
+| Prop | Type | Default | 설명 / Description |
+| --- | --- | --- | --- |
+| `orientation` | `"horizontal" \| "vertical"` | `-` | 컴포넌트 방향입니다. / Component orientation. |
+| `decorative` | `component-specific` | `-` | 컴포넌트별 확장 prop입니다. / Component-specific extension prop. |
+
 ## 상태 / States
 
 - `horizontal`

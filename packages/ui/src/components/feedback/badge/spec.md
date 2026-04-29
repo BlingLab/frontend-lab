@@ -12,6 +12,19 @@
 - priority/status: `P0` / `ready`
 - props: `tone`, `variant`, `size`, `iconStart`, `iconEnd`, `removable`, `removeLabel`, `onRemove`
 
+## Prop 표 / Prop Table
+
+| Prop | Type | Default | 설명 / Description |
+| --- | --- | --- | --- |
+| `tone` | `tone` | `-` | semantic color tone입니다. / Semantic color tone. |
+| `variant` | `variant` | `-` | 시각 variant입니다. / Visual variant. |
+| `size` | `Size` | `"md"` | control 크기와 밀도입니다. / Control size and density. |
+| `iconStart` | `ReactNode` | `-` | content 앞에 표시할 icon입니다. / Icon displayed before the content. |
+| `iconEnd` | `ReactNode` | `-` | content 뒤에 표시할 icon입니다. / Icon displayed after the content. |
+| `removable` | `boolean` | `false` | 사용자가 제거할 수 있는 상태입니다. / Allows the user to remove the item. |
+| `removeLabel` | `component-specific` | `-` | 컴포넌트별 확장 prop입니다. / Component-specific extension prop. |
+| `onRemove` | `component-specific` | `-` | 컴포넌트별 확장 prop입니다. / Component-specific extension prop. |
+
 ## 변형 / Variants
 
 - 시각 변형은 이미 정의된 `variant`, `tone`, `size`, `density`, `orientation` prop이 있을 때만 사용합니다. / Visual variants use existing props such as `variant`, `tone`, `size`, `density`, and `orientation` only when they are defined.

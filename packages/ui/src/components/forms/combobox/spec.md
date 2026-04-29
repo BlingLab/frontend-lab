@@ -30,7 +30,6 @@
 | `required` | `boolean` | `false` | 필수 입력 상태를 표시합니다. / Marks the field as required. |
 | `fieldProps` | `Omit<FieldProps, ...>` | `-` | Field wrapper에 전달할 추가 설정입니다. / Additional settings passed to the Field wrapper. |
 | `onValueChange` | `(value: string) => void` | `-` | 선택 값이 바뀔 때 호출됩니다. / Called when the selected value changes. |
-
 ## 변형 / Variants
 
 - 시각 변형은 이미 정의된 `variant`, `tone`, `size`, `density`, `orientation` prop이 있을 때만 사용합니다. / Visual variants use existing props such as `variant`, `tone`, `size`, `density`, and `orientation` only when they are defined.

@@ -16,6 +16,14 @@
 
 `name`, `label`, `size`
 
+## Prop 표 / Prop Table
+
+| Prop | Type | Default | 설명 / Description |
+| --- | --- | --- | --- |
+| `name` | `string` | `-` | form 제출 또는 group 식별에 쓰는 name입니다. / Name used for form submission or group identity. |
+| `label` | `ReactNode` | `-` | 사용자에게 보이는 label 또는 accessible name입니다. / Visible label or accessible name. |
+| `size` | `Size` | `"md"` | control 크기와 밀도입니다. / Control size and density. |
+
 ## 상태 / States
 
 - `decorative`

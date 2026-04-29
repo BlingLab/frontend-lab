@@ -9,6 +9,7 @@
   ],
   "scripts": {
     "components:scaffold": "tsx scripts/scaffold-component-docs.mjs",
+    "components:props": "tsx scripts/sync-component-prop-tables.mjs",
     "components:validate": "tsx scripts/validate-component-system.mjs",
     "build": "npm --workspace @workspace/ui run build",
     "dev": "npm --workspace @workspace/docs run dev",

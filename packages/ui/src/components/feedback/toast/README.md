@@ -17,6 +17,19 @@
 
 `tone`, `title`, `description`, `duration`, `dismissible`, `dismissLabel`, `actions`, `onDismiss`
 
+## Prop 표 / Prop Table
+
+| Prop | Type | Default | 설명 / Description |
+| --- | --- | --- | --- |
+| `tone` | `tone` | `-` | semantic color tone입니다. / Semantic color tone. |
+| `title` | `ReactNode` | `-` | 표면 또는 content의 제목입니다. / Title of the surface or content. |
+| `description` | `ReactNode` | `-` | 보조 설명 text입니다. / Helper description text. |
+| `duration` | `component-specific` | `-` | 컴포넌트별 확장 prop입니다. / Component-specific extension prop. |
+| `dismissible` | `boolean` | `false` | 사용자가 닫을 수 있는 상태입니다. / Allows the user to dismiss the component. |
+| `dismissLabel` | `component-specific` | `-` | 컴포넌트별 확장 prop입니다. / Component-specific extension prop. |
+| `actions` | `ReactNode \| action[]` | `-` | 사용자가 실행할 수 있는 보조 action입니다. / Secondary actions the user can run. |
+| `onDismiss` | `component-specific` | `-` | 컴포넌트별 확장 prop입니다. / Component-specific extension prop. |
+
 ## 상태 / States
 
 - `entering`

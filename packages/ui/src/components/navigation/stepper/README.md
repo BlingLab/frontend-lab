@@ -17,6 +17,17 @@
 
 `steps`, `value`, `defaultValue`, `orientation`, `variant`, `onValueChange`
 
+## Prop 표 / Prop Table
+
+| Prop | Type | Default | 설명 / Description |
+| --- | --- | --- | --- |
+| `steps` | `component-specific` | `-` | 컴포넌트별 확장 prop입니다. / Component-specific extension prop. |
+| `value` | `string \| number` | `-` | controlled 값입니다. / Controlled value. |
+| `defaultValue` | `string` | `-` | uncontrolled 초기 값입니다. / Initial uncontrolled value. |
+| `orientation` | `"horizontal" \| "vertical"` | `-` | 컴포넌트 방향입니다. / Component orientation. |
+| `variant` | `variant` | `-` | 시각 variant입니다. / Visual variant. |
+| `onValueChange` | `function` | `-` | value가 바뀔 때 호출됩니다. / Called when value changes. |
+
 ## 상태 / States
 
 - `pending`

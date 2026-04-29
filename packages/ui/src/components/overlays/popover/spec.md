@@ -12,6 +12,15 @@
 - priority/status: `P1` / `ready`
 - props: `open`, `defaultOpen`, `onOpenChange`, `placement`
 
+## Prop 표 / Prop Table
+
+| Prop | Type | Default | 설명 / Description |
+| --- | --- | --- | --- |
+| `open` | `boolean` | `-` | controlled open 상태입니다. / Controlled open state. |
+| `defaultOpen` | `boolean` | `false` | uncontrolled 초기 open 상태입니다. / Initial uncontrolled open state. |
+| `onOpenChange` | `(open: boolean) => void` | `-` | open 상태가 바뀔 때 호출됩니다. / Called when open state changes. |
+| `placement` | `string` | `"bottom-start"` | floating surface 위치입니다. / Floating surface placement. |
+
 ## 변형 / Variants
 
 - 시각 변형은 이미 정의된 `variant`, `tone`, `size`, `density`, `orientation` prop이 있을 때만 사용합니다. / Visual variants use existing props such as `variant`, `tone`, `size`, `density`, and `orientation` only when they are defined.

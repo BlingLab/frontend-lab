@@ -12,6 +12,15 @@
 - priority/status: `P1` / `ready`
 - props: `shape`, `width`, `height`, `animated`
 
+## Prop 표 / Prop Table
+
+| Prop | Type | Default | 설명 / Description |
+| --- | --- | --- | --- |
+| `shape` | `string` | `-` | 컴포넌트 외형 형태입니다. / Visual shape of the component. |
+| `width` | `FieldWidth \| CSSProperties["width"]` | `-` | 렌더링 width 값입니다. / Rendered width value. |
+| `height` | `CSSProperties["height"]` | `-` | 렌더링 height 값입니다. / Rendered height value. |
+| `animated` | `component-specific` | `-` | 컴포넌트별 확장 prop입니다. / Component-specific extension prop. |
+
 ## 변형 / Variants
 
 - 시각 변형은 이미 정의된 `variant`, `tone`, `size`, `density`, `orientation` prop이 있을 때만 사용합니다. / Visual variants use existing props such as `variant`, `tone`, `size`, `density`, and `orientation` only when they are defined.

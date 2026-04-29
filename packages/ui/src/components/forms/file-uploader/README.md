@@ -17,6 +17,22 @@
 
 `label`, `description`, `helperText`, `accept`, `multiple`, `files`, `defaultFiles`, `maxFiles`, `disabled`, `error`, `onFilesChange`
 
+## Prop 표 / Prop Table
+
+| Prop | Type | Default | 설명 / Description |
+| --- | --- | --- | --- |
+| `label` | `ReactNode` | `-` | 사용자에게 보이는 label 또는 accessible name입니다. / Visible label or accessible name. |
+| `description` | `ReactNode` | `-` | 보조 설명 text입니다. / Helper description text. |
+| `helperText` | `component-specific` | `-` | 컴포넌트별 확장 prop입니다. / Component-specific extension prop. |
+| `accept` | `string` | `-` | 허용할 파일 MIME type 또는 확장자입니다. / Accepted file MIME types or extensions. |
+| `multiple` | `boolean` | `false` | 여러 값을 선택할 수 있게 합니다. / Allows multiple values to be selected. |
+| `files` | `component-specific` | `-` | 컴포넌트별 확장 prop입니다. / Component-specific extension prop. |
+| `defaultFiles` | `component-specific` | `-` | 컴포넌트별 확장 prop입니다. / Component-specific extension prop. |
+| `maxFiles` | `component-specific` | `-` | 컴포넌트별 확장 prop입니다. / Component-specific extension prop. |
+| `disabled` | `boolean` | `false` | 사용자 interaction을 비활성화합니다. / Disables user interaction. |
+| `error` | `ReactNode` | `-` | 오류 메시지이며 invalid 상태를 만듭니다. / Error message that creates the invalid state. |
+| `onFilesChange` | `component-specific` | `-` | 컴포넌트별 확장 prop입니다. / Component-specific extension prop. |
+
 ## 상태 / States
 
 - `default`

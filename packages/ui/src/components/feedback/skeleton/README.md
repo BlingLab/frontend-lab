@@ -17,6 +17,15 @@
 
 `shape`, `width`, `height`, `animated`
 
+## Prop 표 / Prop Table
+
+| Prop | Type | Default | 설명 / Description |
+| --- | --- | --- | --- |
+| `shape` | `string` | `-` | 컴포넌트 외형 형태입니다. / Visual shape of the component. |
+| `width` | `FieldWidth \| CSSProperties["width"]` | `-` | 렌더링 width 값입니다. / Rendered width value. |
+| `height` | `CSSProperties["height"]` | `-` | 렌더링 height 값입니다. / Rendered height value. |
+| `animated` | `component-specific` | `-` | 컴포넌트별 확장 prop입니다. / Component-specific extension prop. |
+
 ## 상태 / States
 
 - `static`
