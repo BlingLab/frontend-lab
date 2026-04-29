@@ -40,10 +40,15 @@ npm --workspace @workspace/docs run build
 
 ## 리뷰와 이슈 / Review And Issues
 
+- 변경 흐름은 작은 수정, 기능/구조 변경, 위험한 변경 세 단계로 나눕니다. / Change flow is split into small changes, feature/structure changes, and risky changes.
+- 작은 수정은 `main`에 바로 push하고 `flow:direct` 라벨을 사용합니다. / Small changes can be pushed directly to `main` and use the `flow:direct` label.
+- 기능 또는 구조 변경은 PR을 만들고 Changes 탭에서 셀프 리뷰한 뒤 `flow:pr` 라벨을 사용합니다. / Feature or structure changes use a PR, self-review in the Changes tab, and the `flow:pr` label.
+- 위험한 변경은 PR 설명에 위험 체크리스트를 작성하고 확인 후 merge하며 `flow:risk` 라벨을 사용합니다. / Risky changes include a risk checklist in the PR description and use the `flow:risk` label before merge.
 - GitHub 이슈는 `.github/ISSUE_TEMPLATE`의 목적별 template을 사용합니다. / GitHub issues use purpose-specific templates in `.github/ISSUE_TEMPLATE`.
 - PR은 `.github/pull_request_template.md` 체크리스트를 기준으로 작성합니다. / Pull requests follow the checklist in `.github/pull_request_template.md`.
 - 리뷰/이슈/PR 후보는 [리뷰와 이슈 보드](./docs/review-and-issue-board.md)에 먼저 정리합니다. / Review, issue, and PR candidates are first organized in the [Review And Issue Board](./docs/review-and-issue-board.md).
 - 하나의 PR은 가능한 한 하나의 이슈를 닫는 범위로 유지합니다. / Keep one PR scoped to close one issue whenever possible.
+- 세부 기준은 [변경 흐름](./docs/change-workflow.md)을 따릅니다. / Follow [Change Workflow](./docs/change-workflow.md) for detailed criteria.
 
 ## 커밋 범위 / Commit Scope
 

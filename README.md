@@ -103,6 +103,7 @@ The app shows the following:
 - [시스템 아키텍처 / System Architecture](./docs/system-architecture.md)
 - [컴포넌트 로드맵 / Component Roadmap](./docs/component-roadmap.md)
 - [컴포넌트 작성 규약 / Component Authoring](./docs/component-authoring.md)
+- [변경 흐름 / Change Workflow](./docs/change-workflow.md)
 - [Prop API 설계 가이드 / Prop API Guidelines](./docs/prop-api-guidelines.md)
 - [명명 규칙 / Naming Conventions](./docs/naming-conventions.md)
 - [토큰 계약 / Token Contract](./docs/token-contract.md)
