@@ -1,59 +1,55 @@
-# Table 컴포넌트 / Table
+# Table 컴포넌트 / Table Component
 
-> 상태 / Status: `ready` | 우선순위 / Priority: `P1` | 카테고리 / Category: 데이터 표시 / Data Display
+비교 가능한 record를 행과 열로 정렬해 보여주는 표입니다. / Structured rows and columns for comparable records.
 
-## 목적 / Purpose
+## 역할 / Role
 
-scanning, sorting, column alignment가 중요한 dense data에 사용합니다.
-Use for dense data that benefits from scanning, sorting, and column alignment.
+스캔, 정렬, 열 맞춤이 중요한 dense data를 표시할 때 사용합니다. / Use for dense data that benefits from scanning, sorting, and column alignment.
 
-## 요약 / Summary
+## 사용 기준 / Usage Criteria
 
-비교 가능한 record를 row와 column으로 구조화합니다.
-Structured rows and columns for comparable records.
+- 우선순위는 `P1`, 상태는 `ready`입니다. / Priority is `P1`, and status is `ready`.
+- 카테고리는 `data-display` (Data Display)입니다. / Category is `data-display` (Data Display).
+- 기본 primitive는 `table`입니다. / Base primitive is `table`.
+- 테마와 색상은 component-local 값이 아니라 semantic token을 상속합니다. / Theme and color inherit semantic tokens instead of component-local values.
 
-## 공개 API 초안 / Public API Draft
+## Prop 축 / Prop Axes
 
-- `columns`
-- `rows`
-- `density`
-- `sortable`
-- `selectionMode`
+`columns`, `rows`, `density`, `sortable`, `selectionMode`, `striped`, `hoverable`, `stickyHeader`, `rowKey`, `rowActions`, `renderCell`
 
 ## 상태 / States
 
 - `default`
+- `hover`
 - `sorted`
 - `selected`
 - `empty`
 - `loading`
 
-## 접근성 계약 / Accessibility Contract
+## 접근성 / Accessibility
 
-- 기본 primitive / Base primitive: `table`
-- 참고 pattern / Reference pattern: https://www.w3.org/WAI/ARIA/apg/patterns/table/
-- visible label이 충분하지 않으면 accessible name을 반드시 제공합니다. / Must expose an accessible name whenever the visible label is not enough.
-- 컴포넌트가 `ready`로 이동하기 전 keyboard operation을 지원해야 합니다. / Must support keyboard operation before the component can move to `ready`.
-- content를 open, close, select, dismiss할 때 focus movement를 문서화합니다. / Must document focus movement when the component opens, closes, selects, or dismisses content.
+- 기본 기준 / Base reference: [https://www.w3.org/WAI/ARIA/apg/patterns/table/](https://www.w3.org/WAI/ARIA/apg/patterns/table/)
+- accessible name이 필요한 control은 `label`, `aria-label`, visible text 중 하나로 이름을 제공합니다. / Controls that need an accessible name receive it through `label`, `aria-label`, or visible text.
+- focus-visible은 `--ds-focus-ring`을 사용하고 keyboard navigation에서 사라지지 않아야 합니다. / Focus-visible uses `--ds-focus-ring` and must remain visible during keyboard navigation.
 
-## 토큰 hook / Token Hooks
+## 토큰 / Tokens
 
 - `--ds-color-border-default`
 - `--ds-color-bg-surface`
 - `--ds-color-bg-muted`
 
+## 예시 / Example
+
+```tsx
+import { Table } from "@workspace/ui/components/data-display/table";
+
+export function Example() {
+  return <Table columns={columns} rows={rows} caption="목록 / List" />;
+}
+```
+
 ## 구현 메모 / Implementation Notes
 
-- source는 이 폴더 안에 colocate합니다. / Keep source colocated in this folder.
-- custom ARIA widget보다 native element를 우선합니다. / Prefer native elements before custom ARIA widgets.
-- styling state에는 `data-state`, `data-disabled`, `data-invalid`, `data-orientation`, `data-size`를 사용합니다. / Use `data-state`, `data-disabled`, `data-invalid`, `data-orientation`, and `data-size` for styling state.
-- hard-coded color, spacing, radius, z-index 값은 피하고 `--ds-*` token을 사용합니다. / Avoid hard-coded color, spacing, radius, or z-index values; use `--ds-*` tokens.
-
-## 예시 / Examples
-
-TODO: 구현 시작 시 사용 예시를 추가합니다. / TODO: Add usage examples when implementation starts.
-
-## 열린 질문 / Open Questions
-
-- TODO: 제품 사용처에 필요한 variant를 확인합니다. / TODO: Confirm required variants with product usage.
-- TODO: mobile density와 keyboard behavior를 확인합니다. / TODO: Confirm mobile density and keyboard behavior.
+- 구현 파일은 `table.tsx`, public entry는 `index.ts`입니다. / Implementation lives in `table.tsx`, and the public entry is `index.ts`.
+- controlled/uncontrolled 값이 있는 경우 `onValueChange`, `onOpenChange`, `onSelectionChange`처럼 `onPascalCase` event prop을 사용합니다. / Controlled or uncontrolled values use `onPascalCase` event props such as `onValueChange`, `onOpenChange`, and `onSelectionChange`.
+- hover, active, selected, disabled는 shared state token과 `data-*` hook으로 표현합니다. / Hover, active, selected, and disabled are represented with shared state tokens and `data-*` hooks.

@@ -1,51 +1,49 @@
-# Divider 컴포넌트 / Divider
+# Divider 컴포넌트 / Divider Component
 
-> 상태 / Status: `ready` | 우선순위 / Priority: `P1` | 카테고리 / Category: 레이아웃 / Layout
+관련 그룹 사이를 시각적으로 구분하는 separator입니다. / Visual separator between related groups.
 
-## 목적 / Purpose
+## 역할 / Role
 
-새 container를 만들지 않고 인접 section을 구분할 때 사용합니다.
-Use to separate adjacent sections without introducing a new container.
+새 container를 만들지 않고 인접한 영역의 경계를 표현할 때 사용합니다. / Use to separate adjacent sections without introducing a new container.
 
-## 요약 / Summary
+## 사용 기준 / Usage Criteria
 
-관련 group 사이의 visual separator입니다.
-Visual separator between related groups.
+- 우선순위는 `P1`, 상태는 `ready`입니다. / Priority is `P1`, and status is `ready`.
+- 카테고리는 `layout` (Layout)입니다. / Category is `layout` (Layout).
+- 기본 primitive는 `hr or role='separator'`입니다. / Base primitive is `hr or role='separator'`.
+- 테마와 색상은 component-local 값이 아니라 semantic token을 상속합니다. / Theme and color inherit semantic tokens instead of component-local values.
 
-## 공개 API 초안 / Public API Draft
+## Prop 축 / Prop Axes
 
-- `orientation`
-- `decorative`
+`orientation`, `decorative`
 
 ## 상태 / States
 
 - `horizontal`
 - `vertical`
 
-## 접근성 계약 / Accessibility Contract
+## 접근성 / Accessibility
 
-- 기본 primitive / Base primitive: `hr or role='separator'`
-- 참고 pattern / Reference pattern: native semantic HTML을 우선하고, behavior가 필요할 때만 ARIA를 추가합니다. / Prefer native semantic HTML and add ARIA only when behavior requires it.
-- visible label이 충분하지 않으면 accessible name을 반드시 제공합니다. / Must expose an accessible name whenever the visible label is not enough.
-- 컴포넌트가 `ready`로 이동하기 전 keyboard operation을 지원해야 합니다. / Must support keyboard operation before the component can move to `ready`.
-- content를 open, close, select, dismiss할 때 focus movement를 문서화합니다. / Must document focus movement when the component opens, closes, selects, or dismisses content.
+- 기본 기준 / Base reference: 해당 없음 또는 네이티브 HTML 기준을 따릅니다. / Not applicable or follows native HTML behavior.
+- accessible name이 필요한 control은 `label`, `aria-label`, visible text 중 하나로 이름을 제공합니다. / Controls that need an accessible name receive it through `label`, `aria-label`, or visible text.
+- focus-visible은 `--ds-focus-ring`을 사용하고 keyboard navigation에서 사라지지 않아야 합니다. / Focus-visible uses `--ds-focus-ring` and must remain visible during keyboard navigation.
 
-## 토큰 hook / Token Hooks
+## 토큰 / Tokens
 
 - `--ds-color-border-default`
 
+## 예시 / Example
+
+```tsx
+import { Divider } from "@workspace/ui/components/layout/divider";
+
+export function Example() {
+  return <Divider label="구분 / Section" />;
+}
+```
+
 ## 구현 메모 / Implementation Notes
 
-- source는 이 폴더 안에 colocate합니다. / Keep source colocated in this folder.
-- custom ARIA widget보다 native element를 우선합니다. / Prefer native elements before custom ARIA widgets.
-- styling state에는 `data-state`, `data-disabled`, `data-invalid`, `data-orientation`, `data-size`를 사용합니다. / Use `data-state`, `data-disabled`, `data-invalid`, `data-orientation`, and `data-size` for styling state.
-- hard-coded color, spacing, radius, z-index 값은 피하고 `--ds-*` token을 사용합니다. / Avoid hard-coded color, spacing, radius, or z-index values; use `--ds-*` tokens.
-
-## 예시 / Examples
-
-TODO: 구현 시작 시 사용 예시를 추가합니다. / TODO: Add usage examples when implementation starts.
-
-## 열린 질문 / Open Questions
-
-- TODO: 제품 사용처에 필요한 variant를 확인합니다. / TODO: Confirm required variants with product usage.
-- TODO: mobile density와 keyboard behavior를 확인합니다. / TODO: Confirm mobile density and keyboard behavior.
+- 구현 파일은 `divider.tsx`, public entry는 `index.ts`입니다. / Implementation lives in `divider.tsx`, and the public entry is `index.ts`.
+- controlled/uncontrolled 값이 있는 경우 `onValueChange`, `onOpenChange`, `onSelectionChange`처럼 `onPascalCase` event prop을 사용합니다. / Controlled or uncontrolled values use `onPascalCase` event props such as `onValueChange`, `onOpenChange`, and `onSelectionChange`.
+- hover, active, selected, disabled는 shared state token과 `data-*` hook으로 표현합니다. / Hover, active, selected, and disabled are represented with shared state tokens and `data-*` hooks.

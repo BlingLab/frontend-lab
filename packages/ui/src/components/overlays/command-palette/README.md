@@ -1,27 +1,21 @@
-# CommandPalette 컴포넌트 / CommandPalette
+# CommandPalette 컴포넌트 / CommandPalette Component
 
-> 상태 / Status: `ready` | 우선순위 / Priority: `P1` | 카테고리 / Category: 오버레이 / Overlays
+키보드 친화적인 전역 명령 검색 surface입니다. / Keyboard-friendly command search surface.
 
-## 목적 / Purpose
+## 역할 / Role
 
-이 컴포넌트가 해결하는 UI 문제를 설명합니다.
-Use for global command discovery, quick navigation, and shortcut-driven actions.
+빠른 이동, 명령 검색, shortcut 기반 작업 실행을 한 곳에서 제공할 때 사용합니다. / Use for global command discovery, quick navigation, and shortcut-driven actions.
 
-## 요약 / Summary
+## 사용 기준 / Usage Criteria
 
-컴포넌트의 역할과 사용 맥락을 요약합니다.
-Keyboard-friendly command search surface.
+- 우선순위는 `P1`, 상태는 `ready`입니다. / Priority is `P1`, and status is `ready`.
+- 카테고리는 `overlays` (Overlays)입니다. / Category is `overlays` (Overlays).
+- 기본 primitive는 `dialog with combobox-style command list`입니다. / Base primitive is `dialog with combobox-style command list`.
+- 테마와 색상은 component-local 값이 아니라 semantic token을 상속합니다. / Theme and color inherit semantic tokens instead of component-local values.
 
-## 공개 API 초안 / Public API Draft
+## Prop 축 / Prop Axes
 
-- `open`
-- `defaultOpen`
-- `commands`
-- `placeholder`
-- `emptyMessage`
-- `title`
-- `onOpenChange`
-- `onCommandSelect`
+`open`, `defaultOpen`, `commands`, `placeholder`, `emptyMessage`, `title`, `onOpenChange`, `onCommandSelect`
 
 ## 상태 / States
 
@@ -31,32 +25,30 @@ Keyboard-friendly command search surface.
 - `highlighted`
 - `empty`
 
-## 접근성 계약 / Accessibility Contract
+## 접근성 / Accessibility
 
-- 기본 primitive / Base primitive: `dialog with combobox-style command list`
-- 참고 pattern / Reference pattern: https://www.w3.org/WAI/ARIA/apg/patterns/dialog-modal/
-- visible label이 충분하지 않으면 accessible name을 반드시 제공합니다. / Must expose an accessible name whenever the visible label is not enough.
-- 컴포넌트가 `ready`로 이동하기 전 keyboard operation을 지원해야 합니다. / Must support keyboard operation before the component can move to `ready`.
-- content를 open, close, select, dismiss할 때 focus movement를 문서화합니다. / Must document focus movement when the component opens, closes, selects, or dismisses content.
+- 기본 기준 / Base reference: [https://www.w3.org/WAI/ARIA/apg/patterns/dialog-modal/](https://www.w3.org/WAI/ARIA/apg/patterns/dialog-modal/)
+- accessible name이 필요한 control은 `label`, `aria-label`, visible text 중 하나로 이름을 제공합니다. / Controls that need an accessible name receive it through `label`, `aria-label`, or visible text.
+- focus-visible은 `--ds-focus-ring`을 사용하고 keyboard navigation에서 사라지지 않아야 합니다. / Focus-visible uses `--ds-focus-ring` and must remain visible during keyboard navigation.
 
-## 토큰 hook / Token Hooks
+## 토큰 / Tokens
 
 - `--ds-z-dialog`
 - `--ds-shadow-raised`
 - `--ds-focus-ring`
 
+## 예시 / Example
+
+```tsx
+import { CommandPalette } from "@workspace/ui/components/overlays/command-palette";
+
+export function Example() {
+  return <CommandPalette commands={commands} onCommandSelect={runCommand} />;
+}
+```
+
 ## 구현 메모 / Implementation Notes
 
-- source는 이 폴더 안에 colocate합니다. / Keep source colocated in this folder.
-- custom ARIA widget보다 native element를 우선합니다. / Prefer native elements before custom ARIA widgets.
-- styling state에는 `data-state`, `data-disabled`, `data-invalid`, `data-orientation`, `data-size`를 사용합니다. / Use `data-state`, `data-disabled`, `data-invalid`, `data-orientation`, and `data-size` for styling state.
-- hard-coded color, spacing, radius, z-index 값은 피하고 `--ds-*` token을 사용합니다. / Avoid hard-coded color, spacing, radius, or z-index values; use `--ds-*` tokens.
-
-## 예시 / Examples
-
-TODO: 구현 시작 시 사용 예시를 추가합니다. / TODO: Add usage examples when implementation starts.
-
-## 열린 질문 / Open Questions
-
-- TODO: 제품 사용처에 필요한 variant를 확인합니다. / TODO: Confirm required variants with product usage.
-- TODO: mobile density와 keyboard behavior를 확인합니다. / TODO: Confirm mobile density and keyboard behavior.
+- 구현 파일은 `command-palette.tsx`, public entry는 `index.ts`입니다. / Implementation lives in `command-palette.tsx`, and the public entry is `index.ts`.
+- controlled/uncontrolled 값이 있는 경우 `onValueChange`, `onOpenChange`, `onSelectionChange`처럼 `onPascalCase` event prop을 사용합니다. / Controlled or uncontrolled values use `onPascalCase` event props such as `onValueChange`, `onOpenChange`, and `onSelectionChange`.
+- hover, active, selected, disabled는 shared state token과 `data-*` hook으로 표현합니다. / Hover, active, selected, and disabled are represented with shared state tokens and `data-*` hooks.

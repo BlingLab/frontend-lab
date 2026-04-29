@@ -19,6 +19,15 @@ This design system uses `normal` as the base theme and applies theme sets throug
 | `forest` | 녹색 계열 업무 화면에 맞춘 제품 영역입니다. / Work surface with green action colors. | `[data-ds-theme="forest"]`, `.ds-theme-forest` |
 | `dark` | 어두운 배경과 높은 대비가 필요한 영역입니다. / Area that needs dark surfaces and stronger contrast. | `[data-ds-theme="dark"]`, `.ds-theme-dark` |
 
+## NORMAL과 DARK 비교 / NORMAL and DARK Comparison
+
+문서 앱의 `테마 시스템 / Theme System` 섹션은 `normal`과 `dark`를 같은 컴포넌트 조합으로 나란히 렌더링합니다.
+The docs app renders `normal` and `dark` side by side with the same component composition in the `Theme System` section.
+
+- `NORMAL`은 밝은 surface, 파란 primary action, 낮은 그림자를 기준으로 합니다. / `NORMAL` is based on light surfaces, blue primary actions, and subtle shadows.
+- `DARK`는 어두운 surface, 밝은 primary action, 높은 대비의 border와 focus ring을 기준으로 합니다. / `DARK` is based on dark surfaces, bright primary actions, higher-contrast borders, and focus rings.
+- 두 패널은 같은 `TextField`, `Alert`, `Badge`, `Button`을 사용하므로 component CSS 변경 없이 theme token 차이만 확인할 수 있습니다. / Both panels use the same `TextField`, `Alert`, `Badge`, and `Button`, so the difference comes only from theme tokens without component CSS changes.
+
 ## 적용 방법 / Usage
 
 앱 전체에 적용할 때는 root element에 `data-ds-theme`를 둡니다.

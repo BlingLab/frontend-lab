@@ -1,25 +1,21 @@
-# RadioGroup 컴포넌트 / RadioGroup
+# RadioGroup 컴포넌트 / RadioGroup Component
 
-> 상태 / Status: `ready` | 우선순위 / Priority: `P0` | 카테고리 / Category: 폼 / Forms
+여러 선택지 중 하나만 선택하는 그룹 컨트롤입니다. / Mutually exclusive selection from a visible option set.
 
-## 목적 / Purpose
+## 역할 / Role
 
-모든 선택지를 계속 보여줘야 하고 하나의 값만 선택할 수 있을 때 사용합니다.
-Use when all choices should remain visible and only one value can be selected.
+모든 선택지를 노출해야 하고 단일 값만 허용하는 설정에 사용합니다. / Use when all choices should remain visible and only one value can be selected.
 
-## 요약 / Summary
+## 사용 기준 / Usage Criteria
 
-visible option set에서 상호 배타적으로 하나를 선택하는 control입니다.
-Mutually exclusive selection from a visible option set.
+- 우선순위는 `P0`, 상태는 `ready`입니다. / Priority is `P0`, and status is `ready`.
+- 카테고리는 `forms` (Forms)입니다. / Category is `forms` (Forms).
+- 기본 primitive는 `fieldset with input[type='radio']`입니다. / Base primitive is `fieldset with input[type='radio']`.
+- 테마와 색상은 component-local 값이 아니라 semantic token을 상속합니다. / Theme and color inherit semantic tokens instead of component-local values.
 
-## 공개 API 초안 / Public API Draft
+## Prop 축 / Prop Axes
 
-- `value`
-- `defaultValue`
-- `options`
-- `orientation`
-- `disabled`
-- `invalid`
+`value`, `defaultValue`, `options`, `orientation`, `disabled`, `invalid`
 
 ## 상태 / States
 
@@ -29,32 +25,30 @@ Mutually exclusive selection from a visible option set.
 - `disabled`
 - `invalid`
 
-## 접근성 계약 / Accessibility Contract
+## 접근성 / Accessibility
 
-- 기본 primitive / Base primitive: `fieldset with input[type='radio']`
-- 참고 pattern / Reference pattern: https://www.w3.org/WAI/ARIA/apg/patterns/radio/
-- visible label이 충분하지 않으면 accessible name을 반드시 제공합니다. / Must expose an accessible name whenever the visible label is not enough.
-- 컴포넌트가 `ready`로 이동하기 전 keyboard operation을 지원해야 합니다. / Must support keyboard operation before the component can move to `ready`.
-- content를 open, close, select, dismiss할 때 focus movement를 문서화합니다. / Must document focus movement when the component opens, closes, selects, or dismisses content.
+- 기본 기준 / Base reference: [https://www.w3.org/WAI/ARIA/apg/patterns/radio/](https://www.w3.org/WAI/ARIA/apg/patterns/radio/)
+- accessible name이 필요한 control은 `label`, `aria-label`, visible text 중 하나로 이름을 제공합니다. / Controls that need an accessible name receive it through `label`, `aria-label`, or visible text.
+- focus-visible은 `--ds-focus-ring`을 사용하고 keyboard navigation에서 사라지지 않아야 합니다. / Focus-visible uses `--ds-focus-ring` and must remain visible during keyboard navigation.
 
-## 토큰 hook / Token Hooks
+## 토큰 / Tokens
 
 - `--ds-color-action-primary-bg`
 - `--ds-color-border-default`
 - `--ds-focus-ring`
 
+## 예시 / Example
+
+```tsx
+import { RadioGroup } from "@workspace/ui/components/forms/radio-group";
+
+export function Example() {
+  return <RadioGroup label="밀도 / Density" options={options} defaultValue="comfortable" />;
+}
+```
+
 ## 구현 메모 / Implementation Notes
 
-- source는 이 폴더 안에 colocate합니다. / Keep source colocated in this folder.
-- custom ARIA widget보다 native element를 우선합니다. / Prefer native elements before custom ARIA widgets.
-- styling state에는 `data-state`, `data-disabled`, `data-invalid`, `data-orientation`, `data-size`를 사용합니다. / Use `data-state`, `data-disabled`, `data-invalid`, `data-orientation`, and `data-size` for styling state.
-- hard-coded color, spacing, radius, z-index 값은 피하고 `--ds-*` token을 사용합니다. / Avoid hard-coded color, spacing, radius, or z-index values; use `--ds-*` tokens.
-
-## 예시 / Examples
-
-TODO: 구현 시작 시 사용 예시를 추가합니다. / TODO: Add usage examples when implementation starts.
-
-## 열린 질문 / Open Questions
-
-- TODO: 제품 사용처에 필요한 variant를 확인합니다. / TODO: Confirm required variants with product usage.
-- TODO: mobile density와 keyboard behavior를 확인합니다. / TODO: Confirm mobile density and keyboard behavior.
+- 구현 파일은 `radio-group.tsx`, public entry는 `index.ts`입니다. / Implementation lives in `radio-group.tsx`, and the public entry is `index.ts`.
+- controlled/uncontrolled 값이 있는 경우 `onValueChange`, `onOpenChange`, `onSelectionChange`처럼 `onPascalCase` event prop을 사용합니다. / Controlled or uncontrolled values use `onPascalCase` event props such as `onValueChange`, `onOpenChange`, and `onSelectionChange`.
+- hover, active, selected, disabled는 shared state token과 `data-*` hook으로 표현합니다. / Hover, active, selected, and disabled are represented with shared state tokens and `data-*` hooks.

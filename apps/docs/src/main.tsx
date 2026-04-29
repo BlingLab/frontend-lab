@@ -51,6 +51,7 @@ const navItems = [
   { id: "tokens", label: "디자인 토큰 / Tokens" },
   { id: "themes", label: "테마 시스템 / Themes" },
   { id: "rules", label: "개발 규약 / Rules" },
+  { id: "roadmap", label: "로드맵 / Roadmap" },
   { id: "components", label: "컴포넌트 / Components" },
   { id: "example", label: "조합 예시 / Example" }
 ];
@@ -60,6 +61,13 @@ const themeOptions = [
   { id: "ocean", label: "OCEAN", description: "청록 액션 톤 / Teal action tone" },
   { id: "forest", label: "FOREST", description: "녹색 업무 톤 / Green work tone" },
   { id: "dark", label: "DARK", description: "어두운 표면 톤 / Dark surface tone" }
+];
+
+const systemMetrics = [
+  { label: "컴포넌트 / Components", value: componentCatalog.length },
+  { label: "레이아웃 / Layout", value: 5 },
+  { label: "테마 / Themes", value: themeOptions.length },
+  { label: "스택 / Stack", value: "React + TS" }
 ];
 
 const roadmapGroups = [
@@ -241,6 +249,27 @@ function App() {
   const summaries = useMemo(() => new Map(componentCatalog.map((component) => [component.name, component])), []);
 
   useEffect(() => {
+    document.documentElement.dataset.dsTheme = activeTheme;
+
+    return () => {
+      delete document.documentElement.dataset.dsTheme;
+    };
+  }, [activeTheme]);
+
+  useEffect(() => {
+    const scrollToHash = () => {
+      const targetId = decodeURIComponent(window.location.hash.replace("#", ""));
+      const target = targetId ? document.getElementById(targetId) : null;
+      target?.scrollIntoView({ block: "start" });
+    };
+
+    requestAnimationFrame(scrollToHash);
+    window.addEventListener("hashchange", scrollToHash);
+
+    return () => window.removeEventListener("hashchange", scrollToHash);
+  }, []);
+
+  useEffect(() => {
     const updateActiveNav = () => {
       let current = navItems[0].id;
       for (const item of navItems) {
@@ -273,16 +302,43 @@ function App() {
 
       <main className="content">
         <section className="intro" aria-labelledby="page-title">
-          <div>
+          <div className="intro-main">
             <p className="eyebrow">React 컴포넌트 카탈로그 / React component catalog</p>
-            <h1 id="page-title">React + TypeScript 디자인 시스템 / React + TypeScript Design System</h1>
+            <h1 id="page-title">프로젝트에 바로 가져다 쓰는 React 컴포넌트 시스템 / React Component System Ready For Product Work</h1>
             <p className="intro-copy">
               이 문서 앱은 `@workspace/ui`의 실제 React 컴포넌트를 import해 렌더링합니다.
               This docs app renders real React components imported from `@workspace/ui`.
             </p>
+            <div className="intro-actions" aria-label="주요 이동 / Primary links">
+              <a className="intro-link primary" href="#components">컴포넌트 보기 / View components</a>
+              <a className="intro-link" href="#themes">테마 확인 / Check themes</a>
+            </div>
+            <div className="metrics-grid" aria-label="시스템 지표 / System metrics">
+              {systemMetrics.map((metric) => (
+                <div className="metric-card" key={metric.label}>
+                  <strong>{metric.value}</strong>
+                  <span>{metric.label}</span>
+                </div>
+              ))}
+            </div>
           </div>
-          <div className="intro-panel" aria-label="실행 명령어 / Run command">
-            <span>로컬 실행 / Run locally</span>
+          <div className="intro-panel" aria-label="패키지 미리보기 / Package preview">
+            <div className="intro-panel-header">
+              <div>
+                <span>패키지 미리보기 / Package preview</span>
+                <strong>@workspace/ui</strong>
+              </div>
+              <Badge label="ready" tone="success" />
+            </div>
+            <div className="intro-workbench">
+              <TextField label="컴포넌트 / Component" defaultValue="Button, DataGrid, CommandPalette" width="full" />
+              <Select label="테마 / Theme" onChange={(event) => setActiveTheme(event.currentTarget.value)} value={activeTheme} options={themeOptions.map((theme) => ({ label: theme.label, value: theme.id }))} />
+              <Progress label="구현률 / Completion" value={100} />
+              <Inline gap="sm" justify="between">
+                <Badge label="semantic tokens" tone="brand" />
+                <Button size="sm">패키지 사용 / Use package</Button>
+              </Inline>
+            </div>
             <code>npm run dev</code>
           </div>
         </section>
@@ -354,6 +410,28 @@ function App() {
                 ))}
               </Inline>
             </article>
+            <div className="theme-compare" aria-label="NORMAL과 DARK 비교 / NORMAL and DARK comparison">
+              {["normal", "dark"].map((themeId) => {
+                const theme = themeOptions.find((option) => option.id === themeId)!;
+                return (
+                  <article className="theme-compare-panel" data-ds-theme={theme.id} key={theme.id}>
+                    <div>
+                      <span className="theme-preview-name">{theme.label}</span>
+                      <h3>{theme.id === "normal" ? "기본 화면 / Base screen" : "다크 화면 / Dark screen"}</h3>
+                      <p>{theme.description}</p>
+                    </div>
+                    <Stack gap="sm">
+                      <TextField label="프로젝트 / Project" defaultValue="frontend-lab" width="full" />
+                      <Alert tone={theme.id === "normal" ? "success" : "info"} title="상태 확인 / State check" description="같은 컴포넌트가 theme token만 바꿔 렌더링됩니다. / The same components render by switching only theme tokens." />
+                      <Inline gap="sm" justify="between">
+                        <Badge label="semantic token" tone="brand" />
+                        <Button size="sm">{theme.id === "normal" ? "NORMAL 적용 / Apply NORMAL" : "DARK 적용 / Apply DARK"}</Button>
+                      </Inline>
+                    </Stack>
+                  </article>
+                );
+              })}
+            </div>
             <div className="theme-preview-grid">
               {themeOptions.map((theme) => (
                 <article className="theme-preview-card" data-ds-theme={theme.id} key={theme.id}>

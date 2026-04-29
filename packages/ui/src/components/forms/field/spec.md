@@ -1,44 +1,60 @@
-# Field 스펙 / Field Spec
+# Field 명세 / Field Spec
 
-## 구조 / Anatomy
+## 목적 / Purpose
 
-- 루트 / Root
-- 콘텐츠 / Content
-- 선택적 accessory 또는 action 영역 / Optional accessory or action region
+입력 도움말, validation feedback, 접근 가능한 관계를 여러 폼 컴포넌트에서 일관되게 유지할 때 사용합니다. / Use to normalize form copy, validation feedback, and accessible relationships.
 
-## variant / Variants
+## API 표면 / API Surface
 
-TODO: 허용되는 variant와 각 variant가 적합한 상황을 정의합니다. / TODO: Define allowed variants and when each one is appropriate.
+- public component: `Field`
+- folder slug: `field`
+- category: `forms`
+- priority/status: `P0` / `ready`
+- props: `label`, `description`, `error`, `required`, `disabled`, `controlId`, `orientation`, `width`, `hideLabel`
 
-## 동작 / Behavior
+## 변형 / Variants
 
-- 기본 상태 / Default state: TODO
-- 상호작용 / Interaction: TODO
-- disabled/read-only 동작 / Disabled/read-only behavior: TODO
-- validation 또는 error 동작 / Validation or error behavior: TODO
+- 시각 변형은 이미 정의된 `variant`, `tone`, `size`, `density`, `orientation` prop이 있을 때만 사용합니다. / Visual variants use existing props such as `variant`, `tone`, `size`, `density`, and `orientation` only when they are defined.
+- 새로운 변형은 product use case와 접근성 영향이 명확할 때만 추가합니다. / Add new variants only when the product use case and accessibility impact are clear.
+- 색상 차이는 theme token으로 처리하고 component CSS에서 theme name을 직접 분기하지 않습니다. / Color differences are handled by theme tokens, and component CSS does not branch on theme names.
 
-## 접근성 / Accessibility
+## 상태 동작 / State Behavior
 
-- primitive / Primitive: `label and form control relationship`
-- 참고 pattern / Pattern reference: https://www.w3.org/WAI/ARIA/apg/practices/names-and-descriptions/
-- 키보드 지원 / Keyboard support: TODO
-- 포커스 관리 / Focus management: TODO
-- 스크린 리더 알림 / Screen reader announcement: TODO
+- `default`: 상태는 시각 스타일과 접근성 신호가 함께 유지되어야 합니다. / This state must keep visual styling and accessibility signals aligned.
+- `disabled`: 상태는 시각 스타일과 접근성 신호가 함께 유지되어야 합니다. / This state must keep visual styling and accessibility signals aligned.
+- `invalid`: 상태는 시각 스타일과 접근성 신호가 함께 유지되어야 합니다. / This state must keep visual styling and accessibility signals aligned.
+- `required`: 상태는 시각 스타일과 접근성 신호가 함께 유지되어야 합니다. / This state must keep visual styling and accessibility signals aligned.
 
-## 토큰 / Tokens
+## 상호작용 / Interaction
+
+- pointer hover는 `--ds-state-hover-bg` 또는 component semantic token으로 표현합니다. / Pointer hover uses `--ds-state-hover-bg` or component semantic tokens.
+- active/pressed/selected 상태는 `data-*` attribute와 ARIA state가 필요한 경우 함께 갱신합니다. / Active, pressed, and selected states update `data-*` attributes and ARIA state together when needed.
+- disabled 상태는 native `disabled` 또는 `aria-disabled`를 사용하고 opacity만으로 의미를 전달하지 않습니다. / Disabled state uses native `disabled` or `aria-disabled` and never relies on opacity alone.
+
+## 접근성 계약 / Accessibility Contract
+
+- 기준 문서 / Reference: [https://www.w3.org/WAI/ARIA/apg/practices/names-and-descriptions/](https://www.w3.org/WAI/ARIA/apg/practices/names-and-descriptions/)
+- keyboard focus는 항상 보이고 DOM 순서와 화면 순서가 어긋나지 않아야 합니다. / Keyboard focus must remain visible, and DOM order must match visual order.
+- interactive child가 있는 경우 role 중첩과 tab stop 수를 검토합니다. / When interactive children exist, review role nesting and tab stop count.
+- 상태 변화가 사용자에게 중요하면 visible text 또는 live region으로 전달합니다. / Important state changes are communicated through visible text or a live region.
+
+## 토큰 계약 / Token Contract
 
 - `--ds-color-text-primary`
 - `--ds-color-text-muted`
 - `--ds-color-feedback-danger`
 
-## 테스트 계획 / Test Plan
+- component CSS에서는 raw hex, raw rgba, 임의 spacing 값을 쓰지 않습니다. / Component CSS does not use raw hex, raw rgba, or arbitrary spacing values.
+- theme override는 semantic token을 통해 상속되어야 합니다. / Theme overrides must be inherited through semantic tokens.
 
-- 단위 동작 / Unit behavior: TODO
-- 키보드 내비게이션 / Keyboard navigation: TODO
-- focus-visible 상태 / Focus visible state: TODO
-- 고대비와 reduced motion / High contrast and reduced motion: TODO
-- 반응형 레이아웃 / Responsive layout: TODO
+## 검증 체크리스트 / Validation Checklist
 
-## 결정 기록 / Decision Log
+- docs app에서 기본 예시가 렌더링됩니다. / The basic example renders in the docs app.
+- `npm run components:validate`가 통과합니다. / `npm run components:validate` passes.
+- keyboard focus, hover, disabled, selected 또는 open 상태가 시각적으로 구분됩니다. / Keyboard focus, hover, disabled, selected, or open states are visually distinct.
+- narrow viewport에서 text overflow와 horizontal scroll이 의도한 영역에만 생깁니다. / In narrow viewports, text overflow and horizontal scroll appear only where intended.
 
-- TODO: 구현 전에 API와 behavior 결정을 기록합니다. / TODO: Record API and behavior decisions before implementation.
+## 결정 기록 / Decisions
+
+- 이 컴포넌트는 `label and form control relationship` primitive를 기준으로 구현합니다. / This component is implemented around the `label and form control relationship` primitive.
+- public API는 catalog의 props 목록을 기준으로 유지하고 breaking change는 release note에 기록합니다. / The public API follows the catalog prop list, and breaking changes are recorded in release notes.

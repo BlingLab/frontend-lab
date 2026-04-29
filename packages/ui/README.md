@@ -28,6 +28,15 @@ src/
         └── spec.md
 ```
 
+## 컴포넌트 문서 / Component Docs
+
+각 컴포넌트 폴더의 `README.md`와 `spec.md`는 실제 구현을 기준으로 유지합니다.
+Each component folder keeps `README.md` and `spec.md` aligned with the real implementation.
+
+- `README.md`: 역할, 사용 기준, prop 축, 상태, 접근성, token, 사용 예시 / Role, usage criteria, prop axes, states, accessibility, tokens, and usage examples
+- `spec.md`: API 표면, 상태 동작, 상호작용, 접근성 계약, 검증 체크리스트 / API surface, state behavior, interaction, accessibility contract, and validation checklist
+- 기준 데이터: `src/components/catalog.ts` / Source of truth: `src/components/catalog.ts`
+
 ## 원칙 / Principles
 
 - 구현 파일은 각 컴포넌트 폴더의 `{component-slug}.tsx`에 둡니다. / Implementation files live in each component folder's `{component-slug}.tsx`.
