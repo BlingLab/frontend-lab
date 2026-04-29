@@ -170,6 +170,13 @@ npm run components:validate
 Validates catalog component folders, required documents, required exports, token contracts, CSS naming, event prop naming, and the no-raw-color rule for UI CSS.
 
 ```bash
+npm run lint
+```
+
+TypeScript/TSX/MJS, CSS, Markdown, JSON/YAML의 기본 format 회귀를 확인합니다.
+Checks basic format regressions across TypeScript/TSX/MJS, CSS, Markdown, and JSON/YAML.
+
+```bash
 npm run test
 ```
 

@@ -26,6 +26,9 @@ jobs:
       - name: 의존성 설치 / Install dependencies
         run: npm ci
 
+      - name: Lint와 format 검증 / Lint and format checks
+        run: npm run lint
+
       - name: 컴포넌트 검증 / Component validation
         run: npm run test
 
