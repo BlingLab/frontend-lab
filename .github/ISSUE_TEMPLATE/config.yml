@@ -1,0 +1,5 @@
+blank_issues_enabled: false
+contact_links:
+  - name: 질문 또는 방향 논의 / Question Or Direction Discussion
+    url: https://github.com/BlingLab/frontend-lab/discussions
+    about: 구현 전 방향 논의가 필요한 항목은 Discussion에서 시작합니다. / Start in Discussions when the item needs direction alignment before implementation.

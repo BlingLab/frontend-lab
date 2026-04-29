@@ -14,7 +14,7 @@ Keep changes small, document the component contract first, and then move into im
 
 ## 컴포넌트 체크리스트 / Component Checklist
 
-- 새 컴포넌트는 `packages/ui/src/components/catalog.js`에 먼저 등록합니다. / Register new components in `packages/ui/src/components/catalog.js` first.
+- 새 컴포넌트는 `packages/ui/src/components/catalog.ts`에 먼저 등록합니다. / Register new components in `packages/ui/src/components/catalog.ts` first.
 - 컴포넌트 폴더는 `packages/ui/src/components/{category}/{component-slug}` 형식을 사용합니다. / Use `packages/ui/src/components/{category}/{component-slug}` for component folders.
 - 모든 컴포넌트 폴더에는 `README.md`와 `spec.md`가 있어야 합니다. / Every component folder must include `README.md` and `spec.md`.
 - 구현을 시작하면 source, style, examples, test를 같은 폴더에 둡니다. / When implementation starts, keep source, style, examples, and tests in the same folder.
@@ -33,10 +33,17 @@ Keep changes small, document the component contract first, and then move into im
 
 ```bash
 npm install
-npm run components:validate
-node --check apps/docs/main.js
-node --check apps/docs/server.mjs
+npm run test
+npm run typecheck
+npm --workspace @workspace/docs run build
 ```
+
+## 리뷰와 이슈 / Review And Issues
+
+- GitHub 이슈는 `.github/ISSUE_TEMPLATE`의 목적별 template을 사용합니다. / GitHub issues use purpose-specific templates in `.github/ISSUE_TEMPLATE`.
+- PR은 `.github/pull_request_template.md` 체크리스트를 기준으로 작성합니다. / Pull requests follow the checklist in `.github/pull_request_template.md`.
+- 리뷰/이슈/PR 후보는 [리뷰와 이슈 보드](./docs/review-and-issue-board.md)에 먼저 정리합니다. / Review, issue, and PR candidates are first organized in the [Review And Issue Board](./docs/review-and-issue-board.md).
+- 하나의 PR은 가능한 한 하나의 이슈를 닫는 범위로 유지합니다. / Keep one PR scoped to close one issue whenever possible.
 
 ## 커밋 범위 / Commit Scope
 

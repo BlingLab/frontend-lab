@@ -1,0 +1,43 @@
+name: 컴포넌트 작업 / Component Task
+description: 새 컴포넌트, prop 확장, 상호작용 보강 작업을 등록합니다. / Track new components, prop expansion, or interaction hardening work.
+title: "[Component] "
+labels: ["component", "needs-triage"]
+body:
+  - type: input
+    id: component
+    attributes:
+      label: 대상 컴포넌트 / Target Component
+      placeholder: "예: DataGrid / Example: DataGrid"
+    validations:
+      required: true
+  - type: textarea
+    id: problem
+    attributes:
+      label: 해결할 문제 / Problem To Solve
+      description: 이 작업이 필요한 이유를 적습니다. / Explain why this work is needed.
+    validations:
+      required: true
+  - type: textarea
+    id: api
+    attributes:
+      label: API 또는 prop 제안 / API Or Prop Proposal
+      description: 추가하거나 바꿀 prop, state, event를 적습니다. / List props, state, and events to add or change.
+  - type: textarea
+    id: accessibility
+    attributes:
+      label: 접근성 기준 / Accessibility Criteria
+      description: keyboard, focus, accessible name, ARIA 상태를 적습니다. / Describe keyboard, focus, accessible name, and ARIA state requirements.
+  - type: textarea
+    id: docs
+    attributes:
+      label: 문서 변경 / Documentation Changes
+      description: README, spec, docs app, system docs 중 수정할 대상을 적습니다. / List README, spec, docs app, or system docs updates.
+  - type: checkboxes
+    id: definition
+    attributes:
+      label: 완료 기준 / Definition Of Done
+      options:
+        - label: 구현이 각 컴포넌트 폴더의 `.tsx`에 있습니다. / Implementation lives in the component folder `.tsx`.
+        - label: `README.md`와 `spec.md`가 업데이트되었습니다. / `README.md` and `spec.md` are updated.
+        - label: docs app 예시가 실제 export를 렌더링합니다. / Docs app examples render real exports.
+        - label: `npm run test`, `npm run typecheck`, docs build가 통과합니다. / `npm run test`, `npm run typecheck`, and docs build pass.

@@ -1,0 +1,25 @@
+name: 문서 작업 / Documentation Task
+description: 가이드, README, spec, docs app 정리 작업을 등록합니다. / Track guide, README, spec, or docs app documentation work.
+title: "[Docs] "
+labels: ["documentation", "needs-triage"]
+body:
+  - type: textarea
+    id: scope
+    attributes:
+      label: 문서 범위 / Documentation Scope
+      description: 수정해야 할 문서와 이유를 적습니다. / List documents to update and why.
+    validations:
+      required: true
+  - type: textarea
+    id: audience
+    attributes:
+      label: 대상 독자 / Audience
+      description: 소비자 프로젝트 개발자, 컴포넌트 작성자, 리뷰어 중 누구를 위한 문서인지 적습니다. / Note whether this is for consumer developers, component authors, or reviewers.
+  - type: checkboxes
+    id: language
+    attributes:
+      label: 언어 기준 / Language Standard
+      options:
+        - label: 한글 우선, 영문 병기 형식을 지켰습니다. / Korean-first bilingual format is used.
+        - label: 제목은 `한글 / English` 형식입니다. / Headings use `Korean / English`.
+        - label: code identifier, prop, token 이름은 원문을 유지했습니다. / Code identifiers, props, and token names are preserved.

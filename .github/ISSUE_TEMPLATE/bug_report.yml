@@ -1,0 +1,44 @@
+name: 버그 리포트 / Bug Report
+description: 컴포넌트, 토큰, docs app에서 확인된 결함을 기록합니다. / Report a defect in components, tokens, or the docs app.
+title: "[Bug] "
+labels: ["bug", "needs-triage"]
+body:
+  - type: textarea
+    id: summary
+    attributes:
+      label: 문제 요약 / Summary
+      description: 어떤 문제가 발생했는지 한글 먼저, 영문 병기로 적습니다. / Describe what happened in Korean first, followed by English.
+      placeholder: "예: Combobox에서 Enter 선택 후 focus가 유지되지 않습니다. / Example: Combobox focus is not preserved after Enter selection."
+    validations:
+      required: true
+  - type: textarea
+    id: steps
+    attributes:
+      label: 재현 단계 / Steps To Reproduce
+      description: 재현 가능한 순서로 적습니다. / Write reproducible steps.
+      placeholder: |
+        1. ...
+        2. ...
+        3. ...
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: 기대 동작 / Expected Behavior
+      description: 올바른 동작을 적습니다. / Describe the expected behavior.
+    validations:
+      required: true
+  - type: textarea
+    id: environment
+    attributes:
+      label: 환경 / Environment
+      description: 브라우저, OS, viewport, package 사용 방식 등을 적습니다. / Note browser, OS, viewport, and package usage mode.
+  - type: checkboxes
+    id: checks
+    attributes:
+      label: 확인 항목 / Checks
+      options:
+        - label: 문서 또는 docs app 예시에서도 재현됩니다. / Reproduces in documentation or docs app examples.
+        - label: keyboard 또는 접근성 영향이 있습니다. / Has keyboard or accessibility impact.
+        - label: theme 또는 token 영향이 있습니다. / Has theme or token impact.
