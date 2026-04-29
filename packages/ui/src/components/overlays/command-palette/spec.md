@@ -10,7 +10,21 @@
 - folder slug: `command-palette`
 - category: `overlays`
 - priority/status: `P1` / `ready`
-- props: `open`, `defaultOpen`, `commands`, `placeholder`, `emptyMessage`, `title`, `onOpenChange`, `onCommandSelect`
+- props: `title`, `triggerLabel`, `commands`, `open`, `defaultOpen`, `placeholder`, `emptyMessage`, `onOpenChange`, `onCommandSelect`
+
+## Prop 표 / Prop Table
+
+| Prop | Type | Default | 설명 / Description |
+| --- | --- | --- | --- |
+| `title` | `ReactNode` | `"명령 팔레트 / Command palette"` | dialog 제목입니다. / Dialog title. |
+| `triggerLabel` | `ReactNode` | `"명령 열기 / Open commands"` | palette를 여는 trigger button label입니다. / Trigger button label that opens the palette. |
+| `commands` | `CommandPaletteCommand[]` | `[]` | 검색하고 실행할 command 목록입니다. / Commands available for search and execution. |
+| `open` | `boolean` | `-` | controlled open 상태입니다. / Controlled open state. |
+| `defaultOpen` | `boolean` | `false` | uncontrolled 초기 open 상태입니다. / Initial uncontrolled open state. |
+| `placeholder` | `string` | `"명령 검색 / Search commands"` | 검색 input placeholder입니다. / Search input placeholder. |
+| `emptyMessage` | `ReactNode` | `"명령이 없습니다. / No commands."` | 검색 결과가 없을 때 표시합니다. / Shown when no commands match. |
+| `onOpenChange` | `(open: boolean) => void` | `-` | open 상태가 바뀔 때 호출됩니다. / Called when open state changes. |
+| `onCommandSelect` | `(command: CommandPaletteCommand) => void` | `-` | command가 선택될 때 호출됩니다. / Called when a command is selected. |
 
 ## 변형 / Variants
 

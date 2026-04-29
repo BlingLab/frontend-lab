@@ -3,9 +3,11 @@ import { existsSync } from "node:fs";
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
 import { componentCatalog, componentCategories } from "../packages/ui/src/components/catalog.ts";
+import { renderComponentPropTable } from "../packages/ui/src/components/prop-docs.ts";
 
 const rootDir = fileURLToPath(new URL("..", import.meta.url));
 const force = process.argv.includes("--force");
+const forceDocs = process.argv.includes("--force-docs");
 const categoryLabels = new Map(componentCategories.map((category) => [category.id, category.label]));
 const categoryKoreanLabels = new Map([
   ["actions", "액션"],
@@ -157,6 +159,10 @@ ${component.summary}
 
 ${renderList(component.props)}
 
+## Prop 표 / Prop Table
+
+${renderComponentPropTable(component)}
+
 ## 상태 / States
 
 ${renderList(component.states)}
@@ -223,6 +229,10 @@ TODO: 허용되는 variant와 각 variant가 적합한 상황을 정의합니다
 
 ${renderList(component.tokens)}
 
+## Prop 표 / Prop Table
+
+${renderComponentPropTable(component)}
+
 ## 테스트 계획 / Test Plan
 
 - 단위 동작 / Unit behavior: TODO
@@ -253,10 +263,11 @@ export function ${component.name}({ children, ...props }: ${component.name}Props
 `;
 }
 
-async function writeIfMissing(path, content) {
+async function writeIfMissing(path, content, options = {}) {
   await mkdir(dirname(path), { recursive: true });
 
-  if (!force && existsSync(path)) {
+  const canOverwrite = options.doc ? forceDocs : force;
+  if (existsSync(path) && !canOverwrite) {
     return false;
   }
 
@@ -277,11 +288,11 @@ for (const component of componentCatalog) {
     component.slug
   );
 
-  if (await writeIfMissing(join(componentDir, "README.md"), renderReadme(component))) {
+  if (await writeIfMissing(join(componentDir, "README.md"), renderReadme(component), { doc: true })) {
     written += 1;
   }
 
-  if (await writeIfMissing(join(componentDir, "spec.md"), renderSpec(component))) {
+  if (await writeIfMissing(join(componentDir, "spec.md"), renderSpec(component), { doc: true })) {
     written += 1;
   }
 

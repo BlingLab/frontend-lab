@@ -189,7 +189,7 @@ export const componentCatalog: ComponentCatalogItem[] = [
     purpose: "Use when a select needs filtering, text input, or many options without leaving the current form.",
     primitive: "combobox with listbox popup",
     apg: "https://www.w3.org/WAI/ARIA/apg/patterns/combobox/",
-    props: ["value", "defaultValue", "options", "placeholder", "size", "width", "fieldProps", "emptyMessage", "onValueChange", "disabled", "invalid"],
+    props: ["label", "description", "error", "value", "defaultValue", "options", "placeholder", "emptyMessage", "size", "width", "disabled", "required", "fieldProps", "onValueChange"],
     states: ["closed", "open", "filtered", "highlighted", "selected", "disabled", "invalid"],
     tokens: ["--ds-color-bg-surface", "--ds-color-border-default", "--ds-focus-ring"]
   },
@@ -385,7 +385,7 @@ export const componentCatalog: ComponentCatalogItem[] = [
     purpose: "Use for global command discovery, quick navigation, and shortcut-driven actions.",
     primitive: "dialog with combobox-style command list",
     apg: "https://www.w3.org/WAI/ARIA/apg/patterns/dialog-modal/",
-    props: ["open", "defaultOpen", "commands", "placeholder", "emptyMessage", "title", "onOpenChange", "onCommandSelect"],
+    props: ["title", "triggerLabel", "commands", "open", "defaultOpen", "placeholder", "emptyMessage", "onOpenChange", "onCommandSelect"],
     states: ["closed", "open", "filtered", "highlighted", "empty"],
     tokens: ["--ds-z-dialog", "--ds-shadow-raised", "--ds-focus-ring"]
   },
@@ -521,11 +521,11 @@ export const componentCatalog: ComponentCatalogItem[] = [
     category: "data-display",
     priority: "P0",
     status: "ready",
-    summary: "Interactive tabular grid with sorting, selection, and row actions.",
+    summary: "Interactive tabular grid with sorting, selection, row actions, keyboard row navigation, and column resize.",
     purpose: "Use when dense records need structured scanning with richer controls than a static table.",
     primitive: "table with grid-like interactions",
     apg: "https://www.w3.org/WAI/ARIA/apg/patterns/grid/",
-    props: ["columns", "rows", "density", "sortable", "selectionMode", "striped", "stickyHeader", "emptyMessage", "rowKey", "rowActions", "sortState", "defaultSortState", "selectedRowKeys", "defaultSelectedRowKeys", "activeRowKey", "defaultActiveRowKey", "keyboardNavigation", "resizableColumns", "onSortChange", "onSelectedRowKeysChange", "onSelectionChange", "onActiveRowKeyChange", "onColumnResize"],
+    props: ["caption", "columns", "rows", "density", "sortable", "selectionMode", "striped", "stickyHeader", "loading", "emptyMessage", "rowKey", "rowActions", "sortState", "defaultSortState", "selectedRowKeys", "defaultSelectedRowKeys", "activeRowKey", "defaultActiveRowKey", "keyboardNavigation", "resizableColumns", "onSort", "onSortChange", "onSelectedRowKeysChange", "onSelectionChange", "onActiveRowKeyChange", "onColumnResize"],
     states: ["default", "hover", "sorted", "selected", "active", "empty", "loading", "resizing"],
     tokens: ["--ds-color-border-default", "--ds-color-bg-surface", "--ds-color-bg-muted"]
   },

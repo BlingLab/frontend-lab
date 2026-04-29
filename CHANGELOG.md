@@ -19,8 +19,10 @@ All notable changes are documented in this file.
 - release prepare, dry-run, publish workflow 자동화를 추가했습니다. / Added release prepare, dry-run, and publish workflow automation.
 - lint/format 최소 품질 게이트 `npm run lint`를 추가했습니다. / Added the minimal lint/format quality gate `npm run lint`.
 - docs app responsive, theme switch, Tab focus browser smoke 검증 `test:docs-smoke`를 추가했습니다. / Added `test:docs-smoke` browser smoke validation for docs app responsive layout, theme switching, and Tab focus.
+- prop-heavy component README/spec용 prop table metadata와 검증을 추가했습니다. / Added prop table metadata and validation for prop-heavy component README/spec docs.
 
 ### Changed
 
 - review/issue 운영 문서에 priority SLA, milestone 기준, follow-up 연결 규칙을 보강했습니다. / Strengthened review and issue operations docs with priority SLA, milestone criteria, and follow-up linking rules.
 - DataGrid 문서와 catalog prop 목록을 실제 상호작용 API에 맞췄습니다. / Aligned DataGrid docs and catalog prop lists with the actual interaction APIs.
+- scaffold가 기존 README/spec를 기본적으로 보존하고 `--force-docs`에서만 문서를 재생성하도록 바꿨습니다. / Changed scaffold behavior so existing README/spec files are preserved by default and regenerated only with `--force-docs`.
