@@ -11,6 +11,7 @@ All notable changes are documented in this file.
 - 시각 회귀, 릴리즈 정책, 브랜치 보호 기준 문서를 추가했습니다. / Added visual regression, release policy, and branch protection criteria docs.
 - UI package build 전에 stale `dist`를 정리하는 스크립트를 추가했습니다. / Added a script that cleans stale `dist` output before building the UI package.
 - Playwright 기반 docs app screenshot 검증을 추가했습니다. / Added Playwright-based docs app screenshot validation.
+- 상호작용 접근성 검증 범위를 Select, DatePicker, FileUploader, Tabs, Stepper, NavigationRail, SideNav로 확장했습니다. / Expanded interaction accessibility validation to Select, DatePicker, FileUploader, Tabs, Stepper, NavigationRail, and SideNav.
 
 ### Changed
 

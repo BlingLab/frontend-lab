@@ -27,3 +27,11 @@
 - color만 유일한 신호로 쓰지 않습니다. / Color is not the only signal.
 - compact layout에서도 touch target size가 허용 가능한 수준입니다. / Touch target size is acceptable for compact layouts.
 - high contrast mode에서 필수 boundary가 사라지지 않습니다. / High contrast mode does not lose essential boundaries.
+
+## 회귀 테스트 기준 / Regression Test Criteria
+
+- `scripts/interaction-a11y.mjs`는 `componentCatalog` 기준 상호작용 컴포넌트 목록이 누락되지 않는지 먼저 확인합니다. / `scripts/interaction-a11y.mjs` first verifies that the interaction component list is present in `componentCatalog`.
+- JSDOM에서는 native `select`, `input[type="date"]`, `input[type="file"]`의 브라우저 UI 자체를 열 수 없으므로 focus 유지, value 변경, callback, rendered state를 검증합니다. / JSDOM cannot open native browser UI for `select`, `input[type="date"]`, or `input[type="file"]`, so tests verify focus retention, value changes, callbacks, and rendered state.
+- custom navigation pattern은 Arrow, Home, End, Space, Enter 흐름을 테스트에 포함합니다. / Custom navigation patterns include Arrow, Home, End, Space, and Enter flows in tests.
+- Escape로 닫히는 overlay는 focus return을 반드시 검증합니다. / Overlays that close with Escape must verify focus return.
+- 실제 브라우저 layout, native picker popup, drag-and-drop pointer detail은 Playwright visual/browser test 범위로 분리합니다. / Real browser layout, native picker popups, and drag-and-drop pointer details belong in Playwright visual/browser tests.
