@@ -15,7 +15,7 @@
 
 ## Prop 축 / Prop Axes
 
-`label`, `description`, `accept`, `multiple`, `files`, `defaultFiles`, `maxFiles`, `disabled`, `error`, `onFilesChange`
+`label`, `description`, `helperText`, `accept`, `multiple`, `files`, `defaultFiles`, `maxFiles`, `disabled`, `error`, `onFilesChange`
 
 ## 상태 / States
 
@@ -30,6 +30,7 @@
 
 - 기본 기준 / Base reference: [https://html.spec.whatwg.org/multipage/input.html#file-upload-state-(type=file)](https://html.spec.whatwg.org/multipage/input.html#file-upload-state-(type=file))
 - accessible name이 필요한 control은 `label`, `aria-label`, visible text 중 하나로 이름을 제공합니다. / Controls that need an accessible name receive it through `label`, `aria-label`, or visible text.
+- drag/drop은 동일한 `onFilesChange` 흐름으로 selected file state를 갱신합니다. / Drag/drop updates selected file state through the same `onFilesChange` flow.
 - focus-visible은 `--ds-focus-ring`을 사용하고 keyboard navigation에서 사라지지 않아야 합니다. / Focus-visible uses `--ds-focus-ring` and must remain visible during keyboard navigation.
 
 ## 토큰 / Tokens

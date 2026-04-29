@@ -110,6 +110,7 @@ The app shows the following:
 - [패키지 사용 가이드 / Package Consumption Guide](./docs/package-consumption.md)
 - [릴리즈 체크리스트 / Release Checklist](./docs/release-checklist.md)
 - [접근성 체크리스트 / Accessibility Checklist](./docs/accessibility-checklist.md)
+- [반응형 검증 기준 / Responsive QA Criteria](./docs/responsive-qa.md)
 - [반응형 레이아웃 방향 / Responsive Layout System](./docs/responsive-layout-system.md)
 
 ## 명령어 / Commands
@@ -162,6 +163,13 @@ npm run components:validate
 
 카탈로그 컴포넌트 폴더, 필수 문서, 필수 export, token 계약, CSS naming, event prop naming, UI CSS raw color 금지를 확인합니다.
 Validates catalog component folders, required documents, required exports, token contracts, CSS naming, event prop naming, and the no-raw-color rule for UI CSS.
+
+```bash
+npm run test
+```
+
+컴포넌트 시스템 검증, UI 빌드, 접근성 스모크 테스트, package export 검증을 한 번에 실행합니다.
+Runs component system validation, UI build, accessibility smoke checks, and package export verification together.
 
 ## 컴포넌트 사용 / Component Usage
 

@@ -1,5 +1,6 @@
 import type { HTMLAttributes, ReactNode } from "react";
-import { Table, type TableColumn } from "../table";
+import { Table, type TableColumn, type TableSortState } from "../table";
+import { classNames } from "../../../shared/utils";
 
 export type DataGridColumn<Row extends Record<string, unknown>> = TableColumn<Row> & {
   resizable?: boolean;
@@ -18,7 +19,13 @@ export interface DataGridProps<Row extends Record<string, unknown>> extends HTML
   emptyMessage?: ReactNode;
   rowKey?: (row: Row, rowIndex: number) => string;
   rowActions?: (row: Row, rowIndex: number) => ReactNode;
+  sortState?: TableSortState<Row>;
+  defaultSortState?: TableSortState<Row>;
+  selectedRowKeys?: string[];
+  defaultSelectedRowKeys?: string[];
   onSort?: (key: keyof Row & string) => void;
+  onSortChange?: (sortState: TableSortState<Row> | undefined) => void;
+  onSelectedRowKeysChange?: (keys: string[]) => void;
   onSelectionChange?: (rows: Row[]) => void;
 }
 
@@ -32,11 +39,12 @@ export function DataGrid<Row extends Record<string, unknown>>({
   striped = true,
   stickyHeader = false,
   loading = false,
-  emptyMessage,
+  emptyMessage = "데이터가 없습니다. / No data.",
+  className,
   ...props
 }: DataGridProps<Row>) {
   return (
-    <div className="ds-DataGrid" data-loading={loading ? "true" : undefined}>
+    <div className={classNames("ds-DataGrid", className)} data-loading={loading ? "true" : undefined}>
       {loading ? <div className="ds-DataGrid-loading">불러오는 중 / Loading</div> : null}
       <Table
         caption={caption}
@@ -47,9 +55,9 @@ export function DataGrid<Row extends Record<string, unknown>>({
         selectionMode={selectionMode}
         striped={striped}
         stickyHeader={stickyHeader}
+        emptyMessage={emptyMessage}
         {...props}
       />
-      {!loading && rows.length === 0 && emptyMessage ? <div className="ds-DataGrid-empty">{emptyMessage}</div> : null}
     </div>
   );
 }

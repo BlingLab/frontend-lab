@@ -22,6 +22,7 @@ import {
   DropdownMenu,
   EmptyState,
   FileUploader,
+  Icon,
   IconButton,
   Inline,
   List,
@@ -50,6 +51,7 @@ const navItems = [
   { id: "overview", label: "구성 원칙 / Principles" },
   { id: "tokens", label: "디자인 토큰 / Tokens" },
   { id: "themes", label: "테마 시스템 / Themes" },
+  { id: "responsive", label: "반응형 / Responsive" },
   { id: "rules", label: "개발 규약 / Rules" },
   { id: "roadmap", label: "로드맵 / Roadmap" },
   { id: "components", label: "컴포넌트 / Components" },
@@ -70,8 +72,14 @@ const systemMetrics = [
   { label: "스택 / Stack", value: "React + TS" }
 ];
 
+const responsiveMatrix = [
+  { label: "모바일 / Mobile", range: "< 40rem", primitive: "Stack + full width fields", check: "single column" },
+  { label: "태블릿 / Tablet", range: "40rem - 64rem", primitive: "Row wrapping + adaptive cards", check: "two column when space allows" },
+  { label: "데스크톱 / Desktop", range: "64rem+", primitive: "Container + grid density", check: "catalog and preview side by side" }
+];
+
 const roadmapGroups = [
-  { category: "액션 / Actions", priority: "P0", components: ["Button", "IconButton"] },
+  { category: "액션 / Actions", priority: "P0/P1", components: ["Button", "Icon", "IconButton"] },
   { category: "폼 / Forms", priority: "P0/P1", components: ["Field", "TextField", "DatePicker", "Combobox", "Select", "Checkbox", "RadioGroup", "Switch", "FileUploader"] },
   { category: "피드백 / Feedback", priority: "P0/P1", components: ["Alert", "Badge", "Toast", "Progress", "Skeleton"] },
   { category: "오버레이 / Overlays", priority: "P1", components: ["Dialog", "Popover", "Tooltip", "DropdownMenu", "CommandPalette"] },
@@ -83,22 +91,33 @@ const showcase: Record<string, { preview: ReactNode; code: string }> = {
   Button: {
     preview: (
       <Inline gap="sm" justify="center">
-        <Button iconStart="+" selected>저장 / Save</Button>
+        <Button iconStart={<Icon name="plus" />} selected>저장 / Save</Button>
         <Button variant="outline" tone="neutral">취소 / Cancel</Button>
         <Button tone="danger">삭제 / Delete</Button>
       </Inline>
     ),
-    code: `import { Button } from "@workspace/ui";\n\n<Button iconStart="+" selected>저장 / Save</Button>`
+    code: `import { Button, Icon } from "@workspace/ui";\n\n<Button iconStart={<Icon name="plus" />} selected>저장 / Save</Button>`
   },
   IconButton: {
     preview: (
       <Inline gap="sm" justify="center">
-        <IconButton label="추가 / Add" icon="+" shape="circle" />
-        <IconButton label="검색 / Search" icon="⌕" variant="outline" />
-        <IconButton label="삭제 / Delete" icon="×" tone="danger" variant="outline" />
+        <IconButton label="추가 / Add" icon={<Icon name="plus" />} shape="circle" />
+        <IconButton label="검색 / Search" icon={<Icon name="search" />} variant="outline" />
+        <IconButton label="삭제 / Delete" icon={<Icon name="x" />} tone="danger" variant="outline" />
       </Inline>
     ),
-    code: `import { IconButton } from "@workspace/ui";\n\n<IconButton label="검색 / Search" icon="⌕" />`
+    code: `import { Icon, IconButton } from "@workspace/ui";\n\n<IconButton label="검색 / Search" icon={<Icon name="search" />} />`
+  },
+  Icon: {
+    preview: (
+      <Inline gap="sm" justify="center">
+        <Icon name="search" label="검색 / Search" />
+        <Icon name="command" label="명령 / Command" />
+        <Icon name="upload" label="업로드 / Upload" />
+        <Icon name="check" label="완료 / Complete" />
+      </Inline>
+    ),
+    code: `import { Icon } from "@workspace/ui";\n\n<Icon name="search" label="검색 / Search" />`
   },
   Field: {
     preview: <TextField label="프로젝트 / Project" description="Field composition으로 label 관계를 고정합니다. / Field composition keeps label relationships." defaultValue="frontend-lab" />,
@@ -151,7 +170,7 @@ const showcase: Record<string, { preview: ReactNode; code: string }> = {
   Badge: {
     preview: (
       <Inline gap="sm" justify="center">
-        <Badge label="준비 / Ready" tone="brand" iconStart="*" />
+        <Badge label="준비 / Ready" tone="brand" iconStart={<Icon name="check" size="sm" />} />
         <Badge label="활성 / Active" tone="success" />
         <Badge label="경고 / Warning" tone="warning" />
         <Badge label="오류 / Error" tone="danger" removable />
@@ -246,7 +265,28 @@ const showcase: Record<string, { preview: ReactNode; code: string }> = {
 function App() {
   const [activeSection, setActiveSection] = useState(navItems[0].id);
   const [activeTheme, setActiveTheme] = useState("normal");
+  const [componentQuery, setComponentQuery] = useState("");
+  const [selectedComponentName, setSelectedComponentName] = useState(componentCatalog[0].name);
   const summaries = useMemo(() => new Map(componentCatalog.map((component) => [component.name, component])), []);
+  const filteredComponents = useMemo(() => {
+    const normalizedQuery = componentQuery.trim().toLowerCase();
+    if (!normalizedQuery) return componentCatalog;
+    return componentCatalog.filter((component) => [
+      component.name,
+      component.category,
+      component.summary,
+      component.purpose,
+      component.priority,
+      component.status,
+      ...component.props,
+      ...component.states,
+      ...component.tokens
+    ].join(" ").toLowerCase().includes(normalizedQuery));
+  }, [componentQuery]);
+  const selectedComponent = componentCatalog.find((component) => component.name === selectedComponentName) ?? filteredComponents[0] ?? componentCatalog[0];
+  const selectedSourcePath = `packages/ui/src/components/${selectedComponent.category}/${selectedComponent.slug}/${selectedComponent.slug}.tsx`;
+  const selectedReadmePath = `packages/ui/src/components/${selectedComponent.category}/${selectedComponent.slug}/README.md`;
+  const selectedSpecPath = `packages/ui/src/components/${selectedComponent.category}/${selectedComponent.slug}/spec.md`;
 
   useEffect(() => {
     document.documentElement.dataset.dsTheme = activeTheme;
@@ -450,6 +490,36 @@ function App() {
           </div>
         </Section>
 
+        <Section id="responsive" eyebrow="검증 / Verification" title="반응형 시스템 / Responsive System">
+          <div className="responsive-layout">
+            <article className="responsive-summary">
+              <h3>layout primitive 기준 / Layout Primitive Contract</h3>
+              <p>
+                `Container`, `Row`, `Col`, `Stack`, `Inline`을 기준으로 화면 폭 변화에 대응하고, form control은 `width="full"`과 token gutter를 우선 사용합니다.
+                Layout adapts through `Container`, `Row`, `Col`, `Stack`, and `Inline`, while form controls prefer `width="full"` and token gutters.
+              </p>
+              <Row gap="md">
+                <Col span={12} md={6}>
+                  <TextField label="검색어 / Search" placeholder="Component..." width="full" />
+                </Col>
+                <Col span={12} md={6}>
+                  <Select label="상태 / Status" width="full" options={[{ label: "준비 / Ready", value: "ready" }, { label: "안정 / Stable", value: "stable" }]} />
+                </Col>
+              </Row>
+            </article>
+            <div className="responsive-matrix">
+              {responsiveMatrix.map((item) => (
+                <article className="responsive-card" key={item.label}>
+                  <span>{item.range}</span>
+                  <h3>{item.label}</h3>
+                  <p>{item.primitive}</p>
+                  <Badge label={item.check} tone="brand" />
+                </article>
+              ))}
+            </div>
+          </div>
+        </Section>
+
         <Section id="rules" eyebrow="규약 / Conventions" title="개발 규약 / Development Conventions">
           <div className="rule-grid">
             <InfoCard title="파일 / Files">컴포넌트 source는 `.tsx`, barrel entry는 `.ts`를 사용합니다. / Component source uses `.tsx`, barrel entries use `.ts`.</InfoCard>
@@ -473,6 +543,64 @@ function App() {
         </Section>
 
         <Section id="components" eyebrow="컴포넌트 / Components" title="컴포넌트 카탈로그 / Component Catalog">
+          <div className="docs-explorer" aria-label="컴포넌트 문서 탐색 / Component documentation explorer">
+            <div className="docs-explorer-panel">
+              <div className="docs-explorer-header">
+                <div>
+                  <h3>문서 탐색 / Documentation Explorer</h3>
+                  <p>컴포넌트별 prop, state, token, 문서 경로를 한 화면에서 확인합니다. / Review props, states, tokens, and document paths for each component in one place.</p>
+                </div>
+                <Badge label={`${filteredComponents.length} / ${componentCatalog.length}`} tone="brand" />
+              </div>
+              <label className="doc-search">
+                <span>검색 / Search</span>
+                <input value={componentQuery} placeholder="Button, overlay, token..." onChange={(event) => setComponentQuery(event.currentTarget.value)} />
+              </label>
+              <div className="doc-component-list" role="listbox" aria-label="컴포넌트 선택 / Select component">
+                {filteredComponents.map((component) => (
+                  <button
+                    aria-selected={selectedComponent.name === component.name}
+                    className="doc-component-item"
+                    key={component.name}
+                    role="option"
+                    type="button"
+                    onClick={() => setSelectedComponentName(component.name)}
+                  >
+                    <strong>{component.name}</strong>
+                    <span>{component.category} · {component.priority} · {component.status}</span>
+                  </button>
+                ))}
+                {filteredComponents.length === 0 ? <p className="doc-empty">검색 결과가 없습니다. / No matching components.</p> : null}
+              </div>
+            </div>
+            <article className="docs-detail">
+              <div className="docs-detail-header">
+                <div>
+                  <span className="component-meta">{selectedComponent.category} · {selectedComponent.priority} · {selectedComponent.status}</span>
+                  <h3>{selectedComponent.name}</h3>
+                  <p>{selectedComponent.summary} / {selectedComponent.purpose}</p>
+                </div>
+                <Icon name="command" label="문서 / Documentation" />
+              </div>
+              <div className="docs-chip-group" aria-label="Props">
+                <strong>Props</strong>
+                <div>{selectedComponent.props.map((prop) => <span key={prop}>{prop}</span>)}</div>
+              </div>
+              <div className="docs-chip-group" aria-label="States">
+                <strong>States</strong>
+                <div>{selectedComponent.states.map((state) => <span key={state}>{state}</span>)}</div>
+              </div>
+              <div className="docs-chip-group" aria-label="Tokens">
+                <strong>Tokens</strong>
+                <div>{selectedComponent.tokens.map((token) => <span key={token}>{token}</span>)}</div>
+              </div>
+              <div className="doc-paths">
+                <code>{selectedSourcePath}</code>
+                <code>{selectedReadmePath}</code>
+                <code>{selectedSpecPath}</code>
+              </div>
+            </article>
+          </div>
           <div className="component-list">
             {componentCatalog.map((component) => {
               const example = showcase[component.name];

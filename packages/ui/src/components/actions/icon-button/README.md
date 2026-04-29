@@ -41,10 +41,10 @@
 ## 예시 / Example
 
 ```tsx
-import { IconButton } from "@workspace/ui/components/actions/icon-button";
+import { Icon, IconButton } from "@workspace/ui";
 
 export function Example() {
-  return <IconButton label="검색 / Search" icon="⌕" />;
+  return <IconButton label="검색 / Search" icon={<Icon name="search" />} />;
 }
 ```
 

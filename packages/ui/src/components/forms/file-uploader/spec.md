@@ -10,7 +10,7 @@
 - folder slug: `file-uploader`
 - category: `forms`
 - priority/status: `P1` / `ready`
-- props: `label`, `description`, `accept`, `multiple`, `files`, `defaultFiles`, `maxFiles`, `disabled`, `error`, `onFilesChange`
+- props: `label`, `description`, `helperText`, `accept`, `multiple`, `files`, `defaultFiles`, `maxFiles`, `disabled`, `error`, `onFilesChange`
 
 ## 변형 / Variants
 
@@ -30,6 +30,7 @@
 ## 상호작용 / Interaction
 
 - pointer hover는 `--ds-state-hover-bg` 또는 component semantic token으로 표현합니다. / Pointer hover uses `--ds-state-hover-bg` or component semantic tokens.
+- drag-over는 `data-dragging` hook으로 표현하고 drop 후 `files` state를 갱신합니다. / Drag-over is represented through the `data-dragging` hook and updates `files` state after drop.
 - active/pressed/selected 상태는 `data-*` attribute와 ARIA state가 필요한 경우 함께 갱신합니다. / Active, pressed, and selected states update `data-*` attributes and ARIA state together when needed.
 - disabled 상태는 native `disabled` 또는 `aria-disabled`를 사용하고 opacity만으로 의미를 전달하지 않습니다. / Disabled state uses native `disabled` or `aria-disabled` and never relies on opacity alone.
 

@@ -1,5 +1,6 @@
 import { isValidElement, useEffect, useState, type ReactNode } from "react";
 import { Button, type ButtonProps } from "../../actions/button";
+import { Icon } from "../../actions/icon";
 import { IconButton } from "../../actions/icon-button";
 import { classNames } from "../../../shared/utils";
 import type { AlertProps } from "../alert";
@@ -55,7 +56,7 @@ export function Toast({
           {dismissible ? (
             <IconButton
               label={dismissLabel}
-              icon="x"
+              icon={<Icon name="x" />}
               size="sm"
               onClick={() => {
                 setDismissed(true);

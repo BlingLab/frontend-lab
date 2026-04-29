@@ -96,6 +96,20 @@ export const componentCatalog: ComponentCatalogItem[] = [
     tokens: ["--ds-color-action-primary-bg", "--ds-radius-6", "--ds-focus-ring"]
   },
   {
+    name: "Icon",
+    slug: "icon",
+    category: "actions",
+    priority: "P1",
+    status: "ready",
+    summary: "Shared SVG symbol renderer with token-based sizing and accessibility defaults.",
+    purpose: "Use to keep repeated product symbols consistent before or alongside an external icon library.",
+    primitive: "svg",
+    apg: "https://www.w3.org/WAI/tutorials/images/decision-tree/",
+    props: ["name", "label", "size"],
+    states: ["decorative", "informative", "inherited-color"],
+    tokens: ["--ds-size-icon-sm", "--ds-size-icon-md", "--ds-size-icon-lg"]
+  },
+  {
     name: "Field",
     slug: "field",
     category: "forms",
@@ -176,7 +190,7 @@ export const componentCatalog: ComponentCatalogItem[] = [
     primitive: "combobox with listbox popup",
     apg: "https://www.w3.org/WAI/ARIA/apg/patterns/combobox/",
     props: ["value", "defaultValue", "options", "placeholder", "size", "width", "fieldProps", "emptyMessage", "onValueChange", "disabled", "invalid"],
-    states: ["closed", "open", "filtered", "selected", "disabled", "invalid"],
+    states: ["closed", "open", "filtered", "highlighted", "selected", "disabled", "invalid"],
     tokens: ["--ds-color-bg-surface", "--ds-color-border-default", "--ds-focus-ring"]
   },
   {
@@ -231,7 +245,7 @@ export const componentCatalog: ComponentCatalogItem[] = [
     purpose: "Use when users need to attach one or more files while seeing constraints and selected files.",
     primitive: "input[type='file']",
     apg: "https://html.spec.whatwg.org/multipage/input.html#file-upload-state-(type=file)",
-    props: ["label", "description", "accept", "multiple", "files", "defaultFiles", "maxFiles", "disabled", "error", "onFilesChange"],
+    props: ["label", "description", "helperText", "accept", "multiple", "files", "defaultFiles", "maxFiles", "disabled", "error", "onFilesChange"],
     states: ["default", "hover", "focus-visible", "drag-over", "disabled", "invalid"],
     tokens: ["--ds-color-bg-surface", "--ds-color-border-default", "--ds-focus-ring"]
   },
@@ -428,7 +442,7 @@ export const componentCatalog: ComponentCatalogItem[] = [
     primitive: "ordered list navigation",
     apg: "",
     props: ["steps", "value", "defaultValue", "orientation", "variant", "onValueChange"],
-    states: ["pending", "active", "complete", "disabled", "error"],
+    states: ["pending", "active", "complete", "keyboard-navigation", "disabled", "error"],
     tokens: ["--ds-color-border-default", "--ds-color-action-primary-bg", "--ds-focus-ring"]
   },
   {
@@ -497,7 +511,7 @@ export const componentCatalog: ComponentCatalogItem[] = [
     purpose: "Use for dense data that benefits from scanning, sorting, and column alignment.",
     primitive: "table",
     apg: "https://www.w3.org/WAI/ARIA/apg/patterns/table/",
-    props: ["columns", "rows", "density", "sortable", "selectionMode", "striped", "hoverable", "stickyHeader", "rowKey", "rowActions", "renderCell"],
+    props: ["columns", "rows", "density", "sortable", "selectionMode", "striped", "hoverable", "stickyHeader", "emptyMessage", "rowKey", "rowActions", "sortState", "defaultSortState", "selectedRowKeys", "defaultSelectedRowKeys", "renderCell", "onSortChange", "onSelectedRowKeysChange"],
     states: ["default", "hover", "sorted", "selected", "empty", "loading"],
     tokens: ["--ds-color-border-default", "--ds-color-bg-surface", "--ds-color-bg-muted"]
   },
@@ -511,7 +525,7 @@ export const componentCatalog: ComponentCatalogItem[] = [
     purpose: "Use when dense records need structured scanning with richer controls than a static table.",
     primitive: "table with grid-like interactions",
     apg: "https://www.w3.org/WAI/ARIA/apg/patterns/grid/",
-    props: ["columns", "rows", "density", "sortable", "selectionMode", "striped", "stickyHeader", "rowKey", "rowActions", "onSort", "onSelectionChange"],
+    props: ["columns", "rows", "density", "sortable", "selectionMode", "striped", "stickyHeader", "emptyMessage", "rowKey", "rowActions", "sortState", "defaultSortState", "selectedRowKeys", "defaultSelectedRowKeys", "onSortChange", "onSelectedRowKeysChange", "onSelectionChange"],
     states: ["default", "hover", "sorted", "selected", "empty", "loading"],
     tokens: ["--ds-color-border-default", "--ds-color-bg-surface", "--ds-color-bg-muted"]
   },

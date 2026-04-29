@@ -1,5 +1,6 @@
 import type { ReactNode } from "react";
 import { Button, type ButtonProps } from "../button";
+import { Icon } from "../icon";
 import { classNames } from "../../../shared/utils";
 
 export interface IconButtonProps extends Omit<ButtonProps, "children" | "label"> {
@@ -10,7 +11,7 @@ export interface IconButtonProps extends Omit<ButtonProps, "children" | "label">
 
 export function IconButton({
   label,
-  icon = "+",
+  icon = <Icon name="plus" />,
   shape = "square",
   variant = "ghost",
   tone = "neutral",

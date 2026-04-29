@@ -104,6 +104,29 @@ packages/ui/dist/
     └── {component}.d.ts
 ```
 
+export 경로는 릴리즈 전에 `npm run test:exports`로 확인합니다.
+Validate export paths before release with `npm run test:exports`.
+
+## API 상태 제어 / API State Control
+
+상태를 외부에서 제어해야 하는 화면은 controlled prop과 `on*Change` callback을 함께 사용합니다.
+Screens that need external state control use controlled props with `on*Change` callbacks.
+
+```tsx
+<DataGrid
+  columns={columns}
+  rows={rows}
+  rowKey={(row) => String(row.id)}
+  selectedRowKeys={selectedIds}
+  sortState={sortState}
+  onSelectedRowKeysChange={setSelectedIds}
+  onSortChange={setSortState}
+/>
+```
+
+uncontrolled 사용이 충분한 화면은 `defaultValue`, `defaultOpen`, `defaultSelectedRowKeys`, `defaultSortState`를 사용합니다.
+Screens that only need uncontrolled behavior use `defaultValue`, `defaultOpen`, `defaultSelectedRowKeys`, and `defaultSortState`.
+
 ## 패키지 경계 / Package Boundary
 
 - 소비자는 `src` 내부 파일을 직접 import하지 않습니다. / Consumers do not import internal `src` files directly.

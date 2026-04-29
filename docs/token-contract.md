@@ -67,9 +67,21 @@ Component-specific override hooks. Defaults should resolve to semantic tokens.
 ```text
 --ds-button-height-md
 --ds-button-padding-x-md
+--ds-field-bg
+--ds-field-border
+--ds-card-bg
+--ds-overlay-bg
+--ds-table-header-bg
 --ds-dialog-width-md
 --ds-card-width
 ```
+
+입력, 카드, 오버레이, 리스트, 테이블처럼 화면 전반에서 반복되는 표면은 component token hook을 제공합니다.
+Repeated surfaces such as fields, cards, overlays, lists, and tables expose component token hooks.
+
+- field 계열은 `--ds-field-*`를 사용해 background, border, foreground, invalid state를 통일합니다. / Field components use `--ds-field-*` to normalize background, border, foreground, and invalid state.
+- card/list/table 계열은 `--ds-card-*`, `--ds-list-*`, `--ds-table-*`로 container surface를 재정의할 수 있습니다. / Card, list, and table components can override container surfaces through `--ds-card-*`, `--ds-list-*`, and `--ds-table-*`.
+- overlay 계열은 `--ds-overlay-*`를 사용해 Dialog, Popover, DropdownMenu, CommandPalette의 surface와 shadow를 맞춥니다. / Overlay components use `--ds-overlay-*` to align surfaces and shadows across Dialog, Popover, DropdownMenu, and CommandPalette.
 
 ### 반응형 토큰 / Responsive Tokens
 

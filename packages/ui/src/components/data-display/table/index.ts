@@ -1,1 +1,1 @@
-export { Table, type TableColumn, type TableProps } from "./table";
+export { Table, type TableColumn, type TableProps, type TableSortDirection, type TableSortState } from "./table";

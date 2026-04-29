@@ -3,8 +3,8 @@
 제품 UI에 재사용할 컴포넌트를 배치하는 패키지입니다.
 This package contains reusable components for product UI.
 
-현재 패키지는 34개 제품 컴포넌트와 5개 레이아웃 primitive를 React + TypeScript 컴포넌트로 제공합니다.
-The package currently provides 34 product components and 5 layout primitives as React + TypeScript components.
+현재 패키지는 35개 제품 컴포넌트와 5개 레이아웃 primitive를 React + TypeScript 컴포넌트로 제공합니다.
+The package currently provides 35 product components and 5 layout primitives as React + TypeScript components.
 
 이 패키지는 어떤 React 프로젝트든 베이스로 가져다 쓸 수 있게 public exports, build output, CSS token contract를 분리합니다.
 This package separates public exports, build output, and CSS token contracts so it can be used as a base in any React project.
@@ -46,6 +46,7 @@ Each component folder keeps `README.md` and `spec.md` aligned with the real impl
 - 상태 스타일은 임의 클래스보다 `data-state`, `data-disabled`, `data-invalid`, `data-orientation` 같은 표준화된 속성을 우선합니다. / State styles prefer standardized attributes such as `data-state`, `data-disabled`, `data-invalid`, and `data-orientation` over arbitrary classes.
 - hover, active, focus-visible, disabled는 shared token과 같은 selector 구조를 사용합니다. / Hover, active, focus-visible, and disabled use shared tokens and consistent selectors.
 - 색상은 component별 raw value가 아니라 semantic token을 사용해서 `data-ds-theme` 전환을 그대로 상속합니다. / Colors use semantic tokens rather than component-specific raw values, so they inherit `data-ds-theme` switching.
+- 반복 아이콘은 `Icon` 컴포넌트를 통해 공유하고, 외부 icon library를 붙이더라도 `IconButton`, `Button` slot에는 ReactNode로 주입합니다. / Repeated symbols are shared through the `Icon` component, and external icon libraries can still be injected into `IconButton` and `Button` slots as ReactNode.
 - page layout은 `Container`, `Row`, `Col`, `Stack`, `Inline` primitive를 사용합니다. / Page layout uses the `Container`, `Row`, `Col`, `Stack`, and `Inline` primitives.
 - 접근성은 네이티브 HTML을 먼저 사용하고, 커스텀 상호작용이 필요할 때만 WAI-ARIA APG 패턴을 적용합니다. / Accessibility starts with native HTML and applies WAI-ARIA APG patterns only when custom interaction is required.
 
@@ -142,4 +143,6 @@ npm --workspace @workspace/ui run build
 npm --workspace @workspace/ui run typecheck
 npm run components:scaffold
 npm run components:validate
+npm run test:a11y
+npm run test:exports
 ```

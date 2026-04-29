@@ -194,6 +194,25 @@
   font-weight: 800;
 }
 
+.ds-IconSvg {
+  display: inline-block;
+  flex: none;
+  inline-size: var(--ds-size-icon-md);
+  block-size: var(--ds-size-icon-md);
+  color: inherit;
+  vertical-align: middle;
+}
+
+.ds-IconSvg[data-size="sm"] {
+  inline-size: var(--ds-size-icon-sm);
+  block-size: var(--ds-size-icon-sm);
+}
+
+.ds-IconSvg[data-size="lg"] {
+  inline-size: var(--ds-size-icon-lg);
+  block-size: var(--ds-size-icon-lg);
+}
+
 .ds-Spinner {
   inline-size: var(--ds-size-icon-sm);
   block-size: var(--ds-size-icon-sm);
@@ -269,10 +288,10 @@
 .ds-Select {
   inline-size: 100%;
   min-block-size: var(--ds-size-control-md);
-  border: var(--ds-size-1) solid var(--ds-color-border-default);
-  border-radius: var(--ds-radius-6);
-  background: var(--ds-color-bg-surface);
-  color: var(--ds-color-text-primary);
+  border: var(--ds-size-1) solid var(--ds-field-border);
+  border-radius: var(--ds-field-radius);
+  background: var(--ds-field-bg);
+  color: var(--ds-field-fg);
   font: inherit;
   padding: var(--ds-space-0) var(--ds-space-3);
   transition:
@@ -287,10 +306,10 @@
   min-block-size: var(--ds-size-control-md);
   align-items: center;
   gap: var(--ds-space-2);
-  border: var(--ds-size-1) solid var(--ds-color-border-default);
-  border-radius: var(--ds-radius-6);
-  background: var(--ds-color-bg-surface);
-  color: var(--ds-color-text-primary);
+  border: var(--ds-size-1) solid var(--ds-field-border);
+  border-radius: var(--ds-field-radius);
+  background: var(--ds-field-bg);
+  color: var(--ds-field-fg);
   transition:
     background var(--ds-motion-duration-fast) var(--ds-motion-easing-standard),
     border-color var(--ds-motion-duration-fast) var(--ds-motion-easing-standard),
@@ -298,7 +317,7 @@
 }
 
 .ds-InputShell:hover:not([data-disabled="true"]) {
-  border-color: var(--ds-state-hover-border);
+  border-color: var(--ds-field-border-hover);
 }
 
 .ds-InputShell:focus-within {
@@ -306,7 +325,7 @@
 }
 
 .ds-InputShell[data-invalid="true"] {
-  border-color: var(--ds-color-feedback-danger);
+  border-color: var(--ds-field-invalid-border);
 }
 
 .ds-InputShell[data-disabled="true"] {
@@ -368,18 +387,18 @@
 .ds-TextField:hover:not(:disabled),
 .ds-Textarea:hover:not(:disabled),
 .ds-Select:hover:not(:disabled) {
-  border-color: var(--ds-state-hover-border);
+  border-color: var(--ds-field-border-hover);
 }
 
 .ds-TextField[aria-invalid="true"],
 .ds-Textarea[aria-invalid="true"],
 .ds-Select[aria-invalid="true"] {
-  border-color: var(--ds-color-feedback-danger);
+  border-color: var(--ds-field-invalid-border);
 }
 
 .ds-TextField:read-only,
 .ds-Textarea:read-only {
-  background: var(--ds-color-bg-muted);
+  background: var(--ds-field-bg-readonly);
 }
 
 .ds-Textarea {
@@ -784,12 +803,12 @@
 
 .ds-Dialog {
   inline-size: min(calc(100vw - calc(var(--ds-page-gutter) * 2)), var(--ds-dialog-width-md));
-  border: var(--ds-size-1) solid var(--ds-color-border-default);
-  border-radius: var(--ds-radius-8);
-  background: var(--ds-color-bg-surface);
+  border: var(--ds-size-1) solid var(--ds-overlay-border);
+  border-radius: var(--ds-overlay-radius);
+  background: var(--ds-overlay-bg);
   color: var(--ds-color-text-primary);
   padding: var(--ds-space-0);
-  box-shadow: var(--ds-shadow-raised);
+  box-shadow: var(--ds-overlay-shadow);
 }
 
 .ds-Dialog[data-size="sm"] {
@@ -842,12 +861,12 @@
   position: absolute;
   z-index: var(--ds-z-popover);
   min-inline-size: var(--ds-overlay-width);
-  border: var(--ds-size-1) solid var(--ds-color-border-default);
-  border-radius: var(--ds-radius-8);
-  background: var(--ds-color-bg-elevated);
+  border: var(--ds-size-1) solid var(--ds-overlay-border);
+  border-radius: var(--ds-overlay-radius);
+  background: var(--ds-overlay-bg);
   color: var(--ds-color-text-primary);
   padding: var(--ds-space-3);
-  box-shadow: var(--ds-shadow-raised);
+  box-shadow: var(--ds-overlay-shadow);
 }
 
 .ds-Popover-panel,
@@ -1164,9 +1183,9 @@
   display: grid;
   inline-size: min(100%, var(--ds-card-width));
   gap: var(--ds-space-3);
-  border: var(--ds-size-1) solid var(--ds-color-border-default);
-  border-radius: var(--ds-radius-8);
-  background: var(--ds-color-bg-surface);
+  border: var(--ds-size-1) solid var(--ds-card-border);
+  border-radius: var(--ds-card-radius);
+  background: var(--ds-card-bg);
   color: var(--ds-color-text-primary);
   padding: var(--ds-space-4);
   text-align: start;
@@ -1211,7 +1230,7 @@
 
 .ds-Card[data-interactive="true"]:hover {
   border-color: var(--ds-state-selected-border);
-  box-shadow: var(--ds-shadow-low);
+  box-shadow: var(--ds-card-shadow-hover);
 }
 
 .ds-Card[data-interactive="true"]:active {
@@ -1329,7 +1348,7 @@
   inline-size: 100%;
   min-inline-size: var(--ds-table-min-width);
   border-collapse: collapse;
-  background: var(--ds-color-bg-surface);
+  background: var(--ds-table-bg);
   color: var(--ds-color-text-primary);
   font-size: var(--ds-font-size-14);
 }
@@ -1341,7 +1360,7 @@
 }
 
 .ds-Table[data-striped="true"] tbody tr:nth-child(even) {
-  background: var(--ds-color-bg-muted);
+  background: var(--ds-table-row-striped-bg);
 }
 
 .ds-Table[data-hoverable="true"] tbody tr:hover {
@@ -1356,14 +1375,14 @@
 
 .ds-Table th,
 .ds-Table td {
-  border-block-end: var(--ds-size-1) solid var(--ds-color-border-default);
+  border-block-end: var(--ds-size-1) solid var(--ds-table-border);
   padding: var(--ds-space-3);
   text-align: start;
   vertical-align: middle;
 }
 
 .ds-Table th {
-  background: var(--ds-color-bg-muted);
+  background: var(--ds-table-header-bg);
   font-weight: 800;
 }
 
@@ -1405,9 +1424,9 @@
   inline-size: min(100%, var(--ds-empty-state-width));
   justify-items: center;
   gap: var(--ds-space-3);
-  border: var(--ds-size-1) solid var(--ds-color-border-default);
-  border-radius: var(--ds-radius-8);
-  background: var(--ds-color-bg-surface);
+  border: var(--ds-size-1) solid var(--ds-card-border);
+  border-radius: var(--ds-card-radius);
+  background: var(--ds-card-bg);
   padding: var(--ds-space-6);
   text-align: center;
 }
@@ -1430,9 +1449,9 @@
   margin: var(--ds-space-0);
   padding: var(--ds-space-0);
   list-style: none;
-  border: var(--ds-size-1) solid var(--ds-color-border-default);
-  border-radius: var(--ds-radius-8);
-  background: var(--ds-color-bg-surface);
+  border: var(--ds-size-1) solid var(--ds-list-border);
+  border-radius: var(--ds-list-radius);
+  background: var(--ds-list-bg);
 }
 
 .ds-List[data-variant="plain"] {
@@ -1464,7 +1483,7 @@
 }
 
 .ds-List[data-dividers="true"] .ds-List-item + .ds-List-item {
-  border-block-start: var(--ds-size-1) solid var(--ds-color-border-default);
+  border-block-start: var(--ds-size-1) solid var(--ds-list-border);
 }
 
 .ds-List-content {
@@ -1512,10 +1531,10 @@
 .ds-CommandPalette-input {
   inline-size: 100%;
   min-block-size: var(--ds-size-control-md);
-  border: var(--ds-size-1) solid var(--ds-color-border-default);
-  border-radius: var(--ds-radius-6);
-  background: var(--ds-color-bg-surface);
-  color: var(--ds-color-text-primary);
+  border: var(--ds-size-1) solid var(--ds-field-border);
+  border-radius: var(--ds-field-radius);
+  background: var(--ds-field-bg);
+  color: var(--ds-field-fg);
   font: inherit;
   padding: var(--ds-space-0) var(--ds-space-3);
   transition:
@@ -1526,7 +1545,7 @@
 .ds-DatePicker:hover:not(:disabled),
 .ds-Combobox:not([data-disabled="true"]) .ds-Combobox-input:hover,
 .ds-CommandPalette-input:hover {
-  border-color: var(--ds-state-hover-border);
+  border-color: var(--ds-field-border-hover);
 }
 
 .ds-DatePicker:focus-visible,
@@ -1584,10 +1603,10 @@
   display: grid;
   max-block-size: calc(var(--ds-space-12) * 5);
   overflow: auto;
-  border: var(--ds-size-1) solid var(--ds-color-border-default);
-  border-radius: var(--ds-radius-8);
-  background: var(--ds-color-bg-elevated);
-  box-shadow: var(--ds-shadow-raised);
+  border: var(--ds-size-1) solid var(--ds-overlay-border);
+  border-radius: var(--ds-overlay-radius);
+  background: var(--ds-overlay-bg);
+  box-shadow: var(--ds-overlay-shadow);
   padding: var(--ds-space-1);
 }
 
@@ -1614,7 +1633,9 @@
 
 .ds-Combobox-option:hover:not(:disabled),
 .ds-Combobox-option[data-selected="true"],
-.ds-CommandPalette-item:hover:not(:disabled) {
+.ds-Combobox-option[data-highlighted="true"]:not(:disabled),
+.ds-CommandPalette-item:hover:not(:disabled),
+.ds-CommandPalette-item[data-highlighted="true"]:not(:disabled) {
   background: var(--ds-state-hover-bg);
 }
 
@@ -1643,6 +1664,12 @@
 .ds-FileUploader:hover:not([data-disabled="true"]) {
   border-color: var(--ds-state-hover-border);
   background: var(--ds-state-hover-bg);
+}
+
+.ds-FileUploader[data-dragging="true"] {
+  border-color: var(--ds-state-selected-border);
+  background: var(--ds-state-selected-bg);
+  color: var(--ds-color-text-primary);
 }
 
 .ds-FileUploader[data-disabled="true"] {
@@ -1682,12 +1709,12 @@
 
 .ds-CommandPalette {
   inline-size: min(calc(100vw - calc(var(--ds-page-gutter) * 2)), var(--ds-dialog-width-lg));
-  border: var(--ds-size-1) solid var(--ds-color-border-default);
-  border-radius: var(--ds-radius-8);
-  background: var(--ds-color-bg-surface);
+  border: var(--ds-size-1) solid var(--ds-overlay-border);
+  border-radius: var(--ds-overlay-radius);
+  background: var(--ds-overlay-bg);
   color: var(--ds-color-text-primary);
   padding: var(--ds-space-0);
-  box-shadow: var(--ds-shadow-raised);
+  box-shadow: var(--ds-overlay-shadow);
 }
 
 .ds-CommandPalette::backdrop {
@@ -1707,6 +1734,10 @@
 }
 
 .ds-CommandPalette-close {
+  display: inline-grid;
+  inline-size: var(--ds-size-control-sm);
+  block-size: var(--ds-size-control-sm);
+  place-items: center;
   border: var(--ds-size-0);
   border-radius: var(--ds-radius-pill);
   background: transparent;

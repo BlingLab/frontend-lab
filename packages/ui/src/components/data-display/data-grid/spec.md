@@ -10,7 +10,7 @@
 - folder slug: `data-grid`
 - category: `data-display`
 - priority/status: `P0` / `ready`
-- props: `columns`, `rows`, `density`, `sortable`, `selectionMode`, `striped`, `stickyHeader`, `rowKey`, `rowActions`, `onSort`, `onSelectionChange`
+- props: `columns`, `rows`, `density`, `sortable`, `selectionMode`, `striped`, `stickyHeader`, `emptyMessage`, `rowKey`, `rowActions`, `sortState`, `defaultSortState`, `selectedRowKeys`, `defaultSelectedRowKeys`, `onSortChange`, `onSelectedRowKeysChange`, `onSelectionChange`
 
 ## 변형 / Variants
 
@@ -30,6 +30,7 @@
 ## 상호작용 / Interaction
 
 - pointer hover는 `--ds-state-hover-bg` 또는 component semantic token으로 표현합니다. / Pointer hover uses `--ds-state-hover-bg` or component semantic tokens.
+- `Table`의 sort/selection controlled API를 그대로 노출해 grid 수준에서 상태를 관리할 수 있어야 합니다. / Exposes `Table` sort/selection controlled API so state can be managed at grid level.
 - active/pressed/selected 상태는 `data-*` attribute와 ARIA state가 필요한 경우 함께 갱신합니다. / Active, pressed, and selected states update `data-*` attributes and ARIA state together when needed.
 - disabled 상태는 native `disabled` 또는 `aria-disabled`를 사용하고 opacity만으로 의미를 전달하지 않습니다. / Disabled state uses native `disabled` or `aria-disabled` and never relies on opacity alone.
 

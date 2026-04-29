@@ -20,15 +20,30 @@ export function Popover({ triggerLabel = "열기 / Open", title, children, open,
   });
   const rootRef = useRef<HTMLDivElement>(null);
   const panelId = useId();
+  const focusTrigger = () => rootRef.current?.querySelector<HTMLButtonElement>(".ds-Button")?.focus();
+  const closePopover = (restoreFocus = true) => {
+    setOpen(false);
+    if (restoreFocus) focusTrigger();
+  };
 
   useEffect(() => {
     if (!currentOpen) return undefined;
     const onPointerDown = (event: PointerEvent) => {
-      if (!rootRef.current?.contains(event.target as Node)) setOpen(false);
+      if (!rootRef.current?.contains(event.target as Node)) closePopover(false);
+    };
+    const onKeyDown = (event: KeyboardEvent) => {
+      if (event.key === "Escape") {
+        event.preventDefault();
+        closePopover();
+      }
     };
     document.addEventListener("pointerdown", onPointerDown);
-    return () => document.removeEventListener("pointerdown", onPointerDown);
-  }, [currentOpen, setOpen]);
+    document.addEventListener("keydown", onKeyDown);
+    return () => {
+      document.removeEventListener("pointerdown", onPointerDown);
+      document.removeEventListener("keydown", onKeyDown);
+    };
+  }, [currentOpen]);
 
   return (
     <div className={classNames("ds-Popover", className)} data-state={currentOpen ? "open" : "closed"} ref={rootRef} {...props}>

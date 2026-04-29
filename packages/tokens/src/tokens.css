@@ -170,6 +170,34 @@
   --ds-button-padding-x-lg: var(--ds-space-5);
   --ds-button-radius: var(--ds-radius-6);
 
+  --ds-field-bg: var(--ds-color-bg-surface);
+  --ds-field-bg-readonly: var(--ds-color-bg-muted);
+  --ds-field-border: var(--ds-color-border-default);
+  --ds-field-border-hover: var(--ds-state-hover-border);
+  --ds-field-radius: var(--ds-radius-6);
+  --ds-field-fg: var(--ds-color-text-primary);
+  --ds-field-placeholder-fg: var(--ds-color-text-muted);
+  --ds-field-invalid-border: var(--ds-color-feedback-danger);
+
+  --ds-card-bg: var(--ds-color-bg-surface);
+  --ds-card-border: var(--ds-color-border-default);
+  --ds-card-radius: var(--ds-radius-8);
+  --ds-card-shadow-hover: var(--ds-shadow-low);
+
+  --ds-overlay-bg: var(--ds-color-bg-elevated);
+  --ds-overlay-border: var(--ds-color-border-default);
+  --ds-overlay-radius: var(--ds-radius-8);
+  --ds-overlay-shadow: var(--ds-shadow-raised);
+
+  --ds-list-bg: var(--ds-color-bg-surface);
+  --ds-list-border: var(--ds-color-border-default);
+  --ds-list-radius: var(--ds-radius-8);
+
+  --ds-table-bg: var(--ds-color-bg-surface);
+  --ds-table-border: var(--ds-color-border-default);
+  --ds-table-header-bg: var(--ds-color-bg-muted);
+  --ds-table-row-striped-bg: var(--ds-color-bg-muted);
+
   --ds-field-width: 22rem;
   --ds-textarea-min-height: 6rem;
   --ds-alert-width: 30rem;

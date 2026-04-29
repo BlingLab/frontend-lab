@@ -22,6 +22,7 @@
 - `pending`
 - `active`
 - `complete`
+- `keyboard-navigation`
 - `disabled`
 - `error`
 
@@ -29,6 +30,7 @@
 
 - 기본 기준 / Base reference: 해당 없음 또는 네이티브 HTML 기준을 따릅니다. / Not applicable or follows native HTML behavior.
 - accessible name이 필요한 control은 `label`, `aria-label`, visible text 중 하나로 이름을 제공합니다. / Controls that need an accessible name receive it through `label`, `aria-label`, or visible text.
+- Arrow key, Home, End는 step button 사이를 이동합니다. / Arrow keys, Home, and End move between step buttons.
 - focus-visible은 `--ds-focus-ring`을 사용하고 keyboard navigation에서 사라지지 않아야 합니다. / Focus-visible uses `--ds-focus-ring` and must remain visible during keyboard navigation.
 
 ## 토큰 / Tokens

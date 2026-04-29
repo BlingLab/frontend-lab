@@ -22,6 +22,7 @@
 - `closed`
 - `open`
 - `filtered`
+- `highlighted`
 - `selected`
 - `disabled`
 - `invalid`
@@ -30,6 +31,7 @@
 
 - 기본 기준 / Base reference: [https://www.w3.org/WAI/ARIA/apg/patterns/combobox/](https://www.w3.org/WAI/ARIA/apg/patterns/combobox/)
 - accessible name이 필요한 control은 `label`, `aria-label`, visible text 중 하나로 이름을 제공합니다. / Controls that need an accessible name receive it through `label`, `aria-label`, or visible text.
+- ArrowUp/ArrowDown은 option highlight를 이동하고 Enter는 highlighted option을 선택합니다. / ArrowUp/ArrowDown moves the option highlight, and Enter selects the highlighted option.
 - focus-visible은 `--ds-focus-ring`을 사용하고 keyboard navigation에서 사라지지 않아야 합니다. / Focus-visible uses `--ds-focus-ring` and must remain visible during keyboard navigation.
 
 ## 토큰 / Tokens

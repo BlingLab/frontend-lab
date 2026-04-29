@@ -15,7 +15,7 @@
 
 ## Prop 축 / Prop Axes
 
-`columns`, `rows`, `density`, `sortable`, `selectionMode`, `striped`, `hoverable`, `stickyHeader`, `rowKey`, `rowActions`, `renderCell`
+`columns`, `rows`, `density`, `sortable`, `selectionMode`, `striped`, `hoverable`, `stickyHeader`, `emptyMessage`, `rowKey`, `rowActions`, `sortState`, `defaultSortState`, `selectedRowKeys`, `defaultSelectedRowKeys`, `renderCell`, `onSortChange`, `onSelectedRowKeysChange`
 
 ## 상태 / States
 
@@ -30,6 +30,7 @@
 
 - 기본 기준 / Base reference: [https://www.w3.org/WAI/ARIA/apg/patterns/table/](https://www.w3.org/WAI/ARIA/apg/patterns/table/)
 - accessible name이 필요한 control은 `label`, `aria-label`, visible text 중 하나로 이름을 제공합니다. / Controls that need an accessible name receive it through `label`, `aria-label`, or visible text.
+- 정렬 상태는 `aria-sort`, 선택 상태는 checkbox와 key 기반 selection prop으로 노출합니다. / Sort state is exposed with `aria-sort`, and selection state is exposed through checkboxes and key-based selection props.
 - focus-visible은 `--ds-focus-ring`을 사용하고 keyboard navigation에서 사라지지 않아야 합니다. / Focus-visible uses `--ds-focus-ring` and must remain visible during keyboard navigation.
 
 ## 토큰 / Tokens

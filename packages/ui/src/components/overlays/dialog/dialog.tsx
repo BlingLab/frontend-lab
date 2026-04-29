@@ -1,5 +1,6 @@
 import { isValidElement, useEffect, useId, useRef, type HTMLAttributes, type ReactNode, type RefObject } from "react";
 import { Button, type ButtonProps } from "../../actions/button";
+import { Icon } from "../../actions/icon";
 import { IconButton } from "../../actions/icon-button";
 import { classNames } from "../../../shared/utils";
 import { useControllableState } from "../../../shared/use-controllable-state";
@@ -43,6 +44,7 @@ export function Dialog({
   ...props
 }: DialogProps) {
   const dialogRef = useRef<HTMLDialogElement>(null);
+  const lastActiveRef = useRef<HTMLElement | null>(null);
   const titleId = useId();
   const descriptionId = useId();
   const [currentOpen, setOpen] = useControllableState({
@@ -52,6 +54,7 @@ export function Dialog({
   });
   const close = () => setOpen(false);
   const openDialog = () => {
+    lastActiveRef.current = document.activeElement instanceof HTMLElement ? document.activeElement : null;
     setOpen(true);
   };
 
@@ -61,6 +64,7 @@ export function Dialog({
     if (!dialog) return;
 
     if (currentOpen && !dialog.open) {
+      lastActiveRef.current ??= document.activeElement instanceof HTMLElement ? document.activeElement : null;
       if (modal) dialog.showModal();
       else dialog.show();
       initialFocus?.current?.focus();
@@ -70,6 +74,13 @@ export function Dialog({
       dialog.close();
     }
   }, [currentOpen, initialFocus, modal]);
+
+  useEffect(() => {
+    if (currentOpen || !lastActiveRef.current) return;
+    const lastActive = lastActiveRef.current;
+    lastActiveRef.current = null;
+    window.setTimeout(() => lastActive.focus(), 0);
+  }, [currentOpen]);
 
   return (
     <div className={classNames("ds-DialogRoot", className)} data-state={currentOpen ? "open" : "closed"} {...props}>
@@ -89,7 +100,7 @@ export function Dialog({
       >
         <div className="ds-Dialog-header">
           <h3 className="ds-Dialog-title" id={titleId}>{title ?? "Dialog"}</h3>
-          <IconButton label={closeLabel} icon="x" onClick={close} />
+          <IconButton label={closeLabel} icon={<Icon name="x" />} onClick={close} />
         </div>
         {description ? <p className="ds-Dialog-description" id={descriptionId}>{description}</p> : null}
         <div className="ds-Dialog-body">{children ?? "Dialog content"}</div>

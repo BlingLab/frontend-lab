@@ -23,12 +23,14 @@
 - `pending`: 상태는 시각 스타일과 접근성 신호가 함께 유지되어야 합니다. / This state must keep visual styling and accessibility signals aligned.
 - `active`: 상태는 시각 스타일과 접근성 신호가 함께 유지되어야 합니다. / This state must keep visual styling and accessibility signals aligned.
 - `complete`: 상태는 시각 스타일과 접근성 신호가 함께 유지되어야 합니다. / This state must keep visual styling and accessibility signals aligned.
+- `keyboard-navigation`: Arrow key, Home, End 이동과 focus state가 함께 유지되어야 합니다. / Arrow key, Home, End movement and focus state must stay aligned.
 - `disabled`: 상태는 시각 스타일과 접근성 신호가 함께 유지되어야 합니다. / This state must keep visual styling and accessibility signals aligned.
 - `error`: 상태는 시각 스타일과 접근성 신호가 함께 유지되어야 합니다. / This state must keep visual styling and accessibility signals aligned.
 
 ## 상호작용 / Interaction
 
 - pointer hover는 `--ds-state-hover-bg` 또는 component semantic token으로 표현합니다. / Pointer hover uses `--ds-state-hover-bg` or component semantic tokens.
+- orientation에 따라 ArrowLeft/ArrowRight 또는 ArrowUp/ArrowDown 이동을 지원합니다. / Supports ArrowLeft/ArrowRight or ArrowUp/ArrowDown movement depending on orientation.
 - active/pressed/selected 상태는 `data-*` attribute와 ARIA state가 필요한 경우 함께 갱신합니다. / Active, pressed, and selected states update `data-*` attributes and ARIA state together when needed.
 - disabled 상태는 native `disabled` 또는 `aria-disabled`를 사용하고 opacity만으로 의미를 전달하지 않습니다. / Disabled state uses native `disabled` or `aria-disabled` and never relies on opacity alone.
 

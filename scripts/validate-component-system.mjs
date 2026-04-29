@@ -19,10 +19,15 @@ const requiredTokenNames = [
   "--ds-size-control-md",
   "--ds-breakpoint-md",
   "--ds-container-lg",
-  "--ds-focus-ring"
+  "--ds-focus-ring",
+  "--ds-field-bg",
+  "--ds-card-bg",
+  "--ds-overlay-bg",
+  "--ds-table-header-bg"
 ];
 const requiredExports = [
   "Button",
+  "Icon",
   "IconButton",
   "Field",
   "TextField",

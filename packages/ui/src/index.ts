@@ -8,6 +8,7 @@ export {
 } from "./components/catalog";
 
 export { Button, type ButtonProps } from "./components/actions/button";
+export { Icon, type IconName, type IconProps } from "./components/actions/icon";
 export { IconButton, type IconButtonProps } from "./components/actions/icon-button";
 
 export { Field, type FieldProps } from "./components/forms/field";
@@ -48,7 +49,7 @@ export { Inline, type InlineProps } from "./components/layout/inline";
 export { Card, type CardProps } from "./components/layout/card";
 export { Divider, type DividerProps } from "./components/layout/divider";
 
-export { Table, type TableColumn, type TableProps } from "./components/data-display/table";
+export { Table, type TableColumn, type TableProps, type TableSortDirection, type TableSortState } from "./components/data-display/table";
 export { DataGrid, type DataGridColumn, type DataGridProps } from "./components/data-display/data-grid";
 export { EmptyState, type EmptyStateProps } from "./components/data-display/empty-state";
 export { List, type ListItem, type ListProps } from "./components/data-display/list";

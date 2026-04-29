@@ -9,6 +9,7 @@ Components stay focused on one role, but their prop axes are separated clearly s
 - 상태는 임의 class보다 `selected`, `disabled`, `invalid`, `loading`, `open`, `dismissible` 같은 prop으로 받고, DOM에는 `data-*` 속성으로 노출합니다. / Accept state through props such as `selected`, `disabled`, `invalid`, `loading`, `open`, and `dismissible`, then expose it to the DOM with `data-*` attributes.
 - 장식 또는 보조 영역은 `iconStart`, `iconEnd`, `prefix`, `suffix`, `leading`, `trailing`, `media`, `meta`, `footer`, `actions`처럼 slot prop으로 분리합니다. / Separate decorative or auxiliary regions with slot props such as `iconStart`, `iconEnd`, `prefix`, `suffix`, `leading`, `trailing`, `media`, `meta`, `footer`, and `actions`.
 - 렌더링 확장이 필요한 collection 컴포넌트는 `renderItem`, `renderCell`, `rowActions`처럼 render prop을 제공합니다. / Collection components that need rendering extension expose render props such as `renderItem`, `renderCell`, and `rowActions`.
+- collection state는 key 기반 prop을 우선합니다. 예: `selectedRowKeys`, `defaultSelectedRowKeys`, `sortState`, `defaultSortState`. / Collection state prefers key-based props, such as `selectedRowKeys`, `defaultSelectedRowKeys`, `sortState`, and `defaultSortState`.
 - 이벤트 이름은 결과 중심으로 `onValueChange`, `onOpenChange`, `onSelectionChange`, `onDismiss`, `onRemove`를 사용합니다. / Event names describe the result, using `onValueChange`, `onOpenChange`, `onSelectionChange`, `onDismiss`, and `onRemove`.
 - 네이티브 HTML prop은 가능한 그대로 열어두고, 충돌하는 이름은 `Omit<...>`으로 제거한 뒤 시스템 prop으로 다시 정의합니다. / Keep native HTML props available when possible, and remove conflicting names with `Omit<...>` before redefining system props.
 - controlled/uncontrolled를 모두 지원하는 상태는 `useControllableState`로 통일합니다. / State that supports both controlled and uncontrolled usage is standardized with `useControllableState`.
@@ -38,6 +39,8 @@ Components stay focused on one role, but their prop axes are separated clearly s
 - `value`/`defaultValue`, `open`/`defaultOpen`, `checked`/`defaultChecked`, `page`/`defaultPage` 쌍을 우선 사용합니다. / Prefer pairs such as `value`/`defaultValue`, `open`/`defaultOpen`, `checked`/`defaultChecked`, and `page`/`defaultPage`.
 - controlled prop이 있으면 내부 state를 바꾸지 않고 `on*Change`만 호출합니다. / When a controlled prop exists, do not mutate internal state and only call `on*Change`.
 - uncontrolled mode에서는 내부 state를 갱신한 뒤 같은 `on*Change` callback을 호출합니다. / In uncontrolled mode, update internal state and then call the same `on*Change` callback.
+- collection 컴포넌트는 object reference보다 stable key를 기준으로 선택 상태를 저장합니다. / Collection components store selection by stable keys rather than object references.
+- 기존 callback 호환이 필요한 경우 새 key 기반 callback과 함께 기존 row/value callback도 유지합니다. / When backward compatibility is needed, keep existing row/value callbacks alongside new key-based callbacks.
 
 ## 새 컴포넌트 체크리스트 / New Component Checklist
 

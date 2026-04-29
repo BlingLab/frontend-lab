@@ -10,7 +10,7 @@
 - folder slug: `table`
 - category: `data-display`
 - priority/status: `P1` / `ready`
-- props: `columns`, `rows`, `density`, `sortable`, `selectionMode`, `striped`, `hoverable`, `stickyHeader`, `rowKey`, `rowActions`, `renderCell`
+- props: `columns`, `rows`, `density`, `sortable`, `selectionMode`, `striped`, `hoverable`, `stickyHeader`, `emptyMessage`, `rowKey`, `rowActions`, `sortState`, `defaultSortState`, `selectedRowKeys`, `defaultSelectedRowKeys`, `renderCell`, `onSortChange`, `onSelectedRowKeysChange`
 
 ## 변형 / Variants
 
@@ -30,6 +30,7 @@
 ## 상호작용 / Interaction
 
 - pointer hover는 `--ds-state-hover-bg` 또는 component semantic token으로 표현합니다. / Pointer hover uses `--ds-state-hover-bg` or component semantic tokens.
+- sort는 `sortState`/`defaultSortState`, selection은 `selectedRowKeys`/`defaultSelectedRowKeys`로 controlled/uncontrolled를 모두 지원합니다. / Sort supports controlled/uncontrolled state through `sortState`/`defaultSortState`, and selection does the same through `selectedRowKeys`/`defaultSelectedRowKeys`.
 - active/pressed/selected 상태는 `data-*` attribute와 ARIA state가 필요한 경우 함께 갱신합니다. / Active, pressed, and selected states update `data-*` attributes and ARIA state together when needed.
 - disabled 상태는 native `disabled` 또는 `aria-disabled`를 사용하고 opacity만으로 의미를 전달하지 않습니다. / Disabled state uses native `disabled` or `aria-disabled` and never relies on opacity alone.
 
@@ -37,6 +38,7 @@
 
 - 기준 문서 / Reference: [https://www.w3.org/WAI/ARIA/apg/patterns/table/](https://www.w3.org/WAI/ARIA/apg/patterns/table/)
 - keyboard focus는 항상 보이고 DOM 순서와 화면 순서가 어긋나지 않아야 합니다. / Keyboard focus must remain visible, and DOM order must match visual order.
+- sortable header는 `aria-sort`와 button accessible name을 제공합니다. / Sortable headers provide `aria-sort` and button accessible names.
 - interactive child가 있는 경우 role 중첩과 tab stop 수를 검토합니다. / When interactive children exist, review role nesting and tab stop count.
 - 상태 변화가 사용자에게 중요하면 visible text 또는 live region으로 전달합니다. / Important state changes are communicated through visible text or a live region.
 

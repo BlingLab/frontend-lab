@@ -1,5 +1,6 @@
 import { isValidElement, type HTMLAttributes, type ReactNode } from "react";
 import { Button, type ButtonProps } from "../../actions/button";
+import { Icon } from "../../actions/icon";
 import type { Tone } from "../../../shared/types";
 import { classNames } from "../../../shared/utils";
 
@@ -48,7 +49,7 @@ export function Alert({
       {actions.length > 0 || dismissible ? (
         <div className="ds-Alert-actions">
           {actions.map(renderAction)}
-          {dismissible ? <button className="ds-Alert-dismiss" type="button" aria-label={dismissLabel} onClick={onDismiss}>x</button> : null}
+          {dismissible ? <button className="ds-Alert-dismiss" type="button" aria-label={dismissLabel} onClick={onDismiss}><Icon name="x" /></button> : null}
         </div>
       ) : null}
     </section>
