@@ -20,6 +20,7 @@ All notable changes are documented in this file.
 - lint/format 최소 품질 게이트 `npm run lint`를 추가했습니다. / Added the minimal lint/format quality gate `npm run lint`.
 - docs app responsive, theme switch, Tab focus browser smoke 검증 `test:docs-smoke`를 추가했습니다. / Added `test:docs-smoke` browser smoke validation for docs app responsive layout, theme switching, and Tab focus.
 - prop-heavy component README/spec용 prop table metadata와 검증을 추가했습니다. / Added prop table metadata and validation for prop-heavy component README/spec docs.
+- repo 내부 Markdown 상대 링크 검증 `docs:links`를 추가했습니다. / Added `docs:links` validation for repo-internal Markdown relative links.
 
 ### Changed
 
