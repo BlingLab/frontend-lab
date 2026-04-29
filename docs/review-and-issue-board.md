@@ -13,6 +13,9 @@ This document is a lightweight backlog for items that should become GitHub Issue
 
 ## 현재 이슈 후보 / Current Issue Candidates
 
+이 표는 생성 당시의 후보와 완료 기준을 남기는 기록입니다. 새 실행 순서는 아래 `우선순위와 SLA`, `마일스톤 운영`, `다음 작업 묶음 기준`을 기준으로 정합니다.
+This table preserves candidates and acceptance criteria from the time they were created. Use `Priority And SLA`, `Milestone Operations`, and `Next Work Batch Criteria` below to decide the current execution order.
+
 | Issue | 우선순위 / Priority | 제목 / Title | 유형 / Type | 기준 / Acceptance Criteria |
 | --- | --- | --- | --- | --- |
 | [#1](https://github.com/BlingLab/frontend-lab/issues/1) | P0 | CI workflow 추가 / Add CI workflow | infra | `npm run test`, `npm run typecheck`, docs build가 push와 PR에서 실행됩니다. / Runs `npm run test`, `npm run typecheck`, and docs build on push and PR. |
@@ -26,6 +29,39 @@ This document is a lightweight backlog for items that should become GitHub Issue
 | [#9](https://github.com/BlingLab/frontend-lab/issues/9) | P1 | Listbox highlight hook 공통화 / Extract shared listbox highlight hook | component | Combobox와 CommandPalette가 shared highlight hook을 사용합니다. / Combobox and CommandPalette use a shared highlight hook. |
 | [#10](https://github.com/BlingLab/frontend-lab/issues/10) | P1 | Overlay dismiss와 focus hook 공통화 / Extract overlay dismiss and focus hooks | component | Escape, outside pointer, focus return 로직이 shared hook으로 정리됩니다. / Escape, outside pointer, and focus return logic are consolidated into shared hooks. |
 | [#12](https://github.com/BlingLab/frontend-lab/issues/12) | P2 | DataGrid virtual scroll 범위 결정 / Decide DataGrid virtual scroll scope | component | large dataset 기준과 ARIA 영향을 별도 설계합니다. / Designs large dataset criteria and ARIA impact separately. |
+
+## 우선순위와 SLA / Priority And SLA
+
+| 우선순위 / Priority | 기준 / Criteria | 기대 처리 / Expected Handling |
+| --- | --- | --- |
+| P0 | `main`, release, 보안, package install, 핵심 접근성 회귀를 막는 항목입니다. / Items that block `main`, release, security, package install, or core accessibility regression. | 가장 먼저 처리하고 낮은 우선순위 뒤로 묶지 않습니다. 가능한 당일 또는 다음 영업일 안에 PR을 열고 검증합니다. / Handle first and do not batch behind lower priorities. Open and validate a PR on the same day or next business day when possible. |
+| P1 | release readiness, public API, 반복 사용 컴포넌트 품질, CI 신뢰도처럼 제품화 기준에 직접 영향을 주는 항목입니다. / Items that directly affect productization quality, such as release readiness, public API, reusable component quality, or CI confidence. | 새 P2 작업보다 먼저 처리합니다. 같은 작업 묶음 안에서 끝낼 수 있도록 PR 범위를 좁힙니다. / Handle before new P2 work. Keep the PR scope small enough to finish within the current work batch. |
+| P2 | 사용성, 문서, 후속 설계, 장기 확장성처럼 즉시 차단하지 않는 개선 항목입니다. / Improvements that do not immediately block work, such as usability, documentation, follow-up design, or long-term scalability. | 관련 영역을 만질 때 함께 처리하거나 P0/P1이 비어 있을 때 순차 처리합니다. / Handle when touching the related area or sequentially when no P0/P1 work remains. |
+
+## 마일스톤 운영 / Milestone Operations
+
+- 현재는 GitHub Milestone을 기본 계획 단위로 사용합니다. Project board는 동시에 여러 owner가 병렬로 운영하거나 issue 수가 20개를 넘을 때 도입합니다. / Use GitHub Milestones as the default planning unit for now. Introduce a Project board when multiple owners run parallel streams or the open issue count exceeds 20.
+- `M0 Foundation Hardening`은 CI, branch protection, core component refactor처럼 기반 안정화 항목을 담습니다. / `M0 Foundation Hardening` holds foundation stability items such as CI, branch protection, and core component refactors.
+- `M1 Release Readiness`는 package publish, changelog, public API contract, consumer fixture처럼 배포 가능성을 증명하는 항목을 담습니다. / `M1 Release Readiness` holds items that prove publish readiness, such as package publishing, changelog, public API contracts, and consumer fixtures.
+- `M2 Docs And Scale Follow-up`은 docs app smoke, prop table automation, virtual scroll decision처럼 문서화와 확장성 후속 항목을 담습니다. / `M2 Docs And Scale Follow-up` holds documentation and scalability follow-ups such as docs app smoke, prop table automation, and virtual scroll decisions.
+- milestone은 완료 목표가 아니라 다음 작업 묶음의 경계입니다. 범위가 커지면 새 issue로 분리하고 milestone 안에서 우선순위를 다시 정렬합니다. / A milestone is a boundary for the next work batch, not a promise to finish everything at once. Split growing scope into new issues and reorder priorities inside the milestone.
+
+## 다음 작업 묶음 기준 / Next Work Batch Criteria
+
+- P0와 P1이 남아 있으면 새 P2를 시작하지 않습니다. 단, P2가 현재 PR의 문서 보강이나 검증 누락을 직접 해결하는 경우에는 같은 PR에 포함할 수 있습니다. / Do not start a new P2 while P0 or P1 remains. A P2 may stay in the same PR only when it directly completes documentation or validation for that PR.
+- 같은 label 묶음인 `ci`, `release`, `accessibility`, `component`, `documentation`을 우선 함께 검토합니다. 구현 파일이 겹치지 않으면 PR은 분리합니다. / Review related labels such as `ci`, `release`, `accessibility`, `component`, and `documentation` together first. Split PRs when implementation files do not overlap.
+- 하나의 PR은 기본적으로 하나의 issue를 닫습니다. 같은 root cause, 같은 검증 명령, 같은 reviewer 관점이면 연결 issue를 함께 닫을 수 있습니다. / A PR should close one issue by default. It may close linked issues only when they share the same root cause, validation commands, and reviewer perspective.
+- 작은 수정은 `flow:direct`로 짧은 PR을 열고 merge합니다. `main` 보호가 켜져 있으므로 direct push 대신 PR 기록을 남깁니다. / For small fixes, open and merge a short `flow:direct` PR. Because `main` protection is enabled, leave a PR record instead of pushing directly.
+- 기능/구조 변경은 `flow:pr`로 Changes 탭 셀프 리뷰를 전제로 합니다. review point와 검증 결과가 PR 본문에 남아야 합니다. / Feature or structural changes use `flow:pr` and assume self-review in the Changes tab. Review points and validation results must remain in the PR body.
+- 위험한 변경은 `flow:risk`로 표시하고 merge 전 체크리스트, rollback 기준, 추가 검증을 PR 본문에 적습니다. / Risky changes use `flow:risk` and must list the pre-merge checklist, rollback criteria, and extra validation in the PR body.
+
+## 닫힌 이슈와 후속 연결 / Closed Issue And Follow-up Linking
+
+- PR 본문에는 닫을 issue를 `Closes #번호`로 명시합니다. / The PR body must identify the issue being closed with `Closes #number`.
+- 작업 중 새 범위가 발견되면 기존 issue 범위를 늘리지 말고 새 issue를 만들고 원본 issue 또는 PR에 `Follow-up: #번호`로 연결합니다. / When new scope appears during work, create a new issue instead of expanding the existing issue and link it from the source issue or PR with `Follow-up: #number`.
+- 닫힌 issue는 완료 기준이 실패한 경우에만 다시 엽니다. 새 요구사항이나 개선은 follow-up issue로 분리합니다. / Reopen a closed issue only when its acceptance criteria failed. Split new requirements or improvements into follow-up issues.
+- follow-up issue는 출처 PR/issue, priority label, flow label, 최소 완료 기준을 포함해야 합니다. / A follow-up issue must include the source PR/issue, priority label, flow label, and minimum acceptance criteria.
+- merge 후 issue comment에는 실제 검증 명령과 남은 위험을 짧게 남깁니다. / After merge, leave a short issue comment with the actual validation commands and remaining risk.
 
 ## PR 후보 / Pull Request Candidates
 
