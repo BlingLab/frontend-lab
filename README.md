@@ -198,6 +198,13 @@ npm run test:types
 Checks allowed and disallowed TypeScript examples for public prop APIs used by consumers.
 
 ```bash
+npm run release:dry-run
+```
+
+릴리즈 전 전체 검증, release metadata 확인, `npm pack --dry-run`을 한 번에 실행합니다.
+Runs full release validation, release metadata checks, and `npm pack --dry-run` together.
+
+```bash
 npm run test:visual
 ```
 

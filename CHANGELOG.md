@@ -16,6 +16,7 @@ All notable changes are documented in this file.
 - DataGrid column resize keyboard 조작과 ARIA value 상태를 추가했습니다. / Added DataGrid column resize keyboard controls and ARIA value state.
 - theme/token 회귀 검증 스크립트 `test:tokens`를 추가했습니다. / Added the `test:tokens` theme/token regression script.
 - public prop API 타입 회귀 검증 스크립트 `test:types`를 추가했습니다. / Added the `test:types` public prop API type regression script.
+- release prepare, dry-run, publish workflow 자동화를 추가했습니다. / Added release prepare, dry-run, and publish workflow automation.
 
 ### Changed
 

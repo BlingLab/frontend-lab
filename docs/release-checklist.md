@@ -15,6 +15,7 @@ npm run test:consumer
 npm run test:tokens
 npm run test:types
 npm run test:visual
+npm run release:verify
 npm pack --workspace @workspace/ui --dry-run
 ```
 
@@ -30,6 +31,7 @@ npm pack --workspace @workspace/ui --dry-run
 - `test:types`는 public prop API의 허용/비허용 TypeScript 예제를 확인해야 합니다. / `test:types` must verify allowed and disallowed TypeScript examples for public prop APIs.
 - `test:visual`은 docs app home, theme compare, DataGrid screenshot과 horizontal overflow를 확인해야 합니다. / `test:visual` must verify docs app home, theme compare, DataGrid screenshots, and horizontal overflow.
 - `test:exports`는 root export와 per-component export가 실제 `dist` 파일과 맞는지 확인해야 합니다. / `test:exports` must verify that root and per-component exports match real `dist` files.
+- `release:verify`는 release script, dist 산출물, peer dependency, changelog 상태를 확인해야 합니다. / `release:verify` must verify release scripts, dist output, peer dependencies, and changelog status.
 - React는 dependency가 아니라 peer dependency로 유지합니다. / React must remain a peer dependency, not a bundled dependency.
 
 ## 산출물 확인 / Output Check
@@ -60,3 +62,10 @@ Verify `packages/ui/package.json` export paths against real output with `npm run
 
 이 레포는 현재 workspace 기반 베이스입니다. 실제 npm 또는 GitHub Packages 배포는 [릴리즈 정책](./release-policy.md)을 기준으로 별도 위험 변경 PR에서 결정합니다.
 This repo is currently a workspace-based foundation. Publishing to npm or GitHub Packages should be decided in a separate risky-change PR using [Release Policy](./release-policy.md).
+
+## 실제 publish 전 확인 / Before Real Publish
+
+- `npm-release` environment reviewer를 지정합니다. / Configure reviewers for the `npm-release` environment.
+- `NPM_TOKEN` secret은 automation 권한만 가진 npm automation token으로 등록합니다. / Register `NPM_TOKEN` as an npm automation token with only the required publish permission.
+- `mode=publish` 실행 전 package name과 `private` flag가 npm public publish 기준과 맞는지 확인합니다. / Before running `mode=publish`, confirm that the package name and `private` flag match npm public publish requirements.
+- `confirm`에는 `publish @workspace/ui`를 정확히 입력합니다. / Enter exactly `publish @workspace/ui` in `confirm`.
