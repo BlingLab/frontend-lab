@@ -41,6 +41,7 @@ export function CommandPalette({
   ...props
 }: CommandPaletteProps) {
   const dialogRef = useRef<HTMLDialogElement>(null);
+  const inputRef = useRef<HTMLInputElement>(null);
   const { triggerRef, rememberFocus, restoreFocus } = useFocusReturn<HTMLButtonElement>();
   const titleId = useId();
   const listId = useId();
@@ -66,6 +67,7 @@ export function CommandPalette({
     if (currentOpen && !dialog.open) {
       rememberFocus();
       dialog.showModal();
+      window.requestAnimationFrame(() => inputRef.current?.focus());
     }
     if (!currentOpen && dialog.open) dialog.close();
   }, [currentOpen, rememberFocus]);
@@ -118,11 +120,11 @@ export function CommandPalette({
         </div>
         <input
           className="ds-CommandPalette-input"
+          ref={inputRef}
           aria-activedescendant={activeCommandId}
           aria-autocomplete="list"
           aria-controls={listId}
           aria-expanded={currentOpen}
-          autoFocus
           placeholder={placeholder}
           role="combobox"
           value={query}

@@ -334,6 +334,7 @@ function App() {
       const targetId = decodeURIComponent(window.location.hash.replace("#", ""));
       const target = targetId ? document.getElementById(targetId) : null;
       target?.scrollIntoView({ block: "start" });
+      target?.focus({ preventScroll: true });
     };
 
     requestAnimationFrame(scrollToHash);
@@ -360,6 +361,20 @@ function App() {
 
   return (
     <div className="shell" data-ds-theme={activeTheme}>
+      <a
+        className="skip-link"
+        href="#main-content"
+        onClick={(event) => {
+          const target = document.getElementById("main-content");
+          if (!target) return;
+          event.preventDefault();
+          window.history.replaceState(null, "", "#main-content");
+          target.focus();
+          target.scrollIntoView({ block: "start" });
+        }}
+      >
+        본문으로 이동 / Skip to content
+      </a>
       <aside className="sidebar" aria-label="문서 메뉴 / Documentation menu">
         <div className="brand">
           <span className="brand-mark" aria-hidden="true">DS</span>
@@ -373,7 +388,7 @@ function App() {
         </nav>
       </aside>
 
-      <main className="content">
+      <main className="content" id="main-content" tabIndex={-1}>
         <section className="intro" aria-labelledby="page-title">
           <div className="intro-main">
             <p className="eyebrow">React 컴포넌트 카탈로그 / React component catalog</p>
@@ -742,7 +757,7 @@ function App() {
 
 function Section({ id, eyebrow, title, children }: { id: string; eyebrow: string; title: string; children: ReactNode }) {
   return (
-    <section className="section" id={id} aria-labelledby={`${id}-title`}>
+    <section className="section" id={id} tabIndex={-1} aria-labelledby={`${id}-title`}>
       <div className="section-heading">
         <p className="eyebrow">{eyebrow}</p>
         <h2 id={`${id}-title`}>{title}</h2>

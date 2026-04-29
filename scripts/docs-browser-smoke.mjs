@@ -165,6 +165,79 @@ async function assertThemeSwitch(page) {
   await page.waitForFunction(() => document.documentElement.dataset.dsTheme === "normal");
 }
 
+async function getFocusedElementState(page) {
+  return page.evaluate(() => {
+    const element = document.activeElement;
+    if (!(element instanceof HTMLElement)) return { label: "", tagName: "", visible: false, withinViewport: false };
+    const rect = element.getBoundingClientRect();
+    const style = window.getComputedStyle(element);
+    return {
+      label: element.textContent?.trim().replace(/\s+/g, " ").slice(0, 80) || element.getAttribute("aria-label") || "",
+      rect: {
+        bottom: Math.round(rect.bottom),
+        left: Math.round(rect.left),
+        right: Math.round(rect.right),
+        top: Math.round(rect.top)
+      },
+      tagName: element.tagName,
+      visible: rect.width > 0 && rect.height > 0 && style.visibility !== "hidden" && style.display !== "none",
+      withinViewport: rect.top >= -4 && rect.left >= -4 && rect.bottom <= window.innerHeight + 4 && rect.right <= window.innerWidth + 4
+    };
+  });
+}
+
+async function assertNaturalTabEntry(browser) {
+  const focusContext = await browser.newContext();
+
+  try {
+    for (const url of [`${baseUrl}/`, `${baseUrl}/#components`]) {
+      const focusPage = await focusContext.newPage();
+      focusPage.setDefaultTimeout(pageTimeout);
+      focusPage.setDefaultNavigationTimeout(pageTimeout);
+      await focusPage.setViewportSize({ width: 1440, height: 960 });
+      await focusPage.goto(url, { waitUntil: "domcontentloaded", timeout: pageTimeout });
+      await focusPage.waitForLoadState("networkidle", { timeout: 1_000 }).catch(() => undefined);
+
+      if (url.includes("#components")) {
+        await focusPage.waitForFunction(() => document.activeElement?.id === "components");
+        await focusPage.waitForFunction(() => {
+          const target = document.getElementById("components");
+          const rect = target?.getBoundingClientRect();
+          return rect && rect.top >= -4 && rect.top <= 120;
+        });
+        await focusPage.keyboard.press("Tab");
+        await focusPage.waitForTimeout(120);
+        const hashFocus = await getFocusedElementState(focusPage);
+        if (!hashFocus.visible || !hashFocus.withinViewport) {
+          failures.push(`natural tab: hash route 이후 Tab이 visible focus로 이동하지 않았습니다. / Tab after hash route did not move to visible focus: ${JSON.stringify({ hashFocus, url })}`);
+        }
+        await focusPage.close();
+        continue;
+      }
+
+      await focusPage.keyboard.press("Tab");
+      await focusPage.waitForTimeout(120);
+
+      const firstFocus = await getFocusedElementState(focusPage);
+      const isSkipLink = firstFocus.label.includes("본문으로 이동") || firstFocus.label.includes("Skip to content");
+      if (!isSkipLink || !firstFocus.visible || !firstFocus.withinViewport) {
+        failures.push(`natural tab: 첫 Tab이 visible skip link로 이동하지 않았습니다. / First Tab did not move to a visible skip link: ${JSON.stringify({ firstFocus, url })}`);
+      }
+
+      await focusPage.keyboard.press("Enter");
+      await focusPage.waitForTimeout(100);
+      const skippedFocus = await getFocusedElementState(focusPage);
+      const mainTopVisible = skippedFocus.rect && skippedFocus.rect.top >= -4 && skippedFocus.rect.top <= 4;
+      if (skippedFocus.tagName !== "MAIN" || !skippedFocus.visible || !mainTopVisible) {
+        failures.push(`natural tab: skip link가 main content focus로 이동하지 않았습니다. / Skip link did not move focus to main content: ${JSON.stringify({ skippedFocus, url })}`);
+      }
+      await focusPage.close();
+    }
+  } finally {
+    await focusContext.close();
+  }
+}
+
 async function assertTabFocus(browser) {
   const focusContext = await browser.newContext();
   const focusPage = await focusContext.newPage();
@@ -182,24 +255,7 @@ async function assertTabFocus(browser) {
         await focusPage.keyboard.press("Tab");
         await focusPage.waitForTimeout(50);
       }
-      focusSteps.push(await focusPage.evaluate(() => {
-        const element = document.activeElement;
-        if (!(element instanceof HTMLElement)) return { label: "", tagName: "", visible: false };
-        const rect = element.getBoundingClientRect();
-        const style = window.getComputedStyle(element);
-        return {
-          label: element.textContent?.trim().replace(/\s+/g, " ").slice(0, 80) || element.getAttribute("aria-label") || "",
-          rect: {
-            bottom: Math.round(rect.bottom),
-            left: Math.round(rect.left),
-            right: Math.round(rect.right),
-            top: Math.round(rect.top)
-          },
-          tagName: element.tagName,
-          visible: rect.width > 0 && rect.height > 0 && style.visibility !== "hidden" && style.display !== "none",
-          withinViewport: rect.top >= -4 && rect.left >= -4 && rect.bottom <= window.innerHeight + 4 && rect.right <= window.innerWidth + 4
-        };
-      }));
+      focusSteps.push(await getFocusedElementState(focusPage));
     }
   } finally {
     await focusContext.close();
@@ -234,6 +290,7 @@ try {
   }
 
   await assertThemeSwitch(page);
+  await assertNaturalTabEntry(browser);
   await assertTabFocus(browser);
 } finally {
   await browser?.close();

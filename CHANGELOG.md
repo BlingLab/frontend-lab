@@ -21,6 +21,7 @@ All notable changes are documented in this file.
 - docs app responsive, theme switch, Tab focus browser smoke 검증 `test:docs-smoke`를 추가했습니다. / Added `test:docs-smoke` browser smoke validation for docs app responsive layout, theme switching, and Tab focus.
 - prop-heavy component README/spec용 prop table metadata와 검증을 추가했습니다. / Added prop table metadata and validation for prop-heavy component README/spec docs.
 - repo 내부 Markdown 상대 링크 검증 `docs:links`를 추가했습니다. / Added `docs:links` validation for repo-internal Markdown relative links.
+- docs app skip link와 자연 Tab 진입 browser smoke 검증을 추가했습니다. / Added docs app skip link and natural Tab entry browser smoke validation.
 
 ### Changed
 
@@ -28,3 +29,5 @@ All notable changes are documented in this file.
 - DataGrid 문서와 catalog prop 목록을 실제 상호작용 API에 맞췄습니다. / Aligned DataGrid docs and catalog prop lists with the actual interaction APIs.
 - scaffold가 기존 README/spec를 기본적으로 보존하고 `--force-docs`에서만 문서를 재생성하도록 바꿨습니다. / Changed scaffold behavior so existing README/spec files are preserved by default and regenerated only with `--force-docs`.
 - DataGrid virtual scroll을 v0.1 non-goal로 정하고 row count, 성능, 접근성 검토 기준을 문서화했습니다. / Defined DataGrid virtual scroll as a v0.1 non-goal and documented row-count, performance, and accessibility criteria.
+- CommandPalette input focus가 닫힌 dialog에서 초기 page focus를 훔치지 않도록 조정했습니다. / Adjusted CommandPalette input focus so a closed dialog does not steal initial page focus.
+- overlay focus return이 실제로 기억한 focus가 있을 때만 복원되도록 수정했습니다. / Fixed overlay focus return so it restores focus only when remembered focus exists.
