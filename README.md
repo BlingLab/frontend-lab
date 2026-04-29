@@ -177,6 +177,13 @@ npm run test
 Runs component system validation, UI build, accessibility smoke checks, interaction accessibility checks, and package export verification together.
 
 ```bash
+npm run test:consumer
+```
+
+빌드된 `@workspace/ui` package export를 source alias 없이 소비자 fixture 앱에서 import하고 build합니다.
+Builds the consumer fixture app against built `@workspace/ui` package exports without source aliases.
+
+```bash
 npm run test:visual
 ```
 
