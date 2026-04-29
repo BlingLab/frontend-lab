@@ -262,6 +262,27 @@ const showcase: Record<string, { preview: ReactNode; code: string }> = {
   }
 };
 
+const docsRepositoryBaseUrl = "https://github.com/BlingLab/frontend-lab/tree/main";
+const priorityStateNames = ["default", "hover", "focus-visible", "disabled", "invalid", "selected", "open", "loading", "active", "empty"];
+
+function getComponentDocPaths(component: (typeof componentCatalog)[number]) {
+  const directory = `packages/ui/src/components/${component.category}/${component.slug}`;
+  return {
+    directory,
+    source: `${directory}/${component.slug}.tsx`,
+    readme: `${directory}/README.md`,
+    spec: `${directory}/spec.md`,
+    docsUrl: `${docsRepositoryBaseUrl}/${directory}`,
+    readmeUrl: `${docsRepositoryBaseUrl}/${directory}/README.md`,
+    specUrl: `${docsRepositoryBaseUrl}/${directory}/spec.md`
+  };
+}
+
+function getCoveredStates(component: (typeof componentCatalog)[number]) {
+  const prioritizedStates = priorityStateNames.filter((stateName) => component.states.includes(stateName));
+  return prioritizedStates.length > 0 ? prioritizedStates : component.states.slice(0, 4);
+}
+
 function App() {
   const [activeSection, setActiveSection] = useState(navItems[0].id);
   const [activeTheme, setActiveTheme] = useState("normal");
@@ -284,9 +305,21 @@ function App() {
     ].join(" ").toLowerCase().includes(normalizedQuery));
   }, [componentQuery]);
   const selectedComponent = componentCatalog.find((component) => component.name === selectedComponentName) ?? filteredComponents[0] ?? componentCatalog[0];
-  const selectedSourcePath = `packages/ui/src/components/${selectedComponent.category}/${selectedComponent.slug}/${selectedComponent.slug}.tsx`;
-  const selectedReadmePath = `packages/ui/src/components/${selectedComponent.category}/${selectedComponent.slug}/README.md`;
-  const selectedSpecPath = `packages/ui/src/components/${selectedComponent.category}/${selectedComponent.slug}/spec.md`;
+  const selectedDocPaths = getComponentDocPaths(selectedComponent);
+  const coverageRows = useMemo(() => componentCatalog.map((component) => {
+    const docPaths = getComponentDocPaths(component);
+    return {
+      component,
+      docPaths,
+      hasExample: Boolean(showcase[component.name]),
+      coveredStates: getCoveredStates(component)
+    };
+  }), []);
+  const coverageCounts = useMemo(() => ({
+    examples: coverageRows.filter((row) => row.hasExample).length,
+    docs: coverageRows.filter((row) => row.docPaths.readme && row.docPaths.spec).length,
+    themes: themeOptions.filter((theme) => theme.id === "normal" || theme.id === "dark").length
+  }), [coverageRows]);
 
   useEffect(() => {
     document.documentElement.dataset.dsTheme = activeTheme;
@@ -595,22 +628,81 @@ function App() {
                 <div>{selectedComponent.tokens.map((token) => <span key={token}>{token}</span>)}</div>
               </div>
               <div className="doc-paths">
-                <code>{selectedSourcePath}</code>
-                <code>{selectedReadmePath}</code>
-                <code>{selectedSpecPath}</code>
+                <code>{selectedDocPaths.source}</code>
+                <code>{selectedDocPaths.readme}</code>
+                <code>{selectedDocPaths.spec}</code>
               </div>
+              <Inline gap="sm">
+                <a className="doc-link" href={selectedDocPaths.readmeUrl} target="_blank" rel="noreferrer">README</a>
+                <a className="doc-link" href={selectedDocPaths.specUrl} target="_blank" rel="noreferrer">Spec</a>
+              </Inline>
             </article>
           </div>
+          <section className="coverage-panel" aria-labelledby="component-coverage-title">
+            <div className="coverage-header">
+              <div>
+                <h3 id="component-coverage-title">컴포넌트 커버리지 매트릭스 / Component Coverage Matrix</h3>
+                <p>catalog 기준으로 예시, 상태, NORMAL/DARK theme, README/spec 링크를 한 번에 확인합니다. / Review examples, states, NORMAL/DARK themes, and README/spec links from the catalog.</p>
+              </div>
+              <div className="coverage-summary" aria-label="커버리지 요약 / Coverage summary">
+                <Badge label={`${coverageCounts.examples}/${componentCatalog.length} examples`} tone="success" />
+                <Badge label={`${coverageCounts.docs}/${componentCatalog.length} docs`} tone="brand" />
+                <Badge label={`${coverageCounts.themes} themes`} tone="neutral" />
+              </div>
+            </div>
+            <div className="coverage-table-wrap">
+              <table className="coverage-table">
+                <caption>컴포넌트 예시와 문서 연결 상태 / Component example and documentation link status</caption>
+                <thead>
+                  <tr>
+                    <th scope="col">컴포넌트 / Component</th>
+                    <th scope="col">예시 / Example</th>
+                    <th scope="col">상태 커버리지 / State Coverage</th>
+                    <th scope="col">테마 / Theme</th>
+                    <th scope="col">문서 / Docs</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {coverageRows.map(({ component, docPaths, hasExample, coveredStates }) => (
+                    <tr key={component.name}>
+                      <th scope="row">
+                        <a href={`#component-${component.slug}`}>{component.name}</a>
+                        <span>{component.category} · {component.priority}</span>
+                      </th>
+                      <td><Badge label={hasExample ? "렌더링됨 / Rendered" : "필요 / Needed"} tone={hasExample ? "success" : "warning"} /></td>
+                      <td>
+                        <div className="coverage-state-list">
+                          {coveredStates.map((state) => <span key={state}>{state}</span>)}
+                        </div>
+                      </td>
+                      <td>NORMAL / DARK</td>
+                      <td>
+                        <Inline gap="sm">
+                          <a href={docPaths.readmeUrl} target="_blank" rel="noreferrer">README</a>
+                          <a href={docPaths.specUrl} target="_blank" rel="noreferrer">Spec</a>
+                        </Inline>
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          </section>
           <div className="component-list">
             {componentCatalog.map((component) => {
               const example = showcase[component.name];
               const summary = summaries.get(component.name);
+              const docPaths = getComponentDocPaths(component);
               return (
-                <article className="component-card" key={component.name}>
+                <article className="component-card" id={`component-${component.slug}`} key={component.name}>
                   <div className="component-info">
                     <h3>{component.name}</h3>
                     <p className="component-meta">{component.priority} · {component.category} · {component.status}</p>
                     <p className="component-copy">{summary?.summary} / {summary?.purpose}</p>
+                    <Inline gap="sm">
+                      <a className="doc-link" href={docPaths.readmeUrl} target="_blank" rel="noreferrer">README</a>
+                      <a className="doc-link" href={docPaths.specUrl} target="_blank" rel="noreferrer">Spec</a>
+                    </Inline>
                     <div className="code-block"><pre><code>{example?.code ?? `import { ${component.name} } from "@workspace/ui";`}</code></pre></div>
                   </div>
                   <div className="preview" aria-label={`${component.name} 미리보기 / ${component.name} preview`}>
