@@ -21,6 +21,9 @@
     "test:types": "npm run build && tsc -p tests/public-api/tsconfig.json --noEmit",
     "test:tokens": "node scripts/verify-theme-tokens.mjs",
     "test:visual": "node scripts/visual-regression.mjs",
+    "release:verify": "node scripts/verify-release.mjs",
+    "release:prepare": "node scripts/prepare-release.mjs",
+    "release:dry-run": "npm run test && npm run typecheck && npm --workspace @workspace/docs run build && npm run test:consumer && npm run test:tokens && npm run test:types && npm run test:visual && npm run release:verify && npm pack --workspace @workspace/ui --dry-run",
     "typecheck": "npm --workspace @workspace/ui run typecheck && npm --workspace @workspace/docs run typecheck && npm --workspace @workspace/consumer-fixture run typecheck"
   },
   "dependencies": {

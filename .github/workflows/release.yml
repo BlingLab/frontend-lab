@@ -1,0 +1,58 @@
+name: Release / 배포
+
+on:
+  workflow_dispatch:
+    inputs:
+      mode:
+        description: "dry-run 또는 publish / dry-run or publish"
+        required: true
+        default: "dry-run"
+        type: choice
+        options:
+          - dry-run
+          - publish
+      confirm:
+        description: "publish 실행 시 'publish @workspace/ui' 입력 / Enter 'publish @workspace/ui' to publish"
+        required: false
+        default: ""
+
+jobs:
+  release:
+    name: 릴리즈 / Release
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      id-token: write
+    environment: npm-release
+
+    steps:
+      - name: 체크아웃 / Checkout
+        uses: actions/checkout@v4
+
+      - name: Node 설정 / Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+          registry-url: "https://registry.npmjs.org"
+
+      - name: 의존성 설치 / Install dependencies
+        run: npm ci
+
+      - name: Playwright 브라우저 설치 / Install Playwright browser
+        run: npx playwright install --with-deps chromium
+
+      - name: 릴리즈 dry-run / Release dry-run
+        run: npm run release:dry-run
+
+      - name: publish 확인 / Confirm publish
+        if: inputs.mode == 'publish' && inputs.confirm != 'publish @workspace/ui'
+        run: |
+          echo "publish confirm 값이 올바르지 않습니다. / Publish confirm value is not correct."
+          exit 1
+
+      - name: npm publish / npm publish
+        if: inputs.mode == 'publish'
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+        run: npm publish --workspace @workspace/ui --access public --provenance
