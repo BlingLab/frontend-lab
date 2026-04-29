@@ -794,6 +794,129 @@ pre {
   font-size: var(--ds-font-size-12);
 }
 
+.doc-link {
+  display: inline-flex;
+  min-height: var(--ds-size-control-sm);
+  align-items: center;
+  border: 1px solid var(--border);
+  border-radius: var(--ds-radius-6);
+  background: var(--surface);
+  color: var(--text);
+  padding: var(--ds-space-0) var(--ds-space-3);
+  font-size: var(--ds-font-size-12);
+  font-weight: 800;
+  text-decoration: none;
+}
+
+.doc-link:hover,
+.doc-link:focus-visible {
+  border-color: var(--ds-state-hover-border);
+  background: var(--ds-state-hover-bg);
+  outline: none;
+  box-shadow: var(--ds-focus-ring);
+}
+
+.coverage-panel {
+  display: grid;
+  gap: var(--ds-space-4);
+  margin-bottom: var(--ds-space-5);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: var(--surface);
+  box-shadow: var(--ds-shadow-low);
+  padding: var(--ds-space-5);
+}
+
+.coverage-header {
+  display: flex;
+  align-items: start;
+  justify-content: space-between;
+  gap: var(--ds-space-4);
+}
+
+.coverage-header h3 {
+  margin-bottom: var(--ds-space-2);
+}
+
+.coverage-header p {
+  color: var(--muted);
+  line-height: 1.6;
+}
+
+.coverage-summary {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: var(--ds-space-2);
+}
+
+.coverage-table-wrap {
+  overflow-x: auto;
+}
+
+.coverage-table {
+  inline-size: 100%;
+  min-inline-size: 58rem;
+  border-collapse: collapse;
+  font-size: var(--ds-font-size-13);
+}
+
+.coverage-table caption {
+  color: var(--muted);
+  margin-block-end: var(--ds-space-2);
+  text-align: start;
+}
+
+.coverage-table th,
+.coverage-table td {
+  border-block-end: 1px solid var(--border);
+  padding: var(--ds-space-3);
+  text-align: start;
+  vertical-align: top;
+}
+
+.coverage-table thead th {
+  background: var(--surface-muted);
+  color: var(--text);
+  font-weight: 800;
+}
+
+.coverage-table tbody th {
+  display: grid;
+  gap: var(--ds-space-1);
+}
+
+.coverage-table tbody th a,
+.coverage-table td a {
+  color: var(--primary);
+  font-weight: 800;
+  text-decoration: none;
+}
+
+.coverage-table tbody th span {
+  color: var(--muted);
+  font-size: var(--ds-font-size-12);
+  font-weight: 700;
+}
+
+.coverage-state-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--ds-space-2);
+}
+
+.coverage-state-list span {
+  display: inline-flex;
+  min-height: 1.5rem;
+  align-items: center;
+  border: 1px solid var(--border);
+  border-radius: var(--ds-radius-pill);
+  background: var(--surface-muted);
+  padding: var(--ds-space-0) var(--ds-space-2);
+  font-family: "SFMono-Regular", Consolas, "Liberation Mono", monospace;
+  font-size: var(--ds-font-size-12);
+}
+
 .component-list {
   display: grid;
   gap: var(--ds-space-5);
@@ -896,6 +1019,35 @@ pre {
   padding: var(--ds-space-8);
 }
 
+.smoke-doc-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--ds-space-2);
+  margin-top: var(--ds-space-4);
+}
+
+.smoke-doc-links a {
+  display: inline-flex;
+  min-height: var(--ds-size-control-sm);
+  align-items: center;
+  border: 1px solid var(--ds-color-border-default);
+  border-radius: var(--ds-radius-pill);
+  background: var(--ds-color-bg-surface);
+  color: var(--ds-color-action-primary-bg);
+  padding: var(--ds-space-0) var(--ds-space-3);
+  font-size: var(--ds-font-size-12);
+  font-weight: 800;
+  text-decoration: none;
+}
+
+.smoke-doc-links a:hover,
+.smoke-doc-links a:focus-visible {
+  border-color: var(--ds-state-hover-border);
+  background: var(--ds-state-hover-bg);
+  outline: none;
+  box-shadow: var(--ds-focus-ring);
+}
+
 .smoke-grid {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -927,9 +1079,18 @@ pre {
 
   .component-card,
   .docs-explorer,
+  .coverage-header,
   .theme-layout,
   .workflow-preview {
     grid-template-columns: 1fr;
+  }
+
+  .coverage-header {
+    display: grid;
+  }
+
+  .coverage-summary {
+    justify-content: flex-start;
   }
 
   .theme-compare {
@@ -966,6 +1127,7 @@ pre {
   .intro,
   .component-card,
   .docs-explorer,
+  .coverage-header,
   .theme-layout,
   .workflow-preview {
     grid-template-columns: 1fr;

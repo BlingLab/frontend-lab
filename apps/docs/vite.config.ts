@@ -4,6 +4,14 @@ import { defineConfig } from "vite";
 
 export default defineConfig({
   plugins: [react()],
+  build: {
+    rollupOptions: {
+      input: {
+        main: fileURLToPath(new URL("index.html", import.meta.url)),
+        smoke: fileURLToPath(new URL("component-smoke.html", import.meta.url))
+      }
+    }
+  },
   resolve: {
     alias: [
       {

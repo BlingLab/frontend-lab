@@ -4,7 +4,13 @@ import "../styles.css";
 
 import { StrictMode, type ReactNode } from "react";
 import { createRoot } from "react-dom/client";
-import { Alert, Button, Combobox, CommandPalette, DataGrid, DatePicker, Dialog, DropdownMenu, FileUploader, NavigationRail, Popover, Stack, Stepper, Switch, Tabs, TextField } from "@workspace/ui";
+import { Alert, Button, Combobox, CommandPalette, DataGrid, DatePicker, Dialog, DropdownMenu, FileUploader, NavigationRail, Popover, Stack, Stepper, Switch, Tabs, TextField, componentCatalog } from "@workspace/ui";
+
+const docsRepositoryBaseUrl = "https://github.com/BlingLab/frontend-lab/tree/main";
+
+function getComponentReadmeUrl(component: (typeof componentCatalog)[number]) {
+  return `${docsRepositoryBaseUrl}/packages/ui/src/components/${component.category}/${component.slug}/README.md`;
+}
 
 function SmokeCard({ title, children }: { title: string; children: ReactNode }) {
   return (
@@ -21,6 +27,11 @@ function SmokeApp() {
       <header>
         <h1>컴포넌트 smoke 확인 / Component Smoke Check</h1>
         <p>이 화면은 실제 `@workspace/ui` React export만 사용합니다. / This page uses only real `@workspace/ui` React exports.</p>
+        <nav className="smoke-doc-links" aria-label="컴포넌트 문서 링크 / Component documentation links">
+          {componentCatalog.map((component) => (
+            <a href={getComponentReadmeUrl(component)} key={component.name} target="_blank" rel="noreferrer">{component.name}</a>
+          ))}
+        </nav>
       </header>
       <section className="smoke-grid" id="smoke-root">
         <SmokeCard title="Switch">
