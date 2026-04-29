@@ -45,6 +45,7 @@ const userEvent = (await import("@testing-library/user-event")).default;
 const {
   Combobox,
   CommandPalette,
+  DataGrid,
   Dialog,
   DropdownMenu,
   Popover
@@ -166,6 +167,33 @@ await check("Dialog close focus return", async () => {
 
   await waitFor(() => {
     if (document.activeElement !== trigger) throw new Error("Expected focus to return to dialog trigger.");
+  });
+});
+
+await check("DataGrid row keyboard navigation", async () => {
+  let activeKey = "";
+  render(React.createElement(DataGrid, {
+    columns: [
+      { key: "name", label: "이름 / Name" },
+      { key: "status", label: "상태 / Status" }
+    ],
+    rows: [
+      { id: "draft", name: "초안 / Draft", status: "대기 / Waiting" },
+      { id: "ready", name: "준비 / Ready", status: "완료 / Done" }
+    ],
+    rowKey: (row) => row.id,
+    onActiveRowKeyChange: (key) => {
+      activeKey = key ?? "";
+    }
+  }));
+
+  const gridRows = screen.getAllByRole("row").slice(1);
+  gridRows[0].focus();
+  fireEvent.keyDown(gridRows[0], { key: "ArrowDown" });
+
+  await waitFor(() => {
+    if (document.activeElement !== gridRows[1]) throw new Error("Expected focus to move to the second grid row.");
+    if (activeKey !== "ready") throw new Error(`Expected active row key "ready", received: ${activeKey}`);
   });
 });
 

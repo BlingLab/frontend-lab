@@ -11,11 +11,13 @@ npm run test
 npm run typecheck
 npm run build
 npm --workspace @workspace/docs run build
+npm pack --workspace @workspace/ui --dry-run
 ```
 
 - component folder마다 `{slug}.tsx`, `index.ts`, `README.md`, `spec.md`가 있어야 합니다. / Each component folder must have `{slug}.tsx`, `index.ts`, `README.md`, and `spec.md`.
 - `packages/ui/src/index.ts`는 public export만 담당해야 합니다. / `packages/ui/src/index.ts` should only manage public exports.
 - `packages/ui/src/components.tsx` 같은 중앙 구현 파일은 만들지 않습니다. / Do not create central implementation files such as `packages/ui/src/components.tsx`.
+- build는 `packages/ui/dist`를 먼저 정리해 stale output이 tarball에 들어가지 않아야 합니다. / Build must clean `packages/ui/dist` first so stale output does not enter the tarball.
 - UI CSS에는 raw color 값을 직접 쓰지 않습니다. / UI CSS must not contain raw color values.
 - `test:a11y`는 핵심 accessible markup을 server render 기준으로 확인해야 합니다. / `test:a11y` must verify core accessible markup through server rendering.
 - `test:interaction`은 keyboard, focus return, highlighted option 같은 상호작용 접근성 흐름을 확인해야 합니다. / `test:interaction` must verify interaction accessibility flows such as keyboard, focus return, and highlighted options.
@@ -43,8 +45,10 @@ Verify `packages/ui/package.json` export paths against real output with `npm run
 - 각 컴포넌트 README와 spec가 한글 우선, 영문 병기로 작성되어 있습니다. / Each component README and spec is Korean-first with paired English.
 - `docs/package-consumption.md`가 외부 프로젝트 사용 방법을 설명합니다. / `docs/package-consumption.md` explains external project usage.
 - `docs/responsive-qa.md`와 docs app의 반응형 section이 viewport 기준을 설명합니다. / `docs/responsive-qa.md` and the docs app responsive section explain viewport criteria.
+- `docs/release-policy.md`가 package scope, registry, versioning, changelog 기준을 설명합니다. / `docs/release-policy.md` explains package scope, registry, versioning, and changelog criteria.
+- `CHANGELOG.md`의 `Unreleased`가 PR 변경 범위와 맞습니다. / `Unreleased` in `CHANGELOG.md` matches the PR change scope.
 
 ## 배포 전 판단 / Pre-Release Decision
 
-이 레포는 현재 workspace 기반 베이스입니다. 실제 npm 또는 GitHub Packages로 배포하려면 package name, scope, registry, versioning 정책을 먼저 확정합니다.
-This repo is currently a workspace-based foundation. Before publishing to npm or GitHub Packages, confirm package name, scope, registry, and versioning policy.
+이 레포는 현재 workspace 기반 베이스입니다. 실제 npm 또는 GitHub Packages 배포는 [릴리즈 정책](./release-policy.md)을 기준으로 별도 위험 변경 PR에서 결정합니다.
+This repo is currently a workspace-based foundation. Publishing to npm or GitHub Packages should be decided in a separate risky-change PR using [Release Policy](./release-policy.md).

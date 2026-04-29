@@ -18,6 +18,7 @@ Small changes can be pushed directly to `main`.
 
 - 필요한 경우 `npm run test` 또는 관련 build만 실행합니다. / Run `npm run test` or the relevant build only when needed.
 - GitHub label은 `flow:direct`를 사용합니다. / Use the `flow:direct` GitHub label.
+- main branch protection을 켠 뒤에는 작은 수정도 `flow:direct` label의 짧은 PR로 처리합니다. / After enabling main branch protection, handle even small changes through short PRs labeled `flow:direct`.
 
 ## 2. 기능 또는 구조 변경 / Feature Or Structure Change
 

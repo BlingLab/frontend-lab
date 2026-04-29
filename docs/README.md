@@ -18,6 +18,9 @@ This directory stores design standards that should be agreed on before component
 - [테마 시스템 / Theme System](./theme-system.md): normal 기본 theme와 theme set 확장 방식 / Normal base theme and theme set extension model
 - [패키지 사용 가이드 / Package Consumption Guide](./package-consumption.md): 외부 React 프로젝트에서 패키지를 사용하는 방식 / How external React projects consume the package
 - [릴리즈 체크리스트 / Release Checklist](./release-checklist.md): 배포 전 검증과 산출물 확인 / Pre-release validation and output checks
+- [릴리즈 정책 / Release Policy](./release-policy.md): package scope, registry, versioning, changelog 기준 / Package scope, registry, versioning, and changelog criteria
+- [시각 회귀 기준 / Visual Regression Criteria](./visual-regression.md): theme와 viewport별 screenshot 기준 / Theme and viewport screenshot criteria
+- [브랜치 보호 기준 / Branch Protection Criteria](./branch-protection.md): main protection 적용 전 결정 기준 / Decision criteria before enabling main protection
 - [리뷰와 이슈 보드 / Review And Issue Board](./review-and-issue-board.md): 코드 리뷰, 이슈, PR 후보 정리 / Code review, issue, and PR candidate tracking
 - [접근성 체크리스트 / Accessibility Checklist](./accessibility-checklist.md): 구현 전후 접근성 확인 항목 / Accessibility checks before and after implementation
 - [반응형 레이아웃 시스템 / Responsive Layout System](./responsive-layout-system.md): flex-first 반응형 레이아웃 방향 / Flex-first responsive layout direction

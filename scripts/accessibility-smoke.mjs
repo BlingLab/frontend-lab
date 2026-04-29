@@ -4,6 +4,7 @@ import {
   Alert,
   Combobox,
   CommandPalette,
+  DataGrid,
   Dialog,
   DropdownMenu,
   Icon,
@@ -103,6 +104,19 @@ assertMarkup(
   [
     ["입력은 combobox role을 가져야 합니다. / Input must use role=combobox.", (markup) => markup.includes("role=\"combobox\"")],
     ["입력은 listbox와 연결되어야 합니다. / Input must be connected to the listbox.", (markup) => markup.includes("aria-controls=") && markup.includes("role=\"listbox\"")]
+  ]
+);
+
+assertMarkup(
+  "DataGrid",
+  React.createElement(DataGrid, {
+    caption: "작업 목록 / Task list",
+    columns: [{ key: "name", label: "이름 / Name" }],
+    rows: [{ name: "초안 / Draft" }]
+  }),
+  [
+    ["grid role을 노출해야 합니다. / Must expose the grid role.", (markup) => markup.includes("role=\"grid\"")],
+    ["keyboard row는 focus target이어야 합니다. / Keyboard rows must be focus targets.", (markup) => markup.includes("tabindex=\"0\"")]
   ]
 );
 

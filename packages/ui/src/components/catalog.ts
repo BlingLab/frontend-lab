@@ -525,8 +525,8 @@ export const componentCatalog: ComponentCatalogItem[] = [
     purpose: "Use when dense records need structured scanning with richer controls than a static table.",
     primitive: "table with grid-like interactions",
     apg: "https://www.w3.org/WAI/ARIA/apg/patterns/grid/",
-    props: ["columns", "rows", "density", "sortable", "selectionMode", "striped", "stickyHeader", "emptyMessage", "rowKey", "rowActions", "sortState", "defaultSortState", "selectedRowKeys", "defaultSelectedRowKeys", "onSortChange", "onSelectedRowKeysChange", "onSelectionChange"],
-    states: ["default", "hover", "sorted", "selected", "empty", "loading"],
+    props: ["columns", "rows", "density", "sortable", "selectionMode", "striped", "stickyHeader", "emptyMessage", "rowKey", "rowActions", "sortState", "defaultSortState", "selectedRowKeys", "defaultSelectedRowKeys", "activeRowKey", "defaultActiveRowKey", "keyboardNavigation", "resizableColumns", "onSortChange", "onSelectedRowKeysChange", "onSelectionChange", "onActiveRowKeyChange", "onColumnResize"],
+    states: ["default", "hover", "sorted", "selected", "active", "empty", "loading", "resizing"],
     tokens: ["--ds-color-border-default", "--ds-color-bg-surface", "--ds-color-bg-muted"]
   },
   {
