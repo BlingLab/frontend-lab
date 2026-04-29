@@ -29,7 +29,7 @@ export function DropdownMenu({ triggerLabel = "메뉴 / Menu", items = [], open,
   const rootRef = useRef<HTMLDivElement>(null);
   const menuRef = useRef<HTMLDivElement>(null);
   const menuId = useId();
-  const { triggerRef, restoreFocus } = useFocusReturn<HTMLButtonElement>();
+  const { triggerRef, rememberFocus, restoreFocus } = useFocusReturn<HTMLButtonElement>();
   const closeMenu = useCallback((returnFocus = true) => {
     setOpen(false);
     if (returnFocus) restoreFocus();
@@ -79,7 +79,18 @@ export function DropdownMenu({ triggerLabel = "메뉴 / Menu", items = [], open,
 
   return (
     <div className={classNames("ds-DropdownMenu", className)} data-state={currentOpen ? "open" : "closed"} ref={rootRef} {...props}>
-      <Button ref={triggerRef} variant="outline" tone="neutral" aria-haspopup="menu" aria-expanded={currentOpen} aria-controls={menuId} onClick={() => setOpen((previousOpen) => !previousOpen)}>
+      <Button
+        ref={triggerRef}
+        variant="outline"
+        tone="neutral"
+        aria-haspopup="menu"
+        aria-expanded={currentOpen}
+        aria-controls={menuId}
+        onClick={() => setOpen((previousOpen) => {
+          if (!previousOpen) rememberFocus();
+          return !previousOpen;
+        })}
+      >
         {triggerLabel}
       </Button>
       <div className="ds-DropdownMenu-content" id={menuId} role="menu" data-placement={placement} data-state={currentOpen ? "open" : "closed"} hidden={!currentOpen} ref={menuRef} onKeyDown={onMenuKeyDown}>

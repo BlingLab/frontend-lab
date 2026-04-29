@@ -48,6 +48,29 @@ select {
   color: var(--text);
 }
 
+.skip-link {
+  position: fixed;
+  z-index: var(--ds-z-toast);
+  top: var(--ds-space-3);
+  left: var(--ds-space-3);
+  transform: translateY(calc(-100% - var(--ds-space-4)));
+  border: 1px solid var(--ds-color-action-primary-border);
+  border-radius: var(--ds-radius-6);
+  background: var(--ds-color-action-primary-bg);
+  color: var(--ds-color-action-primary-fg);
+  padding: var(--ds-space-2) var(--ds-space-4);
+  font-size: var(--ds-font-size-14);
+  font-weight: 800;
+  text-decoration: none;
+  transition: transform var(--ds-motion-duration-fast) var(--ds-motion-easing-standard);
+}
+
+.skip-link:focus-visible {
+  outline: none;
+  transform: translateY(0);
+  box-shadow: var(--ds-focus-ring);
+}
+
 .sidebar {
   position: sticky;
   top: 0;

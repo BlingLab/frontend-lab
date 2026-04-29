@@ -22,7 +22,7 @@ export function Popover({ triggerLabel = "열기 / Open", title, children, open,
   });
   const rootRef = useRef<HTMLDivElement>(null);
   const panelId = useId();
-  const { triggerRef, restoreFocus } = useFocusReturn<HTMLButtonElement>();
+  const { triggerRef, rememberFocus, restoreFocus } = useFocusReturn<HTMLButtonElement>();
   const closePopover = useCallback((returnFocus = true) => {
     setOpen(false);
     if (returnFocus) restoreFocus();
@@ -37,7 +37,17 @@ export function Popover({ triggerLabel = "열기 / Open", title, children, open,
 
   return (
     <div className={classNames("ds-Popover", className)} data-state={currentOpen ? "open" : "closed"} ref={rootRef} {...props}>
-      <Button ref={triggerRef} variant="outline" tone="neutral" aria-expanded={currentOpen} aria-controls={panelId} onClick={() => setOpen((previousOpen) => !previousOpen)}>
+      <Button
+        ref={triggerRef}
+        variant="outline"
+        tone="neutral"
+        aria-expanded={currentOpen}
+        aria-controls={panelId}
+        onClick={() => setOpen((previousOpen) => {
+          if (!previousOpen) rememberFocus();
+          return !previousOpen;
+        })}
+      >
         {triggerLabel}
       </Button>
       <div className="ds-Popover-panel" id={panelId} data-placement={placement} data-state={currentOpen ? "open" : "closed"} hidden={!currentOpen}>

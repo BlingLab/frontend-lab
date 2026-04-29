@@ -9,7 +9,7 @@ export function useFocusReturn<T extends HTMLElement = HTMLElement>() {
   }, []);
 
   const restoreFocus = useCallback(() => {
-    const target = triggerRef.current ?? fallbackRef.current;
+    const target = fallbackRef.current;
     fallbackRef.current = null;
     window.setTimeout(() => target?.focus(), 0);
   }, []);

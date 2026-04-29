@@ -30,3 +30,4 @@ npm run test:docs-smoke
 - header, theme controls, responsive matrix, component preview가 viewport 밖으로 밀리거나 sibling overlap을 만들면 실패합니다. / It fails when the header, theme controls, responsive matrix, or component preview leaves the viewport or creates sibling overlap.
 - DARK/NORMAL theme switch가 `data-ds-theme`와 computed background를 바꾸는지 확인합니다. / It verifies that DARK/NORMAL theme switching updates `data-ds-theme` and computed background.
 - 첫 Tab focus 흐름이 보이지 않는 요소나 viewport 밖 요소로 이동하지 않는지 최소 검증합니다. / It minimally verifies that the first Tab focus flow does not move to invisible or out-of-viewport elements.
+- body에서 첫 Tab은 visible skip link로 진입하고 Enter는 main content focus로 이동해야 합니다. hash route에서는 target section을 focus anchor로 잡고 다음 Tab이 visible focus로 이동해야 합니다. / From body, the first Tab must enter a visible skip link, and Enter must move focus to main content. On hash routes, the target section acts as the focus anchor and the next Tab must move to visible focus.
