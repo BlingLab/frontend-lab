@@ -21,4 +21,5 @@ All notable changes are documented in this file.
 
 ### Changed
 
+- review/issue 운영 문서에 priority SLA, milestone 기준, follow-up 연결 규칙을 보강했습니다. / Strengthened review and issue operations docs with priority SLA, milestone criteria, and follow-up linking rules.
 - DataGrid 문서와 catalog prop 목록을 실제 상호작용 API에 맞췄습니다. / Aligned DataGrid docs and catalog prop lists with the actual interaction APIs.
