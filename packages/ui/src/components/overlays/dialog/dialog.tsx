@@ -4,6 +4,7 @@ import { Icon } from "../../actions/icon";
 import { IconButton } from "../../actions/icon-button";
 import { classNames } from "../../../shared/utils";
 import { useControllableState } from "../../../shared/use-controllable-state";
+import { useFocusReturn } from "../../../shared/use-focus-return";
 
 export interface DialogProps extends Omit<HTMLAttributes<HTMLDivElement>, "title"> {
   triggerLabel?: ReactNode;
@@ -44,7 +45,7 @@ export function Dialog({
   ...props
 }: DialogProps) {
   const dialogRef = useRef<HTMLDialogElement>(null);
-  const lastActiveRef = useRef<HTMLElement | null>(null);
+  const { triggerRef, rememberFocus, restoreFocus } = useFocusReturn<HTMLButtonElement>();
   const titleId = useId();
   const descriptionId = useId();
   const [currentOpen, setOpen] = useControllableState({
@@ -54,7 +55,7 @@ export function Dialog({
   });
   const close = () => setOpen(false);
   const openDialog = () => {
-    lastActiveRef.current = document.activeElement instanceof HTMLElement ? document.activeElement : null;
+    rememberFocus();
     setOpen(true);
   };
 
@@ -64,7 +65,7 @@ export function Dialog({
     if (!dialog) return;
 
     if (currentOpen && !dialog.open) {
-      lastActiveRef.current ??= document.activeElement instanceof HTMLElement ? document.activeElement : null;
+      rememberFocus();
       if (modal) dialog.showModal();
       else dialog.show();
       initialFocus?.current?.focus();
@@ -76,15 +77,12 @@ export function Dialog({
   }, [currentOpen, initialFocus, modal]);
 
   useEffect(() => {
-    if (currentOpen || !lastActiveRef.current) return;
-    const lastActive = lastActiveRef.current;
-    lastActiveRef.current = null;
-    window.setTimeout(() => lastActive.focus(), 0);
-  }, [currentOpen]);
+    if (!currentOpen) restoreFocus();
+  }, [currentOpen, restoreFocus]);
 
   return (
     <div className={classNames("ds-DialogRoot", className)} data-state={currentOpen ? "open" : "closed"} {...props}>
-      <Button aria-haspopup="dialog" aria-expanded={currentOpen} onClick={openDialog}>{triggerLabel}</Button>
+      <Button ref={triggerRef} aria-haspopup="dialog" aria-expanded={currentOpen} onClick={openDialog}>{triggerLabel}</Button>
       <dialog
         className="ds-Dialog"
         data-size={size}

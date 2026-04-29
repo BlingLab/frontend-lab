@@ -22,6 +22,9 @@ This document is a lightweight backlog for items that should become GitHub Issue
 | [#5](https://github.com/BlingLab/frontend-lab/issues/5) | P1 | 패키지 릴리즈 정책 확정 / Define package release policy | release | package scope, registry, versioning, changelog 방식을 결정합니다. / Defines package scope, registry, versioning, and changelog flow. |
 | [#6](https://github.com/BlingLab/frontend-lab/issues/6) | P1 | DataGrid 고급 상호작용 설계 / Design advanced DataGrid interactions | component | column resize, row keyboard navigation, virtual scroll 여부를 결정합니다. / Decides column resize, row keyboard navigation, and virtual scroll scope. |
 | [#7](https://github.com/BlingLab/frontend-lab/issues/7) | Done | React 컴포넌트 시스템 하드닝 완료 기록 / Track completed hardening work | tracking | 완료된 component hardening 작업을 closed issue로 기록했습니다. / Completed component hardening work is recorded as a closed issue. |
+| [#8](https://github.com/BlingLab/frontend-lab/issues/8) | P1 | Button ref 전달 구조 개선 / Improve Button ref forwarding | component | overlay focus return이 explicit trigger ref 기반으로 동작합니다. / Overlay focus return works through explicit trigger refs. |
+| [#9](https://github.com/BlingLab/frontend-lab/issues/9) | P1 | Listbox highlight hook 공통화 / Extract shared listbox highlight hook | component | Combobox와 CommandPalette가 shared highlight hook을 사용합니다. / Combobox and CommandPalette use a shared highlight hook. |
+| [#10](https://github.com/BlingLab/frontend-lab/issues/10) | P1 | Overlay dismiss와 focus hook 공통화 / Extract overlay dismiss and focus hooks | component | Escape, outside pointer, focus return 로직이 shared hook으로 정리됩니다. / Escape, outside pointer, and focus return logic are consolidated into shared hooks. |
 
 ## PR 후보 / Pull Request Candidates
 
@@ -54,6 +57,12 @@ This document is a lightweight backlog for items that should become GitHub Issue
 - 범위 / Scope: keyboard row navigation, resize handle API, optional virtualized body decision.
 - 리뷰 포인트 / Review points: table semantics 유지, prop API 폭발 방지, responsive overflow.
 - 연결 이슈 / Linked issue: [#6](https://github.com/BlingLab/frontend-lab/issues/6)
+
+### 6. 상호작용 리팩토링 / Interaction Refactor
+
+- 범위 / Scope: Button ref forwarding, listbox highlight hook, overlay dismiss/focus hooks.
+- 리뷰 포인트 / Review points: focus return regression, keyboard behavior, hook API scope.
+- 연결 이슈 / Linked issues: [#8](https://github.com/BlingLab/frontend-lab/issues/8), [#9](https://github.com/BlingLab/frontend-lab/issues/9), [#10](https://github.com/BlingLab/frontend-lab/issues/10)
 
 ## 운영 방식 / Operating Flow
 

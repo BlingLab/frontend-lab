@@ -157,8 +157,8 @@ for (const exportName of requiredExports) {
   const componentSource = await readFile(componentFile, "utf8").catch(() => "");
   const entrySource = await readFile(entryFile, "utf8").catch(() => "");
 
-  if (!componentSource.includes(`export function ${exportName}`)) {
-    failures.push(`${exportName} 구현은 자기 폴더의 ${slug}.tsx에 있어야 합니다. / ${exportName} implementation must live in its own ${slug}.tsx file.`);
+  if (!componentSource.includes(`export function ${exportName}`) && !componentSource.includes(`export const ${exportName}`)) {
+    failures.push(`${exportName} 구현은 자기 폴더의 ${slug}.tsx에서 named export여야 합니다. / ${exportName} implementation must be a named export in its own ${slug}.tsx file.`);
   }
   if (!entrySource.includes(`./${slug}`)) {
     failures.push(`${exportName} index.ts는 같은 폴더의 ${slug}.tsx를 export해야 합니다. / ${exportName} index.ts must export from ./${slug}.`);

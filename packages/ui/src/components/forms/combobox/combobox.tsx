@@ -3,6 +3,7 @@ import { Field, type FieldProps } from "../field";
 import { Icon } from "../../actions/icon";
 import type { FieldWidth, Size } from "../../../shared/types";
 import { useControllableState } from "../../../shared/use-controllable-state";
+import { useListboxHighlight } from "../../../shared/use-listbox-highlight";
 import { classNames } from "../../../shared/utils";
 
 export interface ComboboxOption {
@@ -52,7 +53,6 @@ export function Combobox({
   const listboxId = `${controlId}-listbox`;
   const [open, setOpen] = useState(false);
   const [query, setQuery] = useState("");
-  const [highlightedIndex, setHighlightedIndex] = useState(-1);
   const [selectedValue, setSelectedValue] = useControllableState({
     value,
     defaultValue,
@@ -68,30 +68,27 @@ export function Combobox({
       return haystack.includes(normalizedQuery);
     });
   }, [options, query]);
-  const highlightedOption = highlightedIndex >= 0 ? filteredOptions[highlightedIndex] : undefined;
-  const highlightedOptionId = highlightedOption ? `${listboxId}-${highlightedIndex}` : undefined;
+  const {
+    highlightedIndex,
+    highlightedItem: highlightedOption,
+    highlightedItemId: highlightedOptionId,
+    setHighlightedIndex,
+    resetHighlight,
+    highlightFirst,
+    moveHighlight,
+    getItemId
+  } = useListboxHighlight({ items: filteredOptions, idBase: listboxId });
 
   const selectOption = (option: ComboboxOption) => {
     if (option.disabled) return;
     setSelectedValue(option.value);
     setQuery("");
     setOpen(false);
-    setHighlightedIndex(-1);
-  };
-  const moveHighlight = (offset: number) => {
-    if (filteredOptions.length === 0) return;
-    let nextIndex = highlightedIndex;
-    for (let attempt = 0; attempt < filteredOptions.length; attempt += 1) {
-      nextIndex = (nextIndex + offset + filteredOptions.length) % filteredOptions.length;
-      if (!filteredOptions[nextIndex]?.disabled) {
-        setHighlightedIndex(nextIndex);
-        return;
-      }
-    }
+    resetHighlight();
   };
   const openListbox = () => {
     setOpen(true);
-    setHighlightedIndex((currentIndex) => currentIndex >= 0 ? currentIndex : filteredOptions.findIndex((option) => !option.disabled));
+    if (highlightedIndex < 0) highlightFirst();
   };
   const onInputKeyDown = (event: KeyboardEvent<HTMLInputElement>) => {
     if (event.key === "ArrowDown") {
@@ -111,7 +108,7 @@ export function Combobox({
     if (event.key === "Escape") {
       event.preventDefault();
       setOpen(false);
-      setHighlightedIndex(-1);
+      resetHighlight();
     }
   };
 
@@ -133,7 +130,7 @@ export function Combobox({
           aria-required={required || undefined}
           onBlur={() => window.setTimeout(() => {
             setOpen(false);
-            setHighlightedIndex(-1);
+            resetHighlight();
           }, 120)}
           onChange={(event) => {
             setQuery(event.currentTarget.value);
@@ -153,7 +150,7 @@ export function Combobox({
               data-selected={option.value === selectedValue ? "true" : undefined}
               data-highlighted={index === highlightedIndex ? "true" : undefined}
               disabled={option.disabled}
-              id={`${listboxId}-${index}`}
+              id={getItemId(index)}
               key={option.value}
               role="option"
               type="button"

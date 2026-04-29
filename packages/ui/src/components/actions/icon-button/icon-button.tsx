@@ -1,4 +1,4 @@
-import type { ReactNode } from "react";
+import { forwardRef, type ReactNode } from "react";
 import { Button, type ButtonProps } from "../button";
 import { Icon } from "../icon";
 import { classNames } from "../../../shared/utils";
@@ -9,7 +9,7 @@ export interface IconButtonProps extends Omit<ButtonProps, "children" | "label">
   shape?: "square" | "circle";
 }
 
-export function IconButton({
+export const IconButton = forwardRef<HTMLButtonElement, IconButtonProps>(function IconButton({
   label,
   icon = <Icon name="plus" />,
   shape = "square",
@@ -17,7 +17,7 @@ export function IconButton({
   tone = "neutral",
   className,
   ...props
-}: IconButtonProps) {
+}, ref) {
   return (
     <Button
       aria-label={label}
@@ -25,9 +25,10 @@ export function IconButton({
       data-shape={shape}
       variant={variant}
       tone={tone}
+      ref={ref}
       {...props}
     >
       <span className="ds-Icon" aria-hidden="true">{icon}</span>
     </Button>
   );
-}
+});

@@ -170,8 +170,8 @@ Validates catalog component folders, required documents, required exports, token
 npm run test
 ```
 
-컴포넌트 시스템 검증, UI 빌드, 접근성 스모크 테스트, package export 검증을 한 번에 실행합니다.
-Runs component system validation, UI build, accessibility smoke checks, and package export verification together.
+컴포넌트 시스템 검증, UI 빌드, 접근성 스모크 테스트, 상호작용 접근성 테스트, package export 검증을 한 번에 실행합니다.
+Runs component system validation, UI build, accessibility smoke checks, interaction accessibility checks, and package export verification together.
 
 ## 컴포넌트 사용 / Component Usage
 

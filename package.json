@@ -13,8 +13,9 @@
     "build": "npm --workspace @workspace/ui run build",
     "dev": "npm --workspace @workspace/docs run dev",
     "docs:dev": "npm --workspace @workspace/docs run dev",
-    "test": "npm run components:validate && npm run build && tsx scripts/accessibility-smoke.mjs && tsx scripts/verify-package-exports.mjs",
+    "test": "npm run components:validate && npm run build && tsx scripts/accessibility-smoke.mjs && tsx scripts/interaction-a11y.mjs && tsx scripts/verify-package-exports.mjs",
     "test:a11y": "npm run build && tsx scripts/accessibility-smoke.mjs",
+    "test:interaction": "npm run build && tsx scripts/interaction-a11y.mjs",
     "test:exports": "npm run build && tsx scripts/verify-package-exports.mjs",
     "typecheck": "npm --workspace @workspace/ui run typecheck && npm --workspace @workspace/docs run typecheck"
   },
@@ -28,8 +29,11 @@
     "vite": "^7.0.0"
   },
   "devDependencies": {
+    "@testing-library/react": "^16.3.2",
+    "@testing-library/user-event": "^14.6.1",
     "@types/react": "^19.0.0",
-    "@types/react-dom": "^19.0.0"
+    "@types/react-dom": "^19.0.0",
+    "jsdom": "^29.1.0"
   },
   "engines": {
     "node": ">=18"
