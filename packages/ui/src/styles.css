@@ -1507,6 +1507,374 @@
   color: var(--ds-color-action-primary-bg-hover);
 }
 
+.ds-DatePicker,
+.ds-Combobox-input,
+.ds-CommandPalette-input {
+  inline-size: 100%;
+  min-block-size: var(--ds-size-control-md);
+  border: var(--ds-size-1) solid var(--ds-color-border-default);
+  border-radius: var(--ds-radius-6);
+  background: var(--ds-color-bg-surface);
+  color: var(--ds-color-text-primary);
+  font: inherit;
+  padding: var(--ds-space-0) var(--ds-space-3);
+  transition:
+    border-color var(--ds-motion-duration-fast) var(--ds-motion-easing-standard),
+    box-shadow var(--ds-motion-duration-fast) var(--ds-motion-easing-standard);
+}
+
+.ds-DatePicker:hover:not(:disabled),
+.ds-Combobox:not([data-disabled="true"]) .ds-Combobox-input:hover,
+.ds-CommandPalette-input:hover {
+  border-color: var(--ds-state-hover-border);
+}
+
+.ds-DatePicker:focus-visible,
+.ds-Combobox-input:focus-visible,
+.ds-CommandPalette-input:focus-visible,
+.ds-Combobox-option:focus-visible,
+.ds-CommandPalette-item:focus-visible,
+.ds-Stepper-button:focus-visible,
+.ds-NavigationRail-item:focus-visible,
+.ds-SideNav-item:focus-visible,
+.ds-FileUploader:focus-within {
+  outline: none;
+  box-shadow: var(--ds-focus-ring);
+}
+
+.ds-DatePicker[data-size="sm"],
+.ds-Combobox[data-size="sm"] .ds-Combobox-input {
+  min-block-size: var(--ds-size-control-sm);
+  font-size: var(--ds-font-size-13);
+}
+
+.ds-DatePicker[data-size="lg"],
+.ds-Combobox[data-size="lg"] .ds-Combobox-input {
+  min-block-size: var(--ds-size-control-lg);
+  font-size: var(--ds-font-size-16);
+}
+
+.ds-Combobox {
+  position: relative;
+  display: flex;
+  inline-size: 100%;
+}
+
+.ds-Combobox-input {
+  padding-inline-end: var(--ds-space-10);
+}
+
+.ds-Combobox-toggle {
+  position: absolute;
+  inset-block: var(--ds-size-1);
+  inset-inline-end: var(--ds-size-1);
+  inline-size: var(--ds-size-control-sm);
+  border: var(--ds-size-0);
+  border-radius: var(--ds-radius-6);
+  background: transparent;
+  color: var(--ds-color-text-muted);
+  cursor: pointer;
+}
+
+.ds-Combobox-listbox {
+  position: absolute;
+  z-index: var(--ds-z-dropdown);
+  inset-block-start: calc(100% + var(--ds-space-1));
+  inset-inline: var(--ds-space-0);
+  display: grid;
+  max-block-size: calc(var(--ds-space-12) * 5);
+  overflow: auto;
+  border: var(--ds-size-1) solid var(--ds-color-border-default);
+  border-radius: var(--ds-radius-8);
+  background: var(--ds-color-bg-elevated);
+  box-shadow: var(--ds-shadow-raised);
+  padding: var(--ds-space-1);
+}
+
+.ds-Combobox-listbox[hidden] {
+  display: none;
+}
+
+.ds-Combobox-option,
+.ds-CommandPalette-item {
+  display: flex;
+  inline-size: 100%;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--ds-space-3);
+  border: var(--ds-size-0);
+  border-radius: var(--ds-radius-6);
+  background: transparent;
+  color: var(--ds-color-text-primary);
+  cursor: pointer;
+  font: inherit;
+  padding: var(--ds-space-2) var(--ds-space-3);
+  text-align: start;
+}
+
+.ds-Combobox-option:hover:not(:disabled),
+.ds-Combobox-option[data-selected="true"],
+.ds-CommandPalette-item:hover:not(:disabled) {
+  background: var(--ds-state-hover-bg);
+}
+
+.ds-Combobox-empty,
+.ds-CommandPalette-empty,
+.ds-DataGrid-empty,
+.ds-DataGrid-loading {
+  color: var(--ds-color-text-muted);
+  padding: var(--ds-space-3);
+}
+
+.ds-FileUploader {
+  display: grid;
+  inline-size: 100%;
+  justify-items: center;
+  gap: var(--ds-space-2);
+  border: var(--ds-size-1) dashed var(--ds-color-border-default);
+  border-radius: var(--ds-radius-8);
+  background: var(--ds-color-bg-muted);
+  color: var(--ds-color-text-muted);
+  cursor: pointer;
+  padding: var(--ds-space-6);
+  text-align: center;
+}
+
+.ds-FileUploader:hover:not([data-disabled="true"]) {
+  border-color: var(--ds-state-hover-border);
+  background: var(--ds-state-hover-bg);
+}
+
+.ds-FileUploader[data-disabled="true"] {
+  cursor: not-allowed;
+  opacity: var(--ds-state-disabled-opacity);
+}
+
+.ds-FileUploader-invalid {
+  border-color: var(--ds-color-feedback-danger);
+}
+
+.ds-FileUploader-icon {
+  display: grid;
+  inline-size: var(--ds-space-10);
+  block-size: var(--ds-space-10);
+  place-items: center;
+  border-radius: var(--ds-radius-pill);
+  background: var(--ds-color-bg-surface);
+  color: var(--ds-color-text-primary);
+  font-weight: 900;
+}
+
+.ds-FileUploader-input {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.ds-FileUploader-list {
+  display: grid;
+  gap: var(--ds-space-1);
+  margin: var(--ds-space-2) var(--ds-space-0) var(--ds-space-0);
+  padding-inline-start: var(--ds-space-5);
+  color: var(--ds-color-text-muted);
+  font-size: var(--ds-font-size-13);
+}
+
+.ds-CommandPalette {
+  inline-size: min(calc(100vw - calc(var(--ds-page-gutter) * 2)), var(--ds-dialog-width-lg));
+  border: var(--ds-size-1) solid var(--ds-color-border-default);
+  border-radius: var(--ds-radius-8);
+  background: var(--ds-color-bg-surface);
+  color: var(--ds-color-text-primary);
+  padding: var(--ds-space-0);
+  box-shadow: var(--ds-shadow-raised);
+}
+
+.ds-CommandPalette::backdrop {
+  background: var(--ds-color-overlay-backdrop);
+}
+
+.ds-CommandPalette-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--ds-space-3);
+  padding: var(--ds-space-4);
+}
+
+.ds-CommandPalette-header h3 {
+  margin: var(--ds-space-0);
+}
+
+.ds-CommandPalette-close {
+  border: var(--ds-size-0);
+  border-radius: var(--ds-radius-pill);
+  background: transparent;
+  color: var(--ds-color-text-muted);
+  cursor: pointer;
+  font: inherit;
+}
+
+.ds-CommandPalette-input {
+  border-inline: var(--ds-size-0);
+  border-radius: var(--ds-space-0);
+}
+
+.ds-CommandPalette-list {
+  display: grid;
+  gap: var(--ds-space-1);
+  max-block-size: calc(var(--ds-space-12) * 7);
+  overflow: auto;
+  padding: var(--ds-space-2);
+}
+
+.ds-CommandPalette-itemText {
+  display: grid;
+  gap: var(--ds-space-1);
+}
+
+.ds-CommandPalette-itemText span {
+  color: var(--ds-color-text-muted);
+  font-size: var(--ds-font-size-13);
+}
+
+.ds-CommandPalette kbd {
+  border: var(--ds-size-1) solid var(--ds-color-border-default);
+  border-radius: var(--ds-radius-4);
+  background: var(--ds-color-bg-muted);
+  color: var(--ds-color-text-muted);
+  font: inherit;
+  font-size: var(--ds-font-size-12);
+  padding: var(--ds-space-1) var(--ds-space-2);
+}
+
+.ds-Stepper-list,
+.ds-NavigationRail-list,
+.ds-SideNav-list {
+  display: grid;
+  gap: var(--ds-space-2);
+  margin: var(--ds-space-0);
+  padding: var(--ds-space-0);
+  list-style: none;
+}
+
+.ds-Stepper[data-orientation="horizontal"] .ds-Stepper-list {
+  grid-template-columns: repeat(auto-fit, minmax(var(--ds-space-12), 1fr));
+}
+
+.ds-Stepper-button,
+.ds-NavigationRail-item,
+.ds-SideNav-item {
+  display: flex;
+  inline-size: 100%;
+  align-items: center;
+  gap: var(--ds-space-3);
+  border: var(--ds-size-0);
+  border-radius: var(--ds-radius-6);
+  background: transparent;
+  color: var(--ds-color-text-primary);
+  cursor: pointer;
+  font: inherit;
+  padding: var(--ds-space-2) var(--ds-space-3);
+  text-align: start;
+  text-decoration: none;
+}
+
+.ds-Stepper-button:hover:not(:disabled),
+.ds-NavigationRail-item:hover:not(:disabled),
+.ds-SideNav-item:hover:not(:disabled) {
+  background: var(--ds-state-hover-bg);
+}
+
+.ds-Stepper-marker,
+.ds-NavigationRail-icon {
+  display: inline-grid;
+  flex: 0 0 auto;
+  inline-size: var(--ds-size-control-sm);
+  block-size: var(--ds-size-control-sm);
+  place-items: center;
+  border-radius: var(--ds-radius-pill);
+  background: var(--ds-color-bg-muted);
+  color: var(--ds-color-text-muted);
+  font-size: var(--ds-font-size-13);
+  font-weight: 800;
+}
+
+.ds-Stepper-item[data-status="active"] .ds-Stepper-marker,
+.ds-Stepper-item[data-status="complete"] .ds-Stepper-marker,
+.ds-NavigationRail-item[data-selected="true"] .ds-NavigationRail-icon {
+  background: var(--ds-color-action-primary-bg);
+  color: var(--ds-color-action-primary-fg);
+}
+
+.ds-Stepper-item[data-status="error"] .ds-Stepper-marker {
+  background: var(--ds-color-feedback-danger);
+  color: var(--ds-color-white);
+}
+
+.ds-Stepper-copy,
+.ds-SideNav-section {
+  display: grid;
+  gap: var(--ds-space-1);
+}
+
+.ds-Stepper-description,
+.ds-SideNav-title {
+  color: var(--ds-color-text-muted);
+  font-size: var(--ds-font-size-13);
+}
+
+.ds-NavigationRail,
+.ds-SideNav {
+  inline-size: min(100%, var(--ds-overlay-width));
+  border: var(--ds-size-1) solid var(--ds-color-border-default);
+  border-radius: var(--ds-radius-8);
+  background: var(--ds-color-bg-surface);
+  padding: var(--ds-space-2);
+}
+
+.ds-NavigationRail[data-collapsed="true"] {
+  inline-size: max-content;
+}
+
+.ds-NavigationRail[data-collapsed="true"] .ds-NavigationRail-label,
+.ds-SideNav[data-collapsed="true"] .ds-SideNav-label,
+.ds-SideNav[data-collapsed="true"] .ds-SideNav-title,
+.ds-SideNav[data-collapsed="true"] .ds-SideNav-badge {
+  display: none;
+}
+
+.ds-NavigationRail-item[data-selected="true"],
+.ds-SideNav-item[data-selected="true"] {
+  background: var(--ds-state-selected-bg);
+  color: var(--ds-color-text-primary);
+  font-weight: 800;
+}
+
+.ds-SideNav-badge {
+  margin-inline-start: auto;
+  color: var(--ds-color-text-muted);
+  font-size: var(--ds-font-size-12);
+}
+
+.ds-DataGrid {
+  position: relative;
+}
+
+.ds-DataGrid[data-loading="true"] {
+  opacity: var(--ds-state-disabled-opacity);
+}
+
+.ds-DataGrid-loading {
+  position: absolute;
+  z-index: 1;
+  inset-block-start: var(--ds-space-2);
+  inset-inline-end: var(--ds-space-2);
+  border-radius: var(--ds-radius-6);
+  background: var(--ds-color-bg-elevated);
+  box-shadow: var(--ds-shadow-low);
+}
+
 @media (max-width: 39.98rem) {
   .ds-Field[data-orientation="horizontal"] {
     grid-template-columns: 1fr;

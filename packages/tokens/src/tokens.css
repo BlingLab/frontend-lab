@@ -190,6 +190,255 @@
   --ds-z-toast: 1300;
 }
 
+:root,
+[data-ds-theme="normal"],
+.ds-theme-normal {
+  color-scheme: light;
+  --ds-theme-id: normal;
+
+  --ds-color-bg-canvas: var(--ds-color-gray-50);
+  --ds-color-bg-surface: var(--ds-color-white);
+  --ds-color-bg-elevated: var(--ds-color-white);
+  --ds-color-bg-muted: var(--ds-color-gray-100);
+  --ds-color-bg-inverse: var(--ds-color-gray-900);
+
+  --ds-color-text-primary: var(--ds-color-gray-900);
+  --ds-color-text-secondary: var(--ds-color-gray-700);
+  --ds-color-text-muted: var(--ds-color-gray-500);
+  --ds-color-text-inverse: var(--ds-color-white);
+
+  --ds-color-border-subtle: var(--ds-color-gray-150);
+  --ds-color-border-default: var(--ds-color-gray-200);
+  --ds-color-border-strong: var(--ds-color-gray-300);
+
+  --ds-color-action-primary-bg: var(--ds-color-brand-600);
+  --ds-color-action-primary-bg-hover: var(--ds-color-brand-700);
+  --ds-color-action-primary-bg-active: var(--ds-color-brand-800);
+  --ds-color-action-primary-border: var(--ds-color-brand-600);
+  --ds-color-action-primary-fg: var(--ds-color-white);
+
+  --ds-color-action-neutral-bg: var(--ds-color-white);
+  --ds-color-action-neutral-bg-hover: var(--ds-color-gray-100);
+  --ds-color-action-neutral-bg-active: var(--ds-color-gray-150);
+  --ds-color-action-neutral-border: var(--ds-color-border-default);
+  --ds-color-action-neutral-fg: var(--ds-color-text-primary);
+
+  --ds-color-feedback-info-bg: var(--ds-color-brand-50);
+  --ds-color-feedback-info-border: var(--ds-color-brand-100);
+  --ds-color-feedback-info-text: var(--ds-color-brand-700);
+  --ds-color-feedback-success-bg: var(--ds-color-green-50);
+  --ds-color-feedback-success-border: var(--ds-color-green-100);
+  --ds-color-feedback-success-text: var(--ds-color-green-700);
+  --ds-color-feedback-success: var(--ds-color-green-600);
+  --ds-color-feedback-warning-bg: var(--ds-color-amber-50);
+  --ds-color-feedback-warning-border: var(--ds-color-amber-100);
+  --ds-color-feedback-warning-text: var(--ds-color-amber-700);
+  --ds-color-feedback-warning: var(--ds-color-amber-600);
+  --ds-color-feedback-danger-bg: var(--ds-color-red-50);
+  --ds-color-feedback-danger-border: var(--ds-color-red-100);
+  --ds-color-feedback-danger-text: var(--ds-color-red-700);
+  --ds-color-feedback-danger: var(--ds-color-red-600);
+
+  --ds-state-hover-bg: var(--ds-color-bg-muted);
+  --ds-state-hover-border: var(--ds-color-border-strong);
+  --ds-state-active-bg: var(--ds-color-gray-150);
+  --ds-state-selected-bg: var(--ds-color-brand-50);
+  --ds-state-selected-border: var(--ds-color-brand-600);
+
+  --ds-shadow-low: 0 0.0625rem 0.125rem rgba(16, 24, 39, 0.08);
+  --ds-shadow-raised: 0 1.125rem 2.625rem rgba(15, 23, 42, 0.08);
+  --ds-shadow-selected: 0 0.0625rem 0.125rem rgba(16, 24, 39, 0.12);
+  --ds-color-overlay-backdrop: rgba(16, 24, 39, 0.4);
+  --ds-color-focus-ring: rgba(31, 111, 235, 0.32);
+  --ds-focus-ring: 0 0 0 0.1875rem var(--ds-color-focus-ring);
+}
+
+[data-ds-theme="ocean"],
+.ds-theme-ocean {
+  color-scheme: light;
+  --ds-theme-id: ocean;
+
+  --ds-color-bg-canvas: #f3f9fb;
+  --ds-color-bg-surface: #ffffff;
+  --ds-color-bg-elevated: #ffffff;
+  --ds-color-bg-muted: #e6f3f7;
+  --ds-color-bg-inverse: #082f3f;
+
+  --ds-color-text-primary: #082f3f;
+  --ds-color-text-secondary: #164e63;
+  --ds-color-text-muted: #527585;
+  --ds-color-text-inverse: #ffffff;
+
+  --ds-color-border-subtle: #d6ecf2;
+  --ds-color-border-default: #bedfe8;
+  --ds-color-border-strong: #8bbdcb;
+
+  --ds-color-action-primary-bg: #087ea4;
+  --ds-color-action-primary-bg-hover: #0e6584;
+  --ds-color-action-primary-bg-active: #104e64;
+  --ds-color-action-primary-border: #087ea4;
+  --ds-color-action-primary-fg: #ffffff;
+
+  --ds-color-action-neutral-bg: #ffffff;
+  --ds-color-action-neutral-bg-hover: #e6f3f7;
+  --ds-color-action-neutral-bg-active: #d6ecf2;
+  --ds-color-action-neutral-border: var(--ds-color-border-default);
+  --ds-color-action-neutral-fg: var(--ds-color-text-primary);
+
+  --ds-color-feedback-info-bg: #e6f3f7;
+  --ds-color-feedback-info-border: #bedfe8;
+  --ds-color-feedback-info-text: #0e6584;
+  --ds-color-feedback-success-bg: var(--ds-color-green-50);
+  --ds-color-feedback-success-border: var(--ds-color-green-100);
+  --ds-color-feedback-success-text: var(--ds-color-green-700);
+  --ds-color-feedback-success: var(--ds-color-green-600);
+  --ds-color-feedback-warning-bg: var(--ds-color-amber-50);
+  --ds-color-feedback-warning-border: var(--ds-color-amber-100);
+  --ds-color-feedback-warning-text: var(--ds-color-amber-700);
+  --ds-color-feedback-warning: var(--ds-color-amber-600);
+  --ds-color-feedback-danger-bg: var(--ds-color-red-50);
+  --ds-color-feedback-danger-border: var(--ds-color-red-100);
+  --ds-color-feedback-danger-text: var(--ds-color-red-700);
+  --ds-color-feedback-danger: var(--ds-color-red-600);
+
+  --ds-state-hover-bg: var(--ds-color-bg-muted);
+  --ds-state-hover-border: var(--ds-color-border-strong);
+  --ds-state-active-bg: #d6ecf2;
+  --ds-state-selected-bg: #ddf4fb;
+  --ds-state-selected-border: #087ea4;
+
+  --ds-shadow-low: 0 0.0625rem 0.125rem rgba(8, 47, 63, 0.08);
+  --ds-shadow-raised: 0 1.125rem 2.625rem rgba(8, 47, 63, 0.1);
+  --ds-shadow-selected: 0 0.0625rem 0.125rem rgba(8, 47, 63, 0.14);
+  --ds-color-overlay-backdrop: rgba(8, 47, 63, 0.42);
+  --ds-color-focus-ring: rgba(8, 126, 164, 0.32);
+  --ds-focus-ring: 0 0 0 0.1875rem var(--ds-color-focus-ring);
+}
+
+[data-ds-theme="forest"],
+.ds-theme-forest {
+  color-scheme: light;
+  --ds-theme-id: forest;
+
+  --ds-color-bg-canvas: #f5faf6;
+  --ds-color-bg-surface: #ffffff;
+  --ds-color-bg-elevated: #ffffff;
+  --ds-color-bg-muted: #eaf5ed;
+  --ds-color-bg-inverse: #10291b;
+
+  --ds-color-text-primary: #10291b;
+  --ds-color-text-secondary: #23543a;
+  --ds-color-text-muted: #587766;
+  --ds-color-text-inverse: #ffffff;
+
+  --ds-color-border-subtle: #d8eadc;
+  --ds-color-border-default: #c1dcc8;
+  --ds-color-border-strong: #8eb99b;
+
+  --ds-color-action-primary-bg: #2f7d4b;
+  --ds-color-action-primary-bg-hover: #25683e;
+  --ds-color-action-primary-bg-active: #1e5232;
+  --ds-color-action-primary-border: #2f7d4b;
+  --ds-color-action-primary-fg: #ffffff;
+
+  --ds-color-action-neutral-bg: #ffffff;
+  --ds-color-action-neutral-bg-hover: #eaf5ed;
+  --ds-color-action-neutral-bg-active: #d8eadc;
+  --ds-color-action-neutral-border: var(--ds-color-border-default);
+  --ds-color-action-neutral-fg: var(--ds-color-text-primary);
+
+  --ds-color-feedback-info-bg: #eaf5ed;
+  --ds-color-feedback-info-border: #c1dcc8;
+  --ds-color-feedback-info-text: #25683e;
+  --ds-color-feedback-success-bg: var(--ds-color-green-50);
+  --ds-color-feedback-success-border: var(--ds-color-green-100);
+  --ds-color-feedback-success-text: var(--ds-color-green-700);
+  --ds-color-feedback-success: var(--ds-color-green-600);
+  --ds-color-feedback-warning-bg: var(--ds-color-amber-50);
+  --ds-color-feedback-warning-border: var(--ds-color-amber-100);
+  --ds-color-feedback-warning-text: var(--ds-color-amber-700);
+  --ds-color-feedback-warning: var(--ds-color-amber-600);
+  --ds-color-feedback-danger-bg: var(--ds-color-red-50);
+  --ds-color-feedback-danger-border: var(--ds-color-red-100);
+  --ds-color-feedback-danger-text: var(--ds-color-red-700);
+  --ds-color-feedback-danger: var(--ds-color-red-600);
+
+  --ds-state-hover-bg: var(--ds-color-bg-muted);
+  --ds-state-hover-border: var(--ds-color-border-strong);
+  --ds-state-active-bg: #d8eadc;
+  --ds-state-selected-bg: #e1f5e7;
+  --ds-state-selected-border: #2f7d4b;
+
+  --ds-shadow-low: 0 0.0625rem 0.125rem rgba(16, 41, 27, 0.08);
+  --ds-shadow-raised: 0 1.125rem 2.625rem rgba(16, 41, 27, 0.1);
+  --ds-shadow-selected: 0 0.0625rem 0.125rem rgba(16, 41, 27, 0.14);
+  --ds-color-overlay-backdrop: rgba(16, 41, 27, 0.42);
+  --ds-color-focus-ring: rgba(47, 125, 75, 0.32);
+  --ds-focus-ring: 0 0 0 0.1875rem var(--ds-color-focus-ring);
+}
+
+[data-ds-theme="dark"],
+.ds-theme-dark {
+  color-scheme: dark;
+  --ds-theme-id: dark;
+
+  --ds-color-bg-canvas: #0b1220;
+  --ds-color-bg-surface: #111827;
+  --ds-color-bg-elevated: #172033;
+  --ds-color-bg-muted: #1f2937;
+  --ds-color-bg-inverse: #f8fafc;
+
+  --ds-color-text-primary: #f8fafc;
+  --ds-color-text-secondary: #dbe4ee;
+  --ds-color-text-muted: #a5b4c5;
+  --ds-color-text-inverse: #0b1220;
+
+  --ds-color-border-subtle: #263449;
+  --ds-color-border-default: #334155;
+  --ds-color-border-strong: #52647a;
+
+  --ds-color-action-primary-bg: #6ea8ff;
+  --ds-color-action-primary-bg-hover: #8dbbff;
+  --ds-color-action-primary-bg-active: #b5d2ff;
+  --ds-color-action-primary-border: #6ea8ff;
+  --ds-color-action-primary-fg: #07111f;
+
+  --ds-color-action-neutral-bg: #172033;
+  --ds-color-action-neutral-bg-hover: #1f2937;
+  --ds-color-action-neutral-bg-active: #263449;
+  --ds-color-action-neutral-border: var(--ds-color-border-default);
+  --ds-color-action-neutral-fg: var(--ds-color-text-primary);
+
+  --ds-color-feedback-info-bg: #12243d;
+  --ds-color-feedback-info-border: #254b7a;
+  --ds-color-feedback-info-text: #a9ccff;
+  --ds-color-feedback-success-bg: #10291b;
+  --ds-color-feedback-success-border: #23543a;
+  --ds-color-feedback-success-text: #9be7b0;
+  --ds-color-feedback-success: #5ed47d;
+  --ds-color-feedback-warning-bg: #33240d;
+  --ds-color-feedback-warning-border: #6b4a16;
+  --ds-color-feedback-warning-text: #ffd88a;
+  --ds-color-feedback-warning: #f6b84a;
+  --ds-color-feedback-danger-bg: #3a1418;
+  --ds-color-feedback-danger-border: #7f2730;
+  --ds-color-feedback-danger-text: #ffb4bb;
+  --ds-color-feedback-danger: #ff7a85;
+
+  --ds-state-hover-bg: var(--ds-color-bg-muted);
+  --ds-state-hover-border: var(--ds-color-border-strong);
+  --ds-state-active-bg: #263449;
+  --ds-state-selected-bg: #12243d;
+  --ds-state-selected-border: #6ea8ff;
+
+  --ds-shadow-low: 0 0.0625rem 0.125rem rgba(0, 0, 0, 0.36);
+  --ds-shadow-raised: 0 1.125rem 2.625rem rgba(0, 0, 0, 0.42);
+  --ds-shadow-selected: 0 0.0625rem 0.125rem rgba(0, 0, 0, 0.46);
+  --ds-color-overlay-backdrop: rgba(3, 7, 18, 0.68);
+  --ds-color-focus-ring: rgba(110, 168, 255, 0.38);
+  --ds-focus-ring: 0 0 0 0.1875rem var(--ds-color-focus-ring);
+}
+
 @media (min-width: 48rem) {
   :root {
     --ds-page-gutter: var(--ds-page-gutter-lg);

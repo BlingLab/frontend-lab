@@ -8,6 +8,7 @@ const categoryIds = new Set(componentCategories.map((category) => category.id));
 const statusIds = new Set(Object.keys(componentStatuses));
 const failures = [];
 const requiredTokenNames = [
+  "--ds-theme-id",
   "--ds-color-bg-surface",
   "--ds-color-text-primary",
   "--ds-color-border-default",
@@ -27,9 +28,12 @@ const requiredExports = [
   "TextField",
   "Textarea",
   "Select",
+  "DatePicker",
+  "Combobox",
   "Checkbox",
   "RadioGroup",
   "Switch",
+  "FileUploader",
   "Alert",
   "Toast",
   "Badge",
@@ -39,9 +43,13 @@ const requiredExports = [
   "Popover",
   "Tooltip",
   "DropdownMenu",
+  "CommandPalette",
   "Tabs",
   "Breadcrumb",
   "Pagination",
+  "Stepper",
+  "NavigationRail",
+  "SideNav",
   "Container",
   "Row",
   "Col",
@@ -50,6 +58,7 @@ const requiredExports = [
   "Card",
   "Divider",
   "Table",
+  "DataGrid",
   "EmptyState",
   "List"
 ];

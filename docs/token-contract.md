@@ -30,6 +30,22 @@ Semantic tokens express product intent. Component CSS should prefer semantic tok
 --ds-color-feedback-danger-bg
 ```
 
+### 테마 토큰 / Theme Tokens
+
+테마는 `normal`을 기본값으로 두고 semantic token override block으로 구성합니다.
+Themes use `normal` as the default and are built as semantic token override blocks.
+
+```text
+[data-ds-theme="normal"]
+[data-ds-theme="ocean"]
+[data-ds-theme="forest"]
+[data-ds-theme="dark"]
+--ds-theme-id
+```
+
+컴포넌트는 테마 이름을 직접 분기하지 않습니다. 같은 semantic token을 사용하면 theme container가 색상 체계를 일괄 적용합니다.
+Components do not branch on theme names directly. When they use the same semantic tokens, the theme container applies the color system consistently.
+
 ### 상태 토큰 / State Tokens
 
 hover, active, selected, disabled처럼 여러 컴포넌트가 공유하는 상호작용 상태입니다.
@@ -80,11 +96,25 @@ This system owns its brand and feedback ramps.
 컴포넌트는 `brand-600` 같은 raw ramp를 직접 쓰기보다 `--ds-color-action-primary-bg`나 `--ds-state-selected-border`를 우선 사용합니다.
 Components should prefer tokens such as `--ds-color-action-primary-bg` or `--ds-state-selected-border` over direct ramp tokens like `brand-600`.
 
+## 테마 방향 / Theme Direction
+
+테마 세트는 `packages/tokens/src/tokens.css`에서 관리합니다.
+Theme sets are managed in `packages/tokens/src/tokens.css`.
+
+- `normal`은 기본 제품 색상이며 `:root`와 `[data-ds-theme="normal"]`에 모두 선언합니다. / `normal` is the base product color system and is declared on both `:root` and `[data-ds-theme="normal"]`.
+- `ocean`, `forest`, `dark`는 semantic token override 예시이자 바로 사용할 수 있는 theme set입니다. / `ocean`, `forest`, and `dark` are semantic token override examples and ready-to-use theme sets.
+- 새 theme set은 component CSS를 수정하지 않고 semantic token만 override합니다. / A new theme set overrides only semantic tokens without changing component CSS.
+- 같은 화면 안에서 중첩 theme를 사용할 수 있어야 하므로 `[data-ds-theme="normal"]`도 semantic token을 명시적으로 reset합니다. / Because nested themes must work in the same screen, `[data-ds-theme="normal"]` explicitly resets semantic tokens.
+
+자세한 적용 방식은 [테마 시스템 / Theme System](./theme-system.md)을 따릅니다.
+Follow [Theme System](./theme-system.md) for detailed usage.
+
 ## 규칙 / Rules
 
 - raw hex와 `rgba()`는 `packages/tokens/src/tokens.css`에서만 허용합니다. / Raw hex and `rgba()` are allowed only in `packages/tokens/src/tokens.css`.
 - UI CSS는 `--ds-*` token을 사용합니다. / UI CSS uses `--ds-*` tokens.
 - hover, active, focus-visible, disabled는 shared state token으로 통일합니다. / Hover, active, focus-visible, and disabled are normalized through shared state tokens.
+- theme는 semantic token override로 구성하고 component CSS에서 theme name을 직접 분기하지 않습니다. / Themes are semantic token overrides, and component CSS does not branch on theme names directly.
 - spacing, radius, z-index, shadow, motion은 token scale에서만 가져옵니다. / Spacing, radius, z-index, shadow, and motion must come from token scales.
 - 컴포넌트 토큰은 소비자가 안정적으로 override해야 할 때만 추가합니다. / Add component tokens only when consumers need stable override hooks.
 

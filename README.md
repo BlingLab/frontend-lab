@@ -74,6 +74,7 @@ If the port is already in use, the server automatically tries the next available
 The app shows the following:
 
 - 디자인 토큰: 컬러, 타이포그래피, 간격, radius / Design tokens: color, typography, spacing, and radius
+- 테마 시스템: normal 기본 theme와 theme set 전환 / Theme system: normal base theme and theme set switching
 - 개발 규약: 명명, 상태 속성, 토큰 사용, 접근성 기준 / Development conventions: naming, state attributes, token usage, and accessibility rules
 - 컴포넌트 로드맵: 우선순위와 카테고리별 개발 대상 / Component roadmap: priorities and targets by category
 - 컴포넌트 목록: Button, Badge, TextField, Card, Alert, Tabs / Component list: Button, Badge, TextField, Card, Alert, Tabs
@@ -105,6 +106,7 @@ The app shows the following:
 - [Prop API 설계 가이드 / Prop API Guidelines](./docs/prop-api-guidelines.md)
 - [명명 규칙 / Naming Conventions](./docs/naming-conventions.md)
 - [토큰 계약 / Token Contract](./docs/token-contract.md)
+- [테마 시스템 / Theme System](./docs/theme-system.md)
 - [패키지 사용 가이드 / Package Consumption Guide](./docs/package-consumption.md)
 - [릴리즈 체크리스트 / Release Checklist](./docs/release-checklist.md)
 - [접근성 체크리스트 / Accessibility Checklist](./docs/accessibility-checklist.md)

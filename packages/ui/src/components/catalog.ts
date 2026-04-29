@@ -152,6 +152,34 @@ export const componentCatalog: ComponentCatalogItem[] = [
     tokens: ["--ds-color-bg-surface", "--ds-color-border-default", "--ds-focus-ring"]
   },
   {
+    name: "DatePicker",
+    slug: "date-picker",
+    category: "forms",
+    priority: "P1",
+    status: "ready",
+    summary: "Date input with shared Field composition.",
+    purpose: "Use when a workflow needs a single calendar date with native browser behavior first.",
+    primitive: "input[type='date']",
+    apg: "https://html.spec.whatwg.org/multipage/input.html#date-state-(type=date)",
+    props: ["value", "defaultValue", "minDate", "maxDate", "size", "width", "fieldProps", "inputClassName", "disabled", "readOnly", "invalid"],
+    states: ["default", "hover", "focus-visible", "disabled", "read-only", "invalid"],
+    tokens: ["--ds-color-bg-surface", "--ds-color-border-default", "--ds-focus-ring"]
+  },
+  {
+    name: "Combobox",
+    slug: "combobox",
+    category: "forms",
+    priority: "P0",
+    status: "ready",
+    summary: "Searchable single-value selection from a known option set.",
+    purpose: "Use when a select needs filtering, text input, or many options without leaving the current form.",
+    primitive: "combobox with listbox popup",
+    apg: "https://www.w3.org/WAI/ARIA/apg/patterns/combobox/",
+    props: ["value", "defaultValue", "options", "placeholder", "size", "width", "fieldProps", "emptyMessage", "onValueChange", "disabled", "invalid"],
+    states: ["closed", "open", "filtered", "selected", "disabled", "invalid"],
+    tokens: ["--ds-color-bg-surface", "--ds-color-border-default", "--ds-focus-ring"]
+  },
+  {
     name: "Checkbox",
     slug: "checkbox",
     category: "forms",
@@ -192,6 +220,20 @@ export const componentCatalog: ComponentCatalogItem[] = [
     props: ["checked", "defaultChecked", "disabled", "label", "onCheckedChange"],
     states: ["off", "on", "focus-visible", "disabled"],
     tokens: ["--ds-color-action-primary-bg", "--ds-color-border-default", "--ds-focus-ring"]
+  },
+  {
+    name: "FileUploader",
+    slug: "file-uploader",
+    category: "forms",
+    priority: "P1",
+    status: "ready",
+    summary: "File selection control with dropzone-style status and metadata.",
+    purpose: "Use when users need to attach one or more files while seeing constraints and selected files.",
+    primitive: "input[type='file']",
+    apg: "https://html.spec.whatwg.org/multipage/input.html#file-upload-state-(type=file)",
+    props: ["label", "description", "accept", "multiple", "files", "defaultFiles", "maxFiles", "disabled", "error", "onFilesChange"],
+    states: ["default", "hover", "focus-visible", "drag-over", "disabled", "invalid"],
+    tokens: ["--ds-color-bg-surface", "--ds-color-border-default", "--ds-focus-ring"]
   },
   {
     name: "Alert",
@@ -320,6 +362,20 @@ export const componentCatalog: ComponentCatalogItem[] = [
     tokens: ["--ds-z-dropdown", "--ds-shadow-raised", "--ds-radius-6"]
   },
   {
+    name: "CommandPalette",
+    slug: "command-palette",
+    category: "overlays",
+    priority: "P1",
+    status: "ready",
+    summary: "Keyboard-friendly command search surface.",
+    purpose: "Use for global command discovery, quick navigation, and shortcut-driven actions.",
+    primitive: "dialog with combobox-style command list",
+    apg: "https://www.w3.org/WAI/ARIA/apg/patterns/dialog-modal/",
+    props: ["open", "defaultOpen", "commands", "placeholder", "emptyMessage", "title", "onOpenChange", "onCommandSelect"],
+    states: ["closed", "open", "filtered", "highlighted", "empty"],
+    tokens: ["--ds-z-dialog", "--ds-shadow-raised", "--ds-focus-ring"]
+  },
+  {
     name: "Tabs",
     slug: "tabs",
     category: "navigation",
@@ -362,6 +418,48 @@ export const componentCatalog: ComponentCatalogItem[] = [
     tokens: ["--ds-color-border-default", "--ds-color-action-primary-bg", "--ds-focus-ring"]
   },
   {
+    name: "Stepper",
+    slug: "stepper",
+    category: "navigation",
+    priority: "P1",
+    status: "ready",
+    summary: "Ordered workflow progress and step navigation.",
+    purpose: "Use for multi-step flows where users need current progress and optional step switching.",
+    primitive: "ordered list navigation",
+    apg: "",
+    props: ["steps", "value", "defaultValue", "orientation", "variant", "onValueChange"],
+    states: ["pending", "active", "complete", "disabled", "error"],
+    tokens: ["--ds-color-border-default", "--ds-color-action-primary-bg", "--ds-focus-ring"]
+  },
+  {
+    name: "NavigationRail",
+    slug: "navigation-rail",
+    category: "navigation",
+    priority: "P1",
+    status: "ready",
+    summary: "Compact vertical primary navigation for app shells.",
+    purpose: "Use when top-level destinations need persistent icon-first navigation in wide layouts.",
+    primitive: "nav with list of links or buttons",
+    apg: "",
+    props: ["items", "value", "defaultValue", "label", "collapsed", "onValueChange"],
+    states: ["default", "selected", "disabled", "collapsed"],
+    tokens: ["--ds-color-bg-surface", "--ds-color-border-default", "--ds-focus-ring"]
+  },
+  {
+    name: "SideNav",
+    slug: "side-nav",
+    category: "navigation",
+    priority: "P1",
+    status: "ready",
+    summary: "Sectioned vertical navigation for product workspaces.",
+    purpose: "Use for application sidebars with grouped destinations and persistent current state.",
+    primitive: "nav with grouped lists",
+    apg: "",
+    props: ["sections", "value", "defaultValue", "label", "collapsible", "collapsed", "onValueChange"],
+    states: ["expanded", "collapsed", "selected", "disabled"],
+    tokens: ["--ds-color-bg-surface", "--ds-color-border-default", "--ds-focus-ring"]
+  },
+  {
     name: "Card",
     slug: "card",
     category: "layout",
@@ -400,6 +498,20 @@ export const componentCatalog: ComponentCatalogItem[] = [
     primitive: "table",
     apg: "https://www.w3.org/WAI/ARIA/apg/patterns/table/",
     props: ["columns", "rows", "density", "sortable", "selectionMode", "striped", "hoverable", "stickyHeader", "rowKey", "rowActions", "renderCell"],
+    states: ["default", "hover", "sorted", "selected", "empty", "loading"],
+    tokens: ["--ds-color-border-default", "--ds-color-bg-surface", "--ds-color-bg-muted"]
+  },
+  {
+    name: "DataGrid",
+    slug: "data-grid",
+    category: "data-display",
+    priority: "P0",
+    status: "ready",
+    summary: "Interactive tabular grid with sorting, selection, and row actions.",
+    purpose: "Use when dense records need structured scanning with richer controls than a static table.",
+    primitive: "table with grid-like interactions",
+    apg: "https://www.w3.org/WAI/ARIA/apg/patterns/grid/",
+    props: ["columns", "rows", "density", "sortable", "selectionMode", "striped", "stickyHeader", "rowKey", "rowActions", "onSort", "onSelectionChange"],
     states: ["default", "hover", "sorted", "selected", "empty", "loading"],
     tokens: ["--ds-color-border-default", "--ds-color-bg-surface", "--ds-color-bg-muted"]
   },

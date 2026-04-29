@@ -12,22 +12,30 @@ import {
   Card,
   Checkbox,
   Col,
+  Combobox,
+  CommandPalette,
   Container,
+  DataGrid,
+  DatePicker,
   Dialog,
   Divider,
   DropdownMenu,
   EmptyState,
+  FileUploader,
   IconButton,
   Inline,
   List,
+  NavigationRail,
   Pagination,
   Popover,
   Progress,
   RadioGroup,
   Row,
   Select,
+  SideNav,
   Skeleton,
   Stack,
+  Stepper,
   Switch,
   Table,
   Tabs,
@@ -41,18 +49,26 @@ import {
 const navItems = [
   { id: "overview", label: "구성 원칙 / Principles" },
   { id: "tokens", label: "디자인 토큰 / Tokens" },
+  { id: "themes", label: "테마 시스템 / Themes" },
   { id: "rules", label: "개발 규약 / Rules" },
   { id: "components", label: "컴포넌트 / Components" },
   { id: "example", label: "조합 예시 / Example" }
 ];
 
+const themeOptions = [
+  { id: "normal", label: "NORMAL", description: "기본 제품 톤 / Base product tone" },
+  { id: "ocean", label: "OCEAN", description: "청록 액션 톤 / Teal action tone" },
+  { id: "forest", label: "FOREST", description: "녹색 업무 톤 / Green work tone" },
+  { id: "dark", label: "DARK", description: "어두운 표면 톤 / Dark surface tone" }
+];
+
 const roadmapGroups = [
   { category: "액션 / Actions", priority: "P0", components: ["Button", "IconButton"] },
-  { category: "폼 / Forms", priority: "P0", components: ["Field", "TextField", "Select", "Checkbox", "RadioGroup", "Switch"] },
+  { category: "폼 / Forms", priority: "P0/P1", components: ["Field", "TextField", "DatePicker", "Combobox", "Select", "Checkbox", "RadioGroup", "Switch", "FileUploader"] },
   { category: "피드백 / Feedback", priority: "P0/P1", components: ["Alert", "Badge", "Toast", "Progress", "Skeleton"] },
-  { category: "오버레이 / Overlays", priority: "P1", components: ["Dialog", "Popover", "Tooltip", "DropdownMenu"] },
-  { category: "내비게이션 / Navigation", priority: "P0/P1", components: ["Tabs", "Breadcrumb", "Pagination"] },
-  { category: "레이아웃 / 데이터 / Layout / Data", priority: "P0/P1", components: ["Card", "Divider", "Table", "EmptyState", "List"] }
+  { category: "오버레이 / Overlays", priority: "P1", components: ["Dialog", "Popover", "Tooltip", "DropdownMenu", "CommandPalette"] },
+  { category: "내비게이션 / Navigation", priority: "P0/P1", components: ["Tabs", "Breadcrumb", "Pagination", "Stepper", "NavigationRail", "SideNav"] },
+  { category: "레이아웃 / 데이터 / Layout / Data", priority: "P0/P1", components: ["Card", "Divider", "Table", "DataGrid", "EmptyState", "List"] }
 ];
 
 const showcase: Record<string, { preview: ReactNode; code: string }> = {
@@ -92,6 +108,14 @@ const showcase: Record<string, { preview: ReactNode; code: string }> = {
     preview: <Select label="상태 / Status" defaultValue="ready" prefix="상태 / Status" width="full" options={[{ label: "준비 / Ready", value: "ready" }, { label: "초안 / Draft", value: "draft" }]} />,
     code: `import { Select } from "@workspace/ui";\n\n<Select options={[{ label: "준비 / Ready", value: "ready" }]} />`
   },
+  DatePicker: {
+    preview: <DatePicker label="시작일 / Start date" defaultValue="2026-04-29" width="full" />,
+    code: `import { DatePicker } from "@workspace/ui";\n\n<DatePicker label="시작일 / Start date" />`
+  },
+  Combobox: {
+    preview: <Combobox label="담당자 / Owner" defaultValue="design" options={[{ label: "디자인 / Design", value: "design" }, { label: "프론트엔드 / Frontend", value: "frontend" }, { label: "제품 / Product", value: "product" }]} />,
+    code: `import { Combobox } from "@workspace/ui";`
+  },
   Checkbox: {
     preview: <Checkbox label="알림 받기 / Receive notifications" description="중요 변경 사항을 알려줍니다. / Sends important updates." defaultChecked />,
     code: `import { Checkbox } from "@workspace/ui";\n\n<Checkbox label="알림 받기 / Receive notifications" />`
@@ -103,6 +127,10 @@ const showcase: Record<string, { preview: ReactNode; code: string }> = {
   Switch: {
     preview: <Switch label="자동 저장 / Autosave" defaultChecked />,
     code: `import { Switch } from "@workspace/ui";\n\n<Switch label="자동 저장 / Autosave" defaultChecked />`
+  },
+  FileUploader: {
+    preview: <FileUploader label="첨부 / Attachment" description="여러 파일을 선택할 수 있습니다. / Multiple files are allowed." />,
+    code: `import { FileUploader } from "@workspace/ui";`
   },
   Alert: {
     preview: <Alert tone="success" title="저장 완료 / Saved" description="변경 사항이 반영되었습니다. / Your changes have been applied." dismissible actionsPlacement="bottom" />,
@@ -153,6 +181,10 @@ const showcase: Record<string, { preview: ReactNode; code: string }> = {
     preview: <DropdownMenu triggerLabel="작업 / Actions" items={[{ label: "편집 / Edit" }, { label: "복제 / Duplicate" }, { label: "삭제 / Delete" }]} />,
     code: `import { DropdownMenu } from "@workspace/ui";`
   },
+  CommandPalette: {
+    preview: <CommandPalette commands={[{ label: "프로젝트 열기 / Open project", value: "open", shortcut: "O" }, { label: "새 컴포넌트 / New component", value: "new", shortcut: "N" }]} />,
+    code: `import { CommandPalette } from "@workspace/ui";`
+  },
   Tabs: {
     preview: <Tabs variant="underline" fullWidth items={[{ label: "미리보기 / Preview", value: "preview", content: "컴포넌트 화면입니다. / Component preview." }, { label: "코드 / Code", value: "code", content: "사용 예시입니다. / Usage example." }]} />,
     code: `import { Tabs } from "@workspace/ui";`
@@ -164,6 +196,18 @@ const showcase: Record<string, { preview: ReactNode; code: string }> = {
   Pagination: {
     preview: <Pagination page={2} totalPages={5} />,
     code: `import { Pagination } from "@workspace/ui";`
+  },
+  Stepper: {
+    preview: <Stepper defaultValue="api" steps={[{ label: "요구사항 / Requirements", value: "requirements" }, { label: "API", value: "api" }, { label: "검증 / Verify", value: "verify" }]} />,
+    code: `import { Stepper } from "@workspace/ui";`
+  },
+  NavigationRail: {
+    preview: <NavigationRail defaultValue="components" items={[{ label: "홈 / Home", value: "home", icon: "H" }, { label: "컴포넌트 / Components", value: "components", icon: "C" }, { label: "문서 / Docs", value: "docs", icon: "D" }]} />,
+    code: `import { NavigationRail } from "@workspace/ui";`
+  },
+  SideNav: {
+    preview: <SideNav defaultValue="props" sections={[{ title: "문서 / Docs", items: [{ label: "개요 / Overview", value: "overview" }, { label: "Prop API", value: "props", badge: "new" }, { label: "릴리즈 / Release", value: "release" }] }]} />,
+    code: `import { SideNav } from "@workspace/ui";`
   },
   Card: {
     preview: <Card eyebrow="가이드 / Guide" title="컴포넌트 가이드 / Component guide" description="상태와 사용 기준을 함께 보여줍니다. / Shows states and usage rules together." meta="v0.1" selected actions={[{ label: "보기 / View", variant: "outline", tone: "neutral" }]}><Badge label="게시됨 / Published" tone="success" /></Card>,
@@ -177,6 +221,10 @@ const showcase: Record<string, { preview: ReactNode; code: string }> = {
     preview: <Table caption="컴포넌트 상태 / Component status" striped columns={[{ key: "name", label: "이름 / Name" }, { key: "status", label: "상태 / Status" }]} rows={[{ name: "Button", status: "ready" }, { name: "Dialog", status: "ready" }]} rowActions={(row) => <Button size="sm" variant="ghost" tone="neutral">{row.name} 보기 / View</Button>} />,
     code: `import { Table } from "@workspace/ui";`
   },
+  DataGrid: {
+    preview: <DataGrid caption="작업 목록 / Task list" selectionMode="multiple" columns={[{ key: "task", label: "작업 / Task" }, { key: "state", label: "상태 / State" }]} rows={[{ task: "DatePicker", state: "ready" }, { task: "DataGrid", state: "ready" }]} />,
+    code: `import { DataGrid } from "@workspace/ui";`
+  },
   EmptyState: {
     preview: <EmptyState title="결과 없음 / No results" description="필터를 조정해 다시 시도하세요. / Adjust filters and try again." actions={[{ label: "필터 초기화 / Reset filters" }]} />,
     code: `import { EmptyState } from "@workspace/ui";`
@@ -189,6 +237,7 @@ const showcase: Record<string, { preview: ReactNode; code: string }> = {
 
 function App() {
   const [activeSection, setActiveSection] = useState(navItems[0].id);
+  const [activeTheme, setActiveTheme] = useState("normal");
   const summaries = useMemo(() => new Map(componentCatalog.map((component) => [component.name, component])), []);
 
   useEffect(() => {
@@ -208,7 +257,7 @@ function App() {
   }, []);
 
   return (
-    <div className="shell">
+    <div className="shell" data-ds-theme={activeTheme}>
       <aside className="sidebar" aria-label="문서 메뉴 / Documentation menu">
         <div className="brand">
           <span className="brand-mark" aria-hidden="true">DS</span>
@@ -279,6 +328,47 @@ function App() {
                 ))}
               </div>
             </article>
+          </div>
+        </Section>
+
+        <Section id="themes" eyebrow="테마 / Themes" title="테마 시스템 / Theme System">
+          <div className="theme-layout">
+            <article className="theme-control">
+              <h3>전역 테마 전환 / Global Theme Switch</h3>
+              <p>
+                `data-ds-theme` 값을 바꾸면 semantic color token이 재정의되고 모든 컴포넌트가 같은 색상 체계를 상속합니다.
+                Changing `data-ds-theme` redefines semantic color tokens, so every component inherits the same color system.
+              </p>
+              <Inline gap="sm">
+                {themeOptions.map((theme) => (
+                  <Button
+                    key={theme.id}
+                    onClick={() => setActiveTheme(theme.id)}
+                    selected={activeTheme === theme.id}
+                    size="sm"
+                    tone="neutral"
+                    variant={activeTheme === theme.id ? "solid" : "outline"}
+                  >
+                    {theme.label}
+                  </Button>
+                ))}
+              </Inline>
+            </article>
+            <div className="theme-preview-grid">
+              {themeOptions.map((theme) => (
+                <article className="theme-preview-card" data-ds-theme={theme.id} key={theme.id}>
+                  <div>
+                    <span className="theme-preview-name">{theme.label}</span>
+                    <p>{theme.description}</p>
+                  </div>
+                  <Alert tone="info" title="테마 적용 / Theme applied" description="semantic token으로 렌더링합니다. / Rendered through semantic tokens." />
+                  <Inline gap="sm">
+                    <Button size="sm">확인 / Confirm</Button>
+                    <Button size="sm" variant="outline" tone="neutral">취소 / Cancel</Button>
+                  </Inline>
+                </article>
+              ))}
+            </div>
           </div>
         </Section>
 

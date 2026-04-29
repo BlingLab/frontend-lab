@@ -14,6 +14,7 @@ This directory stores design standards that should be agreed on before component
 - [Prop API 설계 가이드 / Prop API Guidelines](./prop-api-guidelines.md): 재사용 가능한 prop 축, slot, render prop 기준 / Reusable prop axes, slots, and render prop rules
 - [명명 규칙 / Naming Conventions](./naming-conventions.md): 이름, prop, CSS class, data attribute 규칙 / Rules for names, props, CSS classes, and data attributes
 - [토큰 계약 / Token Contract](./token-contract.md): 디자인 토큰 레이어와 CSS 변수 사용 방식 / Design token layers and CSS variable usage
+- [테마 시스템 / Theme System](./theme-system.md): normal 기본 theme와 theme set 확장 방식 / Normal base theme and theme set extension model
 - [패키지 사용 가이드 / Package Consumption Guide](./package-consumption.md): 외부 React 프로젝트에서 패키지를 사용하는 방식 / How external React projects consume the package
 - [릴리즈 체크리스트 / Release Checklist](./release-checklist.md): 배포 전 검증과 산출물 확인 / Pre-release validation and output checks
 - [접근성 체크리스트 / Accessibility Checklist](./accessibility-checklist.md): 구현 전후 접근성 확인 항목 / Accessibility checks before and after implementation
@@ -26,3 +27,4 @@ This directory stores design standards that should be agreed on before component
 - 컴포넌트가 해결하는 UI 문제를 한 문장으로 설명할 수 없으면 추가하지 않습니다. / Do not add a component if its UI problem cannot be explained in one sentence.
 - 모든 interactive 컴포넌트는 키보드, 포커스, 접근 가능한 이름, 상태 전달 방식을 스펙에 포함해야 합니다. / Every interactive component must specify keyboard behavior, focus, accessible naming, and state communication.
 - 토큰을 거치지 않은 원시 색상, 간격, radius 값은 컴포넌트 코드에 직접 쓰지 않습니다. / Do not write raw color, spacing, or radius values directly in component code.
+- 테마는 component CSS가 아니라 semantic token override로 확장합니다. / Themes are extended through semantic token overrides, not component CSS.

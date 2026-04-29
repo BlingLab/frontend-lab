@@ -1,4 +1,5 @@
-:root {
+:root,
+[data-ds-theme] {
   --bg: var(--ds-color-bg-canvas);
   --surface: var(--ds-color-bg-surface);
   --surface-muted: var(--ds-color-bg-muted);
@@ -42,6 +43,8 @@ select {
   display: grid;
   grid-template-columns: var(--sidebar-width) minmax(0, 1fr);
   min-height: 100vh;
+  background: var(--bg);
+  color: var(--text);
 }
 
 .sidebar {
@@ -371,6 +374,47 @@ pre {
   background: var(--primary);
 }
 
+.theme-layout {
+  display: grid;
+  grid-template-columns: minmax(260px, 0.8fr) minmax(360px, 1.2fr);
+  gap: 18px;
+}
+
+.theme-control,
+.theme-preview-card {
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: var(--surface);
+  color: var(--text);
+  padding: 20px;
+}
+
+.theme-control p,
+.theme-preview-card p {
+  color: var(--muted);
+  line-height: 1.6;
+}
+
+.theme-preview-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+}
+
+.theme-preview-card {
+  display: grid;
+  gap: 14px;
+  box-shadow: var(--ds-shadow-low);
+}
+
+.theme-preview-name {
+  display: block;
+  color: var(--ds-color-action-primary-bg);
+  font-size: 13px;
+  font-weight: 800;
+  margin-bottom: 6px;
+}
+
 .component-list {
   display: grid;
   gap: 18px;
@@ -510,6 +554,7 @@ pre {
 
   .intro,
   .component-card,
+  .theme-layout,
   .workflow-preview {
     grid-template-columns: 1fr;
   }
@@ -518,6 +563,7 @@ pre {
   .token-grid,
   .rule-grid,
   .roadmap-list,
+  .theme-preview-grid,
   .smoke-grid {
     grid-template-columns: 1fr;
   }

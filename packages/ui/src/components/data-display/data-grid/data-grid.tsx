@@ -1,0 +1,55 @@
+import type { HTMLAttributes, ReactNode } from "react";
+import { Table, type TableColumn } from "../table";
+
+export type DataGridColumn<Row extends Record<string, unknown>> = TableColumn<Row> & {
+  resizable?: boolean;
+};
+
+export interface DataGridProps<Row extends Record<string, unknown>> extends HTMLAttributes<HTMLDivElement> {
+  caption?: ReactNode;
+  columns?: Array<DataGridColumn<Row>>;
+  rows?: Row[];
+  density?: "compact" | "md";
+  sortable?: boolean;
+  selectionMode?: "none" | "multiple";
+  striped?: boolean;
+  stickyHeader?: boolean;
+  loading?: boolean;
+  emptyMessage?: ReactNode;
+  rowKey?: (row: Row, rowIndex: number) => string;
+  rowActions?: (row: Row, rowIndex: number) => ReactNode;
+  onSort?: (key: keyof Row & string) => void;
+  onSelectionChange?: (rows: Row[]) => void;
+}
+
+export function DataGrid<Row extends Record<string, unknown>>({
+  caption,
+  columns = [],
+  rows = [],
+  density = "md",
+  sortable = true,
+  selectionMode = "none",
+  striped = true,
+  stickyHeader = false,
+  loading = false,
+  emptyMessage,
+  ...props
+}: DataGridProps<Row>) {
+  return (
+    <div className="ds-DataGrid" data-loading={loading ? "true" : undefined}>
+      {loading ? <div className="ds-DataGrid-loading">불러오는 중 / Loading</div> : null}
+      <Table
+        caption={caption}
+        columns={columns}
+        rows={rows}
+        density={density}
+        sortable={sortable}
+        selectionMode={selectionMode}
+        striped={striped}
+        stickyHeader={stickyHeader}
+        {...props}
+      />
+      {!loading && rows.length === 0 && emptyMessage ? <div className="ds-DataGrid-empty">{emptyMessage}</div> : null}
+    </div>
+  );
+}

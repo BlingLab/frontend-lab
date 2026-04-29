@@ -60,6 +60,33 @@ import "@workspace/tokens/tokens.css";
 import "@workspace/ui/styles.css";
 ```
 
+## 테마 적용 / Theme Usage
+
+기본 theme는 `normal`이며 token CSS를 import하면 바로 사용할 수 있습니다.
+The default theme is `normal` and works immediately after importing token CSS.
+
+```tsx
+export function AppShell() {
+  return (
+    <main data-ds-theme="normal">
+      <Button>저장 / Save</Button>
+    </main>
+  );
+}
+```
+
+제품, 브랜드, 관리자 화면처럼 범위가 다른 영역은 container 단위로 theme를 바꿉니다.
+For areas such as products, brands, or admin screens, switch the theme at the container level.
+
+```tsx
+<section data-ds-theme="ocean">
+  <DataGrid columns={columns} rows={rows} />
+</section>
+```
+
+새 theme를 만들 때는 component CSS를 복사하지 않고 `packages/tokens/src/tokens.css`에서 semantic token만 override합니다.
+When creating a new theme, do not copy component CSS; override only semantic tokens in `packages/tokens/src/tokens.css`.
+
 ## 빌드 산출물 / Build Output
 
 외부 프로젝트가 참조하는 entry는 `packages/ui/dist`입니다.
@@ -90,4 +117,4 @@ packages/ui/dist/
 2. 소비자 프로젝트에서 React peer dependency를 맞춥니다. / Match React peer dependencies in the consumer project.
 3. 앱 entry에서 token CSS와 UI CSS를 import합니다. / Import token CSS and UI CSS in the app entry.
 4. 루트 entry 또는 개별 component entry에서 컴포넌트를 import합니다. / Import components from the root entry or per-component entries.
-5. 제품별 theme override는 `--ds-*` token override로 처리합니다. / Product theme overrides should be handled through `--ds-*` token overrides.
+5. 제품별 theme는 `data-ds-theme`와 semantic token override로 처리합니다. / Product themes are handled with `data-ds-theme` and semantic token overrides.
