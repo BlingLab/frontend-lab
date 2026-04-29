@@ -51,6 +51,10 @@ export function Stepper({ steps = [], value, defaultValue, orientation = "horizo
       event.preventDefault();
       focusStep(steps.length - 1);
     }
+    if (event.key === "Enter" || event.key === " ") {
+      event.preventDefault();
+      setCurrentValue(steps[index]?.value ?? currentValue);
+    }
   };
 
   return (
