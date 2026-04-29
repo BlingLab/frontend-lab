@@ -41,6 +41,9 @@ jobs:
       - name: 테마 토큰 회귀 검증 / Theme token regression
         run: npm run test:tokens
 
+      - name: Public prop 타입 검증 / Public prop type checks
+        run: npm run test:types
+
       - name: Playwright 브라우저 설치 / Install Playwright browser
         run: npx playwright install --with-deps chromium
 

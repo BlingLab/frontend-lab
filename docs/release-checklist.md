@@ -13,6 +13,7 @@ npm run build
 npm --workspace @workspace/docs run build
 npm run test:consumer
 npm run test:tokens
+npm run test:types
 npm run test:visual
 npm pack --workspace @workspace/ui --dry-run
 ```
@@ -26,6 +27,7 @@ npm pack --workspace @workspace/ui --dry-run
 - `test:interaction`은 keyboard, focus return, highlighted option 같은 상호작용 접근성 흐름을 확인해야 합니다. / `test:interaction` must verify interaction accessibility flows such as keyboard, focus return, and highlighted options.
 - `test:consumer`는 source alias 없이 `@workspace/ui` root export, per-component export, `styles.css`, token CSS import를 fixture 앱에서 확인해야 합니다. / `test:consumer` must verify `@workspace/ui` root exports, per-component exports, `styles.css`, and token CSS imports in the fixture app without source aliases.
 - `test:tokens`는 token contract의 필수 semantic token과 NORMAL/DARK theme 차이를 확인해야 합니다. / `test:tokens` must verify required semantic tokens from the token contract and NORMAL/DARK theme differences.
+- `test:types`는 public prop API의 허용/비허용 TypeScript 예제를 확인해야 합니다. / `test:types` must verify allowed and disallowed TypeScript examples for public prop APIs.
 - `test:visual`은 docs app home, theme compare, DataGrid screenshot과 horizontal overflow를 확인해야 합니다. / `test:visual` must verify docs app home, theme compare, DataGrid screenshots, and horizontal overflow.
 - `test:exports`는 root export와 per-component export가 실제 `dist` 파일과 맞는지 확인해야 합니다. / `test:exports` must verify that root and per-component exports match real `dist` files.
 - React는 dependency가 아니라 peer dependency로 유지합니다. / React must remain a peer dependency, not a bundled dependency.

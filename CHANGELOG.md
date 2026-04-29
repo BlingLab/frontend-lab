@@ -15,6 +15,7 @@ All notable changes are documented in this file.
 - 외부 소비자 fixture 앱과 `test:consumer` 검증을 추가했습니다. / Added an external consumer fixture app and `test:consumer` validation.
 - DataGrid column resize keyboard 조작과 ARIA value 상태를 추가했습니다. / Added DataGrid column resize keyboard controls and ARIA value state.
 - theme/token 회귀 검증 스크립트 `test:tokens`를 추가했습니다. / Added the `test:tokens` theme/token regression script.
+- public prop API 타입 회귀 검증 스크립트 `test:types`를 추가했습니다. / Added the `test:types` public prop API type regression script.
 
 ### Changed
 
