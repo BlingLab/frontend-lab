@@ -41,6 +41,7 @@ Every component documents the items below before implementation.
 
 - `catalog.ts`의 `props`는 README와 spec의 `Prop 축 / Prop Axes` 기준입니다. / `props` in `catalog.ts` are the source for `Prop Axes` in README and spec files.
 - 상세 prop table은 `packages/ui/src/components/prop-docs.ts`에서 관리하고 scaffold가 `Prop 표 / Prop Table`로 렌더링합니다. / Detailed prop tables are managed in `packages/ui/src/components/prop-docs.ts` and rendered by the scaffold as `Prop Table`.
+- 기존 README/spec의 다른 내용을 보존하면서 prop table만 동기화할 때는 `npm run components:props`를 사용합니다. / Use `npm run components:props` when only prop tables should be synced while preserving the rest of existing README/spec files.
 - `DataGrid`, `Combobox`, `CommandPalette`처럼 prop이 많은 컴포넌트는 source props와 prop table이 `npm run components:validate`에서 함께 검증됩니다. / Prop-heavy components such as `DataGrid`, `Combobox`, and `CommandPalette` validate source props and prop tables together through `npm run components:validate`.
 - 기존 README/spec는 기본적으로 보존됩니다. 강제로 문서를 재생성해야 할 때만 사용자 수동 변경 여부를 확인한 뒤 `npm run components:scaffold -- --force-docs`를 사용합니다. / Existing README/spec files are preserved by default. Use `npm run components:scaffold -- --force-docs` only after checking for user-authored manual changes.
 

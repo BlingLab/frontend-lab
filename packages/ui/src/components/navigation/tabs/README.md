@@ -17,6 +17,20 @@
 
 `value`, `defaultValue`, `orientation`, `activationMode`, `variant`, `size`, `fullWidth`, `keepMounted`, `disabled`
 
+## Prop 표 / Prop Table
+
+| Prop | Type | Default | 설명 / Description |
+| --- | --- | --- | --- |
+| `value` | `string \| number` | `-` | controlled 값입니다. / Controlled value. |
+| `defaultValue` | `string` | `-` | uncontrolled 초기 값입니다. / Initial uncontrolled value. |
+| `orientation` | `"horizontal" \| "vertical"` | `-` | 컴포넌트 방향입니다. / Component orientation. |
+| `activationMode` | `component-specific` | `-` | 컴포넌트별 확장 prop입니다. / Component-specific extension prop. |
+| `variant` | `variant` | `-` | 시각 variant입니다. / Visual variant. |
+| `size` | `Size` | `"md"` | control 크기와 밀도입니다. / Control size and density. |
+| `fullWidth` | `boolean` | `false` | 부모 폭을 채우도록 확장합니다. / Expands to fill the parent width. |
+| `keepMounted` | `boolean` | `false` | 비활성 content를 DOM에 유지할지 결정합니다. / Determines whether inactive content remains mounted. |
+| `disabled` | `boolean` | `false` | 사용자 interaction을 비활성화합니다. / Disables user interaction. |
+
 ## 상태 / States
 
 - `selected`

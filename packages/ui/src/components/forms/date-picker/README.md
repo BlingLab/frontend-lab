@@ -17,6 +17,22 @@ Field composition을 공유하는 단일 날짜 입력입니다. / Date input wi
 
 `value`, `defaultValue`, `minDate`, `maxDate`, `size`, `width`, `fieldProps`, `inputClassName`, `disabled`, `readOnly`, `invalid`
 
+## Prop 표 / Prop Table
+
+| Prop | Type | Default | 설명 / Description |
+| --- | --- | --- | --- |
+| `value` | `string \| number` | `-` | controlled 값입니다. / Controlled value. |
+| `defaultValue` | `string` | `-` | uncontrolled 초기 값입니다. / Initial uncontrolled value. |
+| `minDate` | `component-specific` | `-` | 컴포넌트별 확장 prop입니다. / Component-specific extension prop. |
+| `maxDate` | `component-specific` | `-` | 컴포넌트별 확장 prop입니다. / Component-specific extension prop. |
+| `size` | `Size` | `"md"` | control 크기와 밀도입니다. / Control size and density. |
+| `width` | `FieldWidth \| CSSProperties["width"]` | `-` | 렌더링 width 값입니다. / Rendered width value. |
+| `fieldProps` | `FieldProps` | `-` | Field wrapper에 전달할 추가 설정입니다. / Additional settings passed to the Field wrapper. |
+| `inputClassName` | `component-specific` | `-` | 컴포넌트별 확장 prop입니다. / Component-specific extension prop. |
+| `disabled` | `boolean` | `false` | 사용자 interaction을 비활성화합니다. / Disables user interaction. |
+| `readOnly` | `boolean` | `false` | 값을 읽기 전용으로 만듭니다. / Makes the value read-only. |
+| `invalid` | `boolean` | `false` | validation 실패 상태를 표시합니다. / Shows validation failure state. |
+
 ## 상태 / States
 
 - `default`

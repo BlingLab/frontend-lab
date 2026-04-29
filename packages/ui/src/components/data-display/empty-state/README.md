@@ -17,6 +17,16 @@
 
 `title`, `description`, `icon`, `actions`, `tone`
 
+## Prop 표 / Prop Table
+
+| Prop | Type | Default | 설명 / Description |
+| --- | --- | --- | --- |
+| `title` | `ReactNode` | `-` | 표면 또는 content의 제목입니다. / Title of the surface or content. |
+| `description` | `ReactNode` | `-` | 보조 설명 text입니다. / Helper description text. |
+| `icon` | `ReactNode` | `-` | 시각적으로 함께 표시할 icon입니다. / Icon displayed with the content. |
+| `actions` | `ReactNode \| action[]` | `-` | 사용자가 실행할 수 있는 보조 action입니다. / Secondary actions the user can run. |
+| `tone` | `tone` | `-` | semantic color tone입니다. / Semantic color tone. |
+
 ## 상태 / States
 
 - `no-data`

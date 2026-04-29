@@ -17,6 +17,14 @@
 
 `items`, `separator`, `maxItems`
 
+## Prop 표 / Prop Table
+
+| Prop | Type | Default | 설명 / Description |
+| --- | --- | --- | --- |
+| `items` | `item[]` | `[]` | 렌더링할 item 목록입니다. / Items to render. |
+| `separator` | `component-specific` | `-` | 컴포넌트별 확장 prop입니다. / Component-specific extension prop. |
+| `maxItems` | `component-specific` | `-` | 컴포넌트별 확장 prop입니다. / Component-specific extension prop. |
+
 ## 상태 / States
 
 - `current`

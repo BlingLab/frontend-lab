@@ -12,6 +12,14 @@
 - priority/status: `P1` / `ready`
 - props: `name`, `label`, `size`
 
+## Prop 표 / Prop Table
+
+| Prop | Type | Default | 설명 / Description |
+| --- | --- | --- | --- |
+| `name` | `string` | `-` | form 제출 또는 group 식별에 쓰는 name입니다. / Name used for form submission or group identity. |
+| `label` | `ReactNode` | `-` | 사용자에게 보이는 label 또는 accessible name입니다. / Visible label or accessible name. |
+| `size` | `Size` | `"md"` | control 크기와 밀도입니다. / Control size and density. |
+
 ## 변형 / Variants
 
 - `name`은 제공되는 `IconName` union 안에서만 선택합니다. / `name` is selected only from the provided `IconName` union.

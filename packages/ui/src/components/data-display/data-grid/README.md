@@ -47,7 +47,6 @@
 | `onSelectionChange` | `(rows: Row[]) => void` | `-` | 선택된 row 목록이 바뀔 때 호출됩니다. / Called when selected rows change. |
 | `onActiveRowKeyChange` | `(key: string \| undefined, row: Row \| undefined) => void` | `-` | active row가 바뀔 때 호출됩니다. / Called when the active row changes. |
 | `onColumnResize` | `(key: keyof Row & string, width: number) => void` | `-` | column width가 바뀔 때 호출됩니다. / Called when a column width changes. |
-
 ## 상태 / States
 
 - `default`

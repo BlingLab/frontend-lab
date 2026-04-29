@@ -12,6 +12,20 @@
 - priority/status: `P0` / `ready`
 - props: `label`, `description`, `error`, `required`, `disabled`, `controlId`, `orientation`, `width`, `hideLabel`
 
+## Prop 표 / Prop Table
+
+| Prop | Type | Default | 설명 / Description |
+| --- | --- | --- | --- |
+| `label` | `ReactNode` | `-` | 사용자에게 보이는 label 또는 accessible name입니다. / Visible label or accessible name. |
+| `description` | `ReactNode` | `-` | 보조 설명 text입니다. / Helper description text. |
+| `error` | `ReactNode` | `-` | 오류 메시지이며 invalid 상태를 만듭니다. / Error message that creates the invalid state. |
+| `required` | `boolean` | `false` | 필수 입력 상태를 표시합니다. / Marks the field as required. |
+| `disabled` | `boolean` | `false` | 사용자 interaction을 비활성화합니다. / Disables user interaction. |
+| `controlId` | `component-specific` | `-` | 컴포넌트별 확장 prop입니다. / Component-specific extension prop. |
+| `orientation` | `"horizontal" \| "vertical"` | `-` | 컴포넌트 방향입니다. / Component orientation. |
+| `width` | `FieldWidth \| CSSProperties["width"]` | `-` | 렌더링 width 값입니다. / Rendered width value. |
+| `hideLabel` | `component-specific` | `-` | 컴포넌트별 확장 prop입니다. / Component-specific extension prop. |
+
 ## 변형 / Variants
 
 - 시각 변형은 이미 정의된 `variant`, `tone`, `size`, `density`, `orientation` prop이 있을 때만 사용합니다. / Visual variants use existing props such as `variant`, `tone`, `size`, `density`, and `orientation` only when they are defined.

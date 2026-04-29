@@ -17,6 +17,21 @@
 
 `items`, `density`, `dividers`, `selectionMode`, `variant`, `renderItem`, `leading`, `trailing`, `disabled`, `selected`
 
+## Prop 표 / Prop Table
+
+| Prop | Type | Default | 설명 / Description |
+| --- | --- | --- | --- |
+| `items` | `item[]` | `[]` | 렌더링할 item 목록입니다. / Items to render. |
+| `density` | `component-specific` | `-` | 컴포넌트별 확장 prop입니다. / Component-specific extension prop. |
+| `dividers` | `component-specific` | `-` | 컴포넌트별 확장 prop입니다. / Component-specific extension prop. |
+| `selectionMode` | `"none" \| "single" \| "multiple"` | `-` | 선택 interaction 방식입니다. / Selection interaction mode. |
+| `variant` | `variant` | `-` | 시각 variant입니다. / Visual variant. |
+| `renderItem` | `component-specific` | `-` | 컴포넌트별 확장 prop입니다. / Component-specific extension prop. |
+| `leading` | `component-specific` | `-` | 컴포넌트별 확장 prop입니다. / Component-specific extension prop. |
+| `trailing` | `component-specific` | `-` | 컴포넌트별 확장 prop입니다. / Component-specific extension prop. |
+| `disabled` | `boolean` | `false` | 사용자 interaction을 비활성화합니다. / Disables user interaction. |
+| `selected` | `boolean` | `false` | 선택된 시각 상태입니다. / Selected visual state. |
+
 ## 상태 / States
 
 - `default`

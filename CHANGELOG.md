@@ -22,6 +22,7 @@ All notable changes are documented in this file.
 - prop-heavy component README/spec용 prop table metadata와 검증을 추가했습니다. / Added prop table metadata and validation for prop-heavy component README/spec docs.
 - repo 내부 Markdown 상대 링크 검증 `docs:links`를 추가했습니다. / Added `docs:links` validation for repo-internal Markdown relative links.
 - docs app skip link와 자연 Tab 진입 browser smoke 검증을 추가했습니다. / Added docs app skip link and natural Tab entry browser smoke validation.
+- 모든 ready component README/spec에 prop table을 동기화하는 `components:props`를 추가했습니다. / Added `components:props` to sync prop tables across all ready component README/spec files.
 
 ### Changed
 

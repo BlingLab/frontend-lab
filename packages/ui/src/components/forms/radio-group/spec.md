@@ -12,6 +12,17 @@
 - priority/status: `P0` / `ready`
 - props: `value`, `defaultValue`, `options`, `orientation`, `disabled`, `invalid`
 
+## Prop 표 / Prop Table
+
+| Prop | Type | Default | 설명 / Description |
+| --- | --- | --- | --- |
+| `value` | `string \| number` | `-` | controlled 값입니다. / Controlled value. |
+| `defaultValue` | `string` | `-` | uncontrolled 초기 값입니다. / Initial uncontrolled value. |
+| `options` | `component-specific` | `-` | 컴포넌트별 확장 prop입니다. / Component-specific extension prop. |
+| `orientation` | `"horizontal" \| "vertical"` | `-` | 컴포넌트 방향입니다. / Component orientation. |
+| `disabled` | `boolean` | `false` | 사용자 interaction을 비활성화합니다. / Disables user interaction. |
+| `invalid` | `boolean` | `false` | validation 실패 상태를 표시합니다. / Shows validation failure state. |
+
 ## 변형 / Variants
 
 - 시각 변형은 이미 정의된 `variant`, `tone`, `size`, `density`, `orientation` prop이 있을 때만 사용합니다. / Visual variants use existing props such as `variant`, `tone`, `size`, `density`, and `orientation` only when they are defined.

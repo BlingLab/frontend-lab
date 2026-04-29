@@ -62,3 +62,6 @@ Even documentation-only changes should confirm that public exports, folder struc
 
 기존 수동 문서를 덮어쓰지 않기 위해 scaffold는 README/spec를 기본적으로 보존합니다. 문서를 재생성해야 할 때만 변경분을 먼저 확인하고 `npm run components:scaffold -- --force-docs`를 실행합니다.
 The scaffold preserves existing README/spec files by default. Regenerate docs only after checking local changes, then run `npm run components:scaffold -- --force-docs`.
+
+prop table만 갱신할 때는 기존 문서 본문을 유지하는 `npm run components:props`를 사용합니다.
+Use `npm run components:props` to update only prop tables while preserving existing document prose.

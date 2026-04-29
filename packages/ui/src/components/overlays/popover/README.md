@@ -17,6 +17,15 @@
 
 `open`, `defaultOpen`, `onOpenChange`, `placement`
 
+## Prop 표 / Prop Table
+
+| Prop | Type | Default | 설명 / Description |
+| --- | --- | --- | --- |
+| `open` | `boolean` | `-` | controlled open 상태입니다. / Controlled open state. |
+| `defaultOpen` | `boolean` | `false` | uncontrolled 초기 open 상태입니다. / Initial uncontrolled open state. |
+| `onOpenChange` | `(open: boolean) => void` | `-` | open 상태가 바뀔 때 호출됩니다. / Called when open state changes. |
+| `placement` | `string` | `"bottom-start"` | floating surface 위치입니다. / Floating surface placement. |
+
 ## 상태 / States
 
 - `closed`

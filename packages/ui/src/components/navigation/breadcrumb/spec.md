@@ -12,6 +12,14 @@
 - priority/status: `P1` / `ready`
 - props: `items`, `separator`, `maxItems`
 
+## Prop 표 / Prop Table
+
+| Prop | Type | Default | 설명 / Description |
+| --- | --- | --- | --- |
+| `items` | `item[]` | `[]` | 렌더링할 item 목록입니다. / Items to render. |
+| `separator` | `component-specific` | `-` | 컴포넌트별 확장 prop입니다. / Component-specific extension prop. |
+| `maxItems` | `component-specific` | `-` | 컴포넌트별 확장 prop입니다. / Component-specific extension prop. |
+
 ## 변형 / Variants
 
 - 시각 변형은 이미 정의된 `variant`, `tone`, `size`, `density`, `orientation` prop이 있을 때만 사용합니다. / Visual variants use existing props such as `variant`, `tone`, `size`, `density`, and `orientation` only when they are defined.

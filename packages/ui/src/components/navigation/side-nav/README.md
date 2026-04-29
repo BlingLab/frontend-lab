@@ -17,6 +17,18 @@
 
 `sections`, `value`, `defaultValue`, `label`, `collapsible`, `collapsed`, `onValueChange`
 
+## Prop 표 / Prop Table
+
+| Prop | Type | Default | 설명 / Description |
+| --- | --- | --- | --- |
+| `sections` | `component-specific` | `-` | 컴포넌트별 확장 prop입니다. / Component-specific extension prop. |
+| `value` | `string \| number` | `-` | controlled 값입니다. / Controlled value. |
+| `defaultValue` | `string` | `-` | uncontrolled 초기 값입니다. / Initial uncontrolled value. |
+| `label` | `ReactNode` | `-` | 사용자에게 보이는 label 또는 accessible name입니다. / Visible label or accessible name. |
+| `collapsible` | `component-specific` | `-` | 컴포넌트별 확장 prop입니다. / Component-specific extension prop. |
+| `collapsed` | `component-specific` | `-` | 컴포넌트별 확장 prop입니다. / Component-specific extension prop. |
+| `onValueChange` | `function` | `-` | value가 바뀔 때 호출됩니다. / Called when value changes. |
+
 ## 상태 / States
 
 - `expanded`

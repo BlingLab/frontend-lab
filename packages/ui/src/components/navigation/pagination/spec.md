@@ -12,6 +12,17 @@
 - priority/status: `P1` / `ready`
 - props: `page`, `defaultPage`, `totalPages`, `siblingCount`, `disabled`, `onPageChange`
 
+## Prop 표 / Prop Table
+
+| Prop | Type | Default | 설명 / Description |
+| --- | --- | --- | --- |
+| `page` | `number` | `-` | 현재 page 값입니다. / Current page value. |
+| `defaultPage` | `number` | `-` | uncontrolled 초기 page 값입니다. / Initial uncontrolled page value. |
+| `totalPages` | `number` | `-` | 전체 page 수입니다. / Total number of pages. |
+| `siblingCount` | `component-specific` | `-` | 컴포넌트별 확장 prop입니다. / Component-specific extension prop. |
+| `disabled` | `boolean` | `false` | 사용자 interaction을 비활성화합니다. / Disables user interaction. |
+| `onPageChange` | `(page: number) => void` | `-` | page 값이 바뀔 때 호출됩니다. / Called when page changes. |
+
 ## 변형 / Variants
 
 - 시각 변형은 이미 정의된 `variant`, `tone`, `size`, `density`, `orientation` prop이 있을 때만 사용합니다. / Visual variants use existing props such as `variant`, `tone`, `size`, `density`, and `orientation` only when they are defined.

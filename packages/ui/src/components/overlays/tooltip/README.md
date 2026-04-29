@@ -17,6 +17,15 @@ hover 또는 focus된 컨트롤을 짧게 설명하는 helper text입니다. / B
 
 `content`, `placement`, `delay`, `disabled`
 
+## Prop 표 / Prop Table
+
+| Prop | Type | Default | 설명 / Description |
+| --- | --- | --- | --- |
+| `content` | `ReactNode` | `-` | 표시할 floating content입니다. / Floating content to display. |
+| `placement` | `string` | `"bottom-start"` | floating surface 위치입니다. / Floating surface placement. |
+| `delay` | `component-specific` | `-` | 컴포넌트별 확장 prop입니다. / Component-specific extension prop. |
+| `disabled` | `boolean` | `false` | 사용자 interaction을 비활성화합니다. / Disables user interaction. |
+
 ## 상태 / States
 
 - `closed`

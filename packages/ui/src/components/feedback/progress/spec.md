@@ -12,6 +12,16 @@
 - priority/status: `P1` / `ready`
 - props: `value`, `max`, `label`, `indeterminate`, `tone`
 
+## Prop 표 / Prop Table
+
+| Prop | Type | Default | 설명 / Description |
+| --- | --- | --- | --- |
+| `value` | `string \| number` | `-` | controlled 값입니다. / Controlled value. |
+| `max` | `number` | `100` | 허용되는 최대 값입니다. / Maximum allowed value. |
+| `label` | `ReactNode` | `-` | 사용자에게 보이는 label 또는 accessible name입니다. / Visible label or accessible name. |
+| `indeterminate` | `boolean` | `false` | 부분 선택 상태를 표시합니다. / Shows a partially selected state. |
+| `tone` | `tone` | `-` | semantic color tone입니다. / Semantic color tone. |
+
 ## 변형 / Variants
 
 - 시각 변형은 이미 정의된 `variant`, `tone`, `size`, `density`, `orientation` prop이 있을 때만 사용합니다. / Visual variants use existing props such as `variant`, `tone`, `size`, `density`, and `orientation` only when they are defined.

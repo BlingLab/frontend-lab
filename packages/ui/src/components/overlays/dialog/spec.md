@@ -12,6 +12,19 @@
 - priority/status: `P1` / `ready`
 - props: `open`, `defaultOpen`, `onOpenChange`, `modal`, `size`, `initialFocus`, `closeLabel`, `closeOnBackdropClick`
 
+## Prop 표 / Prop Table
+
+| Prop | Type | Default | 설명 / Description |
+| --- | --- | --- | --- |
+| `open` | `boolean` | `-` | controlled open 상태입니다. / Controlled open state. |
+| `defaultOpen` | `boolean` | `false` | uncontrolled 초기 open 상태입니다. / Initial uncontrolled open state. |
+| `onOpenChange` | `(open: boolean) => void` | `-` | open 상태가 바뀔 때 호출됩니다. / Called when open state changes. |
+| `modal` | `boolean` | `true` | modal interaction으로 열지 결정합니다. / Determines whether the overlay opens modally. |
+| `size` | `Size` | `"md"` | control 크기와 밀도입니다. / Control size and density. |
+| `initialFocus` | `component-specific` | `-` | 컴포넌트별 확장 prop입니다. / Component-specific extension prop. |
+| `closeLabel` | `string` | `"닫기 / Close"` | 닫기 control의 accessible label입니다. / Accessible label for the close control. |
+| `closeOnBackdropClick` | `boolean` | `true` | backdrop click으로 닫을지 결정합니다. / Determines whether backdrop click closes the overlay. |
+
 ## 변형 / Variants
 
 - 시각 변형은 이미 정의된 `variant`, `tone`, `size`, `density`, `orientation` prop이 있을 때만 사용합니다. / Visual variants use existing props such as `variant`, `tone`, `size`, `density`, and `orientation` only when they are defined.

@@ -12,6 +12,15 @@
 - priority/status: `P1` / `ready`
 - props: `content`, `placement`, `delay`, `disabled`
 
+## Prop 표 / Prop Table
+
+| Prop | Type | Default | 설명 / Description |
+| --- | --- | --- | --- |
+| `content` | `ReactNode` | `-` | 표시할 floating content입니다. / Floating content to display. |
+| `placement` | `string` | `"bottom-start"` | floating surface 위치입니다. / Floating surface placement. |
+| `delay` | `component-specific` | `-` | 컴포넌트별 확장 prop입니다. / Component-specific extension prop. |
+| `disabled` | `boolean` | `false` | 사용자 interaction을 비활성화합니다. / Disables user interaction. |
+
 ## 변형 / Variants
 
 - 시각 변형은 이미 정의된 `variant`, `tone`, `size`, `density`, `orientation` prop이 있을 때만 사용합니다. / Visual variants use existing props such as `variant`, `tone`, `size`, `density`, and `orientation` only when they are defined.

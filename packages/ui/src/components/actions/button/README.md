@@ -17,6 +17,22 @@
 
 `variant`, `tone`, `size`, `disabled`, `loading`, `type`, `fullWidth`, `selected`, `justify`, `iconStart`, `iconEnd`
 
+## Prop 표 / Prop Table
+
+| Prop | Type | Default | 설명 / Description |
+| --- | --- | --- | --- |
+| `variant` | `variant` | `-` | 시각 variant입니다. / Visual variant. |
+| `tone` | `tone` | `-` | semantic color tone입니다. / Semantic color tone. |
+| `size` | `Size` | `"md"` | control 크기와 밀도입니다. / Control size and density. |
+| `disabled` | `boolean` | `false` | 사용자 interaction을 비활성화합니다. / Disables user interaction. |
+| `loading` | `boolean` | `false` | loading 상태를 표시합니다. / Shows loading state. |
+| `type` | `string` | `-` | native element type입니다. / Native element type. |
+| `fullWidth` | `boolean` | `false` | 부모 폭을 채우도록 확장합니다. / Expands to fill the parent width. |
+| `selected` | `boolean` | `false` | 선택된 시각 상태입니다. / Selected visual state. |
+| `justify` | `alignment` | `-` | 자식 요소의 주축 정렬입니다. / Main-axis alignment for children. |
+| `iconStart` | `ReactNode` | `-` | content 앞에 표시할 icon입니다. / Icon displayed before the content. |
+| `iconEnd` | `ReactNode` | `-` | content 뒤에 표시할 icon입니다. / Icon displayed after the content. |
+
 ## 상태 / States
 
 - `default`
