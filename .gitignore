@@ -27,6 +27,9 @@ lib-cov
 coverage
 *.lcov
 
+# Visual regression artifacts
+artifacts/
+
 # nyc test coverage
 .nyc_output
 

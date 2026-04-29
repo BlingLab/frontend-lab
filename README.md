@@ -176,6 +176,13 @@ npm run test
 컴포넌트 시스템 검증, UI 빌드, 접근성 스모크 테스트, 상호작용 접근성 테스트, package export 검증을 한 번에 실행합니다.
 Runs component system validation, UI build, accessibility smoke checks, interaction accessibility checks, and package export verification together.
 
+```bash
+npm run test:visual
+```
+
+문서 앱 home, theme compare, DataGrid 예시를 NORMAL/DARK와 mobile/tablet/desktop viewport에서 screenshot으로 확인합니다.
+Checks docs app home, theme compare, and DataGrid examples with screenshots across NORMAL/DARK and mobile/tablet/desktop viewports.
+
 ## 컴포넌트 사용 / Component Usage
 
 전체 API는 `@workspace/ui`에서 import합니다.
