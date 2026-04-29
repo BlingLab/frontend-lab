@@ -191,6 +191,13 @@ token contract의 필수 semantic token, NORMAL/DARK theme 차이, UI CSS raw va
 Checks required semantic tokens from the token contract, NORMAL/DARK theme differences, and UI CSS raw value/theme selector regressions.
 
 ```bash
+npm run test:types
+```
+
+소비자가 사용하는 public prop API의 허용/비허용 TypeScript 예제를 확인합니다.
+Checks allowed and disallowed TypeScript examples for public prop APIs used by consumers.
+
+```bash
 npm run test:visual
 ```
 
