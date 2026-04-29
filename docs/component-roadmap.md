@@ -64,7 +64,7 @@ External references are based on accessibility patterns and component operating 
 | Forms | FileUploader | 파일 선택과 첨부 상태 기준입니다. / Baseline for file selection and attachment state. |
 | Layout | Divider | 카드 남용 없이 구획을 나누는 최소 단위입니다. / Minimal separator that avoids overusing cards. |
 | Data Display | Table | 레코드 비교와 운영형 화면의 핵심입니다. / Core pattern for comparing records and building operational screens. |
-| Data Display | DataGrid | sorting, selection, row action이 필요한 dense grid 기준입니다. / Baseline for dense grids that need sorting, selection, and row actions. |
+| Data Display | DataGrid | sorting, selection, row action이 필요한 dense grid 기준이며 virtual scroll은 v0.1 non-goal입니다. / Baseline for dense grids that need sorting, selection, and row actions; virtual scroll is a v0.1 non-goal. |
 | Data Display | EmptyState | 빈 화면의 next action을 표준화합니다. / Standardizes next actions for empty screens. |
 | Data Display | List | 반복 데이터의 기본 표시 단위입니다. / Base display unit for repeated data. |
 

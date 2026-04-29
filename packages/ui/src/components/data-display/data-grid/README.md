@@ -101,3 +101,10 @@ export function Example() {
 - controlled/uncontrolled 값이 있는 경우 `onValueChange`, `onOpenChange`, `onSelectionChange`처럼 `onPascalCase` event prop을 사용합니다. / Controlled or uncontrolled values use `onPascalCase` event props such as `onValueChange`, `onOpenChange`, and `onSelectionChange`.
 - hover, active, selected, disabled는 shared state token과 `data-*` hook으로 표현합니다. / Hover, active, selected, and disabled are represented with shared state tokens and `data-*` hooks.
 - virtual scroll은 이번 범위에서 제외하고, large data가 실제 요구될 때 별도 이슈로 설계합니다. / Virtual scroll is excluded from this scope and should be designed in a separate issue when large data is a real requirement.
+
+## 가상 스크롤 범위 / Virtual Scroll Scope
+
+- v0.1에서는 virtual scroll을 구현하지 않고 500 row 이하의 조작형 grid를 기준으로 유지합니다. / v0.1 does not implement virtual scroll and keeps the target at interactive grids with up to 500 rows.
+- 501-2,000 row는 pagination, server filtering, column pruning을 우선합니다. / For 501-2,000 rows, prefer pagination, server filtering, and column pruning first.
+- `virtualized`, `rowHeight`, `overscan`, `estimatedRowHeight` prop은 아직 public API가 아닙니다. / `virtualized`, `rowHeight`, `overscan`, and `estimatedRowHeight` are not public APIs yet.
+- 자세한 기준은 [DataGrid 가상 스크롤 결정](../../../../../../docs/datagrid-virtual-scroll.md)을 따릅니다. / Follow [DataGrid Virtual Scroll Decision](../../../../../../docs/datagrid-virtual-scroll.md) for detailed criteria.
