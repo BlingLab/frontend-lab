@@ -13,6 +13,7 @@
     "build": "npm --workspace @workspace/ui run build",
     "dev": "npm --workspace @workspace/docs run dev",
     "docs:dev": "npm --workspace @workspace/docs run dev",
+    "docs:links": "node scripts/verify-markdown-links.mjs",
     "lint": "node scripts/verify-quality-gates.mjs",
     "test": "npm run components:validate && npm run build && tsx scripts/accessibility-smoke.mjs && tsx scripts/interaction-a11y.mjs && tsx scripts/verify-package-exports.mjs",
     "test:a11y": "npm run build && tsx scripts/accessibility-smoke.mjs",
@@ -25,7 +26,7 @@
     "test:visual": "node scripts/visual-regression.mjs",
     "release:verify": "node scripts/verify-release.mjs",
     "release:prepare": "node scripts/prepare-release.mjs",
-    "release:dry-run": "npm run lint && npm run test && npm run typecheck && npm --workspace @workspace/docs run build && npm run test:consumer && npm run test:tokens && npm run test:types && npm run test:docs-smoke && npm run test:visual && npm run release:verify && npm pack --workspace @workspace/ui --dry-run",
+    "release:dry-run": "npm run lint && npm run docs:links && npm run test && npm run typecheck && npm --workspace @workspace/docs run build && npm run test:consumer && npm run test:tokens && npm run test:types && npm run test:docs-smoke && npm run test:visual && npm run release:verify && npm pack --workspace @workspace/ui --dry-run",
     "typecheck": "npm --workspace @workspace/ui run typecheck && npm --workspace @workspace/docs run typecheck && npm --workspace @workspace/consumer-fixture run typecheck"
   },
   "dependencies": {

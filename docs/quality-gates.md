@@ -12,6 +12,7 @@ This document explains the minimum lint/format criteria used in CI.
 - CSS: CRLF, trailing whitespace, tab indentation, merge conflict marker, missing final newline을 검사합니다. / CSS checks CRLF, trailing whitespace, tab indentation, merge conflict markers, and missing final newlines.
 - Markdown: CRLF, trailing whitespace, merge conflict marker, missing final newline을 검사합니다. / Markdown checks CRLF, trailing whitespace, merge conflict markers, and missing final newlines.
 - JSON/YAML: CRLF, trailing whitespace, tab indentation, merge conflict marker, missing final newline을 검사합니다. / JSON/YAML checks CRLF, trailing whitespace, tab indentation, merge conflict markers, and missing final newlines.
+- `npm run docs:links`: repo 내부 Markdown 상대 링크 대상이 실제로 존재하는지 검사합니다. / `npm run docs:links` checks that repo-internal Markdown relative link targets actually exist.
 
 ## 실패 메시지 / Failure Messages
 
@@ -20,6 +21,7 @@ Failure messages are printed as `file:line: Korean explanation / English explana
 
 ```bash
 npm run lint
+npm run docs:links
 ```
 
 ## 단계적 확장 / Phased Expansion

@@ -29,6 +29,9 @@ jobs:
       - name: Lint와 format 검증 / Lint and format checks
         run: npm run lint
 
+      - name: Markdown 내부 링크 검증 / Markdown internal link checks
+        run: npm run docs:links
+
       - name: 컴포넌트 검증 / Component validation
         run: npm run test
 
