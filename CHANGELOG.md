@@ -26,3 +26,4 @@ All notable changes are documented in this file.
 - review/issue 운영 문서에 priority SLA, milestone 기준, follow-up 연결 규칙을 보강했습니다. / Strengthened review and issue operations docs with priority SLA, milestone criteria, and follow-up linking rules.
 - DataGrid 문서와 catalog prop 목록을 실제 상호작용 API에 맞췄습니다. / Aligned DataGrid docs and catalog prop lists with the actual interaction APIs.
 - scaffold가 기존 README/spec를 기본적으로 보존하고 `--force-docs`에서만 문서를 재생성하도록 바꿨습니다. / Changed scaffold behavior so existing README/spec files are preserved by default and regenerated only with `--force-docs`.
+- DataGrid virtual scroll을 v0.1 non-goal로 정하고 row count, 성능, 접근성 검토 기준을 문서화했습니다. / Defined DataGrid virtual scroll as a v0.1 non-goal and documented row-count, performance, and accessibility criteria.

@@ -99,4 +99,5 @@
 
 - 이 컴포넌트는 `table with grid-like interactions` primitive를 기준으로 구현합니다. / This component is implemented around the `table with grid-like interactions` primitive.
 - public API는 catalog의 props 목록을 기준으로 유지하고 breaking change는 release note에 기록합니다. / The public API follows the catalog prop list, and breaking changes are recorded in release notes.
-- virtual scroll은 현재 범위에서 제외하고, 실제 large dataset 요구가 생기면 별도 이슈로 성능 기준과 ARIA 영향을 함께 설계합니다. / Virtual scroll is excluded from the current scope; when large dataset requirements appear, a separate issue should define performance criteria and ARIA impact together.
+- virtual scroll은 v0.1 non-goal입니다. 500 row 이하를 현재 기준으로 두고, 2,000 row 초과 또는 continuous scroll workflow가 실제 요구될 때 별도 proposal을 엽니다. / Virtual scroll is a v0.1 non-goal. The current target is up to 500 rows, and a separate proposal opens when real requirements exceed 2,000 rows or need continuous scrolling.
+- virtual scroll proposal은 `aria-rowcount`, `aria-rowindex`, focus proxy, screen reader announcement, scroll performance smoke를 함께 포함해야 합니다. / A virtual scroll proposal must include `aria-rowcount`, `aria-rowindex`, focus proxy, screen reader announcement, and scroll performance smoke together.
