@@ -107,6 +107,7 @@ Run the commands below after changing themes.
 
 ```bash
 npm run components:validate
+npm run test:tokens
 npm run typecheck
 npm run build
 npm --workspace @workspace/docs run build
@@ -114,3 +115,6 @@ npm --workspace @workspace/docs run build
 
 문서 앱의 `테마 시스템 / Theme System` 섹션에서 `NORMAL`, `OCEAN`, `FOREST`, `DARK`를 전환해 컴포넌트가 같은 색상 체계로 함께 바뀌는지 확인합니다.
 In the docs app, switch between `NORMAL`, `OCEAN`, `FOREST`, and `DARK` in the `Theme System` section and confirm components change together through one color system.
+
+`npm run test:tokens`는 token contract의 필수 semantic token 목록, NORMAL/DARK resolved value 차이, UI CSS의 theme-name selector/raw value 회귀를 자동 확인합니다.
+`npm run test:tokens` automatically checks the required semantic token list from the token contract, NORMAL/DARK resolved value differences, and UI CSS theme-name selector/raw value regressions.

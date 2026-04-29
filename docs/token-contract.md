@@ -30,6 +30,59 @@ Semantic tokens express product intent. Component CSS should prefer semantic tok
 --ds-color-feedback-danger-bg
 ```
 
+## 필수 의미 토큰 / Required Semantic Tokens
+
+`npm run test:tokens`는 아래 목록을 token contract 기준으로 읽어 `:root`, `normal`, `dark` theme set에 누락이 없는지 확인합니다.
+`npm run test:tokens` reads the list below as the token contract and verifies that `:root`, `normal`, and `dark` theme sets do not miss required tokens.
+
+```text
+--ds-color-bg-canvas
+--ds-color-bg-surface
+--ds-color-bg-elevated
+--ds-color-bg-muted
+--ds-color-bg-inverse
+--ds-color-text-primary
+--ds-color-text-secondary
+--ds-color-text-muted
+--ds-color-text-inverse
+--ds-color-border-subtle
+--ds-color-border-default
+--ds-color-border-strong
+--ds-color-action-primary-bg
+--ds-color-action-primary-bg-hover
+--ds-color-action-primary-bg-active
+--ds-color-action-primary-border
+--ds-color-action-primary-fg
+--ds-color-action-neutral-bg
+--ds-color-action-neutral-bg-hover
+--ds-color-action-neutral-bg-active
+--ds-color-action-neutral-border
+--ds-color-action-neutral-fg
+--ds-color-feedback-info-bg
+--ds-color-feedback-info-border
+--ds-color-feedback-info-text
+--ds-color-feedback-success-bg
+--ds-color-feedback-success-border
+--ds-color-feedback-success-text
+--ds-color-feedback-success
+--ds-color-feedback-warning-bg
+--ds-color-feedback-warning-border
+--ds-color-feedback-warning-text
+--ds-color-feedback-warning
+--ds-color-feedback-danger-bg
+--ds-color-feedback-danger-border
+--ds-color-feedback-danger-text
+--ds-color-feedback-danger
+--ds-state-hover-bg
+--ds-state-hover-border
+--ds-state-active-bg
+--ds-state-selected-bg
+--ds-state-selected-border
+--ds-color-overlay-backdrop
+--ds-color-focus-ring
+--ds-focus-ring
+```
+
 ### 테마 토큰 / Theme Tokens
 
 테마는 `normal`을 기본값으로 두고 semantic token override block으로 구성합니다.
@@ -134,3 +187,6 @@ Follow [Theme System](./theme-system.md) for detailed usage.
 
 `npm run components:validate`는 UI CSS의 raw color 사용, 필수 토큰 누락, public class naming, event prop naming을 검사합니다.
 `npm run components:validate` checks raw color usage in UI CSS, required token presence, public class naming, and event prop naming.
+
+`npm run test:tokens`는 이 문서의 필수 의미 토큰 목록을 기준으로 `:root`, `normal`, `dark` theme set 누락과 NORMAL/DARK resolved value 차이를 검사합니다.
+`npm run test:tokens` uses this document's required semantic token list to check `:root`, `normal`, and `dark` theme set coverage and NORMAL/DARK resolved value differences.

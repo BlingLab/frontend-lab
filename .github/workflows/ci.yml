@@ -38,6 +38,9 @@ jobs:
       - name: 소비자 fixture 빌드 / Build consumer fixture
         run: npm run test:consumer
 
+      - name: 테마 토큰 회귀 검증 / Theme token regression
+        run: npm run test:tokens
+
       - name: Playwright 브라우저 설치 / Install Playwright browser
         run: npx playwright install --with-deps chromium
 
