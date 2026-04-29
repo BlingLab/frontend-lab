@@ -8,8 +8,8 @@ This directory contains the component catalog, documentation, and individual imp
 각 컴포넌트 폴더는 구현과 문서를 같은 위치에 둡니다.
 Each component folder keeps implementation and documentation in the same location.
 
-- `README.md`: 역할, 사용 기준, prop 축, 상태, 접근성, 토큰, 예시를 설명합니다. / Explains role, usage criteria, prop axes, states, accessibility, tokens, and examples.
-- `spec.md`: API 표면, 상태 동작, 상호작용, 접근성 계약, 검증 체크리스트를 정의합니다. / Defines API surface, state behavior, interaction, accessibility contract, and validation checklist.
+- `README.md`: 역할, 사용 기준, prop 축, prop 표, 상태, 접근성, 토큰, 예시를 설명합니다. / Explains role, usage criteria, prop axes, prop tables, states, accessibility, tokens, and examples.
+- `spec.md`: API 표면, prop 표, 상태 동작, 상호작용, 접근성 계약, 검증 체크리스트를 정의합니다. / Defines API surface, prop tables, state behavior, interaction, accessibility contract, and validation checklist.
 - `{component-slug}.tsx`: 실제 React + TypeScript 구현입니다. / The actual React + TypeScript implementation.
 - `index.ts`: 해당 컴포넌트의 public entry입니다. / The public entry for the component.
 
@@ -46,6 +46,7 @@ The component catalog in `catalog.ts` is the source for initial scaffolding and 
 - 컴포넌트 색상은 theme name이 아니라 semantic token을 통해 설명합니다. / Component color is described through semantic tokens, not theme names.
 - 접근성 항목은 native HTML 기준과 WAI-ARIA APG 링크 중 해당하는 기준을 명시합니다. / Accessibility items state the relevant native HTML baseline or WAI-ARIA APG link.
 - README와 spec은 `catalog.ts`의 props, states, tokens와 어긋나지 않아야 합니다. / README and spec must stay aligned with props, states, and tokens in `catalog.ts`.
+- prop table metadata는 `prop-docs.ts`에 두고, prop-heavy 컴포넌트는 source props와 table 항목이 검증에서 일치해야 합니다. / Prop table metadata lives in `prop-docs.ts`, and prop-heavy components must keep source props aligned with table entries during validation.
 
 ## 검증 / Validation
 
@@ -58,3 +59,6 @@ npm run components:validate
 
 문서만 수정했더라도 public export, 폴더 구조, 토큰 계약이 함께 깨지지 않았는지 확인합니다.
 Even documentation-only changes should confirm that public exports, folder structure, and token contracts still hold.
+
+기존 수동 문서를 덮어쓰지 않기 위해 scaffold는 README/spec를 기본적으로 보존합니다. 문서를 재생성해야 할 때만 변경분을 먼저 확인하고 `npm run components:scaffold -- --force-docs`를 실행합니다.
+The scaffold preserves existing README/spec files by default. Regenerate docs only after checking local changes, then run `npm run components:scaffold -- --force-docs`.

@@ -10,7 +10,26 @@
 - folder slug: `combobox`
 - category: `forms`
 - priority/status: `P0` / `ready`
-- props: `value`, `defaultValue`, `options`, `placeholder`, `size`, `width`, `fieldProps`, `emptyMessage`, `onValueChange`, `disabled`, `invalid`
+- props: `label`, `description`, `error`, `value`, `defaultValue`, `options`, `placeholder`, `emptyMessage`, `size`, `width`, `disabled`, `required`, `fieldProps`, `onValueChange`
+
+## Prop 표 / Prop Table
+
+| Prop | Type | Default | 설명 / Description |
+| --- | --- | --- | --- |
+| `label` | `ReactNode` | `-` | 필드 label입니다. / Field label. |
+| `description` | `ReactNode` | `-` | 보조 설명입니다. / Helper description. |
+| `error` | `ReactNode` | `-` | 오류 메시지이며 invalid 상태를 만듭니다. / Error message that creates the invalid state. |
+| `value` | `string` | `-` | controlled 선택 값입니다. / Controlled selected value. |
+| `defaultValue` | `string` | `""` | uncontrolled 초기 선택 값입니다. / Initial uncontrolled selected value. |
+| `options` | `ComboboxOption[]` | `[]` | 검색하고 선택할 option 목록입니다. / Options available for filtering and selection. |
+| `placeholder` | `string` | `"검색 또는 선택 / Search or select"` | 입력 placeholder입니다. / Input placeholder. |
+| `emptyMessage` | `ReactNode` | `"결과가 없습니다. / No results."` | 필터 결과가 없을 때 표시합니다. / Shown when filtering returns no options. |
+| `size` | `Size` | `"md"` | control 높이와 밀도입니다. / Control height and density. |
+| `width` | `FieldWidth` | `"auto"` | Field wrapper 폭입니다. / Field wrapper width. |
+| `disabled` | `boolean` | `false` | 입력과 toggle을 비활성화합니다. / Disables the input and toggle. |
+| `required` | `boolean` | `false` | 필수 입력 상태를 표시합니다. / Marks the field as required. |
+| `fieldProps` | `Omit<FieldProps, ...>` | `-` | Field wrapper에 전달할 추가 설정입니다. / Additional settings passed to the Field wrapper. |
+| `onValueChange` | `(value: string) => void` | `-` | 선택 값이 바뀔 때 호출됩니다. / Called when the selected value changes. |
 
 ## 변형 / Variants
 

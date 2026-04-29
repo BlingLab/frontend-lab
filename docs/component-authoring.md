@@ -37,6 +37,13 @@ Every component documents the items below before implementation.
 - Tokens: 사용하는 semantic/component token / Semantic and component tokens used
 - Test Plan: 최소 검증 범위 / Minimum verification scope
 
+## Prop 문서 자동화 / Prop Documentation Automation
+
+- `catalog.ts`의 `props`는 README와 spec의 `Prop 축 / Prop Axes` 기준입니다. / `props` in `catalog.ts` are the source for `Prop Axes` in README and spec files.
+- 상세 prop table은 `packages/ui/src/components/prop-docs.ts`에서 관리하고 scaffold가 `Prop 표 / Prop Table`로 렌더링합니다. / Detailed prop tables are managed in `packages/ui/src/components/prop-docs.ts` and rendered by the scaffold as `Prop Table`.
+- `DataGrid`, `Combobox`, `CommandPalette`처럼 prop이 많은 컴포넌트는 source props와 prop table이 `npm run components:validate`에서 함께 검증됩니다. / Prop-heavy components such as `DataGrid`, `Combobox`, and `CommandPalette` validate source props and prop tables together through `npm run components:validate`.
+- 기존 README/spec는 기본적으로 보존됩니다. 강제로 문서를 재생성해야 할 때만 사용자 수동 변경 여부를 확인한 뒤 `npm run components:scaffold -- --force-docs`를 사용합니다. / Existing README/spec files are preserved by default. Use `npm run components:scaffold -- --force-docs` only after checking for user-authored manual changes.
+
 ## 구현 규칙 / Implementation Rules
 
 - native element로 해결 가능한 경우 custom role을 만들지 않습니다. / Do not create a custom role when a native element can solve the problem.

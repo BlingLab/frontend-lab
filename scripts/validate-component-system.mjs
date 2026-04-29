@@ -2,6 +2,7 @@ import { access, readFile } from "node:fs/promises";
 import { join } from "node:path";
 import { fileURLToPath } from "node:url";
 import { componentCatalog, componentCategories, componentStatuses } from "../packages/ui/src/components/catalog.ts";
+import { componentPropDocs, getComponentPropDocs } from "../packages/ui/src/components/prop-docs.ts";
 
 const rootDir = fileURLToPath(new URL("..", import.meta.url));
 const categoryIds = new Set(componentCategories.map((category) => category.id));
@@ -74,6 +75,29 @@ const implementationPaths = new Map([
   ["Stack", ["layout", "stack"]],
   ["Inline", ["layout", "inline"]]
 ]);
+const propTableHeader = "| Prop | Type | Default | 설명 / Description |";
+
+function extractInterfacePropNames(source, interfaceName) {
+  const interfaceIndex = source.indexOf(`interface ${interfaceName}`);
+  if (interfaceIndex === -1) return [];
+
+  const bodyStart = source.indexOf("{", interfaceIndex);
+  if (bodyStart === -1) return [];
+
+  let depth = 0;
+  let bodyEnd = bodyStart;
+  for (let index = bodyStart; index < source.length; index += 1) {
+    if (source[index] === "{") depth += 1;
+    if (source[index] === "}") depth -= 1;
+    if (depth === 0) {
+      bodyEnd = index;
+      break;
+    }
+  }
+
+  const body = source.slice(bodyStart + 1, bodyEnd);
+  return [...body.matchAll(/^\s{2}([A-Za-z][A-Za-z0-9]*)\??:/gm)].map((match) => match[1]);
+}
 
 async function mustExist(path) {
   try {
@@ -106,6 +130,13 @@ for (const component of componentCatalog) {
     }
   }
 
+  const propDocNames = new Set(getComponentPropDocs(component).map((propDoc) => propDoc.name));
+  for (const prop of component.props) {
+    if (!propDocNames.has(prop)) {
+      failures.push(`${component.name} prop 문서에 catalog prop이 없습니다. / ${component.name} prop docs are missing catalog prop: ${prop}`);
+    }
+  }
+
   const componentDir = join(
     rootDir,
     "packages",
@@ -120,6 +151,14 @@ for (const component of componentCatalog) {
   await mustExist(join(componentDir, "README.md"));
   await mustExist(join(componentDir, "spec.md"));
   await mustExist(join(componentDir, "index.ts"));
+}
+
+for (const [componentName, propDocs] of Object.entries(componentPropDocs)) {
+  for (const propDoc of propDocs) {
+    if (!propDoc.description.includes(" / ")) {
+      failures.push(`${componentName}.${propDoc.name} prop 설명은 한글 우선/영문 병기를 유지해야 합니다. / ${componentName}.${propDoc.name} prop description must keep Korean-first English-paired writing.`);
+    }
+  }
 }
 
 const tokensPath = join(rootDir, "packages", "tokens", "src", "tokens.css");
@@ -156,6 +195,7 @@ for (const exportName of requiredExports) {
 
   const componentSource = await readFile(componentFile, "utf8").catch(() => "");
   const entrySource = await readFile(entryFile, "utf8").catch(() => "");
+  const readmeSource = await readFile(join(rootDir, "packages", "ui", "src", "components", category, slug, "README.md"), "utf8").catch(() => "");
 
   if (!componentSource.includes(`export function ${exportName}`) && !componentSource.includes(`export const ${exportName}`)) {
     failures.push(`${exportName} 구현은 자기 폴더의 ${slug}.tsx에서 named export여야 합니다. / ${exportName} implementation must be a named export in its own ${slug}.tsx file.`);
@@ -165,6 +205,19 @@ for (const exportName of requiredExports) {
   }
   if (!indexTs.includes(exportName)) {
     failures.push(`index.ts에서 컴포넌트를 export해야 합니다. / index.ts must export component: ${exportName}`);
+  }
+
+  if (componentPropDocs[exportName]) {
+    const documentedProps = new Set(componentPropDocs[exportName].map((propDoc) => propDoc.name));
+    const sourceProps = extractInterfacePropNames(componentSource, `${exportName}Props`);
+    for (const sourceProp of sourceProps) {
+      if (!documentedProps.has(sourceProp)) {
+        failures.push(`${exportName} prop table에 source prop이 없습니다. / ${exportName} prop table is missing source prop: ${sourceProp}`);
+      }
+    }
+    if (!readmeSource.includes("## Prop 표 / Prop Table") || !readmeSource.includes(propTableHeader)) {
+      failures.push(`${exportName} README에 Prop 표가 없습니다. / ${exportName} README is missing a prop table.`);
+    }
   }
 }
 

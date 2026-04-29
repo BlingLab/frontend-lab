@@ -15,7 +15,38 @@
 
 ## Prop 축 / Prop Axes
 
-`columns`, `rows`, `density`, `sortable`, `selectionMode`, `striped`, `stickyHeader`, `emptyMessage`, `rowKey`, `rowActions`, `sortState`, `defaultSortState`, `selectedRowKeys`, `defaultSelectedRowKeys`, `activeRowKey`, `defaultActiveRowKey`, `keyboardNavigation`, `resizableColumns`, `onSortChange`, `onSelectedRowKeysChange`, `onSelectionChange`, `onActiveRowKeyChange`, `onColumnResize`
+`caption`, `columns`, `rows`, `density`, `sortable`, `selectionMode`, `striped`, `stickyHeader`, `loading`, `emptyMessage`, `rowKey`, `rowActions`, `sortState`, `defaultSortState`, `selectedRowKeys`, `defaultSelectedRowKeys`, `activeRowKey`, `defaultActiveRowKey`, `keyboardNavigation`, `resizableColumns`, `onSort`, `onSortChange`, `onSelectedRowKeysChange`, `onSelectionChange`, `onActiveRowKeyChange`, `onColumnResize`
+
+## Prop 표 / Prop Table
+
+| Prop | Type | Default | 설명 / Description |
+| --- | --- | --- | --- |
+| `caption` | `ReactNode` | `-` | table caption입니다. / Table caption. |
+| `columns` | `Array<DataGridColumn<Row>>` | `[]` | column 구조와 render 설정입니다. / Column structure and render settings. |
+| `rows` | `Row[]` | `[]` | 렌더링할 row 데이터입니다. / Row data to render. |
+| `density` | `"compact" \| "md"` | `"md"` | row와 cell 밀도입니다. / Row and cell density. |
+| `sortable` | `boolean` | `true` | 전체 column sort control 기본값입니다. / Default sort control behavior for columns. |
+| `selectionMode` | `"none" \| "multiple"` | `"none"` | row selection 모드입니다. / Row selection mode. |
+| `striped` | `boolean` | `true` | 교차 row 배경을 표시합니다. / Shows alternating row backgrounds. |
+| `stickyHeader` | `boolean` | `false` | header를 sticky로 유지합니다. / Keeps the header sticky. |
+| `loading` | `boolean` | `false` | loading 상태와 `aria-busy`를 표시합니다. / Shows loading state and `aria-busy`. |
+| `emptyMessage` | `ReactNode` | `"데이터가 없습니다. / No data."` | row가 없을 때 표시합니다. / Shown when there are no rows. |
+| `rowKey` | `(row: Row, rowIndex: number) => string` | `rowIndex` | row identity를 계산합니다. / Computes row identity. |
+| `rowActions` | `(row: Row, rowIndex: number) => ReactNode` | `-` | row action cell을 렌더링합니다. / Renders the row action cell. |
+| `sortState` | `TableSortState<Row>` | `-` | controlled sort 상태입니다. / Controlled sort state. |
+| `defaultSortState` | `TableSortState<Row>` | `-` | uncontrolled 초기 sort 상태입니다. / Initial uncontrolled sort state. |
+| `selectedRowKeys` | `string[]` | `-` | controlled selected row key 목록입니다. / Controlled selected row keys. |
+| `defaultSelectedRowKeys` | `string[]` | `[]` | uncontrolled 초기 selected row key 목록입니다. / Initial uncontrolled selected row keys. |
+| `activeRowKey` | `string` | `-` | controlled active row key입니다. / Controlled active row key. |
+| `defaultActiveRowKey` | `string` | `첫 row key / First row key` | uncontrolled 초기 active row key입니다. / Initial uncontrolled active row key. |
+| `keyboardNavigation` | `"row" \| "none"` | `"row"` | roving row keyboard navigation 사용 여부입니다. / Enables roving row keyboard navigation. |
+| `resizableColumns` | `boolean` | `true` | column resize handle을 활성화합니다. / Enables column resize handles. |
+| `onSort` | `(key: keyof Row & string) => void` | `-` | legacy sort callback입니다. / Legacy sort callback. |
+| `onSortChange` | `(sortState: TableSortState<Row> \| undefined) => void` | `-` | sort 상태가 바뀔 때 호출됩니다. / Called when sort state changes. |
+| `onSelectedRowKeysChange` | `(keys: string[]) => void` | `-` | selected key 목록이 바뀔 때 호출됩니다. / Called when selected keys change. |
+| `onSelectionChange` | `(rows: Row[]) => void` | `-` | 선택된 row 목록이 바뀔 때 호출됩니다. / Called when selected rows change. |
+| `onActiveRowKeyChange` | `(key: string \| undefined, row: Row \| undefined) => void` | `-` | active row가 바뀔 때 호출됩니다. / Called when the active row changes. |
+| `onColumnResize` | `(key: keyof Row & string, width: number) => void` | `-` | column width가 바뀔 때 호출됩니다. / Called when a column width changes. |
 
 ## 상태 / States
 
