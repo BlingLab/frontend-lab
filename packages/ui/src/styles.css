@@ -1439,7 +1439,7 @@
 }
 
 .ds-DataGrid-resizeHandle {
-  inline-size: var(--ds-space-2);
+  inline-size: var(--ds-space-3);
   align-self: stretch;
   min-block-size: var(--ds-space-5);
   flex: 0 0 auto;
@@ -1452,6 +1452,8 @@
 .ds-DataGrid-resizeHandle:hover,
 .ds-DataGrid-resizeHandle:focus-visible {
   border-inline-end-color: var(--ds-color-action-primary-bg);
+  outline: var(--ds-focus-ring);
+  outline-offset: var(--ds-size-1);
 }
 
 .ds-DataGrid-row[data-active="true"] {

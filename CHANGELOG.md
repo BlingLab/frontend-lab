@@ -13,6 +13,7 @@ All notable changes are documented in this file.
 - Playwright 기반 docs app screenshot 검증을 추가했습니다. / Added Playwright-based docs app screenshot validation.
 - 상호작용 접근성 검증 범위를 Select, DatePicker, FileUploader, Tabs, Stepper, NavigationRail, SideNav로 확장했습니다. / Expanded interaction accessibility validation to Select, DatePicker, FileUploader, Tabs, Stepper, NavigationRail, and SideNav.
 - 외부 소비자 fixture 앱과 `test:consumer` 검증을 추가했습니다. / Added an external consumer fixture app and `test:consumer` validation.
+- DataGrid column resize keyboard 조작과 ARIA value 상태를 추가했습니다. / Added DataGrid column resize keyboard controls and ARIA value state.
 
 ### Changed
 

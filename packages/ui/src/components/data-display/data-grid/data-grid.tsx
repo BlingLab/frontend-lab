@@ -42,6 +42,8 @@ export interface DataGridProps<Row extends Record<string, unknown>> extends HTML
 const DEFAULT_COLUMN_WIDTH = 160;
 const MIN_COLUMN_WIDTH = 96;
 const MAX_COLUMN_WIDTH = 640;
+const COLUMN_RESIZE_STEP = 16;
+const COLUMN_RESIZE_LARGE_STEP = 48;
 
 function toColumnWidth(width: string | undefined) {
   if (!width) return undefined;
@@ -170,17 +172,23 @@ export function DataGrid<Row extends Record<string, unknown>>({
     const width = columnWidths[column.key] ?? toColumnWidth(column.width);
     return width ? { width, minWidth: column.minWidth, maxWidth: column.maxWidth } : { width: column.width, minWidth: column.minWidth, maxWidth: column.maxWidth };
   };
+  const getColumnWidth = (column: DataGridColumn<Row>, fallbackWidth = DEFAULT_COLUMN_WIDTH) => {
+    return clampColumnWidth(column, columnWidths[column.key] ?? toColumnWidth(column.width) ?? fallbackWidth);
+  };
+  const resizeColumn = (column: DataGridColumn<Row>, nextWidth: number) => {
+    const clampedWidth = clampColumnWidth(column, nextWidth);
+    setColumnWidths((currentWidths) => ({ ...currentWidths, [column.key]: clampedWidth }));
+    onColumnResize?.(column.key, clampedWidth);
+  };
   const startColumnResize = (event: ReactPointerEvent<HTMLButtonElement>, column: DataGridColumn<Row>) => {
     if (!resizableColumns || column.resizable === false) return;
 
     event.preventDefault();
     const headerCell = event.currentTarget.closest("th");
     const startX = event.clientX;
-    const startWidth = headerCell?.getBoundingClientRect().width ?? columnWidths[column.key] ?? toColumnWidth(column.width) ?? DEFAULT_COLUMN_WIDTH;
+    const startWidth = getColumnWidth(column, headerCell?.getBoundingClientRect().width);
     const onPointerMove = (pointerEvent: PointerEvent) => {
-      const nextWidth = clampColumnWidth(column, startWidth + pointerEvent.clientX - startX);
-      setColumnWidths((currentWidths) => ({ ...currentWidths, [column.key]: nextWidth }));
-      onColumnResize?.(column.key, nextWidth);
+      resizeColumn(column, startWidth + pointerEvent.clientX - startX);
     };
     const onPointerUp = () => {
       window.removeEventListener("pointermove", onPointerMove);
@@ -189,6 +197,28 @@ export function DataGrid<Row extends Record<string, unknown>>({
 
     window.addEventListener("pointermove", onPointerMove);
     window.addEventListener("pointerup", onPointerUp);
+  };
+  const onColumnResizeKeyDown = (event: KeyboardEvent<HTMLButtonElement>, column: DataGridColumn<Row>) => {
+    if (!resizableColumns || column.resizable === false) return;
+
+    const currentWidth = getColumnWidth(column);
+    const step = event.shiftKey ? COLUMN_RESIZE_LARGE_STEP : COLUMN_RESIZE_STEP;
+    if (event.key === "ArrowLeft") {
+      event.preventDefault();
+      resizeColumn(column, currentWidth - step);
+    }
+    if (event.key === "ArrowRight") {
+      event.preventDefault();
+      resizeColumn(column, currentWidth + step);
+    }
+    if (event.key === "Home") {
+      event.preventDefault();
+      resizeColumn(column, column.minWidth ?? MIN_COLUMN_WIDTH);
+    }
+    if (event.key === "End") {
+      event.preventDefault();
+      resizeColumn(column, column.maxWidth ?? MAX_COLUMN_WIDTH);
+    }
   };
 
   return (
@@ -214,6 +244,9 @@ export function DataGrid<Row extends Record<string, unknown>>({
                 const sortDirection = sorted ? currentSortState?.direction : undefined;
                 const sortLabel = column.label?.toString() ?? column.key;
                 const canResize = resizableColumns && column.resizable !== false;
+                const resizeWidth = getColumnWidth(column);
+                const resizeMinWidth = column.minWidth ?? MIN_COLUMN_WIDTH;
+                const resizeMaxWidth = column.maxWidth ?? MAX_COLUMN_WIDTH;
                 return (
                   <th key={column.key} scope="col" role="columnheader" data-align={column.align} data-resizable={canResize ? "true" : undefined} style={getColumnStyle(column)} aria-sort={sortDirection}>
                     <span className="ds-DataGrid-columnHeader">
@@ -226,7 +259,15 @@ export function DataGrid<Row extends Record<string, unknown>>({
                         <button
                           className="ds-DataGrid-resizeHandle"
                           type="button"
+                          role="separator"
                           aria-label={`${sortLabel} 열 너비 조절 / Resize ${sortLabel} column`}
+                          aria-orientation="vertical"
+                          aria-valuemin={resizeMinWidth}
+                          aria-valuemax={resizeMaxWidth}
+                          aria-valuenow={resizeWidth}
+                          aria-valuetext={`${resizeWidth}px`}
+                          title="방향키: 16px, Shift+방향키: 48px / ArrowLeft/ArrowRight: 16px, Shift+Arrow: 48px"
+                          onKeyDown={(event) => onColumnResizeKeyDown(event, column)}
                           onPointerDown={(event) => startColumnResize(event, column)}
                         />
                       ) : null}

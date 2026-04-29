@@ -34,7 +34,9 @@
 - accessible name이 필요한 control은 `label`, `aria-label`, visible text 중 하나로 이름을 제공합니다. / Controls that need an accessible name receive it through `label`, `aria-label`, or visible text.
 - 행 focus는 roving `tabIndex`로 한 행만 tab stop이 되며 `ArrowUp`, `ArrowDown`, `Home`, `End`로 이동합니다. / Row focus uses roving `tabIndex` so only one row is a tab stop, and `ArrowUp`, `ArrowDown`, `Home`, and `End` move focus.
 - `selectionMode="multiple"`일 때 행 focus 상태에서 Space로 선택을 토글할 수 있습니다. / When `selectionMode="multiple"`, Space toggles selection from the focused row.
-- `resizableColumns`와 column의 `resizable` 설정으로 pointer 기반 열 너비 조절을 제어합니다. / `resizableColumns` and each column's `resizable` setting control pointer-based column resizing.
+- `resizableColumns`와 column의 `resizable` 설정으로 pointer와 keyboard 기반 열 너비 조절을 제어합니다. / `resizableColumns` and each column's `resizable` setting control pointer-based and keyboard-based column resizing.
+- resize handle은 `role="separator"`와 `aria-valuemin`, `aria-valuemax`, `aria-valuenow`를 제공하고 `ArrowLeft`/`ArrowRight`는 16px, `Shift+ArrowLeft`/`Shift+ArrowRight`는 48px 단위로 조절합니다. / Resize handles expose `role="separator"`, `aria-valuemin`, `aria-valuemax`, and `aria-valuenow`; `ArrowLeft`/`ArrowRight` adjust by 16px, while `Shift+ArrowLeft`/`Shift+ArrowRight` adjust by 48px.
+- resize handle에서 `Home`은 최소 너비, `End`는 최대 너비로 이동합니다. / On a resize handle, `Home` moves to the minimum width and `End` moves to the maximum width.
 - focus-visible은 `--ds-focus-ring`을 사용하고 keyboard navigation에서 사라지지 않아야 합니다. / Focus-visible uses `--ds-focus-ring` and must remain visible during keyboard navigation.
 
 ## 토큰 / Tokens

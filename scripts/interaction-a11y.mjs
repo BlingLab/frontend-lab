@@ -416,6 +416,48 @@ await check("DataGrid row keyboard navigation", async () => {
   });
 });
 
+await check("DataGrid column resize keyboard controls", async () => {
+  const resizedWidths = [];
+  render(React.createElement(DataGrid, {
+    columns: [
+      { key: "name", label: "이름 / Name", width: "160px", minWidth: 120, maxWidth: 220 },
+      { key: "status", label: "상태 / Status", width: "160px" }
+    ],
+    rows: [
+      { id: "ready", name: "준비 / Ready", status: "완료 / Done" }
+    ],
+    rowKey: (row) => row.id,
+    onColumnResize: (key, width) => {
+      resizedWidths.push(`${key}:${width}`);
+    }
+  }));
+
+  const resizeHandle = screen.getByRole("separator", { name: "이름 / Name 열 너비 조절 / Resize 이름 / Name column" });
+  resizeHandle.focus();
+  fireEvent.keyDown(resizeHandle, { key: "ArrowRight" });
+
+  await waitFor(() => {
+    if (document.activeElement !== resizeHandle) throw new Error("Expected resize handle to remain focused.");
+    if (resizeHandle.getAttribute("aria-valuenow") !== "176") throw new Error(`Expected width 176, received: ${resizeHandle.getAttribute("aria-valuenow")}`);
+    if (!resizedWidths.includes("name:176")) throw new Error("Expected ArrowRight resize callback.");
+  });
+
+  fireEvent.keyDown(resizeHandle, { key: "ArrowLeft", shiftKey: true });
+  await waitFor(() => {
+    if (resizeHandle.getAttribute("aria-valuenow") !== "128") throw new Error(`Expected width 128, received: ${resizeHandle.getAttribute("aria-valuenow")}`);
+  });
+
+  fireEvent.keyDown(resizeHandle, { key: "Home" });
+  await waitFor(() => {
+    if (resizeHandle.getAttribute("aria-valuenow") !== "120") throw new Error(`Expected minimum width 120, received: ${resizeHandle.getAttribute("aria-valuenow")}`);
+  });
+
+  fireEvent.keyDown(resizeHandle, { key: "End" });
+  await waitFor(() => {
+    if (resizeHandle.getAttribute("aria-valuenow") !== "220") throw new Error(`Expected maximum width 220, received: ${resizeHandle.getAttribute("aria-valuenow")}`);
+  });
+});
+
 if (failures.length > 0) {
   console.error(failures.join("\n\n"));
   process.exit(1);
