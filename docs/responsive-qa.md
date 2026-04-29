@@ -21,4 +21,12 @@ The component system fixes viewport QA criteria because it is meant to serve as 
 ```bash
 npm run typecheck
 npm --workspace @workspace/docs run build
+npm run test:docs-smoke
 ```
+
+## 문서 앱 browser smoke / Docs App Browser Smoke
+
+- `npm run test:docs-smoke`는 docs app local server를 띄우고 mobile/tablet/desktop viewport를 Playwright로 확인합니다. / `npm run test:docs-smoke` starts the docs app local server and checks mobile/tablet/desktop viewports with Playwright.
+- header, theme controls, responsive matrix, component preview가 viewport 밖으로 밀리거나 sibling overlap을 만들면 실패합니다. / It fails when the header, theme controls, responsive matrix, or component preview leaves the viewport or creates sibling overlap.
+- DARK/NORMAL theme switch가 `data-ds-theme`와 computed background를 바꾸는지 확인합니다. / It verifies that DARK/NORMAL theme switching updates `data-ds-theme` and computed background.
+- 첫 Tab focus 흐름이 보이지 않는 요소나 viewport 밖 요소로 이동하지 않는지 최소 검증합니다. / It minimally verifies that the first Tab focus flow does not move to invisible or out-of-viewport elements.
