@@ -184,6 +184,13 @@ npm run test:consumer
 Builds the consumer fixture app against built `@workspace/ui` package exports without source aliases.
 
 ```bash
+npm run test:tokens
+```
+
+token contract의 필수 semantic token, NORMAL/DARK theme 차이, UI CSS raw value/theme selector 회귀를 확인합니다.
+Checks required semantic tokens from the token contract, NORMAL/DARK theme differences, and UI CSS raw value/theme selector regressions.
+
+```bash
 npm run test:visual
 ```
 
