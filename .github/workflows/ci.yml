@@ -1,0 +1,36 @@
+name: CI / 검증
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  verify:
+    name: 검증 / Verify
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: 체크아웃 / Checkout
+        uses: actions/checkout@v4
+
+      - name: Node 설정 / Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: 의존성 설치 / Install dependencies
+        run: npm ci
+
+      - name: 컴포넌트 검증 / Component validation
+        run: npm run test
+
+      - name: 타입 확인 / Typecheck
+        run: npm run typecheck
+
+      - name: 문서 앱 빌드 / Build docs app
+        run: npm --workspace @workspace/docs run build

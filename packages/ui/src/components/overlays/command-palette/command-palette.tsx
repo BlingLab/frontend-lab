@@ -3,6 +3,8 @@ import { Button } from "../../actions/button";
 import { Icon } from "../../actions/icon";
 import { useControllableState } from "../../../shared/use-controllable-state";
 import { classNames } from "../../../shared/utils";
+import { useFocusReturn } from "../../../shared/use-focus-return";
+import { useListboxHighlight } from "../../../shared/use-listbox-highlight";
 
 export interface CommandPaletteCommand {
   label: ReactNode;
@@ -39,44 +41,41 @@ export function CommandPalette({
   ...props
 }: CommandPaletteProps) {
   const dialogRef = useRef<HTMLDialogElement>(null);
-  const lastActiveRef = useRef<HTMLElement | null>(null);
+  const { triggerRef, rememberFocus, restoreFocus } = useFocusReturn<HTMLButtonElement>();
   const titleId = useId();
   const listId = useId();
   const [query, setQuery] = useState("");
-  const [highlightedIndex, setHighlightedIndex] = useState(-1);
   const [currentOpen, setOpen] = useControllableState({ value: open, defaultValue: defaultOpen, onChange: onOpenChange });
   const filteredCommands = useMemo(() => {
     const normalizedQuery = query.trim().toLowerCase();
     if (!normalizedQuery) return commands;
     return commands.filter((command) => [command.value, command.label?.toString(), command.description?.toString(), ...(command.keywords ?? [])].join(" ").toLowerCase().includes(normalizedQuery));
   }, [commands, query]);
-  const activeCommand = highlightedIndex >= 0 ? filteredCommands[highlightedIndex] : undefined;
-  const activeCommandId = activeCommand ? `${listId}-${highlightedIndex}` : undefined;
+  const {
+    highlightedIndex,
+    highlightedItem: activeCommand,
+    highlightedItemId: activeCommandId,
+    setHighlightedIndex,
+    moveHighlight,
+    getItemId
+  } = useListboxHighlight({ items: filteredCommands, idBase: listId });
 
   useEffect(() => {
     const dialog = dialogRef.current;
     if (!dialog) return;
     if (currentOpen && !dialog.open) {
-      lastActiveRef.current ??= document.activeElement instanceof HTMLElement ? document.activeElement : null;
+      rememberFocus();
       dialog.showModal();
     }
     if (!currentOpen && dialog.open) dialog.close();
-  }, [currentOpen]);
+  }, [currentOpen, rememberFocus]);
 
   useEffect(() => {
-    const firstEnabledIndex = filteredCommands.findIndex((command) => !command.disabled);
-    setHighlightedIndex(firstEnabledIndex);
-  }, [filteredCommands]);
-
-  useEffect(() => {
-    if (currentOpen || !lastActiveRef.current) return;
-    const lastActive = lastActiveRef.current;
-    lastActiveRef.current = null;
-    window.setTimeout(() => lastActive.focus(), 0);
-  }, [currentOpen]);
+    if (!currentOpen) restoreFocus();
+  }, [currentOpen, restoreFocus]);
 
   const openPalette = () => {
-    lastActiveRef.current = document.activeElement instanceof HTMLElement ? document.activeElement : null;
+    rememberFocus();
     setOpen(true);
   };
   const closePalette = () => {
@@ -87,17 +86,6 @@ export function CommandPalette({
     if (command.disabled) return;
     onCommandSelect?.(command);
     closePalette();
-  };
-  const moveHighlight = (offset: number) => {
-    if (filteredCommands.length === 0) return;
-    let nextIndex = highlightedIndex;
-    for (let attempt = 0; attempt < filteredCommands.length; attempt += 1) {
-      nextIndex = (nextIndex + offset + filteredCommands.length) % filteredCommands.length;
-      if (!filteredCommands[nextIndex]?.disabled) {
-        setHighlightedIndex(nextIndex);
-        return;
-      }
-    }
   };
   const onPaletteKeyDown = (event: KeyboardEvent<HTMLInputElement>) => {
     if (event.key === "ArrowDown") {
@@ -120,7 +108,7 @@ export function CommandPalette({
 
   return (
     <div className={classNames("ds-CommandPaletteRoot", className)} {...props}>
-      <Button variant="outline" tone="neutral" aria-haspopup="dialog" aria-expanded={currentOpen} onClick={openPalette}>{triggerLabel}</Button>
+      <Button ref={triggerRef} variant="outline" tone="neutral" aria-haspopup="dialog" aria-expanded={currentOpen} onClick={openPalette}>{triggerLabel}</Button>
       <dialog className="ds-CommandPalette" data-state={currentOpen ? "open" : "closed"} ref={dialogRef} aria-labelledby={titleId} onCancel={closePalette} onClose={() => setOpen(false)}>
         <div className="ds-CommandPalette-header">
           <h3 id={titleId}>{title}</h3>
@@ -148,7 +136,7 @@ export function CommandPalette({
               className="ds-CommandPalette-item"
               data-highlighted={index === highlightedIndex ? "true" : undefined}
               disabled={command.disabled}
-              id={`${listId}-${index}`}
+              id={getItemId(index)}
               key={command.value}
               role="option"
               type="button"

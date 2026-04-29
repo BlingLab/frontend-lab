@@ -1,4 +1,4 @@
-import type { ButtonHTMLAttributes, ReactNode } from "react";
+import { forwardRef, type ButtonHTMLAttributes, type ReactNode } from "react";
 import type { ActionTone, Justify, Size, Variant } from "../../../shared/types";
 import { classNames, dataFlag } from "../../../shared/utils";
 
@@ -16,7 +16,7 @@ export interface ButtonProps extends Omit<ButtonHTMLAttributes<HTMLButtonElement
   iconEnd?: ReactNode;
 }
 
-export function Button({
+export const Button = forwardRef<HTMLButtonElement, ButtonProps>(function Button({
   children,
   label,
   variant = "solid",
@@ -32,7 +32,7 @@ export function Button({
   iconEnd,
   className,
   ...props
-}: ButtonProps) {
+}, ref) {
   const isDisabled = disabled || loading;
 
   return (
@@ -48,6 +48,7 @@ export function Button({
       data-variant={variant}
       disabled={isDisabled}
       type={type}
+      ref={ref}
       aria-busy={loading || undefined}
       aria-pressed={selected || undefined}
       {...props}
@@ -58,4 +59,4 @@ export function Button({
       {iconEnd ? <span className="ds-Icon" aria-hidden="true">{iconEnd}</span> : null}
     </button>
   );
-}
+});

@@ -144,5 +144,6 @@ npm --workspace @workspace/ui run typecheck
 npm run components:scaffold
 npm run components:validate
 npm run test:a11y
+npm run test:interaction
 npm run test:exports
 ```

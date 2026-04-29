@@ -18,6 +18,7 @@ npm --workspace @workspace/docs run build
 - `packages/ui/src/components.tsx` 같은 중앙 구현 파일은 만들지 않습니다. / Do not create central implementation files such as `packages/ui/src/components.tsx`.
 - UI CSS에는 raw color 값을 직접 쓰지 않습니다. / UI CSS must not contain raw color values.
 - `test:a11y`는 핵심 accessible markup을 server render 기준으로 확인해야 합니다. / `test:a11y` must verify core accessible markup through server rendering.
+- `test:interaction`은 keyboard, focus return, highlighted option 같은 상호작용 접근성 흐름을 확인해야 합니다. / `test:interaction` must verify interaction accessibility flows such as keyboard, focus return, and highlighted options.
 - `test:exports`는 root export와 per-component export가 실제 `dist` 파일과 맞는지 확인해야 합니다. / `test:exports` must verify that root and per-component exports match real `dist` files.
 - React는 dependency가 아니라 peer dependency로 유지합니다. / React must remain a peer dependency, not a bundled dependency.
 

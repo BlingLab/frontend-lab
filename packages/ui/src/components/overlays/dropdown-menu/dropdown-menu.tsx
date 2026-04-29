@@ -1,7 +1,9 @@
-import { useEffect, useId, useRef, type HTMLAttributes, type KeyboardEvent, type ReactNode } from "react";
+import { useCallback, useEffect, useId, useRef, type HTMLAttributes, type KeyboardEvent, type ReactNode } from "react";
 import { Button } from "../../actions/button";
 import { classNames } from "../../../shared/utils";
 import { useControllableState } from "../../../shared/use-controllable-state";
+import { useFocusReturn } from "../../../shared/use-focus-return";
+import { useOverlayDismiss } from "../../../shared/use-overlay-dismiss";
 
 export interface DropdownMenuItem {
   label: ReactNode;
@@ -27,11 +29,11 @@ export function DropdownMenu({ triggerLabel = "메뉴 / Menu", items = [], open,
   const rootRef = useRef<HTMLDivElement>(null);
   const menuRef = useRef<HTMLDivElement>(null);
   const menuId = useId();
-  const focusTrigger = () => rootRef.current?.querySelector<HTMLButtonElement>(".ds-Button")?.focus();
-  const closeMenu = (restoreFocus = true) => {
+  const { triggerRef, restoreFocus } = useFocusReturn<HTMLButtonElement>();
+  const closeMenu = useCallback((returnFocus = true) => {
     setOpen(false);
-    if (restoreFocus) focusTrigger();
-  };
+    if (returnFocus) restoreFocus();
+  }, [restoreFocus, setOpen]);
   const getEnabledItems = () => Array.from(menuRef.current?.querySelectorAll<HTMLButtonElement>(".ds-DropdownMenu-item:not(:disabled)") ?? []);
   const focusMenuItem = (offset: number, mode: "relative" | "absolute" = "relative") => {
     const enabledItems = getEnabledItems();
@@ -41,24 +43,18 @@ export function DropdownMenu({ triggerLabel = "메뉴 / Menu", items = [], open,
     enabledItems[Math.min(Math.max(nextIndex, 0), enabledItems.length - 1)]?.focus();
   };
 
+  useOverlayDismiss({
+    open: currentOpen,
+    rootRef,
+    onEscape: closeMenu,
+    onPointerDownOutside: () => closeMenu(false)
+  });
+
   useEffect(() => {
     if (!currentOpen) return undefined;
-    const onPointerDown = (event: PointerEvent) => {
-      if (!rootRef.current?.contains(event.target as Node)) closeMenu(false);
-    };
-    const onKeyDown = (event: globalThis.KeyboardEvent) => {
-      if (event.key === "Escape") {
-        event.preventDefault();
-        closeMenu();
-      }
-    };
-    document.addEventListener("pointerdown", onPointerDown);
-    document.addEventListener("keydown", onKeyDown);
     const animationFrame = window.requestAnimationFrame(() => focusMenuItem(0, "absolute"));
     return () => {
       window.cancelAnimationFrame(animationFrame);
-      document.removeEventListener("pointerdown", onPointerDown);
-      document.removeEventListener("keydown", onKeyDown);
     };
   }, [currentOpen]);
 
@@ -83,7 +79,7 @@ export function DropdownMenu({ triggerLabel = "메뉴 / Menu", items = [], open,
 
   return (
     <div className={classNames("ds-DropdownMenu", className)} data-state={currentOpen ? "open" : "closed"} ref={rootRef} {...props}>
-      <Button variant="outline" tone="neutral" aria-haspopup="menu" aria-expanded={currentOpen} aria-controls={menuId} onClick={() => setOpen((previousOpen) => !previousOpen)}>
+      <Button ref={triggerRef} variant="outline" tone="neutral" aria-haspopup="menu" aria-expanded={currentOpen} aria-controls={menuId} onClick={() => setOpen((previousOpen) => !previousOpen)}>
         {triggerLabel}
       </Button>
       <div className="ds-DropdownMenu-content" id={menuId} role="menu" data-placement={placement} data-state={currentOpen ? "open" : "closed"} hidden={!currentOpen} ref={menuRef} onKeyDown={onMenuKeyDown}>
