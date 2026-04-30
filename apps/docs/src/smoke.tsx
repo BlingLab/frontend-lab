@@ -4,7 +4,48 @@ import "../styles.css";
 
 import { StrictMode, type ReactNode } from "react";
 import { createRoot } from "react-dom/client";
-import { Alert, Button, Combobox, CommandPalette, DataGrid, DatePicker, Dialog, DropdownMenu, FileUploader, NavigationRail, Popover, Stack, Stepper, Switch, Tabs, TextField, componentCatalog } from "@workspace/ui";
+import {
+  Alert,
+  Badge,
+  Breadcrumb,
+  Button,
+  Card,
+  Checkbox,
+  Col,
+  Combobox,
+  CommandPalette,
+  Container,
+  DataGrid,
+  DatePicker,
+  Dialog,
+  Divider,
+  DropdownMenu,
+  EmptyState,
+  FileUploader,
+  Icon,
+  IconButton,
+  Inline,
+  List,
+  NavigationRail,
+  Pagination,
+  Popover,
+  Progress,
+  RadioGroup,
+  Row,
+  Select,
+  SideNav,
+  Skeleton,
+  Stack,
+  Stepper,
+  Switch,
+  Table,
+  Tabs,
+  Textarea,
+  TextField,
+  Toast,
+  Tooltip,
+  componentCatalog
+} from "@workspace/ui";
 
 const docsRepositoryBaseUrl = "https://github.com/BlingLab/frontend-lab/tree/main";
 
@@ -34,6 +75,45 @@ function SmokeApp() {
         </nav>
       </header>
       <section className="smoke-grid" id="smoke-root">
+        <SmokeCard title="Button">
+          <Button iconStart={<Icon name="plus" />}>저장 / Save</Button>
+        </SmokeCard>
+        <SmokeCard title="IconButton">
+          <IconButton label="검색 / Search" icon={<Icon name="search" />} />
+        </SmokeCard>
+        <SmokeCard title="Badge">
+          <Badge label="준비 / Ready" tone="success" />
+        </SmokeCard>
+        <SmokeCard title="Alert">
+          <Alert title="상태 / Status" description="정상 렌더링입니다. / Rendered correctly." />
+        </SmokeCard>
+        <SmokeCard title="Progress">
+          <Progress label="완료율 / Completion" value={72} />
+        </SmokeCard>
+        <SmokeCard title="Skeleton">
+          <Stack gap="sm">
+            <Skeleton width="12rem" />
+            <Skeleton width="8rem" />
+          </Stack>
+        </SmokeCard>
+        <SmokeCard title="Toast">
+          <Toast title="저장됨 / Saved" description="작업 결과입니다. / This is a task result." />
+        </SmokeCard>
+        <SmokeCard title="TextField">
+          <TextField label="이름 / Name" defaultValue="frontend-lab" />
+        </SmokeCard>
+        <SmokeCard title="Textarea">
+          <Textarea label="메모 / Note" defaultValue="긴 설명 / Long note" />
+        </SmokeCard>
+        <SmokeCard title="Select">
+          <Select label="상태 / Status" defaultValue="ready" options={[{ label: "준비 / Ready", value: "ready" }]} />
+        </SmokeCard>
+        <SmokeCard title="Checkbox">
+          <Checkbox label="알림 / Notifications" defaultChecked />
+        </SmokeCard>
+        <SmokeCard title="RadioGroup">
+          <RadioGroup label="밀도 / Density" options={[{ label: "기본 / Default", value: "default" }]} />
+        </SmokeCard>
         <SmokeCard title="Switch">
           <Switch label="자동 저장 / Autosave" defaultChecked />
         </SmokeCard>
@@ -79,8 +159,44 @@ function SmokeApp() {
         <SmokeCard title="NavigationRail">
           <NavigationRail items={[{ label: "홈 / Home", value: "home" }, { label: "문서 / Docs", value: "docs" }]} />
         </SmokeCard>
+        <SmokeCard title="SideNav">
+          <SideNav sections={[{ title: "문서 / Docs", items: [{ label: "개요 / Overview", value: "overview" }] }]} />
+        </SmokeCard>
+        <SmokeCard title="Breadcrumb">
+          <Breadcrumb items={[{ label: "홈 / Home", href: "#" }, { label: "현재 / Current", current: true }]} />
+        </SmokeCard>
+        <SmokeCard title="Pagination">
+          <Pagination totalPages={5} defaultPage={2} />
+        </SmokeCard>
         <SmokeCard title="DataGrid">
           <DataGrid columns={[{ key: "name", label: "이름 / Name" }]} rows={[{ name: "DatePicker" }]} />
+        </SmokeCard>
+        <SmokeCard title="Table">
+          <Table columns={[{ key: "name", label: "이름 / Name" }]} rows={[{ name: "Button" }]} />
+        </SmokeCard>
+        <SmokeCard title="EmptyState">
+          <EmptyState title="결과 없음 / No results" />
+        </SmokeCard>
+        <SmokeCard title="List">
+          <List items={[{ title: "Button", description: "명령 / Command" }]} />
+        </SmokeCard>
+        <SmokeCard title="Card">
+          <Card title="카드 / Card" description="surface 확인 / Surface check" />
+        </SmokeCard>
+        <SmokeCard title="Divider">
+          <Stack gap="sm"><span>위 / Top</span><Divider /><span>아래 / Bottom</span></Stack>
+        </SmokeCard>
+        <SmokeCard title="Container">
+          <Container size="sm"><Alert title="Container" /></Container>
+        </SmokeCard>
+        <SmokeCard title="RowCol">
+          <Row gap="sm"><Col span={12} md={6}><Badge label="A" /></Col><Col span={12} md={6}><Badge label="B" /></Col></Row>
+        </SmokeCard>
+        <SmokeCard title="Inline">
+          <Inline gap="sm"><Badge label="A" /><Badge label="B" tone="brand" /></Inline>
+        </SmokeCard>
+        <SmokeCard title="Tooltip">
+          <Tooltip label="도움말 / Help" content="설명 / Description" />
         </SmokeCard>
         <SmokeCard title="Stack">
           <Stack gap="sm">

@@ -8,7 +8,7 @@ Field composition을 공유하는 단일 날짜 입력입니다. / Date input wi
 
 ## 사용 기준 / Usage Criteria
 
-- 우선순위는 `P1`, 상태는 `ready`입니다. / Priority is `P1`, and status is `ready`.
+- 우선순위는 `P0`, 상태는 `ready`입니다. / Priority is `P0`, and status is `ready`.
 - 카테고리는 `forms` (Forms)입니다. / Category is `forms` (Forms).
 - 기본 primitive는 `input[type='date']`입니다. / Base primitive is `input[type='date']`.
 - 테마와 색상은 component-local 값이 아니라 semantic token을 상속합니다. / Theme and color inherit semantic tokens instead of component-local values.

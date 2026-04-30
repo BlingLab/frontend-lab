@@ -20,7 +20,7 @@ Each component folder keeps implementation and documentation in the same locatio
 - `feedback`: alert, notification, progress, status indicator / Alerts, notifications, progress, and status indicators
 - `overlays`: floating 또는 modal surface / Floating or modal surfaces
 - `navigation`: page, section, panel 사이를 이동하는 control / Controls that move across pages, sections, or panels
-- `layout`: 구조적 content surface와 separator / Structural content surfaces and separators
+- `layout`: page, grid, spacing, content surface, separator 구조 / Page, grid, spacing, content surface, and separator structure
 - `data-display`: list, table, empty state, record presentation / Lists, tables, empty states, and record presentation
 
 ## 폴더 계약 / Folder Contract

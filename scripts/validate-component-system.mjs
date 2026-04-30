@@ -76,6 +76,8 @@ const implementationPaths = new Map([
   ["Inline", ["layout", "inline"]]
 ]);
 const propTableHeader = "| Prop | Type | Default | 설명 / Description |";
+const usageCriteriaPattern = (priority, status) => new RegExp(`우선순위는 \`${priority}\`, 상태는 \`${status}\`입니다\\. / Priority is \`${priority}\`, and status is \`${status}\`\\.`);
+const apiSurfacePattern = (priority, status) => new RegExp(`priority/status: \`${priority}\` / \`${status}\``);
 
 function extractInterfacePropNames(source, interfaceName) {
   const interfaceIndex = source.indexOf(`interface ${interfaceName}`);
@@ -197,6 +199,7 @@ for (const exportName of requiredExports) {
   const entrySource = await readFile(entryFile, "utf8").catch(() => "");
   const readmeSource = await readFile(join(rootDir, "packages", "ui", "src", "components", category, slug, "README.md"), "utf8").catch(() => "");
   const specSource = await readFile(join(rootDir, "packages", "ui", "src", "components", category, slug, "spec.md"), "utf8").catch(() => "");
+  const catalogItem = componentCatalog.find((component) => component.name === exportName);
 
   if (!componentSource.includes(`export function ${exportName}`) && !componentSource.includes(`export const ${exportName}`)) {
     failures.push(`${exportName} 구현은 자기 폴더의 ${slug}.tsx에서 named export여야 합니다. / ${exportName} implementation must be a named export in its own ${slug}.tsx file.`);
@@ -208,9 +211,15 @@ for (const exportName of requiredExports) {
     failures.push(`index.ts에서 컴포넌트를 export해야 합니다. / index.ts must export component: ${exportName}`);
   }
 
-  if (componentCatalog.some((component) => component.name === exportName && component.status === "ready")) {
-    const component = componentCatalog.find((catalogItem) => catalogItem.name === exportName);
-    const propDocs = component ? getComponentPropDocs(component) : [];
+  if (catalogItem && !usageCriteriaPattern(catalogItem.priority, catalogItem.status).test(readmeSource)) {
+    failures.push(`${exportName} README의 priority/status가 catalog와 다릅니다. / ${exportName} README priority/status must match the catalog.`);
+  }
+  if (catalogItem && !apiSurfacePattern(catalogItem.priority, catalogItem.status).test(specSource)) {
+    failures.push(`${exportName} spec의 priority/status가 catalog와 다릅니다. / ${exportName} spec priority/status must match the catalog.`);
+  }
+
+  if (catalogItem?.status === "ready") {
+    const propDocs = getComponentPropDocs(catalogItem);
     const readmeHasPropTable = readmeSource.includes("## Prop 표 / Prop Table") && readmeSource.includes(propTableHeader);
     if (!readmeHasPropTable) {
       failures.push(`${exportName} README에 Prop 표가 없습니다. / ${exportName} README is missing a prop table.`);

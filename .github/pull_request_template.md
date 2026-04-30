@@ -6,9 +6,9 @@
 
 ## 변경 흐름 / Change Flow
 
-- [ ] 기능 또는 구조 변경: Changes 탭에서 셀프 리뷰했습니다. / Feature or structure change: self-reviewed the Changes tab.
-- [ ] 위험한 변경: 아래 위험 체크리스트를 작성했습니다. / Risky change: completed the risk checklist below.
-- [ ] 작은 수정이면 PR 대신 `main` 바로 push 대상입니다. / Small changes should usually be pushed directly to `main` instead of using a PR.
+- [ ] 즉시 처리: 영향 범위가 작고 되돌리기 쉬운 변경입니다. / Fast Track: the change has a small blast radius and easy rollback.
+- [ ] 가벼운 점검: 관련 검증을 선택했고 Changes 탭에서 셀프 리뷰했습니다. / Light Review: selected relevant verification and self-reviewed the Changes tab.
+- [ ] 정식 이슈급: 아래 위험 체크리스트와 이슈 연결을 작성했습니다. / Full Issue: completed the risk checklist below and linked the issue.
 
 ## 변경 범위 / Scope
 

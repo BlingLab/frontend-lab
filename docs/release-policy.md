@@ -56,7 +56,7 @@ npm run release:dry-run
 `.github/workflows/release.yml` only allows manual execution.
 
 - `mode=dry-run`은 검증과 `npm pack --dry-run`만 실행합니다. / `mode=dry-run` only runs validation and `npm pack --dry-run`.
-- `mode=publish`는 `confirm` 값이 `publish @workspace/ui`일 때만 `npm publish --workspace @workspace/ui --access public --provenance`를 실행합니다. / `mode=publish` runs `npm publish --workspace @workspace/ui --access public --provenance` only when `confirm` is `publish @workspace/ui`.
+- `mode=publish`는 `confirm` 값이 `publish @workspace/ui`이고 `release:publish-verify`가 통과할 때만 `npm publish --workspace @workspace/ui --access public --provenance`를 실행합니다. / `mode=publish` runs `npm publish --workspace @workspace/ui --access public --provenance` only when `confirm` is `publish @workspace/ui` and `release:publish-verify` passes.
 - GitHub environment는 `npm-release`, secret은 `NPM_TOKEN`을 사용합니다. / The GitHub environment is `npm-release`, and the secret is `NPM_TOKEN`.
 - 실제 publish 전에 npm package name, `private` flag, npm organization permission을 확인합니다. / Before real publishing, verify the npm package name, `private` flag, and npm organization permissions.
 

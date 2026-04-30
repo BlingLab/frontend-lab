@@ -156,7 +156,7 @@ npm run components:scaffold
 Generates component `README.md`, `spec.md`, and `index.ts` skeletons from `packages/ui/src/components/catalog.ts`. Existing files are not overwritten.
 
 ```bash
-npm run components:scaffold -- --force
+npm run components:scaffold -- --force-docs
 ```
 
 기존 컴포넌트 문서를 카탈로그 기준 병기 형식으로 다시 생성합니다. 수동 수정이 있는지 먼저 확인합니다.

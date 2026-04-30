@@ -34,6 +34,7 @@ npm pack --workspace @workspace/ui --dry-run
 - `test:visual`은 docs app home, theme compare, DataGrid screenshot과 horizontal overflow를 확인해야 합니다. / `test:visual` must verify docs app home, theme compare, DataGrid screenshots, and horizontal overflow.
 - `test:exports`는 root export와 per-component export가 실제 `dist` 파일과 맞는지 확인해야 합니다. / `test:exports` must verify that root and per-component exports match real `dist` files.
 - `release:verify`는 release script, dist 산출물, peer dependency, changelog 상태를 확인해야 합니다. / `release:verify` must verify release scripts, dist output, peer dependencies, and changelog status.
+- 실제 publish 전에는 `release:publish-verify`가 package name, private flag, publish token 조건을 확인해야 합니다. / Before real publish, `release:publish-verify` must verify package name, private flag, and publish token conditions.
 - React는 dependency가 아니라 peer dependency로 유지합니다. / React must remain a peer dependency, not a bundled dependency.
 
 ## 산출물 확인 / Output Check

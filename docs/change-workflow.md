@@ -1,12 +1,12 @@
 # 변경 흐름 / Change Workflow
 
-이 저장소는 변경 위험도에 따라 `바로 push`, `PR 셀프 리뷰`, `체크리스트 기반 merge` 세 단계로 운영합니다.
-This repository uses three change paths based on risk: direct push, PR self-review, and checklist-based merge.
+이 저장소는 변경 위험도에 따라 `즉시 처리`, `가벼운 점검`, `정식 이슈급` 세 단계로 운영합니다.
+This repository uses three change paths based on risk: Fast Track, Light Review, and Full Issue.
 
-## 1. 작은 수정 / Small Change
+## 1. 즉시 처리 / Fast Track
 
-작은 수정은 `main`에 바로 push할 수 있습니다.
-Small changes can be pushed directly to `main`.
+즉시 처리는 영향 범위가 작고 되돌리기 쉬운 작업입니다.
+Fast Track is for changes with a small blast radius and easy rollback.
 
 ### 기준 / Criteria
 
@@ -16,38 +16,39 @@ Small changes can be pushed directly to `main`.
 
 ### 확인 / Checks
 
-- 필요한 경우 `npm run test` 또는 관련 build만 실행합니다. / Run `npm run test` or the relevant build only when needed.
-- GitHub label은 `flow:direct`를 사용합니다. / Use the `flow:direct` GitHub label.
-- main branch protection을 켠 뒤에는 작은 수정도 `flow:direct` label의 짧은 PR로 처리합니다. / After enabling main branch protection, handle even small changes through short PRs labeled `flow:direct`.
+- 필요한 경우 관련 script만 실행합니다. / Run only the relevant script when needed.
+- GitHub label은 `fast-track` 또는 `flow:direct`를 사용합니다. / Use the `fast-track` or `flow:direct` GitHub label.
+- main branch protection이 켜진 경우 즉시 처리도 짧은 PR로 기록합니다. / When main branch protection is enabled, even Fast Track changes are recorded through a short PR.
 
-## 2. 기능 또는 구조 변경 / Feature Or Structure Change
+## 2. 가벼운 점검 / Light Review
 
-기능 추가, prop 변경, 폴더 구조, build/test 흐름 변경은 PR을 올리고 Changes 탭에서 셀프 리뷰합니다.
-Feature additions, prop changes, folder structure changes, and build/test flow changes use a PR with self-review in the Changes tab.
+가벼운 점검은 회귀 가능성이 있지만 구조 결정이나 별도 이슈까지는 필요하지 않은 작업입니다.
+Light Review is for changes with regression risk that do not require a separate issue or structural decision.
 
 ### 기준 / Criteria
 
-- 새 컴포넌트, 새 prop, 상태 동작, keyboard interaction이 추가됩니다. / Adds a new component, prop, state behavior, or keyboard interaction.
-- package export, docs app, token hook, validation script가 바뀝니다. / Changes package exports, docs app, token hooks, or validation scripts.
-- 여러 파일을 함께 바꾸며 리뷰 맥락이 필요합니다. / Changes multiple files and needs review context.
+- props, 상태 처리, 접근성, 반응형 동작, 여러 파일에 걸친 작은 변경입니다. / Changes props, state handling, accessibility, responsive behavior, or a small set of related files.
+- package export, docs app, token hook, validation script를 가볍게 바꿉니다. / Lightly changes package exports, the docs app, token hooks, or validation scripts.
+- 작업 전 짧은 체크리스트와 관련 검증이 필요합니다. / Needs a short checklist and relevant verification before completion.
 
 ### 확인 / Checks
 
 - PR description은 `.github/pull_request_template.md`를 따릅니다. / PR description follows `.github/pull_request_template.md`.
 - 작성자는 Changes 탭에서 self-review를 진행하고, 의심되는 줄에는 comment를 남깁니다. / The author self-reviews the Changes tab and comments on suspicious lines.
-- 기본 검증은 `npm run test`, `npm run typecheck`, `npm --workspace @workspace/docs run build`입니다. / Base verification is `npm run test`, `npm run typecheck`, and `npm --workspace @workspace/docs run build`.
-- GitHub label은 `flow:pr`를 사용합니다. / Use the `flow:pr` GitHub label.
+- 관련 검증은 변경 범위에 맞게 고르고 결과를 PR 또는 작업 요약에 남깁니다. / Choose verification based on the change scope and record the result in the PR or work summary.
+- GitHub label은 `light-review` 또는 `flow:pr`를 사용합니다. / Use the `light-review` or `flow:pr` GitHub label.
 
-## 3. 위험한 변경 / Risky Change
+## 3. 정식 이슈급 / Full Issue
 
-위험한 변경은 PR 설명에 체크리스트를 적고 확인 후 merge합니다.
-Risky changes include a checklist in the PR description and are merged only after confirmation.
+정식 이슈급은 공통 API, 디자인 시스템, 릴리즈, 검증 체계에 영향을 주는 작업입니다.
+Full Issue work affects shared APIs, the design system, release behavior, or validation systems.
 
 ### 기준 / Criteria
 
 - public API breaking change, token rename, theme contract change가 있습니다. / Includes public API breaking changes, token renames, or theme contract changes.
 - 릴리즈, 패키지 배포, dependency, CI required check를 바꿉니다. / Changes release, package publishing, dependencies, or required CI checks.
 - accessibility, focus management, keyboard behavior에 regression 위험이 큽니다. / Has high regression risk for accessibility, focus management, or keyboard behavior.
+- 공통 컴포넌트 API, 디자인 시스템, 문서 재생성, 구조 변경에 영향을 줍니다. / Affects shared component APIs, the design system, regenerated docs, or structural changes.
 
 ### 필수 체크리스트 / Required Checklist
 
@@ -58,13 +59,13 @@ Risky changes include a checklist in the PR description and are merged only afte
 - [ ] `npm --workspace @workspace/docs run build`를 통과했습니다. / `npm --workspace @workspace/docs run build` passed.
 - [ ] docs, README, component spec가 함께 업데이트되었습니다. / Docs, README, and component specs were updated together.
 
-GitHub label은 `flow:risk`를 사용합니다.
-Use the `flow:risk` GitHub label.
+GitHub label은 `full-issue` 또는 `flow:risk`를 사용합니다.
+Use the `full-issue` or `flow:risk` label.
 
 ## 결정 기준 / Decision Guide
 
 | 질문 / Question | 답 / Answer | 흐름 / Flow |
 | --- | --- | --- |
-| 동작, API, 빌드에 영향이 없습니까? / No behavior, API, or build impact? | 예 / Yes | 바로 push / Direct push |
-| 기능, 구조, prop, 검증 흐름을 바꿉니까? / Changes feature, structure, prop, or validation flow? | 예 / Yes | PR 셀프 리뷰 / PR self-review |
-| breaking change 또는 rollback이 필요할 수 있습니까? / Could require breaking change handling or rollback? | 예 / Yes | 위험 변경 체크리스트 / Risk checklist |
+| 동작, API, 빌드에 영향이 없습니까? / No behavior, API, or build impact? | 예 / Yes | 즉시 처리 / Fast Track |
+| 작지만 props, 상태, 접근성, 반응형, 검증 흐름에 영향이 있습니까? / Small but affects props, state, accessibility, responsive behavior, or validation flow? | 예 / Yes | 가벼운 점검 / Light Review |
+| breaking change, rollback, 공통 API, release 위험이 있습니까? / Has breaking change, rollback, shared API, or release risk? | 예 / Yes | 정식 이슈급 / Full Issue |

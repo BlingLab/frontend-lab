@@ -1,4 +1,3 @@
-import "@workspace/tokens/tokens.css";
 import "@workspace/ui/styles.css";
 
 import { StrictMode } from "react";

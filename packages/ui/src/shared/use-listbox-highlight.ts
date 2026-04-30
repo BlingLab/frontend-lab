@@ -15,17 +15,24 @@ export function useListboxHighlight<Item extends ListboxHighlightItem>({
   idBase,
   resetOnItemsChange = true
 }: UseListboxHighlightOptions<Item>) {
-  const [highlightedIndex, setHighlightedIndex] = useState(-1);
+  const [highlightedIndex, setRawHighlightedIndex] = useState(-1);
   const firstEnabledIndex = useMemo(() => items.findIndex((item) => !item.disabled), [items]);
-  const highlightedItem = highlightedIndex >= 0 ? items[highlightedIndex] : undefined;
+  const highlightedItem = highlightedIndex >= 0 && !items[highlightedIndex]?.disabled ? items[highlightedIndex] : undefined;
   const highlightedItemId = highlightedItem ? `${idBase}-${highlightedIndex}` : undefined;
 
   useEffect(() => {
-    if (resetOnItemsChange) setHighlightedIndex(firstEnabledIndex);
+    if (resetOnItemsChange) setRawHighlightedIndex(firstEnabledIndex);
   }, [firstEnabledIndex, resetOnItemsChange]);
 
-  const resetHighlight = useCallback(() => setHighlightedIndex(-1), []);
-  const highlightFirst = useCallback(() => setHighlightedIndex(firstEnabledIndex), [firstEnabledIndex]);
+  const setHighlightedIndex = useCallback((nextIndex: number) => {
+    if (nextIndex < 0) {
+      setRawHighlightedIndex(-1);
+      return;
+    }
+    if (!items[nextIndex]?.disabled) setRawHighlightedIndex(nextIndex);
+  }, [items]);
+  const resetHighlight = useCallback(() => setRawHighlightedIndex(-1), []);
+  const highlightFirst = useCallback(() => setRawHighlightedIndex(firstEnabledIndex), [firstEnabledIndex]);
   const getItemId = useCallback((index: number) => `${idBase}-${index}`, [idBase]);
 
   const moveHighlight = useCallback((offset: number) => {
@@ -35,7 +42,7 @@ export function useListboxHighlight<Item extends ListboxHighlightItem>({
     for (let attempt = 0; attempt < items.length; attempt += 1) {
       nextIndex = (nextIndex + offset + items.length) % items.length;
       if (!items[nextIndex]?.disabled) {
-        setHighlightedIndex(nextIndex);
+        setRawHighlightedIndex(nextIndex);
         return;
       }
     }

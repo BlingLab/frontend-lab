@@ -51,6 +51,12 @@ jobs:
           echo "publish confirm 값이 올바르지 않습니다. / Publish confirm value is not correct."
           exit 1
 
+      - name: publish 준비 조건 검증 / Verify publish readiness
+        if: inputs.mode == 'publish'
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+        run: npm run release:publish-verify
+
       - name: npm publish / npm publish
         if: inputs.mode == 'publish'
         env:

@@ -14,6 +14,7 @@ globalThis.HTMLDialogElement = dom.window.HTMLDialogElement;
 globalThis.File = dom.window.File;
 globalThis.KeyboardEvent = dom.window.KeyboardEvent;
 globalThis.MouseEvent = dom.window.MouseEvent;
+globalThis.PointerEvent = dom.window.PointerEvent ?? dom.window.MouseEvent;
 globalThis.Node = dom.window.Node;
 Object.defineProperty(globalThis, "navigator", {
   configurable: true,
@@ -44,6 +45,9 @@ if (!globalThis.HTMLDialogElement.prototype.close) {
 const { cleanup, fireEvent, render, screen, waitFor } = await import("@testing-library/react");
 const userEvent = (await import("@testing-library/user-event")).default;
 const {
+  Button,
+  Card,
+  Checkbox,
   Combobox,
   CommandPalette,
   DataGrid,
@@ -51,20 +55,30 @@ const {
   Dialog,
   DropdownMenu,
   FileUploader,
+  IconButton,
   NavigationRail,
+  Pagination,
   Popover,
+  RadioGroup,
   Select,
   SideNav,
   Stepper,
+  Switch,
+  Table,
   Tabs,
   componentCatalog
 } = await import("../packages/ui/dist/index.js");
 
 const failures = [];
 const interactionCoverageNames = [
+  "Button",
+  "IconButton",
   "Select",
   "DatePicker",
   "Combobox",
+  "Checkbox",
+  "RadioGroup",
+  "Switch",
   "FileUploader",
   "CommandPalette",
   "DropdownMenu",
@@ -74,6 +88,9 @@ const interactionCoverageNames = [
   "Stepper",
   "NavigationRail",
   "SideNav",
+  "Pagination",
+  "Card",
+  "Table",
   "DataGrid"
 ];
 
@@ -135,6 +152,44 @@ await check("DatePicker focus and Enter commit", async () => {
   });
 });
 
+await check("Button loading and selected accessibility state", async () => {
+  let clicked = 0;
+  render(React.createElement(Button, {
+    loading: true,
+    selected: true,
+    onClick: () => {
+      clicked += 1;
+    }
+  }, "저장 / Save"));
+
+  const button = screen.getByRole("button", { name: "저장 / Save" });
+  fireEvent.click(button);
+
+  await waitFor(() => {
+    if (!button.disabled) throw new Error("Expected loading button to be disabled.");
+    if (button.getAttribute("aria-busy") !== "true") throw new Error("Expected loading button to expose aria-busy.");
+    if (button.getAttribute("aria-pressed") !== "true") throw new Error("Expected selected button to expose aria-pressed.");
+    if (clicked !== 0) throw new Error("Expected disabled loading button not to fire click.");
+  });
+});
+
+await check("IconButton required accessible name", async () => {
+  let clicked = 0;
+  render(React.createElement(IconButton, {
+    label: "검색 / Search",
+    onClick: () => {
+      clicked += 1;
+    }
+  }));
+
+  const button = screen.getByRole("button", { name: "검색 / Search" });
+  fireEvent.click(button);
+
+  await waitFor(() => {
+    if (clicked !== 1) throw new Error(`Expected icon button click callback once, received: ${clicked}`);
+  });
+});
+
 await check("Combobox keyboard selection", async () => {
   render(React.createElement(Combobox, {
     label: "담당자 / Owner",
@@ -161,6 +216,66 @@ await check("Combobox keyboard selection", async () => {
   });
 });
 
+await check("Checkbox indeterminate and toggle", async () => {
+  let checked = false;
+  render(React.createElement(Checkbox, {
+    label: "전체 선택 / Select all",
+    indeterminate: true,
+    onChange: (event) => {
+      checked = event.currentTarget.checked;
+    }
+  }));
+
+  const checkbox = screen.getByRole("checkbox", { name: "전체 선택 / Select all" });
+  await waitFor(() => {
+    if (!checkbox.indeterminate) throw new Error("Expected checkbox DOM indeterminate property.");
+    if (checkbox.getAttribute("aria-checked") !== "mixed") throw new Error("Expected mixed checkbox to expose aria-checked.");
+  });
+
+  fireEvent.click(checkbox);
+  await waitFor(() => {
+    if (!checked) throw new Error("Expected checkbox change callback to receive checked=true.");
+  });
+});
+
+await check("RadioGroup selection callback", async () => {
+  let selected = "";
+  render(React.createElement(RadioGroup, {
+    label: "배포 채널 / Release channel",
+    options: [
+      { label: "안정 / Stable", value: "stable" },
+      { label: "다음 / Next", value: "next" }
+    ],
+    onValueChange: (value) => {
+      selected = value;
+    }
+  }));
+
+  fireEvent.click(screen.getByRole("radio", { name: "다음 / Next" }));
+
+  await waitFor(() => {
+    if (selected !== "next") throw new Error(`Expected radio value "next", received: ${selected}`);
+  });
+});
+
+await check("Switch toggle accessibility state", async () => {
+  let checked = false;
+  render(React.createElement(Switch, {
+    label: "알림 / Notifications",
+    onCheckedChange: (value) => {
+      checked = value;
+    }
+  }));
+
+  const switchControl = screen.getByRole("switch", { name: "알림 / Notifications" });
+  fireEvent.click(switchControl);
+
+  await waitFor(() => {
+    if (!checked) throw new Error("Expected switch change callback to receive checked=true.");
+    if (switchControl.getAttribute("aria-checked") !== "true") throw new Error("Expected switch to expose checked state.");
+  });
+});
+
 await check("FileUploader file selection", async () => {
   const file = new File(["component"], "component-spec.md", { type: "text/markdown" });
   let selectedFiles = [];
@@ -179,6 +294,43 @@ await check("FileUploader file selection", async () => {
     if (document.activeElement !== input) throw new Error("Expected file input to keep focus after file selection.");
     if (selectedFiles[0]?.name !== "component-spec.md") throw new Error("Expected selected file to be reported.");
     if (!screen.getByText("component-spec.md")) throw new Error("Expected selected file name to be rendered.");
+  });
+});
+
+await check("Table sort and multi-row selection", async () => {
+  let sortState;
+  let selectedKeys = [];
+  render(React.createElement(Table, {
+    caption: "컴포넌트 목록 / Component list",
+    sortable: true,
+    selectionMode: "multiple",
+    columns: [
+      { key: "name", label: "이름 / Name" },
+      { key: "status", label: "상태 / Status" }
+    ],
+    rows: [
+      { id: "button", name: "Button", status: "ready" },
+      { id: "dialog", name: "Dialog", status: "ready" }
+    ],
+    rowKey: (row) => row.id,
+    onSortChange: (nextSortState) => {
+      sortState = nextSortState;
+    },
+    onSelectedRowKeysChange: (keys) => {
+      selectedKeys = keys;
+    }
+  }));
+
+  fireEvent.click(screen.getByRole("button", { name: "이름 / Name 정렬 / Sort 이름 / Name" }));
+  await waitFor(() => {
+    if (sortState?.key !== "name" || sortState?.direction !== "ascending") {
+      throw new Error(`Expected ascending name sort, received: ${JSON.stringify(sortState)}`);
+    }
+  });
+
+  fireEvent.click(screen.getByRole("checkbox", { name: "전체 행 선택 / Select all rows" }));
+  await waitFor(() => {
+    if (selectedKeys.join(",") !== "button,dialog") throw new Error(`Expected both row keys selected, received: ${selectedKeys.join(",")}`);
   });
 });
 
@@ -202,6 +354,46 @@ await check("CommandPalette keyboard selection", async () => {
 
   await waitFor(() => {
     if (selected !== "new") throw new Error(`Expected command "new", received: ${selected}`);
+  });
+});
+
+await check("Pagination page change and aria-current", async () => {
+  let selectedPage = 1;
+  render(React.createElement(Pagination, {
+    defaultPage: 1,
+    totalPages: 3,
+    onPageChange: (page) => {
+      selectedPage = page;
+    }
+  }));
+
+  fireEvent.click(screen.getByRole("button", { name: "2" }));
+
+  await waitFor(() => {
+    if (selectedPage !== 2) throw new Error(`Expected page 2, received: ${selectedPage}`);
+    if (screen.getByRole("button", { name: "2" }).getAttribute("aria-current") !== "page") {
+      throw new Error("Expected selected page button to expose aria-current.");
+    }
+  });
+});
+
+await check("Interactive Card keyboard activation", async () => {
+  let clicked = 0;
+  render(React.createElement(Card, {
+    title: "릴리즈 / Release",
+    interactive: true,
+    onClick: () => {
+      clicked += 1;
+    }
+  }));
+
+  const card = screen.getByRole("button", { name: "릴리즈 / Release" });
+  card.focus();
+  fireEvent.keyDown(card, { key: "Enter" });
+
+  await waitFor(() => {
+    if (document.activeElement !== card) throw new Error("Expected interactive card to keep focus after Enter.");
+    if (clicked !== 1) throw new Error(`Expected interactive card click callback once, received: ${clicked}`);
   });
 });
 
@@ -356,6 +548,25 @@ await check("DropdownMenu keyboard focus return", async () => {
   });
 });
 
+await check("DropdownMenu outside pointer dismiss", async () => {
+  const user = userEvent.setup();
+  render(React.createElement(DropdownMenu, {
+    triggerLabel: "작업 / Actions",
+    items: [
+      { label: "편집 / Edit" },
+      { label: "삭제 / Delete" }
+    ]
+  }));
+
+  const trigger = screen.getByRole("button", { name: "작업 / Actions" });
+  await user.click(trigger);
+  fireEvent.pointerDown(document.body);
+
+  await waitFor(() => {
+    if (trigger.getAttribute("aria-expanded") !== "false") throw new Error("Expected outside pointer to close dropdown menu.");
+  });
+});
+
 await check("Popover Escape focus return", async () => {
   const user = userEvent.setup();
   render(React.createElement(Popover, {
@@ -369,6 +580,22 @@ await check("Popover Escape focus return", async () => {
 
   await waitFor(() => {
     if (document.activeElement !== trigger) throw new Error("Expected focus to return to popover trigger.");
+  });
+});
+
+await check("Popover outside pointer dismiss", async () => {
+  const user = userEvent.setup();
+  render(React.createElement(Popover, {
+    triggerLabel: "필터 / Filter",
+    title: "필터 옵션 / Filter options"
+  }));
+
+  const trigger = screen.getByRole("button", { name: "필터 / Filter" });
+  await user.click(trigger);
+  fireEvent.pointerDown(document.body);
+
+  await waitFor(() => {
+    if (trigger.getAttribute("aria-expanded") !== "false") throw new Error("Expected outside pointer to close popover.");
   });
 });
 

@@ -9,7 +9,7 @@
 - public component: `DatePicker`
 - folder slug: `date-picker`
 - category: `forms`
-- priority/status: `P1` / `ready`
+- priority/status: `P0` / `ready`
 - props: `value`, `defaultValue`, `minDate`, `maxDate`, `size`, `width`, `fieldProps`, `inputClassName`, `disabled`, `readOnly`, `invalid`
 
 ## Prop 표 / Prop Table
