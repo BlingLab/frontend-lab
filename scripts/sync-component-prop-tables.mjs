@@ -14,7 +14,7 @@ function upsertPropTable(content, component) {
   const block = renderBlock(component);
   const propTablePattern = /## Prop 표 \/ Prop Table\n\n[\s\S]*?(?=\n## |$)/;
   if (propTablePattern.test(content)) {
-    return content.replace(propTablePattern, block.trimEnd());
+    return content.replace(propTablePattern, `${block.trimEnd()}\n`);
   }
 
   const propAxesPattern = /(## Prop 축 \/ Prop Axes\n\n[\s\S]*?)(?=\n## |$)/;

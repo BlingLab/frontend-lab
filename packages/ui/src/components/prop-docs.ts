@@ -77,7 +77,9 @@ const sharedPropDocs: Record<string, Omit<ComponentPropDoc, "name">> = {
   selectionMode: { type: "\"none\" | \"single\" | \"multiple\"", defaultValue: "-", description: "선택 interaction 방식입니다. / Selection interaction mode." },
   shape: { type: "string", defaultValue: "-", description: "컴포넌트 외형 형태입니다. / Visual shape of the component." },
   size: { type: "Size", defaultValue: "\"md\"", description: "control 크기와 밀도입니다. / Control size and density." },
+  sm: { type: "number", defaultValue: "-", description: "small breakpoint 이상에서 적용할 12-column span입니다. / 12-column span applied at the small breakpoint and above." },
   src: { type: "string", defaultValue: "-", description: "외부 resource source입니다. / External resource source." },
+  span: { type: "number", defaultValue: "12", description: "기본 12-column span입니다. / Default 12-column span." },
   status: { type: "string", defaultValue: "-", description: "현재 상태 값입니다. / Current status value." },
   step: { type: "number", defaultValue: "-", description: "값 변경 간격입니다. / Step interval for value changes." },
   suffix: { type: "ReactNode", defaultValue: "-", description: "control 뒤쪽 accessory입니다. / Accessory after the control." },
@@ -93,6 +95,29 @@ const sharedPropDocs: Record<string, Omit<ComponentPropDoc, "name">> = {
 };
 
 export const componentPropDocs: Record<string, ComponentPropDoc[]> = {
+  Container: [
+    { name: "size", type: "\"sm\" | \"md\" | \"lg\" | \"xl\" | \"2xl\"", defaultValue: "\"lg\"", description: "적용할 container 최대 폭입니다. / Maximum container width to apply." }
+  ],
+  Row: [
+    { name: "gap", type: "\"sm\" | \"md\" | \"lg\"", defaultValue: "\"md\"", description: "자식 요소 사이 간격입니다. / Gap between child elements." },
+    { name: "align", type: "\"start\" | \"center\" | \"end\" | \"stretch\"", defaultValue: "\"stretch\"", description: "교차축 정렬입니다. / Cross-axis alignment." },
+    { name: "justify", type: "\"start\" | \"center\" | \"end\" | \"between\"", defaultValue: "\"start\"", description: "주축 정렬입니다. / Main-axis justification." }
+  ],
+  Col: [
+    { name: "span", type: "number", defaultValue: "12", description: "기본 12-column span입니다. / Default 12-column span." },
+    { name: "sm", type: "number", defaultValue: "-", description: "small breakpoint 이상에서 적용할 span입니다. / Span applied at the small breakpoint and above." },
+    { name: "md", type: "number", defaultValue: "-", description: "medium breakpoint 이상에서 적용할 span입니다. / Span applied at the medium breakpoint and above." },
+    { name: "lg", type: "number", defaultValue: "-", description: "large breakpoint 이상에서 적용할 span입니다. / Span applied at the large breakpoint and above." }
+  ],
+  Stack: [
+    { name: "gap", type: "\"sm\" | \"md\" | \"lg\"", defaultValue: "\"md\"", description: "자식 요소 사이 간격입니다. / Gap between child elements." },
+    { name: "align", type: "\"start\" | \"center\" | \"end\" | \"stretch\"", defaultValue: "\"stretch\"", description: "교차축 정렬입니다. / Cross-axis alignment." }
+  ],
+  Inline: [
+    { name: "gap", type: "\"sm\" | \"md\" | \"lg\"", defaultValue: "\"md\"", description: "자식 요소 사이 간격입니다. / Gap between child elements." },
+    { name: "align", type: "\"start\" | \"center\" | \"end\" | \"stretch\"", defaultValue: "\"center\"", description: "교차축 정렬입니다. / Cross-axis alignment." },
+    { name: "justify", type: "\"start\" | \"center\" | \"end\" | \"between\"", defaultValue: "\"start\"", description: "주축 정렬입니다. / Main-axis justification." }
+  ],
   Combobox: [
     { name: "label", type: "ReactNode", defaultValue: "-", description: "필드 label입니다. / Field label." },
     { name: "description", type: "ReactNode", defaultValue: "-", description: "보조 설명입니다. / Helper description." },

@@ -8,7 +8,7 @@
 
 ## 사용 기준 / Usage Criteria
 
-- 우선순위는 `P0`, 상태는 `ready`입니다. / Priority is `P0`, and status is `ready`.
+- 우선순위는 `P1`, 상태는 `ready`입니다. / Priority is `P1`, and status is `ready`.
 - 카테고리는 `data-display` (Data Display)입니다. / Category is `data-display` (Data Display).
 - 기본 primitive는 `table with grid-like interactions`입니다. / Base primitive is `table with grid-like interactions`.
 - 테마와 색상은 component-local 값이 아니라 semantic token을 상속합니다. / Theme and color inherit semantic tokens instead of component-local values.
@@ -47,6 +47,7 @@
 | `onSelectionChange` | `(rows: Row[]) => void` | `-` | 선택된 row 목록이 바뀔 때 호출됩니다. / Called when selected rows change. |
 | `onActiveRowKeyChange` | `(key: string \| undefined, row: Row \| undefined) => void` | `-` | active row가 바뀔 때 호출됩니다. / Called when the active row changes. |
 | `onColumnResize` | `(key: keyof Row & string, width: number) => void` | `-` | column width가 바뀔 때 호출됩니다. / Called when a column width changes. |
+
 ## 상태 / States
 
 - `default`

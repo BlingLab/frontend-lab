@@ -19,16 +19,20 @@ This table preserves candidates and acceptance criteria from the time they were 
 | Issue | 우선순위 / Priority | 제목 / Title | 유형 / Type | 기준 / Acceptance Criteria |
 | --- | --- | --- | --- | --- |
 | [#1](https://github.com/BlingLab/frontend-lab/issues/1) | P0 | CI workflow 추가 / Add CI workflow | infra | `npm run test`, `npm run typecheck`, docs build가 push와 PR에서 실행됩니다. / Runs `npm run test`, `npm run typecheck`, and docs build on push and PR. |
-| [#2](https://github.com/BlingLab/frontend-lab/issues/2) | P0 | 접근성 회귀 테스트 확장 / Expand accessibility regression tests | quality | `Dialog`, `CommandPalette`, `Combobox`, `DataGrid` keyboard 흐름을 자동화합니다. / Automates keyboard flows for `Dialog`, `CommandPalette`, `Combobox`, and `DataGrid`. |
+| [#2](https://github.com/BlingLab/frontend-lab/issues/2) | Done | 접근성 회귀 테스트 확장 / Expand accessibility regression tests | quality | `Dialog`, `CommandPalette`, `Combobox`, `DataGrid` keyboard 흐름과 주요 interactive component 흐름을 자동화했습니다. / Automated `Dialog`, `CommandPalette`, `Combobox`, `DataGrid`, and core interactive component flows. |
 | [#3](https://github.com/BlingLab/frontend-lab/issues/3) | P0 | 브랜치 보호와 PR 리뷰 규칙 설정 / Configure branch protection and PR review rules | review | `docs/branch-protection.md`에 direct push 정책 충돌과 적용 체크리스트를 기록했습니다. / `docs/branch-protection.md` records the direct-push policy conflict and application checklist. |
 | [#4](https://github.com/BlingLab/frontend-lab/issues/4) | P1 | 시각 회귀 기준 추가 / Add visual regression criteria | quality | NORMAL/DARK, mobile/tablet/desktop 기준은 `docs/visual-regression.md`로 정의합니다. / NORMAL/DARK and mobile/tablet/desktop criteria are defined in `docs/visual-regression.md`. |
 | [#5](https://github.com/BlingLab/frontend-lab/issues/5) | P1 | 패키지 릴리즈 정책 확정 / Define package release policy | release | package scope, registry, versioning, changelog 기준은 `docs/release-policy.md`로 관리합니다. / Package scope, registry, versioning, and changelog criteria are managed in `docs/release-policy.md`. |
-| [#6](https://github.com/BlingLab/frontend-lab/issues/6) | P1 | DataGrid 고급 상호작용 설계 / Design advanced DataGrid interactions | component | row keyboard navigation과 column resize를 구현하고 virtual scroll은 별도 이슈 후보로 분리합니다. / Implements row keyboard navigation and column resize, while splitting virtual scroll into a separate issue candidate. |
+| [#6](https://github.com/BlingLab/frontend-lab/issues/6) | Done | DataGrid 고급 상호작용 설계 / Design advanced DataGrid interactions | component | row keyboard navigation과 column resize를 구현했고 virtual scroll은 별도 이슈 후보로 분리했습니다. / Implemented row keyboard navigation and column resize, while splitting virtual scroll into a separate issue candidate. |
 | [#7](https://github.com/BlingLab/frontend-lab/issues/7) | Done | React 컴포넌트 시스템 하드닝 완료 기록 / Track completed hardening work | tracking | 완료된 component hardening 작업을 closed issue로 기록했습니다. / Completed component hardening work is recorded as a closed issue. |
-| [#8](https://github.com/BlingLab/frontend-lab/issues/8) | P1 | Button ref 전달 구조 개선 / Improve Button ref forwarding | component | overlay focus return이 explicit trigger ref 기반으로 동작합니다. / Overlay focus return works through explicit trigger refs. |
-| [#9](https://github.com/BlingLab/frontend-lab/issues/9) | P1 | Listbox highlight hook 공통화 / Extract shared listbox highlight hook | component | Combobox와 CommandPalette가 shared highlight hook을 사용합니다. / Combobox and CommandPalette use a shared highlight hook. |
-| [#10](https://github.com/BlingLab/frontend-lab/issues/10) | P1 | Overlay dismiss와 focus hook 공통화 / Extract overlay dismiss and focus hooks | component | Escape, outside pointer, focus return 로직이 shared hook으로 정리됩니다. / Escape, outside pointer, and focus return logic are consolidated into shared hooks. |
-| [#12](https://github.com/BlingLab/frontend-lab/issues/12) | P2 | DataGrid virtual scroll 범위 결정 / Decide DataGrid virtual scroll scope | component | large dataset 기준과 ARIA 영향을 별도 설계합니다. / Designs large dataset criteria and ARIA impact separately. |
+| [#8](https://github.com/BlingLab/frontend-lab/issues/8) | Done | Button ref 전달 구조 개선 / Improve Button ref forwarding | component | overlay focus return이 explicit trigger ref 기반으로 동작합니다. / Overlay focus return works through explicit trigger refs. |
+| [#9](https://github.com/BlingLab/frontend-lab/issues/9) | Done | Listbox highlight hook 공통화 / Extract shared listbox highlight hook | component | Combobox와 CommandPalette가 disabled option guard를 포함한 shared highlight hook을 사용합니다. / Combobox and CommandPalette use a shared highlight hook with disabled option guards. |
+| [#10](https://github.com/BlingLab/frontend-lab/issues/10) | Done | Overlay dismiss와 focus hook 공통화 / Extract overlay dismiss and focus hooks | component | Escape, outside pointer, focus return 로직이 shared hook으로 정리되었습니다. / Escape, outside pointer, and focus return logic are consolidated into shared hooks. |
+| [#12](https://github.com/BlingLab/frontend-lab/issues/12) | Done | DataGrid virtual scroll 범위 결정 / Decide DataGrid virtual scroll scope | component | large dataset 기준과 ARIA 영향을 별도 후속으로 분리했습니다. / Large dataset criteria and ARIA impact were split into a separate follow-up. |
+| [#46](https://github.com/BlingLab/frontend-lab/issues/46) | P2 | DataGrid virtual scroll ARIA 검증 프로토타입 / Prototype virtual scroll with ARIA validation | component | large dataset, keyboard navigation, selection, screen reader row count/index 전략을 함께 검증합니다. / Validates large dataset behavior, keyboard navigation, selection, and screen reader row count/index strategy together. |
+| [#47](https://github.com/BlingLab/frontend-lab/issues/47) | P2 | 컴포넌트 문서 재생성 전 수동 변경 감지 / Detect manual changes before regenerating component docs | documentation | docs regeneration dry-run, manual protected section, drift 검증 기준을 추가합니다. / Adds docs regeneration dry-run, manual protected sections, and drift validation criteria. |
+| [#48](https://github.com/BlingLab/frontend-lab/issues/48) | P2 | pixel baseline comparison 도입 / Add pixel baseline comparison | quality | screenshot artifact 검증을 baseline comparison까지 확장합니다. / Extends screenshot artifact checks to baseline comparison. |
+| [#49](https://github.com/BlingLab/frontend-lab/issues/49) | P1 | 실제 npm publish scope와 권한 확정 / Finalize npm publish scope and permissions | release | 실제 package scope, `private` flag, npm token, organization permission을 확정합니다. / Finalizes the real package scope, `private` flag, npm token, and organization permissions. |
 
 ## 우선순위와 SLA / Priority And SLA
 
@@ -51,7 +55,7 @@ This table preserves candidates and acceptance criteria from the time they were 
 - P0와 P1이 남아 있으면 새 P2를 시작하지 않습니다. 단, P2가 현재 PR의 문서 보강이나 검증 누락을 직접 해결하는 경우에는 같은 PR에 포함할 수 있습니다. / Do not start a new P2 while P0 or P1 remains. A P2 may stay in the same PR only when it directly completes documentation or validation for that PR.
 - 같은 label 묶음인 `ci`, `release`, `accessibility`, `component`, `documentation`을 우선 함께 검토합니다. 구현 파일이 겹치지 않으면 PR은 분리합니다. / Review related labels such as `ci`, `release`, `accessibility`, `component`, and `documentation` together first. Split PRs when implementation files do not overlap.
 - 하나의 PR은 기본적으로 하나의 issue를 닫습니다. 같은 root cause, 같은 검증 명령, 같은 reviewer 관점이면 연결 issue를 함께 닫을 수 있습니다. / A PR should close one issue by default. It may close linked issues only when they share the same root cause, validation commands, and reviewer perspective.
-- 작은 수정은 `flow:direct`로 짧은 PR을 열고 merge합니다. `main` 보호가 켜져 있으므로 direct push 대신 PR 기록을 남깁니다. / For small fixes, open and merge a short `flow:direct` PR. Because `main` protection is enabled, leave a PR record instead of pushing directly.
+- 즉시 처리는 `fast-track` 또는 `flow:direct`로 짧은 PR을 열고 merge합니다. `main` 보호가 켜져 있으므로 direct push 대신 PR 기록을 남깁니다. / For Fast Track work, open and merge a short PR labeled `fast-track` or `flow:direct`. Because `main` protection is enabled, leave a PR record instead of pushing directly.
 - 기능/구조 변경은 `flow:pr`로 Changes 탭 셀프 리뷰를 전제로 합니다. review point와 검증 결과가 PR 본문에 남아야 합니다. / Feature or structural changes use `flow:pr` and assume self-review in the Changes tab. Review points and validation results must remain in the PR body.
 - 위험한 변경은 `flow:risk`로 표시하고 merge 전 체크리스트, rollback 기준, 추가 검증을 PR 본문에 적습니다. / Risky changes use `flow:risk` and must list the pre-merge checklist, rollback criteria, and extra validation in the PR body.
 
@@ -73,7 +77,7 @@ This table preserves candidates and acceptance criteria from the time they were 
 
 ### 2. 접근성 상호작용 테스트 / Accessibility Interaction Tests
 
-- 범위 / Scope: keyboard simulation test runner 또는 Playwright 기반 docs app 검증.
+- 상태 / Status: 완료. `scripts/interaction-a11y.mjs`와 docs browser smoke로 검증합니다. / Done. Verified through `scripts/interaction-a11y.mjs` and docs browser smoke.
 - 리뷰 포인트 / Review points: focus order, Escape close, Arrow navigation, `aria-activedescendant`.
 - 연결 이슈 / Linked issue: [#2](https://github.com/BlingLab/frontend-lab/issues/2)
 
@@ -87,19 +91,31 @@ This table preserves candidates and acceptance criteria from the time they were 
 
 - 범위 / Scope: package name/scope, changelog, version policy, publish target.
 - 리뷰 포인트 / Review points: consumer import path, peer dependency, generated `dist` structure.
-- 연결 이슈 / Linked issue: [#5](https://github.com/BlingLab/frontend-lab/issues/5)
+- 연결 이슈 / Linked issues: [#5](https://github.com/BlingLab/frontend-lab/issues/5), [#49](https://github.com/BlingLab/frontend-lab/issues/49)
 
 ### 5. DataGrid 성숙도 향상 / DataGrid Maturity
 
-- 범위 / Scope: keyboard row navigation, resize handle API, optional virtualized body decision.
+- 상태 / Status: keyboard row navigation과 resize handle API는 완료했고 virtualized body는 별도 후속입니다. / Keyboard row navigation and resize handle API are done; virtualized body remains a separate follow-up.
 - 리뷰 포인트 / Review points: table semantics 유지, prop API 폭발 방지, responsive overflow.
-- 연결 이슈 / Linked issue: [#6](https://github.com/BlingLab/frontend-lab/issues/6)
+- 연결 이슈 / Linked issues: [#6](https://github.com/BlingLab/frontend-lab/issues/6), [#46](https://github.com/BlingLab/frontend-lab/issues/46)
 
 ### 6. 상호작용 리팩토링 / Interaction Refactor
 
-- 범위 / Scope: Button ref forwarding, listbox highlight hook, overlay dismiss/focus hooks.
+- 상태 / Status: Button ref forwarding, listbox highlight hook, overlay dismiss/focus hook은 완료했습니다. / Button ref forwarding, listbox highlight hook, and overlay dismiss/focus hook are done.
 - 리뷰 포인트 / Review points: focus return regression, keyboard behavior, hook API scope.
 - 연결 이슈 / Linked issues: [#8](https://github.com/BlingLab/frontend-lab/issues/8), [#9](https://github.com/BlingLab/frontend-lab/issues/9), [#10](https://github.com/BlingLab/frontend-lab/issues/10)
+
+### 7. 문서 자동화 후속 / Documentation Automation Follow-up
+
+- 범위 / Scope: component docs regeneration dry-run, manual section protection, generated prop table drift check.
+- 리뷰 포인트 / Review points: 수동 작성 문서 보존, scaffold 범위 명확성, 대량 문서 diff 최소화. / Manual document preservation, clear scaffold scope, and reduced large documentation diffs.
+- 연결 이슈 / Linked issue: [#47](https://github.com/BlingLab/frontend-lab/issues/47)
+
+### 8. 시각 회귀 기준 후속 / Visual Regression Follow-up
+
+- 범위 / Scope: screenshot artifact 검증에서 pixel baseline comparison으로 확장합니다. / Extend screenshot artifact checks to pixel baseline comparison.
+- 리뷰 포인트 / Review points: threshold, flake 처리, baseline 갱신 절차, theme/viewport coverage. / Thresholds, flake handling, baseline update workflow, and theme/viewport coverage.
+- 연결 이슈 / Linked issue: [#48](https://github.com/BlingLab/frontend-lab/issues/48)
 
 ## 운영 방식 / Operating Flow
 

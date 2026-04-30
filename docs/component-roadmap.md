@@ -41,6 +41,11 @@ External references are based on accessibility patterns and component operating 
 | Feedback | Alert | inline feedback과 validation summary의 기준입니다. / Baseline for inline feedback and validation summaries. |
 | Feedback | Badge | 상태/분류를 스캔하는 가장 작은 표시 단위입니다. / Smallest unit for scanning status and category. |
 | Navigation | Tabs | 문서, 설정, 상세 화면에서 반복되는 panel 전환입니다. / Repeated panel switching pattern for docs, settings, and detail screens. |
+| Layout | Container | page width와 gutter의 기준입니다. / Baseline for page width and gutters. |
+| Layout | Row | horizontal wrapping layout의 기준입니다. / Baseline for horizontal wrapping layout. |
+| Layout | Col | responsive 12-column layout의 기준입니다. / Baseline for responsive 12-column layout. |
+| Layout | Stack | vertical spacing composition의 기준입니다. / Baseline for vertical spacing composition. |
+| Layout | Inline | compact inline group composition의 기준입니다. / Baseline for compact inline group composition. |
 | Layout | Card | 반복 레코드와 summary surface의 기준입니다. / Baseline for repeated records and summary surfaces. |
 
 ## P1 컴포넌트 / P1 Components

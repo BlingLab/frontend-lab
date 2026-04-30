@@ -11,7 +11,7 @@ This directory stores design standards that should be agreed on before component
 - [시스템 아키텍처 / System Architecture](./system-architecture.md): workspace 구조와 각 패키지 책임 / Workspace structure and package responsibilities
 - [컴포넌트 분류 / Component Taxonomy](./component-taxonomy.md): 컴포넌트 분류와 성숙도 모델 / Component categories and maturity model
 - [컴포넌트 작성 규약 / Component Authoring](./component-authoring.md): 컴포넌트 폴더, 코드 구성, 문서 작성 방식 / Component folders, source composition, and documentation rules
-- [변경 흐름 / Change Workflow](./change-workflow.md): 바로 push, PR 셀프 리뷰, 위험 체크리스트 기준 / Direct push, PR self-review, and risk checklist criteria
+- [변경 흐름 / Change Workflow](./change-workflow.md): 즉시 처리, 가벼운 점검, 정식 이슈급 기준 / Fast Track, Light Review, and Full Issue criteria
 - [Prop API 설계 가이드 / Prop API Guidelines](./prop-api-guidelines.md): 재사용 가능한 prop 축, slot, render prop 기준 / Reusable prop axes, slots, and render prop rules
 - [명명 규칙 / Naming Conventions](./naming-conventions.md): 이름, prop, CSS class, data attribute 규칙 / Rules for names, props, CSS classes, and data attributes
 - [토큰 계약 / Token Contract](./token-contract.md): 디자인 토큰 레이어와 CSS 변수 사용 방식 / Design token layers and CSS variable usage

@@ -84,7 +84,8 @@ const roadmapGroups = [
   { category: "피드백 / Feedback", priority: "P0/P1", components: ["Alert", "Badge", "Toast", "Progress", "Skeleton"] },
   { category: "오버레이 / Overlays", priority: "P1", components: ["Dialog", "Popover", "Tooltip", "DropdownMenu", "CommandPalette"] },
   { category: "내비게이션 / Navigation", priority: "P0/P1", components: ["Tabs", "Breadcrumb", "Pagination", "Stepper", "NavigationRail", "SideNav"] },
-  { category: "레이아웃 / 데이터 / Layout / Data", priority: "P0/P1", components: ["Card", "Divider", "Table", "DataGrid", "EmptyState", "List"] }
+  { category: "레이아웃 / Layout", priority: "P0/P1", components: ["Container", "Row", "Col", "Stack", "Inline", "Card", "Divider"] },
+  { category: "데이터 / Data", priority: "P1", components: ["Table", "DataGrid", "EmptyState", "List"] }
 ];
 
 const showcase: Record<string, { preview: ReactNode; code: string }> = {
@@ -235,6 +236,26 @@ const showcase: Record<string, { preview: ReactNode; code: string }> = {
   SideNav: {
     preview: <SideNav defaultValue="props" sections={[{ title: "문서 / Docs", items: [{ label: "개요 / Overview", value: "overview" }, { label: "Prop API", value: "props", badge: "new" }, { label: "릴리즈 / Release", value: "release" }] }]} />,
     code: `import { SideNav } from "@workspace/ui";`
+  },
+  Container: {
+    preview: <Container size="sm"><Alert title="Container" description="page gutter와 max width를 적용합니다. / Applies page gutters and max width." /></Container>,
+    code: `import { Container } from "@workspace/ui";\n\n<Container size="sm">콘텐츠 / Content</Container>`
+  },
+  Row: {
+    preview: <Row gap="sm"><Badge label="첫 번째 / First" /><Badge label="두 번째 / Second" tone="brand" /><Badge label="세 번째 / Third" tone="success" /></Row>,
+    code: `import { Row } from "@workspace/ui";\n\n<Row gap="sm">콘텐츠 / Content</Row>`
+  },
+  Col: {
+    preview: <Row gap="sm"><Col span={12} md={6}><Alert title="A" description="span 6" /></Col><Col span={12} md={6}><Alert title="B" description="span 6" /></Col></Row>,
+    code: `import { Col, Row } from "@workspace/ui";\n\n<Row><Col span={12} md={6}>콘텐츠 / Content</Col></Row>`
+  },
+  Stack: {
+    preview: <Stack gap="sm"><Badge label="위 / Top" /><Badge label="가운데 / Middle" tone="brand" /><Badge label="아래 / Bottom" tone="success" /></Stack>,
+    code: `import { Stack } from "@workspace/ui";\n\n<Stack gap="sm">콘텐츠 / Content</Stack>`
+  },
+  Inline: {
+    preview: <Inline gap="sm"><Badge label="필터 / Filter" /><Badge label="활성 / Active" tone="success" /><Button size="sm" variant="outline" tone="neutral">초기화 / Reset</Button></Inline>,
+    code: `import { Inline } from "@workspace/ui";\n\n<Inline gap="sm">콘텐츠 / Content</Inline>`
   },
   Card: {
     preview: <Card eyebrow="가이드 / Guide" title="컴포넌트 가이드 / Component guide" description="상태와 사용 기준을 함께 보여줍니다. / Shows states and usage rules together." meta="v0.1" selected actions={[{ label: "보기 / View", variant: "outline", tone: "neutral" }]}><Badge label="게시됨 / Published" tone="success" /></Card>,

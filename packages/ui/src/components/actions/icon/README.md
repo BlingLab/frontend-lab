@@ -8,6 +8,7 @@
 
 ## 사용 기준 / Usage Criteria
 
+- 우선순위는 `P1`, 상태는 `ready`입니다. / Priority is `P1`, and status is `ready`.
 - 아이콘만으로 의미를 전달하는 control은 `label` 또는 parent control의 accessible name을 반드시 제공합니다. / Controls that rely on an icon must provide `label` or an accessible name on the parent control.
 - 장식용 icon은 `label` 없이 렌더링해 `aria-hidden` 상태로 둡니다. / Decorative icons render without `label` and remain `aria-hidden`.
 - 크기는 `sm`, `md`, `lg`만 사용합니다. / Use only `sm`, `md`, and `lg` sizes.

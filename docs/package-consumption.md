@@ -52,8 +52,11 @@ import { TextField } from "@workspace/ui/components/forms/text-field";
 
 ## 토큰과 스타일 / Tokens and Styles
 
-`@workspace/ui/styles.css`는 `--ds-*` 토큰을 참조합니다. 패키지 CSS는 기본 토큰을 포함한 상태로 배포하거나, 소비자 앱에서 `@workspace/tokens/tokens.css`를 먼저 import할 수 있습니다.
-`@workspace/ui/styles.css` references `--ds-*` tokens. Package CSS can be distributed with default tokens, or consumer apps can import `@workspace/tokens/tokens.css` first.
+빌드된 `@workspace/ui/styles.css`는 기본 `--ds-*` 토큰과 component CSS를 함께 포함합니다.
+The built `@workspace/ui/styles.css` includes default `--ds-*` tokens and component CSS together.
+
+토큰을 별도 패키지로 명시적으로 관리하거나 source workspace에서 개발할 때는 `@workspace/tokens/tokens.css`를 먼저 import할 수 있습니다.
+When managing tokens explicitly as a separate package or developing inside the source workspace, import `@workspace/tokens/tokens.css` first.
 
 ```tsx
 import "@workspace/tokens/tokens.css";
@@ -118,7 +121,7 @@ npm run test:consumer
 
 - root export에서 `Button`, `Card`, `DataGrid`, `TextField`, `componentCatalog`를 가져옵니다. / Imports `Button`, `Card`, `DataGrid`, `TextField`, and `componentCatalog` from the root export.
 - per-component export에서 `Button`과 `DataGrid`를 가져옵니다. / Imports `Button` and `DataGrid` from per-component exports.
-- `@workspace/tokens/tokens.css`와 `@workspace/ui/styles.css`를 함께 import하고 `data-ds-theme="dark"`에서 build가 통과해야 합니다. / Imports `@workspace/tokens/tokens.css` with `@workspace/ui/styles.css`, and the build must pass with `data-ds-theme="dark"`.
+- `@workspace/ui/styles.css`가 기본 토큰을 포함하고, 필요하면 `@workspace/tokens/tokens.css`를 먼저 import해도 build가 통과해야 합니다. / `@workspace/ui/styles.css` includes default tokens, and the build must also pass when `@workspace/tokens/tokens.css` is imported first when needed.
 
 ## API 상태 제어 / API State Control
 

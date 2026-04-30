@@ -21,7 +21,7 @@ const rootPackage = await readJson(join(rootDir, "package.json"));
 const uiPackage = await readJson(join(rootDir, "packages", "ui", "package.json"));
 const changelog = await readFile(join(rootDir, "CHANGELOG.md"), "utf8");
 
-const requiredRootScripts = ["test", "typecheck", "test:consumer", "test:tokens", "test:types", "test:visual", "release:dry-run"];
+const requiredRootScripts = ["test", "typecheck", "test:consumer", "test:tokens", "test:types", "test:visual", "release:dry-run", "release:publish-verify"];
 for (const scriptName of requiredRootScripts) {
   if (!rootPackage.scripts?.[scriptName]) {
     failures.push(`${scriptName} script가 package.json에 없습니다. / ${scriptName} script is missing from package.json.`);

@@ -11,7 +11,9 @@ export function useFocusReturn<T extends HTMLElement = HTMLElement>() {
   const restoreFocus = useCallback(() => {
     const target = fallbackRef.current;
     fallbackRef.current = null;
-    window.setTimeout(() => target?.focus(), 0);
+    window.setTimeout(() => {
+      if (target?.isConnected) target.focus();
+    }, 0);
   }, []);
 
   return { triggerRef, rememberFocus, restoreFocus } as {

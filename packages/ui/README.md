@@ -88,13 +88,15 @@ import { Button } from "@workspace/ui/components/actions/button";
 
 ## 외부 프로젝트에서 사용 / Use In Another Project
 
-소비자 앱 entry에서 CSS를 한 번 import합니다.
-Import CSS once in the consumer app entry.
+소비자 앱 entry에서 CSS를 한 번 import합니다. 빌드된 `@workspace/ui/styles.css`에는 기본 token과 component CSS가 함께 들어 있습니다.
+Import CSS once in the consumer app entry. The built `@workspace/ui/styles.css` includes default tokens and component CSS together.
 
 ```tsx
-import "@workspace/tokens/tokens.css";
 import "@workspace/ui/styles.css";
 ```
+
+source workspace에서 token package를 명시적으로 확인해야 할 때는 `@workspace/tokens/tokens.css`를 먼저 import할 수 있습니다.
+When source workspace work needs explicit token package verification, `@workspace/tokens/tokens.css` can be imported first.
 
 기본 theme는 `normal`이며 root나 특정 영역에 `data-ds-theme`를 적용할 수 있습니다.
 The default theme is `normal`, and `data-ds-theme` can be applied to the root or a scoped area.
