@@ -29,7 +29,7 @@ This table preserves candidates and acceptance criteria from the time they were 
 | [#9](https://github.com/BlingLab/frontend-lab/issues/9) | Done | Listbox highlight hook 공통화 / Extract shared listbox highlight hook | component | Combobox와 CommandPalette가 disabled option guard를 포함한 shared highlight hook을 사용합니다. / Combobox and CommandPalette use a shared highlight hook with disabled option guards. |
 | [#10](https://github.com/BlingLab/frontend-lab/issues/10) | Done | Overlay dismiss와 focus hook 공통화 / Extract overlay dismiss and focus hooks | component | Escape, outside pointer, focus return 로직이 shared hook으로 정리되었습니다. / Escape, outside pointer, and focus return logic are consolidated into shared hooks. |
 | [#12](https://github.com/BlingLab/frontend-lab/issues/12) | Done | DataGrid virtual scroll 범위 결정 / Decide DataGrid virtual scroll scope | component | large dataset 기준과 ARIA 영향을 별도 후속으로 분리했습니다. / Large dataset criteria and ARIA impact were split into a separate follow-up. |
-| [#46](https://github.com/BlingLab/frontend-lab/issues/46) | P2 | DataGrid virtual scroll ARIA 검증 프로토타입 / Prototype virtual scroll with ARIA validation | component | large dataset, keyboard navigation, selection, screen reader row count/index 전략을 함께 검증합니다. / Validates large dataset behavior, keyboard navigation, selection, and screen reader row count/index strategy together. |
+| [#46](https://github.com/BlingLab/frontend-lab/issues/46) | Done | DataGrid virtual scroll ARIA 검증 프로토타입 / Prototype virtual scroll with ARIA validation | component | `test:datagrid-virtual`이 large dataset, keyboard navigation, selection, row count/index 전략을 검증합니다. / `test:datagrid-virtual` validates large dataset behavior, keyboard navigation, selection, and row count/index strategy. |
 | [#47](https://github.com/BlingLab/frontend-lab/issues/47) | Done | 컴포넌트 문서 재생성 전 수동 변경 감지 / Detect manual changes before regenerating component docs | documentation | scaffold dry-run, manual marker, prop table drift check를 추가했습니다. / Added scaffold dry-run, manual markers, and prop table drift checks. |
 | [#48](https://github.com/BlingLab/frontend-lab/issues/48) | Done | pixel baseline comparison 도입 / Add pixel baseline comparison | quality | `test:visual`이 screenshot artifact와 baseline pixel comparison을 함께 검증합니다. / `test:visual` validates screenshot artifacts and baseline pixel comparison together. |
 | [#49](https://github.com/BlingLab/frontend-lab/issues/49) | Done | 실제 npm publish scope와 권한 확정 / Finalize npm publish scope and permissions | release | package scope를 `@bling-lab/ui`로 확정하고 `private=false`, npm public `publishConfig`, publish 검증을 추가했습니다. / Finalized package scope as `@bling-lab/ui` and added `private=false`, npm public `publishConfig`, and publish verification. |
@@ -96,7 +96,7 @@ This table preserves candidates and acceptance criteria from the time they were 
 
 ### 5. DataGrid 성숙도 향상 / DataGrid Maturity
 
-- 상태 / Status: keyboard row navigation과 resize handle API는 완료했고 virtualized body는 별도 후속입니다. / Keyboard row navigation and resize handle API are done; virtualized body remains a separate follow-up.
+- 상태 / Status: keyboard row navigation, resize handle API, virtual scroll ARIA/성능 prototype 검증을 완료했습니다. / Keyboard row navigation, resize handle API, and virtual scroll ARIA/performance prototype validation are done.
 - 리뷰 포인트 / Review points: table semantics 유지, prop API 폭발 방지, responsive overflow.
 - 연결 이슈 / Linked issues: [#6](https://github.com/BlingLab/frontend-lab/issues/6), [#46](https://github.com/BlingLab/frontend-lab/issues/46)
 
