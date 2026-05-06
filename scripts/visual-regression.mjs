@@ -1,12 +1,19 @@
-import { mkdir, rm, stat } from "node:fs/promises";
+import { copyFile, mkdir, readFile, rm, stat, writeFile } from "node:fs/promises";
 import { join } from "node:path";
 import { spawn } from "node:child_process";
 import { chromium } from "playwright";
+import pixelmatch from "pixelmatch";
+import { PNG } from "pngjs";
 
 const port = 4173;
 const baseUrl = `http://127.0.0.1:${port}`;
 const outputDir = join("artifacts", "visual-regression");
+const baselineDir = join("tests", "visual-baselines");
+const diffDir = join(outputDir, "diff");
 const pageTimeout = 10_000;
+const updateBaselines = process.argv.includes("--update-baselines");
+const maxDiffRatio = 0.005;
+const pixelThreshold = 0.12;
 const viewports = [
   { name: "mobile", width: 390, height: 844 },
   { name: "tablet", width: 768, height: 1024 },
@@ -93,10 +100,47 @@ async function captureTarget(page, target, viewport, theme) {
   if (screenshotStat.size < 5_000) {
     failures.push(`${target.name}/${viewport.name}/${theme}: screenshot 파일이 너무 작습니다. / Screenshot file is unexpectedly small.`);
   }
+
+  await compareBaseline(screenshotPath, `${target.name}-${viewport.name}-${theme}.png`);
+}
+
+async function compareBaseline(screenshotPath, fileName) {
+  const baselinePath = join(baselineDir, fileName);
+  if (updateBaselines) {
+    await mkdir(baselineDir, { recursive: true });
+    await copyFile(screenshotPath, baselinePath);
+    return;
+  }
+
+  let baselineBuffer;
+  try {
+    baselineBuffer = await readFile(baselinePath);
+  } catch {
+    failures.push(`${fileName}: baseline이 없습니다. \`npm run test:visual -- --update-baselines\`로 기준 이미지를 생성하세요. / Missing baseline. Generate it with \`npm run test:visual -- --update-baselines\`.`);
+    return;
+  }
+
+  const actual = PNG.sync.read(await readFile(screenshotPath));
+  const baseline = PNG.sync.read(baselineBuffer);
+  if (actual.width !== baseline.width || actual.height !== baseline.height) {
+    failures.push(`${fileName}: baseline 크기 ${baseline.width}x${baseline.height}와 실제 크기 ${actual.width}x${actual.height}가 다릅니다. / Baseline size ${baseline.width}x${baseline.height} differs from actual size ${actual.width}x${actual.height}.`);
+    return;
+  }
+
+  const diff = new PNG({ width: actual.width, height: actual.height });
+  const diffPixels = pixelmatch(actual.data, baseline.data, diff.data, actual.width, actual.height, { threshold: pixelThreshold });
+  const diffRatio = diffPixels / (actual.width * actual.height);
+  if (diffRatio > maxDiffRatio) {
+    await mkdir(diffDir, { recursive: true });
+    const diffPath = join(diffDir, fileName);
+    await writeFile(diffPath, PNG.sync.write(diff));
+    failures.push(`${fileName}: pixel diff ${(diffRatio * 100).toFixed(2)}%가 허용치 ${(maxDiffRatio * 100).toFixed(2)}%를 넘었습니다. diff: ${diffPath} / Pixel diff ${(diffRatio * 100).toFixed(2)}% exceeds ${(maxDiffRatio * 100).toFixed(2)}%. diff: ${diffPath}`);
+  }
 }
 
 await rm(outputDir, { force: true, recursive: true });
 await mkdir(outputDir, { recursive: true });
+await mkdir(diffDir, { recursive: true });
 
 const server = startDocsServer();
 let browser;
@@ -125,4 +169,9 @@ if (failures.length > 0) {
   process.exit(1);
 }
 
-console.log(`시각 회귀 screenshot ${viewports.length * themes.length * targets.length}개를 생성했습니다. / Generated ${viewports.length * themes.length * targets.length} visual regression screenshots.`);
+const screenshotCount = viewports.length * themes.length * targets.length;
+if (updateBaselines) {
+  console.log(`시각 회귀 baseline ${screenshotCount}개를 갱신했습니다. / Updated ${screenshotCount} visual regression baselines.`);
+} else {
+  console.log(`시각 회귀 screenshot ${screenshotCount}개를 생성하고 baseline과 비교했습니다. / Generated ${screenshotCount} visual regression screenshots and compared them with baselines.`);
+}
