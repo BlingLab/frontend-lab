@@ -1,19 +1,20 @@
 # 릴리즈 정책 / Release Policy
 
-이 정책은 `@workspace/ui`를 다른 프로젝트에서 재사용 가능한 React component package로 운영하기 위한 기본 기준입니다.
-This policy defines the baseline for operating `@workspace/ui` as a reusable React component package for other projects.
+이 정책은 `@bling-lab/ui`를 다른 프로젝트에서 재사용 가능한 React component package로 운영하기 위한 기본 기준입니다.
+This policy defines the baseline for operating `@bling-lab/ui` as a reusable React component package for other projects.
 
 ## 패키지 범위 / Package Scope
 
-- 현재 개발명은 `@workspace/ui`를 유지합니다. / Keep `@workspace/ui` as the current development package name.
-- 외부 배포가 확정되면 별도 위험 변경 PR에서 package name을 `@bling-lab/ui` 또는 조직 registry 기준 이름으로 바꿉니다. / When external publishing is confirmed, change the package name to `@bling-lab/ui` or an organization registry name in a separate risky-change PR.
+- 실제 npm package name은 `@bling-lab/ui`로 확정합니다. / Use `@bling-lab/ui` as the finalized npm package name.
+- package는 npm public registry에 `access=public`, provenance enabled 상태로 배포합니다. / Publish the package to the npm public registry with `access=public` and provenance enabled.
 - React와 React DOM은 bundled dependency가 아니라 peer dependency로 유지합니다. / Keep React and React DOM as peer dependencies rather than bundled dependencies.
 
 ## Registry 기준 / Registry Criteria
 
 - 공개 OSS 또는 외부 프로젝트 소비가 목표라면 npm public registry를 기본값으로 둡니다. / Use the npm public registry by default for OSS or external project consumption.
 - 사내/비공개 소비가 목표라면 GitHub Packages를 사용하되 `.npmrc`와 token 운영 문서를 별도 PR로 추가합니다. / Use GitHub Packages for internal/private consumption, adding `.npmrc` and token operation docs in a separate PR.
-- 현재 자동화의 registry 대상은 npm public입니다. 실제 publish 전에는 package name을 조직 scope로 바꾸고 `private` flag를 해제하는 별도 위험 변경 PR이 필요합니다. / The current automation targets the npm public registry. Before real publishing, a separate risky-change PR must change the package name to an organization scope and remove the `private` flag.
+- 현재 자동화의 registry 대상은 npm public입니다. `packages/ui/package.json`은 `private=false`와 npm public `publishConfig`를 유지해야 합니다. / The current automation targets the npm public registry. `packages/ui/package.json` must keep `private=false` and npm public `publishConfig`.
+- `@bling-lab/ui`는 2026-05-06 기준 npm registry에 기존 등록 패키지가 없음을 확인했습니다. / As of 2026-05-06, `@bling-lab/ui` has no existing package registration in the npm registry.
 
 ## 버전 정책 / Versioning Policy
 
@@ -50,17 +51,18 @@ npm run release:dry-run
 - dry run 산출물에 오래된 `dist/src` 같은 중복 build output이 포함되면 build cleanup을 먼저 수정합니다. / If the dry-run output includes stale duplicate build output such as `dist/src`, fix build cleanup first.
 - package export는 `npm run test:exports` 결과와 일치해야 합니다. / Package exports must match the result of `npm run test:exports`.
 
-## Publish Workflow / Publish Workflow
+## 배포 workflow / Publish Workflow
 
 `.github/workflows/release.yml`은 수동 실행만 허용합니다.
 `.github/workflows/release.yml` only allows manual execution.
 
 - `mode=dry-run`은 검증과 `npm pack --dry-run`만 실행합니다. / `mode=dry-run` only runs validation and `npm pack --dry-run`.
-- `mode=publish`는 `confirm` 값이 `publish @workspace/ui`이고 `release:publish-verify`가 통과할 때만 `npm publish --workspace @workspace/ui --access public --provenance`를 실행합니다. / `mode=publish` runs `npm publish --workspace @workspace/ui --access public --provenance` only when `confirm` is `publish @workspace/ui` and `release:publish-verify` passes.
+- `mode=publish`는 `confirm` 값이 `publish @bling-lab/ui`이고 `release:publish-verify`가 통과할 때만 `npm publish --workspace @bling-lab/ui --access public --provenance`를 실행합니다. / `mode=publish` runs `npm publish --workspace @bling-lab/ui --access public --provenance` only when `confirm` is `publish @bling-lab/ui` and `release:publish-verify` passes.
 - GitHub environment는 `npm-release`, secret은 `NPM_TOKEN`을 사용합니다. / The GitHub environment is `npm-release`, and the secret is `NPM_TOKEN`.
-- 실제 publish 전에 npm package name, `private` flag, npm organization permission을 확인합니다. / Before real publishing, verify the npm package name, `private` flag, and npm organization permissions.
+- `release:publish-verify`는 `@bling-lab/ui`, `private=false`, npm public `publishConfig`, `NODE_AUTH_TOKEN` 조건을 확인합니다. / `release:publish-verify` checks `@bling-lab/ui`, `private=false`, npm public `publishConfig`, and `NODE_AUTH_TOKEN`.
+- 실제 publish 전에는 npm `bling-lab` organization 또는 scope 소유권, automation token publish 권한, GitHub `npm-release` environment reviewer를 외부 설정에서 확인합니다. / Before real publishing, verify npm `bling-lab` organization or scope ownership, automation token publish permission, and GitHub `npm-release` environment reviewers in external settings.
 
-## Rollback / Rollback
+## 되돌리기 / Rollback
 
 - 잘못된 release는 같은 major/minor에서 patch version을 올려 수정 배포합니다. / Fix an incorrect release by publishing a patch version in the same major/minor line.
 - npm unpublish는 소비자 영향을 만들 수 있으므로 보안 사고나 잘못된 secret 노출 같은 긴급 상황에서만 사용합니다. / Use npm unpublish only for emergencies such as security incidents or leaked secrets because it can affect consumers.

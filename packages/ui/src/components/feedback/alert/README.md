@@ -55,7 +55,7 @@
 ## 예시 / Example
 
 ```tsx
-import { Alert } from "@workspace/ui/components/feedback/alert";
+import { Alert } from "@bling-lab/ui/components/feedback/alert";
 
 export function Example() {
   return <Alert tone="success" title="저장 완료 / Saved" description="변경 사항이 반영되었습니다. / Your changes have been applied." />;

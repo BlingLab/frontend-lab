@@ -54,7 +54,7 @@
 ## 예시 / Example
 
 ```tsx
-import { Badge } from "@workspace/ui/components/feedback/badge";
+import { Badge } from "@bling-lab/ui/components/feedback/badge";
 
 export function Example() {
   return <Badge label="준비 / Ready" tone="success" />;

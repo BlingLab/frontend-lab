@@ -44,7 +44,7 @@
 ## 예시 / Example
 
 ```tsx
-import { Breadcrumb } from "@workspace/ui/components/navigation/breadcrumb";
+import { Breadcrumb } from "@bling-lab/ui/components/navigation/breadcrumb";
 
 export function Example() {
   return <Breadcrumb items={items} />;

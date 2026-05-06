@@ -65,7 +65,7 @@
 ## 예시 / Example
 
 ```tsx
-import { Table } from "@workspace/ui/components/data-display/table";
+import { Table } from "@bling-lab/ui/components/data-display/table";
 
 export function Example() {
   return <Table columns={columns} rows={rows} caption="목록 / List" />;

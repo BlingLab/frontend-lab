@@ -51,7 +51,7 @@
 ## 예시 / Example
 
 ```tsx
-import { RadioGroup } from "@workspace/ui/components/forms/radio-group";
+import { RadioGroup } from "@bling-lab/ui/components/forms/radio-group";
 
 export function Example() {
   return <RadioGroup label="밀도 / Density" options={options} defaultValue="comfortable" />;

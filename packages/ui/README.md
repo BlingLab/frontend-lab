@@ -1,4 +1,4 @@
-# @workspace/ui
+# @bling-lab/ui
 
 제품 UI에 재사용할 컴포넌트를 배치하는 패키지입니다.
 This package contains reusable components for product UI.
@@ -63,8 +63,8 @@ Each component folder keeps `README.md` and `spec.md` aligned with the real impl
 ## 사용 / Usage
 
 ```tsx
-import { Button, Container, Dialog, Stack, TextField } from "@workspace/ui";
-import "@workspace/ui/styles.css";
+import { Button, Container, Dialog, Stack, TextField } from "@bling-lab/ui";
+import "@bling-lab/ui/styles.css";
 
 export function Example() {
   return (
@@ -83,16 +83,16 @@ export function Example() {
 Individual components can also be imported by folder.
 
 ```tsx
-import { Button } from "@workspace/ui/components/actions/button";
+import { Button } from "@bling-lab/ui/components/actions/button";
 ```
 
 ## 외부 프로젝트에서 사용 / Use In Another Project
 
-소비자 앱 entry에서 CSS를 한 번 import합니다. 빌드된 `@workspace/ui/styles.css`에는 기본 token과 component CSS가 함께 들어 있습니다.
-Import CSS once in the consumer app entry. The built `@workspace/ui/styles.css` includes default tokens and component CSS together.
+소비자 앱 entry에서 CSS를 한 번 import합니다. 빌드된 `@bling-lab/ui/styles.css`에는 기본 token과 component CSS가 함께 들어 있습니다.
+Import CSS once in the consumer app entry. The built `@bling-lab/ui/styles.css` includes default tokens and component CSS together.
 
 ```tsx
-import "@workspace/ui/styles.css";
+import "@bling-lab/ui/styles.css";
 ```
 
 source workspace에서 token package를 명시적으로 확인해야 할 때는 `@workspace/tokens/tokens.css`를 먼저 import할 수 있습니다.
@@ -115,7 +115,7 @@ The default theme is `normal`, and `data-ds-theme` can be applied to the root or
 Import components from the root entry or per-component entries.
 
 ```tsx
-import { Button, TextField } from "@workspace/ui";
+import { Button, TextField } from "@bling-lab/ui";
 ```
 
 React와 React DOM은 peer dependency입니다. 소비자 프로젝트가 직접 설치해야 합니다.
@@ -124,7 +124,7 @@ React and React DOM are peer dependencies. The consumer project must install the
 ## 빌드 / Build
 
 ```bash
-npm --workspace @workspace/ui run build
+npm --workspace @bling-lab/ui run build
 ```
 
 빌드 결과는 `dist`에 생성됩니다.
@@ -141,8 +141,8 @@ dist/
 ## 명령어 / Commands
 
 ```bash
-npm --workspace @workspace/ui run build
-npm --workspace @workspace/ui run typecheck
+npm --workspace @bling-lab/ui run build
+npm --workspace @bling-lab/ui run typecheck
 npm run components:scaffold
 npm run components:validate
 npm run test:a11y

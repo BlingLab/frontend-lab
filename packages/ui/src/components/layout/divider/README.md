@@ -42,7 +42,7 @@
 ## 예시 / Example
 
 ```tsx
-import { Divider } from "@workspace/ui/components/layout/divider";
+import { Divider } from "@bling-lab/ui/components/layout/divider";
 
 export function Example() {
   return <Divider label="구분 / Section" />;

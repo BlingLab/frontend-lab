@@ -48,7 +48,7 @@
 ## 예시 / Example
 
 ```tsx
-import { Progress } from "@workspace/ui/components/feedback/progress";
+import { Progress } from "@bling-lab/ui/components/feedback/progress";
 
 export function Example() {
   return <Progress label="완료율 / Completion" value={64} />;

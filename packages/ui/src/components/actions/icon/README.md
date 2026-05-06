@@ -46,7 +46,7 @@
 ## 예시 / Example
 
 ```tsx
-import { Icon } from "@workspace/ui/components/actions/icon";
+import { Icon } from "@bling-lab/ui/components/actions/icon";
 
 export function Example() {
   return <Icon name="search" label="검색 / Search" />;

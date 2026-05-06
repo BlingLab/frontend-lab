@@ -56,7 +56,7 @@
 ## 예시 / Example
 
 ```tsx
-import { List } from "@workspace/ui/components/data-display/list";
+import { List } from "@bling-lab/ui/components/data-display/list";
 
 export function Example() {
   return <List items={items} selectionMode="single" />;

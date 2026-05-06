@@ -44,7 +44,7 @@
 ## 예시 / Example
 
 ```tsx
-import { Stack } from "@workspace/ui/components/layout/stack";
+import { Stack } from "@bling-lab/ui/components/layout/stack";
 
 export function Example() {
   return <Stack gap="md">콘텐츠 / Content</Stack>;

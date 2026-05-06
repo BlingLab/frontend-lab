@@ -48,7 +48,7 @@
 ## 예시 / Example
 
 ```tsx
-import { Popover } from "@workspace/ui/components/overlays/popover";
+import { Popover } from "@bling-lab/ui/components/overlays/popover";
 
 export function Example() {
   return <Popover triggerLabel="필터 / Filter" title="필터 옵션 / Filter options">내용 / Content</Popover>;

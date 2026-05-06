@@ -46,7 +46,7 @@
 ## 예시 / Example
 
 ```tsx
-import { Container } from "@workspace/ui/components/layout/container";
+import { Container } from "@bling-lab/ui/components/layout/container";
 
 export function Example() {
   return <Container size="lg">콘텐츠 / Content</Container>;

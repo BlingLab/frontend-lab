@@ -58,7 +58,7 @@
 ## 예시 / Example
 
 ```tsx
-import { Button, Icon } from "@workspace/ui";
+import { Button, Icon } from "@bling-lab/ui";
 
 export function Example() {
   return <Button iconStart={<Icon name="plus" />}>저장 / Save</Button>;

@@ -59,7 +59,7 @@ Field composition을 포함한 한 줄 텍스트 입력입니다. / Single-line 
 ## 예시 / Example
 
 ```tsx
-import { TextField } from "@workspace/ui/components/forms/text-field";
+import { TextField } from "@bling-lab/ui/components/forms/text-field";
 
 export function Example() {
   return <TextField label="이름 / Name" width="full" />;

@@ -49,7 +49,7 @@
 ## 예시 / Example
 
 ```tsx
-import { Pagination } from "@workspace/ui/components/navigation/pagination";
+import { Pagination } from "@bling-lab/ui/components/navigation/pagination";
 
 export function Example() {
   return <Pagination page={2} totalPages={5} onPageChange={setPage} />;

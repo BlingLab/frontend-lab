@@ -54,7 +54,7 @@
 ## 예시 / Example
 
 ```tsx
-import { CommandPalette } from "@workspace/ui/components/overlays/command-palette";
+import { CommandPalette } from "@bling-lab/ui/components/overlays/command-palette";
 
 export function Example() {
   return <CommandPalette commands={commands} onCommandSelect={runCommand} />;

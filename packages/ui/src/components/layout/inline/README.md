@@ -46,7 +46,7 @@ badge, filter, compact action, metadata처럼 같은 줄에 모였다가 좁은 
 ## 예시 / Example
 
 ```tsx
-import { Inline } from "@workspace/ui/components/layout/inline";
+import { Inline } from "@bling-lab/ui/components/layout/inline";
 
 export function Example() {
   return <Inline gap="sm">콘텐츠 / Content</Inline>;

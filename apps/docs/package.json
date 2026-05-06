@@ -10,7 +10,7 @@
   },
   "dependencies": {
     "@workspace/tokens": "0.1.0",
-    "@workspace/ui": "0.1.0",
+    "@bling-lab/ui": "0.1.0",
     "react": "^19.0.0",
     "react-dom": "^19.0.0"
   }

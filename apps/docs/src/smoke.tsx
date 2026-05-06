@@ -1,5 +1,5 @@
 import "@workspace/tokens/tokens.css";
-import "@workspace/ui/styles.css";
+import "@bling-lab/ui/styles.css";
 import "../styles.css";
 
 import { StrictMode, type ReactNode } from "react";
@@ -45,7 +45,7 @@ import {
   Toast,
   Tooltip,
   componentCatalog
-} from "@workspace/ui";
+} from "@bling-lab/ui";
 
 const docsRepositoryBaseUrl = "https://github.com/BlingLab/frontend-lab/tree/main";
 
@@ -67,7 +67,7 @@ function SmokeApp() {
     <main className="smoke-page">
       <header>
         <h1>컴포넌트 smoke 확인 / Component Smoke Check</h1>
-        <p>이 화면은 실제 `@workspace/ui` React export만 사용합니다. / This page uses only real `@workspace/ui` React exports.</p>
+        <p>이 화면은 실제 `@bling-lab/ui` React export만 사용합니다. / This page uses only real `@bling-lab/ui` React exports.</p>
         <nav className="smoke-doc-links" aria-label="컴포넌트 문서 링크 / Component documentation links">
           {componentCatalog.map((component) => (
             <a href={getComponentReadmeUrl(component)} key={component.name} target="_blank" rel="noreferrer">{component.name}</a>

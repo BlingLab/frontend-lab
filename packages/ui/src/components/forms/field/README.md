@@ -53,7 +53,7 @@
 ## 예시 / Example
 
 ```tsx
-import { Field } from "@workspace/ui/components/forms/field";
+import { Field } from "@bling-lab/ui/components/forms/field";
 
 export function Example() {
   return <Field label="이름 / Name" controlId="name"><input id="name" /></Field>;

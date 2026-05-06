@@ -15,16 +15,16 @@ export default defineConfig({
   resolve: {
     alias: [
       {
-        find: "@workspace/ui/styles.css",
-        replacement: fileURLToPath(new URL("../../packages/ui/src/styles.css", import.meta.url))
-      },
-      {
-        find: "@workspace/tokens/tokens.css",
-        replacement: fileURLToPath(new URL("../../packages/tokens/src/tokens.css", import.meta.url))
-      },
-      {
-        find: "@workspace/ui",
+        find: /^@bling-lab\/ui$/,
         replacement: fileURLToPath(new URL("../../packages/ui/src/index.ts", import.meta.url))
+      },
+      {
+        find: /^@bling-lab\/ui\/(.*)$/,
+        replacement: `${fileURLToPath(new URL("../../packages/ui/src", import.meta.url))}/$1`
+      },
+      {
+        find: /^@workspace\/tokens\/(.*)$/,
+        replacement: `${fileURLToPath(new URL("../../packages/tokens/src", import.meta.url))}/$1`
       }
     ]
   },

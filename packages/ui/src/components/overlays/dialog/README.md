@@ -52,7 +52,7 @@
 ## 예시 / Example
 
 ```tsx
-import { Dialog } from "@workspace/ui/components/overlays/dialog";
+import { Dialog } from "@bling-lab/ui/components/overlays/dialog";
 
 export function Example() {
   return <Dialog triggerLabel="열기 / Open" title="확인 / Confirm">내용 / Content</Dialog>;

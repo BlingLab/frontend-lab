@@ -1,5 +1,5 @@
 import "@workspace/tokens/tokens.css";
-import "@workspace/ui/styles.css";
+import "@bling-lab/ui/styles.css";
 import "../styles.css";
 
 import { StrictMode, type CSSProperties, type ReactNode, useEffect, useMemo, useState } from "react";
@@ -45,7 +45,7 @@ import {
   Toast,
   Tooltip,
   componentCatalog
-} from "@workspace/ui";
+} from "@bling-lab/ui";
 
 const navItems = [
   { id: "overview", label: "구성 원칙 / Principles" },
@@ -97,7 +97,7 @@ const showcase: Record<string, { preview: ReactNode; code: string }> = {
         <Button tone="danger">삭제 / Delete</Button>
       </Inline>
     ),
-    code: `import { Button, Icon } from "@workspace/ui";\n\n<Button iconStart={<Icon name="plus" />} selected>저장 / Save</Button>`
+    code: `import { Button, Icon } from "@bling-lab/ui";\n\n<Button iconStart={<Icon name="plus" />} selected>저장 / Save</Button>`
   },
   IconButton: {
     preview: (
@@ -107,7 +107,7 @@ const showcase: Record<string, { preview: ReactNode; code: string }> = {
         <IconButton label="삭제 / Delete" icon={<Icon name="x" />} tone="danger" variant="outline" />
       </Inline>
     ),
-    code: `import { Icon, IconButton } from "@workspace/ui";\n\n<IconButton label="검색 / Search" icon={<Icon name="search" />} />`
+    code: `import { Icon, IconButton } from "@bling-lab/ui";\n\n<IconButton label="검색 / Search" icon={<Icon name="search" />} />`
   },
   Icon: {
     preview: (
@@ -118,55 +118,55 @@ const showcase: Record<string, { preview: ReactNode; code: string }> = {
         <Icon name="check" label="완료 / Complete" />
       </Inline>
     ),
-    code: `import { Icon } from "@workspace/ui";\n\n<Icon name="search" label="검색 / Search" />`
+    code: `import { Icon } from "@bling-lab/ui";\n\n<Icon name="search" label="검색 / Search" />`
   },
   Field: {
     preview: <TextField label="프로젝트 / Project" description="Field composition으로 label 관계를 고정합니다. / Field composition keeps label relationships." defaultValue="frontend-lab" />,
-    code: `import { Field, TextField } from "@workspace/ui";`
+    code: `import { Field, TextField } from "@bling-lab/ui";`
   },
   TextField: {
     preview: <TextField label="이름 / Name" description="한 줄 입력입니다. / Single-line input." defaultValue="Design System" prefix="Aa" suffix="필수 / Required" width="full" />,
-    code: `import { TextField } from "@workspace/ui";\n\n<TextField label="이름 / Name" prefix="Aa" suffix="필수 / Required" width="full" />`
+    code: `import { TextField } from "@bling-lab/ui";\n\n<TextField label="이름 / Name" prefix="Aa" suffix="필수 / Required" width="full" />`
   },
   Textarea: {
     preview: <Textarea label="메모 / Note" defaultValue="긴 설명을 입력합니다. / Write a longer description." rows={4} />,
-    code: `import { Textarea } from "@workspace/ui";\n\n<Textarea label="메모 / Note" rows={4} />`
+    code: `import { Textarea } from "@bling-lab/ui";\n\n<Textarea label="메모 / Note" rows={4} />`
   },
   Select: {
     preview: <Select label="상태 / Status" defaultValue="ready" prefix="상태 / Status" width="full" options={[{ label: "준비 / Ready", value: "ready" }, { label: "초안 / Draft", value: "draft" }]} />,
-    code: `import { Select } from "@workspace/ui";\n\n<Select options={[{ label: "준비 / Ready", value: "ready" }]} />`
+    code: `import { Select } from "@bling-lab/ui";\n\n<Select options={[{ label: "준비 / Ready", value: "ready" }]} />`
   },
   DatePicker: {
     preview: <DatePicker label="시작일 / Start date" defaultValue="2026-04-29" width="full" />,
-    code: `import { DatePicker } from "@workspace/ui";\n\n<DatePicker label="시작일 / Start date" />`
+    code: `import { DatePicker } from "@bling-lab/ui";\n\n<DatePicker label="시작일 / Start date" />`
   },
   Combobox: {
     preview: <Combobox label="담당자 / Owner" defaultValue="design" options={[{ label: "디자인 / Design", value: "design" }, { label: "프론트엔드 / Frontend", value: "frontend" }, { label: "제품 / Product", value: "product" }]} />,
-    code: `import { Combobox } from "@workspace/ui";`
+    code: `import { Combobox } from "@bling-lab/ui";`
   },
   Checkbox: {
     preview: <Checkbox label="알림 받기 / Receive notifications" description="중요 변경 사항을 알려줍니다. / Sends important updates." defaultChecked />,
-    code: `import { Checkbox } from "@workspace/ui";\n\n<Checkbox label="알림 받기 / Receive notifications" />`
+    code: `import { Checkbox } from "@bling-lab/ui";\n\n<Checkbox label="알림 받기 / Receive notifications" />`
   },
   RadioGroup: {
     preview: <RadioGroup label="밀도 / Density" defaultValue="comfortable" orientation="horizontal" options={[{ label: "촘촘함 / Compact", value: "compact" }, { label: "기본 / Comfortable", value: "comfortable" }]} />,
-    code: `import { RadioGroup } from "@workspace/ui";`
+    code: `import { RadioGroup } from "@bling-lab/ui";`
   },
   Switch: {
     preview: <Switch label="자동 저장 / Autosave" defaultChecked />,
-    code: `import { Switch } from "@workspace/ui";\n\n<Switch label="자동 저장 / Autosave" defaultChecked />`
+    code: `import { Switch } from "@bling-lab/ui";\n\n<Switch label="자동 저장 / Autosave" defaultChecked />`
   },
   FileUploader: {
     preview: <FileUploader label="첨부 / Attachment" description="여러 파일을 선택할 수 있습니다. / Multiple files are allowed." />,
-    code: `import { FileUploader } from "@workspace/ui";`
+    code: `import { FileUploader } from "@bling-lab/ui";`
   },
   Alert: {
     preview: <Alert tone="success" title="저장 완료 / Saved" description="변경 사항이 반영되었습니다. / Your changes have been applied." dismissible actionsPlacement="bottom" />,
-    code: `import { Alert } from "@workspace/ui";\n\n<Alert tone="success" title="저장 완료 / Saved" dismissible />`
+    code: `import { Alert } from "@bling-lab/ui";\n\n<Alert tone="success" title="저장 완료 / Saved" dismissible />`
   },
   Toast: {
     preview: <Toast tone="info" title="동기화됨 / Synced" description="컴포넌트 카탈로그가 최신 상태입니다. / Component catalog is up to date." />,
-    code: `import { Toast } from "@workspace/ui";`
+    code: `import { Toast } from "@bling-lab/ui";`
   },
   Badge: {
     preview: (
@@ -177,11 +177,11 @@ const showcase: Record<string, { preview: ReactNode; code: string }> = {
         <Badge label="오류 / Error" tone="danger" removable />
       </Inline>
     ),
-    code: `import { Badge } from "@workspace/ui";`
+    code: `import { Badge } from "@bling-lab/ui";`
   },
   Progress: {
     preview: <Progress label="완료율 / Completion" value={64} />,
-    code: `import { Progress } from "@workspace/ui";`
+    code: `import { Progress } from "@bling-lab/ui";`
   },
   Skeleton: {
     preview: (
@@ -191,95 +191,95 @@ const showcase: Record<string, { preview: ReactNode; code: string }> = {
         <Skeleton width="16rem" height="0.85rem" />
       </Stack>
     ),
-    code: `import { Skeleton } from "@workspace/ui";`
+    code: `import { Skeleton } from "@bling-lab/ui";`
   },
   Dialog: {
     preview: <Dialog triggerLabel="다이얼로그 열기 / Open dialog" title="변경 확인 / Confirm changes" description="이 작업은 현재 설정에 반영됩니다. / This action applies to current settings.">계속 진행할까요? / Do you want to continue?</Dialog>,
-    code: `import { Dialog } from "@workspace/ui";`
+    code: `import { Dialog } from "@bling-lab/ui";`
   },
   Popover: {
     preview: <Popover triggerLabel="필터 / Filter" title="필터 옵션 / Filter options"><Checkbox label="초안 포함 / Include drafts" defaultChecked /></Popover>,
-    code: `import { Popover } from "@workspace/ui";`
+    code: `import { Popover } from "@bling-lab/ui";`
   },
   Tooltip: {
     preview: <Tooltip label="도움말 / Help" content="아이콘 버튼에는 accessible label이 필요합니다. / Icon buttons need accessible labels." />,
-    code: `import { Tooltip } from "@workspace/ui";`
+    code: `import { Tooltip } from "@bling-lab/ui";`
   },
   DropdownMenu: {
     preview: <DropdownMenu triggerLabel="작업 / Actions" items={[{ label: "편집 / Edit" }, { label: "복제 / Duplicate" }, { label: "삭제 / Delete" }]} />,
-    code: `import { DropdownMenu } from "@workspace/ui";`
+    code: `import { DropdownMenu } from "@bling-lab/ui";`
   },
   CommandPalette: {
     preview: <CommandPalette commands={[{ label: "프로젝트 열기 / Open project", value: "open", shortcut: "O" }, { label: "새 컴포넌트 / New component", value: "new", shortcut: "N" }]} />,
-    code: `import { CommandPalette } from "@workspace/ui";`
+    code: `import { CommandPalette } from "@bling-lab/ui";`
   },
   Tabs: {
     preview: <Tabs variant="underline" fullWidth items={[{ label: "미리보기 / Preview", value: "preview", content: "컴포넌트 화면입니다. / Component preview." }, { label: "코드 / Code", value: "code", content: "사용 예시입니다. / Usage example." }]} />,
-    code: `import { Tabs } from "@workspace/ui";`
+    code: `import { Tabs } from "@bling-lab/ui";`
   },
   Breadcrumb: {
     preview: <Breadcrumb items={[{ label: "홈 / Home", href: "#" }, { label: "컴포넌트 / Components", href: "#" }, { label: "Button", current: true }]} />,
-    code: `import { Breadcrumb } from "@workspace/ui";`
+    code: `import { Breadcrumb } from "@bling-lab/ui";`
   },
   Pagination: {
     preview: <Pagination page={2} totalPages={5} />,
-    code: `import { Pagination } from "@workspace/ui";`
+    code: `import { Pagination } from "@bling-lab/ui";`
   },
   Stepper: {
     preview: <Stepper defaultValue="api" steps={[{ label: "요구사항 / Requirements", value: "requirements" }, { label: "API", value: "api" }, { label: "검증 / Verify", value: "verify" }]} />,
-    code: `import { Stepper } from "@workspace/ui";`
+    code: `import { Stepper } from "@bling-lab/ui";`
   },
   NavigationRail: {
     preview: <NavigationRail defaultValue="components" items={[{ label: "홈 / Home", value: "home", icon: "H" }, { label: "컴포넌트 / Components", value: "components", icon: "C" }, { label: "문서 / Docs", value: "docs", icon: "D" }]} />,
-    code: `import { NavigationRail } from "@workspace/ui";`
+    code: `import { NavigationRail } from "@bling-lab/ui";`
   },
   SideNav: {
     preview: <SideNav defaultValue="props" sections={[{ title: "문서 / Docs", items: [{ label: "개요 / Overview", value: "overview" }, { label: "Prop API", value: "props", badge: "new" }, { label: "릴리즈 / Release", value: "release" }] }]} />,
-    code: `import { SideNav } from "@workspace/ui";`
+    code: `import { SideNav } from "@bling-lab/ui";`
   },
   Container: {
     preview: <Container size="sm"><Alert title="Container" description="page gutter와 max width를 적용합니다. / Applies page gutters and max width." /></Container>,
-    code: `import { Container } from "@workspace/ui";\n\n<Container size="sm">콘텐츠 / Content</Container>`
+    code: `import { Container } from "@bling-lab/ui";\n\n<Container size="sm">콘텐츠 / Content</Container>`
   },
   Row: {
     preview: <Row gap="sm"><Badge label="첫 번째 / First" /><Badge label="두 번째 / Second" tone="brand" /><Badge label="세 번째 / Third" tone="success" /></Row>,
-    code: `import { Row } from "@workspace/ui";\n\n<Row gap="sm">콘텐츠 / Content</Row>`
+    code: `import { Row } from "@bling-lab/ui";\n\n<Row gap="sm">콘텐츠 / Content</Row>`
   },
   Col: {
     preview: <Row gap="sm"><Col span={12} md={6}><Alert title="A" description="span 6" /></Col><Col span={12} md={6}><Alert title="B" description="span 6" /></Col></Row>,
-    code: `import { Col, Row } from "@workspace/ui";\n\n<Row><Col span={12} md={6}>콘텐츠 / Content</Col></Row>`
+    code: `import { Col, Row } from "@bling-lab/ui";\n\n<Row><Col span={12} md={6}>콘텐츠 / Content</Col></Row>`
   },
   Stack: {
     preview: <Stack gap="sm"><Badge label="위 / Top" /><Badge label="가운데 / Middle" tone="brand" /><Badge label="아래 / Bottom" tone="success" /></Stack>,
-    code: `import { Stack } from "@workspace/ui";\n\n<Stack gap="sm">콘텐츠 / Content</Stack>`
+    code: `import { Stack } from "@bling-lab/ui";\n\n<Stack gap="sm">콘텐츠 / Content</Stack>`
   },
   Inline: {
     preview: <Inline gap="sm"><Badge label="필터 / Filter" /><Badge label="활성 / Active" tone="success" /><Button size="sm" variant="outline" tone="neutral">초기화 / Reset</Button></Inline>,
-    code: `import { Inline } from "@workspace/ui";\n\n<Inline gap="sm">콘텐츠 / Content</Inline>`
+    code: `import { Inline } from "@bling-lab/ui";\n\n<Inline gap="sm">콘텐츠 / Content</Inline>`
   },
   Card: {
     preview: <Card eyebrow="가이드 / Guide" title="컴포넌트 가이드 / Component guide" description="상태와 사용 기준을 함께 보여줍니다. / Shows states and usage rules together." meta="v0.1" selected actions={[{ label: "보기 / View", variant: "outline", tone: "neutral" }]}><Badge label="게시됨 / Published" tone="success" /></Card>,
-    code: `import { Card } from "@workspace/ui";`
+    code: `import { Card } from "@bling-lab/ui";`
   },
   Divider: {
     preview: <Stack gap="sm"><Badge label="위 영역 / Above" /><Divider label="구분 / Section" /><Badge label="아래 영역 / Below" tone="brand" /></Stack>,
-    code: `import { Divider } from "@workspace/ui";`
+    code: `import { Divider } from "@bling-lab/ui";`
   },
   Table: {
     preview: <Table caption="컴포넌트 상태 / Component status" striped columns={[{ key: "name", label: "이름 / Name" }, { key: "status", label: "상태 / Status" }]} rows={[{ name: "Button", status: "ready" }, { name: "Dialog", status: "ready" }]} rowActions={(row) => <Button size="sm" variant="ghost" tone="neutral">{row.name} 보기 / View</Button>} />,
-    code: `import { Table } from "@workspace/ui";`
+    code: `import { Table } from "@bling-lab/ui";`
   },
   DataGrid: {
     preview: <DataGrid caption="작업 목록 / Task list" selectionMode="multiple" columns={[{ key: "task", label: "작업 / Task" }, { key: "state", label: "상태 / State" }]} rows={[{ task: "DatePicker", state: "ready" }, { task: "DataGrid", state: "ready" }]} />,
-    code: `import { DataGrid } from "@workspace/ui";`
+    code: `import { DataGrid } from "@bling-lab/ui";`
   },
   EmptyState: {
     preview: <EmptyState title="결과 없음 / No results" description="필터를 조정해 다시 시도하세요. / Adjust filters and try again." actions={[{ label: "필터 초기화 / Reset filters" }]} />,
-    code: `import { EmptyState } from "@workspace/ui";`
+    code: `import { EmptyState } from "@bling-lab/ui";`
   },
   List: {
     preview: <List selectionMode="single" items={[{ title: "Button", description: "명령 실행 / Command action", meta: "P0", leading: "B", selected: true }, { title: "TextField", description: "텍스트 입력 / Text input", meta: "P0", leading: "T", trailing: ">" }]} />,
-    code: `import { List } from "@workspace/ui";`
+    code: `import { List } from "@bling-lab/ui";`
   }
 };
 
@@ -415,8 +415,8 @@ function App() {
             <p className="eyebrow">React 컴포넌트 카탈로그 / React component catalog</p>
             <h1 id="page-title">프로젝트에 바로 가져다 쓰는 React 컴포넌트 시스템 / React Component System Ready For Product Work</h1>
             <p className="intro-copy">
-              이 문서 앱은 `@workspace/ui`의 실제 React 컴포넌트를 import해 렌더링합니다.
-              This docs app renders real React components imported from `@workspace/ui`.
+              이 문서 앱은 `@bling-lab/ui`의 실제 React 컴포넌트를 import해 렌더링합니다.
+              This docs app renders real React components imported from `@bling-lab/ui`.
             </p>
             <div className="intro-actions" aria-label="주요 이동 / Primary links">
               <a className="intro-link primary" href="#components">컴포넌트 보기 / View components</a>
@@ -435,7 +435,7 @@ function App() {
             <div className="intro-panel-header">
               <div>
                 <span>패키지 미리보기 / Package preview</span>
-                <strong>@workspace/ui</strong>
+                <strong>@bling-lab/ui</strong>
               </div>
               <Badge label="ready" tone="success" />
             </div>
@@ -739,7 +739,7 @@ function App() {
                       <a className="doc-link" href={docPaths.readmeUrl} target="_blank" rel="noreferrer">README</a>
                       <a className="doc-link" href={docPaths.specUrl} target="_blank" rel="noreferrer">Spec</a>
                     </Inline>
-                    <div className="code-block"><pre><code>{example?.code ?? `import { ${component.name} } from "@workspace/ui";`}</code></pre></div>
+                    <div className="code-block"><pre><code>{example?.code ?? `import { ${component.name} } from "@bling-lab/ui";`}</code></pre></div>
                   </div>
                   <div className="preview" aria-label={`${component.name} 미리보기 / ${component.name} preview`}>
                     {example?.preview ?? <EmptyState title={`${component.name} 예시 없음 / No example`} />}
@@ -765,7 +765,7 @@ function App() {
               </Col>
               <Col span={12} md={6}>
                 <Card title="문서 앱의 역할 / Docs App Role" description="이 영역도 실제 React export를 조합해 렌더링합니다. / This area is rendered by composing real React exports.">
-                  <Alert tone="info" title="실제 컴포넌트 사용 중 / Using real components" description="@workspace/ui에서 import한 React 컴포넌트입니다. / These are React components imported from @workspace/ui." />
+                  <Alert tone="info" title="실제 컴포넌트 사용 중 / Using real components" description="@bling-lab/ui에서 import한 React 컴포넌트입니다. / These are React components imported from @bling-lab/ui." />
                 </Card>
               </Col>
             </Row>

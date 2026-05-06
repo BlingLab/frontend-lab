@@ -1,7 +1,7 @@
 # 컴포넌트 카탈로그 / Component Catalog
 
-이 디렉터리는 `@workspace/ui`의 컴포넌트 카탈로그, 문서, 개별 import 진입점을 보관합니다.
-This directory contains the component catalog, documentation, and individual import entry points for `@workspace/ui`.
+이 디렉터리는 `@bling-lab/ui`의 컴포넌트 카탈로그, 문서, 개별 import 진입점을 보관합니다.
+This directory contains the component catalog, documentation, and individual import entry points for `@bling-lab/ui`.
 
 ## 문서 구성 / Documentation Shape
 

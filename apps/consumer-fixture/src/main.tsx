@@ -1,10 +1,10 @@
-import "@workspace/ui/styles.css";
+import "@bling-lab/ui/styles.css";
 
 import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
-import { Badge, Button, Card, DataGrid, Stack, TextField, componentCatalog } from "@workspace/ui";
-import { Button as ButtonEntry } from "@workspace/ui/components/actions/button";
-import { DataGrid as DataGridEntry } from "@workspace/ui/components/data-display/data-grid";
+import { Badge, Button, Card, DataGrid, Stack, TextField, componentCatalog } from "@bling-lab/ui";
+import { Button as ButtonEntry } from "@bling-lab/ui/components/actions/button";
+import { DataGrid as DataGridEntry } from "@bling-lab/ui/components/data-display/data-grid";
 
 const rows = [
   { id: "ready", name: "Root export", status: "통과 / Pass" },

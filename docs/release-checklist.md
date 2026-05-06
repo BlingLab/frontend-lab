@@ -1,7 +1,7 @@
 # 릴리즈 체크리스트 / Release Checklist
 
-`@workspace/ui`를 다른 프로젝트에서 안정적으로 사용할 수 있도록 릴리즈 전에 아래 항목을 확인합니다.
-Check the items below before releasing `@workspace/ui` for use in other projects.
+`@bling-lab/ui`를 다른 프로젝트에서 안정적으로 사용할 수 있도록 릴리즈 전에 아래 항목을 확인합니다.
+Check the items below before releasing `@bling-lab/ui` for use in other projects.
 
 ## 필수 검증 / Required Validation
 
@@ -17,7 +17,7 @@ npm run test:tokens
 npm run test:types
 npm run test:visual
 npm run release:verify
-npm pack --workspace @workspace/ui --dry-run
+npm pack --workspace @bling-lab/ui --dry-run
 ```
 
 - component folder마다 `{slug}.tsx`, `index.ts`, `README.md`, `spec.md`가 있어야 합니다. / Each component folder must have `{slug}.tsx`, `index.ts`, `README.md`, and `spec.md`.
@@ -28,7 +28,7 @@ npm pack --workspace @workspace/ui --dry-run
 - UI CSS에는 raw color 값을 직접 쓰지 않습니다. / UI CSS must not contain raw color values.
 - `test:a11y`는 핵심 accessible markup을 server render 기준으로 확인해야 합니다. / `test:a11y` must verify core accessible markup through server rendering.
 - `test:interaction`은 keyboard, focus return, highlighted option 같은 상호작용 접근성 흐름을 확인해야 합니다. / `test:interaction` must verify interaction accessibility flows such as keyboard, focus return, and highlighted options.
-- `test:consumer`는 source alias 없이 `@workspace/ui` root export, per-component export, `styles.css`, token CSS import를 fixture 앱에서 확인해야 합니다. / `test:consumer` must verify `@workspace/ui` root exports, per-component exports, `styles.css`, and token CSS imports in the fixture app without source aliases.
+- `test:consumer`는 source alias 없이 `@bling-lab/ui` root export, per-component export, `styles.css`, token CSS import를 fixture 앱에서 확인해야 합니다. / `test:consumer` must verify `@bling-lab/ui` root exports, per-component exports, `styles.css`, and token CSS imports in the fixture app without source aliases.
 - `test:tokens`는 token contract의 필수 semantic token과 NORMAL/DARK theme 차이를 확인해야 합니다. / `test:tokens` must verify required semantic tokens from the token contract and NORMAL/DARK theme differences.
 - `test:types`는 public prop API의 허용/비허용 TypeScript 예제를 확인해야 합니다. / `test:types` must verify allowed and disallowed TypeScript examples for public prop APIs.
 - `test:visual`은 docs app home, theme compare, DataGrid screenshot과 horizontal overflow를 확인해야 합니다. / `test:visual` must verify docs app home, theme compare, DataGrid screenshots, and horizontal overflow.
@@ -70,5 +70,6 @@ This repo is currently a workspace-based foundation. Publishing to npm or GitHub
 
 - `npm-release` environment reviewer를 지정합니다. / Configure reviewers for the `npm-release` environment.
 - `NPM_TOKEN` secret은 automation 권한만 가진 npm automation token으로 등록합니다. / Register `NPM_TOKEN` as an npm automation token with only the required publish permission.
-- `mode=publish` 실행 전 package name과 `private` flag가 npm public publish 기준과 맞는지 확인합니다. / Before running `mode=publish`, confirm that the package name and `private` flag match npm public publish requirements.
-- `confirm`에는 `publish @workspace/ui`를 정확히 입력합니다. / Enter exactly `publish @workspace/ui` in `confirm`.
+- `mode=publish` 실행 전 package name이 `@bling-lab/ui`이고 `private=false`, `publishConfig.registry=https://registry.npmjs.org/`, `publishConfig.access=public`, `publishConfig.provenance=true`인지 확인합니다. / Before running `mode=publish`, confirm that the package name is `@bling-lab/ui` and that `private=false`, `publishConfig.registry=https://registry.npmjs.org/`, `publishConfig.access=public`, and `publishConfig.provenance=true`.
+- npm `bling-lab` organization 또는 scope 소유권과 automation token publish 권한을 npm settings에서 확인합니다. / Confirm npm `bling-lab` organization or scope ownership and automation token publish permission in npm settings.
+- `confirm`에는 `publish @bling-lab/ui`를 정확히 입력합니다. / Enter exactly `publish @bling-lab/ui` in `confirm`.

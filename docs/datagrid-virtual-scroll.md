@@ -1,7 +1,7 @@
 # DataGrid 가상 스크롤 결정 / DataGrid Virtual Scroll Decision
 
-DataGrid의 virtual scroll은 현재 `@workspace/ui` v0.1 범위에 포함하지 않습니다.
-DataGrid virtual scroll is not included in the current `@workspace/ui` v0.1 scope.
+DataGrid의 virtual scroll은 현재 `@bling-lab/ui` v0.1 범위에 포함하지 않습니다.
+DataGrid virtual scroll is not included in the current `@bling-lab/ui` v0.1 scope.
 
 ## 결정 / Decision
 

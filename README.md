@@ -93,7 +93,7 @@ The app shows the following:
 - React component는 각 컴포넌트 폴더의 `{component-slug}.tsx`에 구현합니다. / React components are implemented in each component folder's `{component-slug}.tsx`.
 - 각 폴더의 `index.ts`는 public export만 담당합니다. / Each folder's `index.ts` handles public exports only.
 - `packages/ui/src/index.ts`는 전체 public API를 모으는 barrel입니다. / `packages/ui/src/index.ts` is the barrel for the full public API.
-- 외부 프로젝트는 `@workspace/ui` 또는 개별 component entry에서 import합니다. / External projects import from `@workspace/ui` or per-component entries.
+- 외부 프로젝트는 `@bling-lab/ui` 또는 개별 component entry에서 import합니다. / External projects import from `@bling-lab/ui` or per-component entries.
 - 배포/복사 대상은 `packages/ui/dist` 산출물입니다. / Distribution and copy targets use the `packages/ui/dist` output.
 
 ## 문서 시작점 / Documentation Entry Points
@@ -187,8 +187,8 @@ Runs component system validation, UI build, accessibility smoke checks, interact
 npm run test:consumer
 ```
 
-빌드된 `@workspace/ui` package export를 source alias 없이 소비자 fixture 앱에서 import하고 build합니다.
-Builds the consumer fixture app against built `@workspace/ui` package exports without source aliases.
+빌드된 `@bling-lab/ui` package export를 source alias 없이 소비자 fixture 앱에서 import하고 build합니다.
+Builds the consumer fixture app against built `@bling-lab/ui` package exports without source aliases.
 
 ```bash
 npm run test:tokens
@@ -220,12 +220,12 @@ Checks docs app home, theme compare, and DataGrid examples with screenshots acro
 
 ## 컴포넌트 사용 / Component Usage
 
-전체 API는 `@workspace/ui`에서 import합니다.
-Import the full API from `@workspace/ui`.
+전체 API는 `@bling-lab/ui`에서 import합니다.
+Import the full API from `@bling-lab/ui`.
 
 ```tsx
-import { Button, Container, Dialog, Stack, TextField } from "@workspace/ui";
-import "@workspace/ui/styles.css";
+import { Button, Container, Dialog, Stack, TextField } from "@bling-lab/ui";
+import "@bling-lab/ui/styles.css";
 
 export function Example() {
   return (
@@ -244,7 +244,7 @@ export function Example() {
 Individual component entry points are also available.
 
 ```tsx
-import { Button } from "@workspace/ui/components/actions/button";
+import { Button } from "@bling-lab/ui/components/actions/button";
 ```
 
 외부 프로젝트 적용 방법은 [패키지 사용 가이드](./docs/package-consumption.md)를 확인합니다.

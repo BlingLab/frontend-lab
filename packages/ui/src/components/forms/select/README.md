@@ -58,7 +58,7 @@
 ## 예시 / Example
 
 ```tsx
-import { Select } from "@workspace/ui/components/forms/select";
+import { Select } from "@bling-lab/ui/components/forms/select";
 
 export function Example() {
   return <Select label="상태 / Status" options={[{ label: "준비 / Ready", value: "ready" }]} />;

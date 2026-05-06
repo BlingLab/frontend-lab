@@ -79,7 +79,7 @@
 ## 예시 / Example
 
 ```tsx
-import { DataGrid } from "@workspace/ui/components/data-display/data-grid";
+import { DataGrid } from "@bling-lab/ui/components/data-display/data-grid";
 
 export function Example() {
   return (

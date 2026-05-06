@@ -47,7 +47,7 @@ hover 또는 focus된 컨트롤을 짧게 설명하는 helper text입니다. / B
 ## 예시 / Example
 
 ```tsx
-import { Tooltip } from "@workspace/ui/components/overlays/tooltip";
+import { Tooltip } from "@bling-lab/ui/components/overlays/tooltip";
 
 export function Example() {
   return <Tooltip label="도움말 / Help" content="설명 / Description" />;
