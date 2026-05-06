@@ -20,6 +20,16 @@ Virtualization must meet the goals below before adoption.
 - keyboard row navigation은 focus 이동 후 100ms 안에 시각 focus와 `aria-activedescendant` 또는 roving `tabIndex`가 동기화되어야 합니다. / Keyboard row navigation must sync visual focus and `aria-activedescendant` or roving `tabIndex` within 100ms after focus movement.
 - DOM에 유지되는 row 수는 viewport row + overscan으로 제한하되 selection, active row, focus return state는 rowKey로 보존해야 합니다. / DOM rows should be limited to viewport rows plus overscan, while selection, active row, and focus return state must be preserved by rowKey.
 
+## 프로토타입 검증 / Prototype Validation
+
+가상 스크롤은 아직 public API가 아니지만, ARIA 전략과 성능 smoke는 `npm run test:datagrid-virtual`로 검증합니다.
+Virtual scroll is not a public API yet, but ARIA strategy and performance smoke are validated with `npm run test:datagrid-virtual`.
+
+- current baseline은 500 row DataGrid가 `aria-rowcount`, selection column 포함 `aria-colcount`, row keyboard state를 유지하는지 확인합니다. / The current baseline checks that a 500-row DataGrid keeps `aria-rowcount`, `aria-colcount` including the selection column, and row keyboard state.
+- prototype fixture는 1,000 row 중 visible window 40 row만 렌더링하고 `aria-rowcount`, absolute `aria-rowindex`, `aria-activedescendant`를 검증합니다. / The prototype fixture renders only a 40-row visible window from 1,000 rows and verifies `aria-rowcount`, absolute `aria-rowindex`, and `aria-activedescendant`.
+- keyboard navigation은 window 밖으로 이동해도 active row를 mount 상태로 유지하고 selection은 rowKey로 보존해야 합니다. / Keyboard navigation must keep the active row mounted after moving beyond the current window, and selection must persist by rowKey.
+- 성능 smoke는 120회 keyboard window update가 300ms 안에 끝나는지 확인합니다. / The performance smoke checks that 120 keyboard window updates finish within 300ms.
+
 ## 접근성 영향 / Accessibility Impact
 
 - native table처럼 모든 row가 DOM에 있는 구조가 아니므로 `aria-rowcount`, `aria-rowindex`, `aria-colcount`를 정확히 계산해야 합니다. / Because not every row stays in the DOM like a native table, `aria-rowcount`, `aria-rowindex`, and `aria-colcount` must be calculated accurately.
