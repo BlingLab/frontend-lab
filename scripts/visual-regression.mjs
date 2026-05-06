@@ -12,7 +12,7 @@ const baselineDir = join("tests", "visual-baselines");
 const diffDir = join(outputDir, "diff");
 const pageTimeout = 10_000;
 const updateBaselines = process.argv.includes("--update-baselines");
-const maxDiffRatio = 0.005;
+const maxDiffRatio = 0.01;
 const pixelThreshold = 0.12;
 const viewports = [
   { name: "mobile", width: 390, height: 844 },

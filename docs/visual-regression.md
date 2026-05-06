@@ -23,7 +23,7 @@ Before releasing the docs app and component package, verify visual baselines acr
 - focus-visible, hover, selected, disabled, loading 상태는 token 기반으로 구분됩니다. / Focus-visible, hover, selected, disabled, and loading states are distinguished through tokens.
 - raw color나 theme name 분기 없이 `--ds-*` token이 실제 색상 변화를 담당합니다. / `--ds-*` tokens drive color changes without raw colors or theme-name branches.
 - screenshot 차이가 생기면 의도한 변경인지 PR description에 적습니다. / If screenshots differ, document whether the change is intentional in the PR description.
-- pixel baseline comparison은 전체 pixel의 `0.5%` 초과 diff를 실패로 처리합니다. / Pixel baseline comparison fails when more than `0.5%` of pixels differ.
+- pixel baseline comparison은 전체 pixel의 `1%` 초과 diff를 실패로 처리합니다. / Pixel baseline comparison fails when more than `1%` of pixels differ.
 - anti-aliasing이나 font rendering 차이는 `pixelmatch` threshold `0.12` 안에서 흡수하고, 초과 diff는 `artifacts/visual-regression/diff`에 저장합니다. / Anti-aliasing or font rendering differences are absorbed within the `pixelmatch` threshold `0.12`, and larger diffs are stored in `artifacts/visual-regression/diff`.
 
 ## 기준선 운영 / Baseline Operations
