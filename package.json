@@ -10,7 +10,8 @@
   "scripts": {
     "components:scaffold": "tsx scripts/scaffold-component-docs.mjs",
     "components:props": "tsx scripts/sync-component-prop-tables.mjs",
-    "components:validate": "tsx scripts/validate-component-system.mjs",
+    "components:props-check": "tsx scripts/sync-component-prop-tables.mjs --check",
+    "components:validate": "tsx scripts/validate-component-system.mjs && npm run components:props-check",
     "build": "npm --workspace @bling-lab/ui run build",
     "dev": "npm --workspace @workspace/docs run dev",
     "docs:dev": "npm --workspace @workspace/docs run dev",

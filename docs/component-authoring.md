@@ -43,7 +43,9 @@ Every component documents the items below before implementation.
 - 상세 prop table은 `packages/ui/src/components/prop-docs.ts`에서 관리하고 scaffold가 `Prop 표 / Prop Table`로 렌더링합니다. / Detailed prop tables are managed in `packages/ui/src/components/prop-docs.ts` and rendered by the scaffold as `Prop Table`.
 - 기존 README/spec의 다른 내용을 보존하면서 prop table만 동기화할 때는 `npm run components:props`를 사용합니다. / Use `npm run components:props` when only prop tables should be synced while preserving the rest of existing README/spec files.
 - `DataGrid`, `Combobox`, `CommandPalette`처럼 prop이 많은 컴포넌트는 source props와 prop table이 `npm run components:validate`에서 함께 검증됩니다. / Prop-heavy components such as `DataGrid`, `Combobox`, and `CommandPalette` validate source props and prop tables together through `npm run components:validate`.
-- 기존 README/spec는 기본적으로 보존됩니다. 강제로 문서를 재생성해야 할 때만 사용자 수동 변경 여부를 확인한 뒤 `npm run components:scaffold -- --force-docs`를 사용합니다. / Existing README/spec files are preserved by default. Use `npm run components:scaffold -- --force-docs` only after checking for user-authored manual changes.
+- 기존 README/spec는 기본적으로 보존됩니다. 강제로 문서를 재생성해야 할 때는 먼저 `npm run components:scaffold -- --force-docs --dry-run`으로 변경될 파일과 이유를 확인한 뒤 `npm run components:scaffold -- --force-docs`를 사용합니다. / Existing README/spec files are preserved by default. When docs must be regenerated, first inspect changed files and reasons with `npm run components:scaffold -- --force-docs --dry-run`, then run `npm run components:scaffold -- --force-docs`.
+- 수동 작성 내용을 보존해야 하는 문서는 `<!-- ds-manual-start -->`와 `<!-- ds-manual-end -->` 사이에 둡니다. scaffold는 `--force-docs` 실행 시 이 구간을 유지합니다. / Put user-authored content that must be preserved between `<!-- ds-manual-start -->` and `<!-- ds-manual-end -->`. The scaffold keeps this block during `--force-docs`.
+- prop table drift는 `npm run components:props-check`로 확인하고, drift가 의도된 변경이면 `npm run components:props`로 갱신합니다. / Check prop table drift with `npm run components:props-check`, and update intentional drift with `npm run components:props`.
 
 ## 구현 규칙 / Implementation Rules
 

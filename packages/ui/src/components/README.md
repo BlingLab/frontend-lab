@@ -60,8 +60,11 @@ npm run components:validate
 문서만 수정했더라도 public export, 폴더 구조, 토큰 계약이 함께 깨지지 않았는지 확인합니다.
 Even documentation-only changes should confirm that public exports, folder structure, and token contracts still hold.
 
-기존 수동 문서를 덮어쓰지 않기 위해 scaffold는 README/spec를 기본적으로 보존합니다. 문서를 재생성해야 할 때만 변경분을 먼저 확인하고 `npm run components:scaffold -- --force-docs`를 실행합니다.
-The scaffold preserves existing README/spec files by default. Regenerate docs only after checking local changes, then run `npm run components:scaffold -- --force-docs`.
+기존 수동 문서를 덮어쓰지 않기 위해 scaffold는 README/spec를 기본적으로 보존합니다. 문서를 재생성해야 할 때는 `npm run components:scaffold -- --force-docs --dry-run`으로 변경분을 먼저 확인하고 `npm run components:scaffold -- --force-docs`를 실행합니다.
+The scaffold preserves existing README/spec files by default. Regenerate docs only after checking local changes with `npm run components:scaffold -- --force-docs --dry-run`, then run `npm run components:scaffold -- --force-docs`.
+
+수동으로 보존해야 하는 내용은 `<!-- ds-manual-start -->`와 `<!-- ds-manual-end -->` 사이에 둡니다. scaffold는 강제 재생성 중에도 이 marker 구간을 유지합니다.
+Put manually preserved content between `<!-- ds-manual-start -->` and `<!-- ds-manual-end -->`. The scaffold keeps this marker block during forced regeneration.
 
 prop table만 갱신할 때는 기존 문서 본문을 유지하는 `npm run components:props`를 사용합니다.
 Use `npm run components:props` to update only prop tables while preserving existing document prose.

@@ -5,6 +5,7 @@ import { componentCatalog } from "../packages/ui/src/components/catalog.ts";
 import { renderComponentPropTable } from "../packages/ui/src/components/prop-docs.ts";
 
 const rootDir = fileURLToPath(new URL("..", import.meta.url));
+const checkOnly = process.argv.includes("--check") || process.argv.includes("--dry-run");
 
 function renderBlock(component) {
   return `## Prop 표 / Prop Table\n\n${renderComponentPropTable(component)}\n`;
@@ -31,6 +32,7 @@ function upsertPropTable(content, component) {
 }
 
 let written = 0;
+const changedFiles = [];
 
 for (const component of componentCatalog.filter((item) => item.status === "ready")) {
   const componentDir = join(rootDir, "packages", "ui", "src", "components", component.category, component.slug);
@@ -40,10 +42,25 @@ for (const component of componentCatalog.filter((item) => item.status === "ready
     const currentContent = await readFile(filePath, "utf8");
     const nextContent = `${upsertPropTable(currentContent, component).trimEnd()}\n`;
     if (nextContent !== currentContent) {
-      await writeFile(filePath, nextContent, "utf8");
+      changedFiles.push(filePath);
+      if (!checkOnly) {
+        await writeFile(filePath, nextContent, "utf8");
+      }
       written += 1;
     }
   }
 }
 
-console.log(`${written}개 component prop table 문서를 동기화했습니다. / Synced ${written} component prop table document(s).`);
+if (checkOnly && changedFiles.length > 0) {
+  console.error("component prop table drift가 있습니다. / Component prop table drift detected:");
+  for (const changedFile of changedFiles) {
+    console.error(`- ${changedFile}`);
+  }
+  process.exit(1);
+}
+
+if (checkOnly) {
+  console.log("component prop table drift가 없습니다. / No component prop table drift detected.");
+} else {
+  console.log(`${written}개 component prop table 문서를 동기화했습니다. / Synced ${written} component prop table document(s).`);
+}

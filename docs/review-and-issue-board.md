@@ -30,7 +30,7 @@ This table preserves candidates and acceptance criteria from the time they were 
 | [#10](https://github.com/BlingLab/frontend-lab/issues/10) | Done | Overlay dismiss와 focus hook 공통화 / Extract overlay dismiss and focus hooks | component | Escape, outside pointer, focus return 로직이 shared hook으로 정리되었습니다. / Escape, outside pointer, and focus return logic are consolidated into shared hooks. |
 | [#12](https://github.com/BlingLab/frontend-lab/issues/12) | Done | DataGrid virtual scroll 범위 결정 / Decide DataGrid virtual scroll scope | component | large dataset 기준과 ARIA 영향을 별도 후속으로 분리했습니다. / Large dataset criteria and ARIA impact were split into a separate follow-up. |
 | [#46](https://github.com/BlingLab/frontend-lab/issues/46) | P2 | DataGrid virtual scroll ARIA 검증 프로토타입 / Prototype virtual scroll with ARIA validation | component | large dataset, keyboard navigation, selection, screen reader row count/index 전략을 함께 검증합니다. / Validates large dataset behavior, keyboard navigation, selection, and screen reader row count/index strategy together. |
-| [#47](https://github.com/BlingLab/frontend-lab/issues/47) | P2 | 컴포넌트 문서 재생성 전 수동 변경 감지 / Detect manual changes before regenerating component docs | documentation | docs regeneration dry-run, manual protected section, drift 검증 기준을 추가합니다. / Adds docs regeneration dry-run, manual protected sections, and drift validation criteria. |
+| [#47](https://github.com/BlingLab/frontend-lab/issues/47) | Done | 컴포넌트 문서 재생성 전 수동 변경 감지 / Detect manual changes before regenerating component docs | documentation | scaffold dry-run, manual marker, prop table drift check를 추가했습니다. / Added scaffold dry-run, manual markers, and prop table drift checks. |
 | [#48](https://github.com/BlingLab/frontend-lab/issues/48) | P2 | pixel baseline comparison 도입 / Add pixel baseline comparison | quality | screenshot artifact 검증을 baseline comparison까지 확장합니다. / Extends screenshot artifact checks to baseline comparison. |
 | [#49](https://github.com/BlingLab/frontend-lab/issues/49) | Done | 실제 npm publish scope와 권한 확정 / Finalize npm publish scope and permissions | release | package scope를 `@bling-lab/ui`로 확정하고 `private=false`, npm public `publishConfig`, publish 검증을 추가했습니다. / Finalized package scope as `@bling-lab/ui` and added `private=false`, npm public `publishConfig`, and publish verification. |
 
@@ -108,6 +108,7 @@ This table preserves candidates and acceptance criteria from the time they were 
 
 ### 7. 문서 자동화 후속 / Documentation Automation Follow-up
 
+- 상태 / Status: 완료. scaffold dry-run, manual marker, prop table drift check를 추가했습니다. / Done. Added scaffold dry-run, manual markers, and prop table drift checks.
 - 범위 / Scope: component docs regeneration dry-run, manual section protection, generated prop table drift check.
 - 리뷰 포인트 / Review points: 수동 작성 문서 보존, scaffold 범위 명확성, 대량 문서 diff 최소화. / Manual document preservation, clear scaffold scope, and reduced large documentation diffs.
 - 연결 이슈 / Linked issue: [#47](https://github.com/BlingLab/frontend-lab/issues/47)
