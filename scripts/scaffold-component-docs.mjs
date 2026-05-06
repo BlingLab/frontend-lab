@@ -1,4 +1,4 @@
-import { mkdir, writeFile } from "node:fs/promises";
+import { mkdir, readFile, writeFile } from "node:fs/promises";
 import { existsSync } from "node:fs";
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
@@ -8,6 +8,9 @@ import { renderComponentPropTable } from "../packages/ui/src/components/prop-doc
 const rootDir = fileURLToPath(new URL("..", import.meta.url));
 const force = process.argv.includes("--force");
 const forceDocs = process.argv.includes("--force-docs");
+const dryRun = process.argv.includes("--dry-run");
+const manualStartMarker = "<!-- ds-manual-start -->";
+const manualEndMarker = "<!-- ds-manual-end -->";
 const categoryLabels = new Map(componentCategories.map((category) => [category.id, category.label]));
 const categoryKoreanLabels = new Map([
   ["actions", "액션"],
@@ -263,19 +266,50 @@ export function ${component.name}({ children, ...props }: ${component.name}Props
 `;
 }
 
-async function writeIfMissing(path, content, options = {}) {
+function getManualBlock(content) {
+  const startIndex = content.indexOf(manualStartMarker);
+  const endIndex = content.indexOf(manualEndMarker);
+  if (startIndex === -1 || endIndex === -1 || endIndex < startIndex) return undefined;
+  return content.slice(startIndex, endIndex + manualEndMarker.length);
+}
+
+function preserveManualBlock(currentContent, nextContent) {
+  const currentBlock = getManualBlock(currentContent);
+  if (!currentBlock) return nextContent;
+
+  const nextBlock = getManualBlock(nextContent);
+  if (nextBlock) return nextContent.replace(nextBlock, currentBlock);
+  return `${nextContent.trimEnd()}\n\n## 수동 보호 구간 / Manual Protected Section\n\n${currentBlock}\n`;
+}
+
+async function planWrite(path, content, options = {}) {
   await mkdir(dirname(path), { recursive: true });
 
   const canOverwrite = options.doc ? forceDocs : force;
-  if (existsSync(path) && !canOverwrite) {
-    return false;
+  if (!existsSync(path)) {
+    return { shouldWrite: true, content, reason: "missing" };
   }
 
-  await writeFile(path, content, "utf8");
-  return true;
+  const currentContent = await readFile(path, "utf8");
+  if (!canOverwrite) {
+    return { shouldWrite: false, content: currentContent, reason: "exists" };
+  }
+
+  const nextContent = options.doc ? preserveManualBlock(currentContent, content) : content;
+  if (nextContent === currentContent) {
+    return { shouldWrite: false, content: currentContent, reason: "unchanged" };
+  }
+
+  const manualBlock = getManualBlock(currentContent);
+  return {
+    shouldWrite: true,
+    content: nextContent,
+    reason: manualBlock ? "content differs, manual block preserved" : "content differs"
+  };
 }
 
 let written = 0;
+const plannedWrites = [];
 
 for (const component of componentCatalog) {
   const componentDir = join(
@@ -288,20 +322,42 @@ for (const component of componentCatalog) {
     component.slug
   );
 
-  if (await writeIfMissing(join(componentDir, "README.md"), renderReadme(component), { doc: true })) {
+  const readmePlan = await planWrite(join(componentDir, "README.md"), renderReadme(component), { doc: true });
+  if (readmePlan.shouldWrite) {
+    plannedWrites.push({ path: join(componentDir, "README.md"), reason: readmePlan.reason, content: readmePlan.content });
     written += 1;
   }
 
-  if (await writeIfMissing(join(componentDir, "spec.md"), renderSpec(component), { doc: true })) {
+  const specPlan = await planWrite(join(componentDir, "spec.md"), renderSpec(component), { doc: true });
+  if (specPlan.shouldWrite) {
+    plannedWrites.push({ path: join(componentDir, "spec.md"), reason: specPlan.reason, content: specPlan.content });
     written += 1;
   }
 
-  if (await writeIfMissing(join(componentDir, "index.ts"), renderEntry(component))) {
+  const entryPlan = await planWrite(join(componentDir, "index.ts"), renderEntry(component));
+  if (entryPlan.shouldWrite) {
+    plannedWrites.push({ path: join(componentDir, "index.ts"), reason: entryPlan.reason, content: entryPlan.content });
     written += 1;
   }
-  if (await writeIfMissing(join(componentDir, `${component.slug}.tsx`), renderComponentStub(component))) {
+  const componentPlan = await planWrite(join(componentDir, `${component.slug}.tsx`), renderComponentStub(component));
+  if (componentPlan.shouldWrite) {
+    plannedWrites.push({ path: join(componentDir, `${component.slug}.tsx`), reason: componentPlan.reason, content: componentPlan.content });
     written += 1;
   }
 }
 
-console.log(`${written}개 컴포넌트 파일을 작성했습니다. / ${written} component file(s) written.`);
+if (dryRun) {
+  if (plannedWrites.length === 0) {
+    console.log("변경될 컴포넌트 파일이 없습니다. / No component files would change.");
+  } else {
+    console.log("변경 예정 컴포넌트 파일 / Component files that would change:");
+    for (const plannedWrite of plannedWrites) {
+      console.log(`- ${plannedWrite.path}: ${plannedWrite.reason}`);
+    }
+  }
+} else {
+  for (const plannedWrite of plannedWrites) {
+    await writeFile(plannedWrite.path, plannedWrite.content, "utf8");
+  }
+  console.log(`${written}개 컴포넌트 파일을 작성했습니다. / ${written} component file(s) written.`);
+}
