@@ -58,7 +58,7 @@
 ## 예시 / Example
 
 ```tsx
-import { FileUploader } from "@workspace/ui/components/forms/file-uploader";
+import { FileUploader } from "@bling-lab/ui/components/forms/file-uploader";
 
 export function Example() {
   return <FileUploader label="첨부 / Attachment" multiple maxFiles={3} />;

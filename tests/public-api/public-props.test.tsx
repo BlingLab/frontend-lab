@@ -46,9 +46,9 @@ import {
   type DataGridProps,
   type DialogProps,
   type FieldProps
-} from "@workspace/ui";
-import { Button as ButtonEntry, type ButtonProps as ButtonEntryProps } from "@workspace/ui/components/actions/button";
-import { DataGrid as DataGridEntry, type DataGridProps as DataGridEntryProps } from "@workspace/ui/components/data-display/data-grid";
+} from "@bling-lab/ui";
+import { Button as ButtonEntry, type ButtonProps as ButtonEntryProps } from "@bling-lab/ui/components/actions/button";
+import { DataGrid as DataGridEntry, type DataGridProps as DataGridEntryProps } from "@bling-lab/ui/components/data-display/data-grid";
 
 type TaskRow = {
   id: string;

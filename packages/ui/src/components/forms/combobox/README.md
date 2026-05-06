@@ -62,7 +62,7 @@
 ## 예시 / Example
 
 ```tsx
-import { Combobox } from "@workspace/ui/components/forms/combobox";
+import { Combobox } from "@bling-lab/ui/components/forms/combobox";
 
 export function Example() {
   return <Combobox label="담당자 / Owner" options={options} onValueChange={setOwner} />;

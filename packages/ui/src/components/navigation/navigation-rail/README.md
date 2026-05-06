@@ -50,7 +50,7 @@
 ## 예시 / Example
 
 ```tsx
-import { NavigationRail } from "@workspace/ui/components/navigation/navigation-rail";
+import { NavigationRail } from "@bling-lab/ui/components/navigation/navigation-rail";
 
 export function Example() {
   return <NavigationRail items={items} defaultValue="home" />;

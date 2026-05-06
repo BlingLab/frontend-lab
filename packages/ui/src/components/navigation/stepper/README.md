@@ -53,7 +53,7 @@
 ## 예시 / Example
 
 ```tsx
-import { Stepper } from "@workspace/ui/components/navigation/stepper";
+import { Stepper } from "@bling-lab/ui/components/navigation/stepper";
 
 export function Example() {
   return <Stepper steps={steps} defaultValue="details" />;

@@ -35,7 +35,7 @@ Place `data-ds-theme` on the root element when applying a theme to the full app.
 
 ```tsx
 import "@workspace/tokens/tokens.css";
-import "@workspace/ui/styles.css";
+import "@bling-lab/ui/styles.css";
 
 export function App() {
   return (

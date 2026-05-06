@@ -51,7 +51,7 @@
 ## 예시 / Example
 
 ```tsx
-import { SideNav } from "@workspace/ui/components/navigation/side-nav";
+import { SideNav } from "@bling-lab/ui/components/navigation/side-nav";
 
 export function Example() {
   return <SideNav sections={sections} defaultValue="overview" />;

@@ -46,7 +46,7 @@
 ## 예시 / Example
 
 ```tsx
-import { Row } from "@workspace/ui/components/layout/row";
+import { Row } from "@bling-lab/ui/components/layout/row";
 
 export function Example() {
   return <Row gap="md">콘텐츠 / Content</Row>;

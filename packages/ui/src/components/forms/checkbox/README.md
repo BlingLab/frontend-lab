@@ -51,7 +51,7 @@
 ## 예시 / Example
 
 ```tsx
-import { Checkbox } from "@workspace/ui/components/forms/checkbox";
+import { Checkbox } from "@bling-lab/ui/components/forms/checkbox";
 
 export function Example() {
   return <Checkbox label="알림 받기 / Receive notifications" defaultChecked />;

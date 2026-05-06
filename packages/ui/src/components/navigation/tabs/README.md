@@ -53,7 +53,7 @@
 ## 예시 / Example
 
 ```tsx
-import { Tabs } from "@workspace/ui/components/navigation/tabs";
+import { Tabs } from "@bling-lab/ui/components/navigation/tabs";
 
 export function Example() {
   return <Tabs items={[{ label: "미리보기 / Preview", value: "preview", content: "내용 / Content" }]} />;

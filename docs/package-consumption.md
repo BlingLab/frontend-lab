@@ -1,7 +1,7 @@
 # 패키지 사용 가이드 / Package Consumption Guide
 
-이 문서는 `@workspace/ui`를 다른 React 프로젝트에서 가져다 쓰는 기준을 설명합니다.
-This document explains how to consume `@workspace/ui` from another React project.
+이 문서는 `@bling-lab/ui`를 다른 React 프로젝트에서 가져다 쓰는 기준을 설명합니다.
+This document explains how to consume `@bling-lab/ui` from another React project.
 
 ## 목표 / Goal
 
@@ -21,14 +21,14 @@ This document explains how to consume `@workspace/ui` from another React project
 After installing the package, import the global style once.
 
 ```tsx
-import "@workspace/ui/styles.css";
+import "@bling-lab/ui/styles.css";
 ```
 
 컴포넌트는 루트 entry에서 가져옵니다.
 Import components from the root entry.
 
 ```tsx
-import { Button, Stack, TextField } from "@workspace/ui";
+import { Button, Stack, TextField } from "@bling-lab/ui";
 
 export function ProfileForm() {
   return (
@@ -46,21 +46,21 @@ export function ProfileForm() {
 Use per-component entries when a project bundler does not tree shake the root entry well.
 
 ```tsx
-import { Button } from "@workspace/ui/components/actions/button";
-import { TextField } from "@workspace/ui/components/forms/text-field";
+import { Button } from "@bling-lab/ui/components/actions/button";
+import { TextField } from "@bling-lab/ui/components/forms/text-field";
 ```
 
 ## 토큰과 스타일 / Tokens and Styles
 
-빌드된 `@workspace/ui/styles.css`는 기본 `--ds-*` 토큰과 component CSS를 함께 포함합니다.
-The built `@workspace/ui/styles.css` includes default `--ds-*` tokens and component CSS together.
+빌드된 `@bling-lab/ui/styles.css`는 기본 `--ds-*` 토큰과 component CSS를 함께 포함합니다.
+The built `@bling-lab/ui/styles.css` includes default `--ds-*` tokens and component CSS together.
 
 토큰을 별도 패키지로 명시적으로 관리하거나 source workspace에서 개발할 때는 `@workspace/tokens/tokens.css`를 먼저 import할 수 있습니다.
 When managing tokens explicitly as a separate package or developing inside the source workspace, import `@workspace/tokens/tokens.css` first.
 
 ```tsx
 import "@workspace/tokens/tokens.css";
-import "@workspace/ui/styles.css";
+import "@bling-lab/ui/styles.css";
 ```
 
 ## 테마 적용 / Theme Usage
@@ -121,7 +121,7 @@ npm run test:consumer
 
 - root export에서 `Button`, `Card`, `DataGrid`, `TextField`, `componentCatalog`를 가져옵니다. / Imports `Button`, `Card`, `DataGrid`, `TextField`, and `componentCatalog` from the root export.
 - per-component export에서 `Button`과 `DataGrid`를 가져옵니다. / Imports `Button` and `DataGrid` from per-component exports.
-- `@workspace/ui/styles.css`가 기본 토큰을 포함하고, 필요하면 `@workspace/tokens/tokens.css`를 먼저 import해도 build가 통과해야 합니다. / `@workspace/ui/styles.css` includes default tokens, and the build must also pass when `@workspace/tokens/tokens.css` is imported first when needed.
+- `@bling-lab/ui/styles.css`가 기본 토큰을 포함하고, 필요하면 `@workspace/tokens/tokens.css`를 먼저 import해도 build가 통과해야 합니다. / `@bling-lab/ui/styles.css` includes default tokens, and the build must also pass when `@workspace/tokens/tokens.css` is imported first when needed.
 
 ## API 상태 제어 / API State Control
 

@@ -57,7 +57,7 @@ Field composition을 공유하는 단일 날짜 입력입니다. / Date input wi
 ## 예시 / Example
 
 ```tsx
-import { DatePicker } from "@workspace/ui/components/forms/date-picker";
+import { DatePicker } from "@bling-lab/ui/components/forms/date-picker";
 
 export function Example() {
   return <DatePicker label="시작일 / Start date" defaultValue="2026-04-29" />;

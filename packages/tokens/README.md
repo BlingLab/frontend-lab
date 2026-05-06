@@ -26,7 +26,7 @@ Consumer projects import token CSS first in the app entry.
 
 ```tsx
 import "@workspace/tokens/tokens.css";
-import "@workspace/ui/styles.css";
+import "@bling-lab/ui/styles.css";
 ```
 
 제품별 theme은 `data-ds-theme` 또는 `.ds-theme-*` class로 적용합니다. 기본 theme는 `normal`입니다.

@@ -46,7 +46,7 @@
 ## 예시 / Example
 
 ```tsx
-import { Skeleton } from "@workspace/ui/components/feedback/skeleton";
+import { Skeleton } from "@bling-lab/ui/components/feedback/skeleton";
 
 export function Example() {
   return <Skeleton width="14rem" height="1.25rem" animated />;

@@ -49,7 +49,7 @@
 ## 예시 / Example
 
 ```tsx
-import { EmptyState } from "@workspace/ui/components/data-display/empty-state";
+import { EmptyState } from "@bling-lab/ui/components/data-display/empty-state";
 
 export function Example() {
   return <EmptyState title="결과 없음 / No results" actions={[{ label: "초기화 / Reset" }]} />;

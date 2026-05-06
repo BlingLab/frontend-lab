@@ -9,7 +9,7 @@ This document is a lightweight backlog for items that should become GitHub Issue
 - 컴포넌트 구현은 각 폴더의 `{slug}.tsx`에 있고 root barrel은 export만 담당해야 합니다. / Component implementation must live in each folder's `{slug}.tsx`, and the root barrel should only export.
 - keyboard, focus-visible, disabled, invalid, selected, open 상태는 DOM state와 ARIA state가 함께 맞아야 합니다. / Keyboard, focus-visible, disabled, invalid, selected, and open states must align DOM state with ARIA state.
 - CSS는 semantic/component token을 사용하고 raw color, 임의 spacing, theme name 분기를 피해야 합니다. / CSS must use semantic/component tokens and avoid raw colors, arbitrary spacing, and theme-name branching.
-- docs app 예시는 실제 `@workspace/ui` export를 렌더링해야 합니다. / Docs app examples must render real `@workspace/ui` exports.
+- docs app 예시는 실제 `@bling-lab/ui` export를 렌더링해야 합니다. / Docs app examples must render real `@bling-lab/ui` exports.
 
 ## 현재 이슈 후보 / Current Issue Candidates
 
@@ -32,7 +32,7 @@ This table preserves candidates and acceptance criteria from the time they were 
 | [#46](https://github.com/BlingLab/frontend-lab/issues/46) | P2 | DataGrid virtual scroll ARIA 검증 프로토타입 / Prototype virtual scroll with ARIA validation | component | large dataset, keyboard navigation, selection, screen reader row count/index 전략을 함께 검증합니다. / Validates large dataset behavior, keyboard navigation, selection, and screen reader row count/index strategy together. |
 | [#47](https://github.com/BlingLab/frontend-lab/issues/47) | P2 | 컴포넌트 문서 재생성 전 수동 변경 감지 / Detect manual changes before regenerating component docs | documentation | docs regeneration dry-run, manual protected section, drift 검증 기준을 추가합니다. / Adds docs regeneration dry-run, manual protected sections, and drift validation criteria. |
 | [#48](https://github.com/BlingLab/frontend-lab/issues/48) | P2 | pixel baseline comparison 도입 / Add pixel baseline comparison | quality | screenshot artifact 검증을 baseline comparison까지 확장합니다. / Extends screenshot artifact checks to baseline comparison. |
-| [#49](https://github.com/BlingLab/frontend-lab/issues/49) | P1 | 실제 npm publish scope와 권한 확정 / Finalize npm publish scope and permissions | release | 실제 package scope, `private` flag, npm token, organization permission을 확정합니다. / Finalizes the real package scope, `private` flag, npm token, and organization permissions. |
+| [#49](https://github.com/BlingLab/frontend-lab/issues/49) | Done | 실제 npm publish scope와 권한 확정 / Finalize npm publish scope and permissions | release | package scope를 `@bling-lab/ui`로 확정하고 `private=false`, npm public `publishConfig`, publish 검증을 추가했습니다. / Finalized package scope as `@bling-lab/ui` and added `private=false`, npm public `publishConfig`, and publish verification. |
 
 ## 우선순위와 SLA / Priority And SLA
 
@@ -89,6 +89,7 @@ This table preserves candidates and acceptance criteria from the time they were 
 
 ### 4. 릴리즈 준비 / Release Readiness
 
+- 상태 / Status: 완료. package name은 `@bling-lab/ui`, registry는 npm public으로 확정했습니다. / Done. Package name is finalized as `@bling-lab/ui`, and the registry target is npm public.
 - 범위 / Scope: package name/scope, changelog, version policy, publish target.
 - 리뷰 포인트 / Review points: consumer import path, peer dependency, generated `dist` structure.
 - 연결 이슈 / Linked issues: [#5](https://github.com/BlingLab/frontend-lab/issues/5), [#49](https://github.com/BlingLab/frontend-lab/issues/49)

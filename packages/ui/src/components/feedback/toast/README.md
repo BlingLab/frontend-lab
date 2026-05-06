@@ -52,7 +52,7 @@
 ## 예시 / Example
 
 ```tsx
-import { Toast } from "@workspace/ui/components/feedback/toast";
+import { Toast } from "@bling-lab/ui/components/feedback/toast";
 
 export function Example() {
   return <Toast tone="info" title="동기화됨 / Synced" dismissible />;

@@ -57,7 +57,7 @@
 ## 예시 / Example
 
 ```tsx
-import { Card } from "@workspace/ui/components/layout/card";
+import { Card } from "@bling-lab/ui/components/layout/card";
 
 export function Example() {
   return <Card title="컴포넌트 / Component" description="설명 / Description" />;

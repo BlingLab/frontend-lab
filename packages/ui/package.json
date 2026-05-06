@@ -1,7 +1,7 @@
 {
-  "name": "@workspace/ui",
+  "name": "@bling-lab/ui",
   "version": "0.1.0",
-  "private": true,
+  "private": false,
   "type": "module",
   "main": "./dist/index.js",
   "module": "./dist/index.js",
@@ -10,6 +10,11 @@
     "dist",
     "README.md"
   ],
+  "publishConfig": {
+    "access": "public",
+    "provenance": true,
+    "registry": "https://registry.npmjs.org/"
+  },
   "scripts": {
     "build": "node ../../scripts/clean-ui-dist.mjs && tsc -p tsconfig.json && node ../../scripts/copy-ui-assets.mjs",
     "typecheck": "tsc -p tsconfig.json --noEmit"

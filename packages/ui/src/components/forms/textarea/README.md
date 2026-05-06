@@ -58,7 +58,7 @@ Field composition을 포함한 여러 줄 텍스트 입력입니다. / Multi-lin
 ## 예시 / Example
 
 ```tsx
-import { Textarea } from "@workspace/ui/components/forms/textarea";
+import { Textarea } from "@bling-lab/ui/components/forms/textarea";
 
 export function Example() {
   return <Textarea label="메모 / Note" rows={4} />;

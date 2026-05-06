@@ -49,7 +49,7 @@
 ## 예시 / Example
 
 ```tsx
-import { Switch } from "@workspace/ui/components/forms/switch";
+import { Switch } from "@bling-lab/ui/components/forms/switch";
 
 export function Example() {
   return <Switch label="자동 저장 / Autosave" defaultChecked />;
