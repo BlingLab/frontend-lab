@@ -23,6 +23,15 @@ Before releasing the docs app and component package, verify visual baselines acr
 - focus-visible, hover, selected, disabled, loading 상태는 token 기반으로 구분됩니다. / Focus-visible, hover, selected, disabled, and loading states are distinguished through tokens.
 - raw color나 theme name 분기 없이 `--ds-*` token이 실제 색상 변화를 담당합니다. / `--ds-*` tokens drive color changes without raw colors or theme-name branches.
 - screenshot 차이가 생기면 의도한 변경인지 PR description에 적습니다. / If screenshots differ, document whether the change is intentional in the PR description.
+- pixel baseline comparison은 전체 pixel의 `1%` 초과 diff를 실패로 처리합니다. / Pixel baseline comparison fails when more than `1%` of pixels differ.
+- anti-aliasing이나 font rendering 차이는 `pixelmatch` threshold `0.12` 안에서 흡수하고, 초과 diff는 `artifacts/visual-regression/diff`에 저장합니다. / Anti-aliasing or font rendering differences are absorbed within the `pixelmatch` threshold `0.12`, and larger diffs are stored in `artifacts/visual-regression/diff`.
+
+## 기준선 운영 / Baseline Operations
+
+- 기준 이미지는 `tests/visual-baselines`에 저장하고 PR에서 일반 파일처럼 review합니다. / Store baseline images in `tests/visual-baselines` and review them like normal PR files.
+- 의도한 시각 변경은 먼저 구현한 뒤 `npm run test:visual -- --update-baselines`로 기준 이미지를 갱신합니다. / For intentional visual changes, implement the change first and update baselines with `npm run test:visual -- --update-baselines`.
+- baseline 갱신 PR에는 변경된 화면, theme, viewport와 의도한 이유를 적습니다. / Baseline update PRs must list the changed screen, theme, viewport, and intended reason.
+- 실패가 flake로 의심되면 같은 commit에서 한 번 재실행하고, 두 번째도 실패하면 diff artifact를 기준으로 UI 또는 baseline을 수정합니다. / If a failure looks flaky, rerun once on the same commit; if it fails again, fix the UI or baseline using the diff artifact.
 
 ## 자동화 / Automation
 
@@ -32,8 +41,9 @@ Run Playwright screenshot validation with `npm run test:visual`.
 - 첫 자동화 범위는 docs app home, theme compare, DataGrid example 세 화면입니다. / The first automated scope covers docs app home, theme compare, and DataGrid example screens.
 - NORMAL/DARK theme와 mobile/tablet/desktop viewport 조합을 screenshot으로 저장합니다. / Stores screenshots for NORMAL/DARK themes across mobile/tablet/desktop viewports.
 - 산출물은 `artifacts/visual-regression`에 생성되고 CI에서는 artifact로 업로드됩니다. / Outputs are generated in `artifacts/visual-regression` and uploaded as CI artifacts.
-- 현재 단계는 screenshot artifact와 layout overflow 검증을 수행하고, pixel baseline comparison은 별도 기준이 안정화되면 추가합니다. / This stage performs screenshot artifact and layout overflow checks; pixel baseline comparison should be added after baseline criteria stabilize.
+- 일반 실행은 screenshot artifact, layout overflow, pixel baseline comparison을 함께 수행합니다. / Normal runs perform screenshot artifact, layout overflow, and pixel baseline comparison together.
 
 ```bash
 npm run test:visual
+npm run test:visual -- --update-baselines
 ```
