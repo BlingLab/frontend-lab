@@ -11,7 +11,7 @@ export interface TooltipProps extends Omit<HTMLAttributes<HTMLSpanElement>, "con
   trigger?: ReactNode;
 }
 
-export function Tooltip({ label = "?", content = "Tooltip", placement = "top", delay = 300, disabled = false, trigger, className, ...props }: TooltipProps) {
+export function Tooltip({ label = "?", content = "툴팁 설명 / Tooltip", placement = "top", delay = 300, disabled = false, trigger, className, ...props }: TooltipProps) {
   const [open, setOpen] = useState(false);
   const tooltipId = useId();
   const openTimer = useRef<number | undefined>(undefined);

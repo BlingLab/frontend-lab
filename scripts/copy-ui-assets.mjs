@@ -12,4 +12,4 @@ const tokensCss = await readFile(tokensSource, "utf8");
 const uiCss = await readFile(source, "utf8");
 await writeFile(target, `${tokensCss.trimEnd()}\n\n${uiCss.trimEnd()}\n`, "utf8");
 
-console.log("UI CSS asset copied with tokens. / UI CSS asset copied with tokens.");
+console.log("UI CSS asset을 token과 함께 복사했습니다. / UI CSS asset copied with tokens.");

@@ -10,7 +10,7 @@ export interface SwitchProps extends Omit<ButtonHTMLAttributes<HTMLButtonElement
 }
 
 export function Switch({
-  label = "Switch",
+  label = "스위치 / Switch",
   checked,
   defaultChecked = false,
   disabled,

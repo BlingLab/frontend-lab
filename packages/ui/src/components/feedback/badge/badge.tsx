@@ -31,7 +31,7 @@ export function Badge({
   return (
     <span className={classNames("ds-Badge", className)} data-tone={tone} data-variant={variant} data-size={size} {...props}>
       {iconStart ? <span className="ds-Badge-icon" aria-hidden="true">{iconStart}</span> : null}
-      {children ?? label ?? "Badge"}
+      {children ?? label ?? "배지 / Badge"}
       {iconEnd ? <span className="ds-Badge-icon" aria-hidden="true">{iconEnd}</span> : null}
       {removable ? (
         <button className="ds-Badge-remove" type="button" aria-label={removeLabel} onClick={onRemove}>

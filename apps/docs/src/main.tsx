@@ -415,8 +415,7 @@ function App() {
             <p className="eyebrow">React 컴포넌트 카탈로그 / React component catalog</p>
             <h1 id="page-title">프로젝트에 바로 가져다 쓰는 React 컴포넌트 시스템 / React Component System Ready For Product Work</h1>
             <p className="intro-copy">
-              이 문서 앱은 `@bling-lab/ui`의 실제 React 컴포넌트를 import해 렌더링합니다.
-              This docs app renders real React components imported from `@bling-lab/ui`.
+              이 문서 앱은 `@bling-lab/ui`의 실제 React 컴포넌트를 import해 렌더링합니다. / This docs app renders real React components imported from `@bling-lab/ui`.
             </p>
             <div className="intro-actions" aria-label="주요 이동 / Primary links">
               <a className="intro-link primary" href="#components">컴포넌트 보기 / View components</a>

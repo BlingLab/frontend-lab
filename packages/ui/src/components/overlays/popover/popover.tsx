@@ -52,7 +52,7 @@ export function Popover({ triggerLabel = "열기 / Open", title, children, open,
       </Button>
       <div className="ds-Popover-panel" id={panelId} data-placement={placement} data-state={currentOpen ? "open" : "closed"} hidden={!currentOpen}>
         {title ? <strong className="ds-Popover-title">{title}</strong> : null}
-        <div className="ds-Popover-content">{children ?? "Popover content"}</div>
+        <div className="ds-Popover-content">{children ?? "팝오버 내용 / Popover content"}</div>
       </div>
     </div>
   );

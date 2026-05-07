@@ -79,8 +79,7 @@ export function Example() {
 }
 ```
 
-개별 컴포넌트도 폴더 단위로 import할 수 있습니다.
-Individual components can also be imported by folder.
+개별 컴포넌트도 폴더 단위로 import할 수 있습니다. / Individual components can also be imported by folder.
 
 ```tsx
 import { Button } from "@bling-lab/ui/components/actions/button";

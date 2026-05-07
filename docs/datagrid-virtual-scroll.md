@@ -1,7 +1,6 @@
 # DataGrid 가상 스크롤 결정 / DataGrid Virtual Scroll Decision
 
-DataGrid의 virtual scroll은 현재 `@bling-lab/ui` v0.1 범위에 포함하지 않습니다.
-DataGrid virtual scroll is not included in the current `@bling-lab/ui` v0.1 scope.
+DataGrid의 virtual scroll은 현재 `@bling-lab/ui` v0.1 범위에 포함하지 않습니다. / DataGrid virtual scroll is not included in the current `@bling-lab/ui` v0.1 scope.
 
 ## 결정 / Decision
 
@@ -12,8 +11,7 @@ DataGrid virtual scroll is not included in the current `@bling-lab/ui` v0.1 scop
 
 ## 성능 목표 / Performance Goals
 
-virtualization을 도입하려면 아래 목표를 먼저 충족해야 합니다.
-Virtualization must meet the goals below before adoption.
+virtualization을 도입하려면 아래 목표를 먼저 충족해야 합니다. / Virtualization must meet the goals below before adoption.
 
 - 초기 render는 1,000 row dataset 기준 200ms 이하를 목표로 합니다. / Initial render should target 200ms or less for a 1,000-row dataset.
 - scroll 중 main thread 긴 task는 50ms를 넘지 않도록 설계합니다. / Long main-thread tasks during scroll should stay below 50ms.
@@ -22,8 +20,7 @@ Virtualization must meet the goals below before adoption.
 
 ## 프로토타입 검증 / Prototype Validation
 
-가상 스크롤은 아직 public API가 아니지만, ARIA 전략과 성능 smoke는 `npm run test:datagrid-virtual`로 검증합니다.
-Virtual scroll is not a public API yet, but ARIA strategy and performance smoke are validated with `npm run test:datagrid-virtual`.
+가상 스크롤은 아직 public API가 아니지만, ARIA 전략과 성능 smoke는 `npm run test:datagrid-virtual`로 검증합니다. / Virtual scroll is not a public API yet, but ARIA strategy and performance smoke are validated with `npm run test:datagrid-virtual`.
 
 - current baseline은 500 row DataGrid가 `aria-rowcount`, selection column 포함 `aria-colcount`, row keyboard state를 유지하는지 확인합니다. / The current baseline checks that a 500-row DataGrid keeps `aria-rowcount`, `aria-colcount` including the selection column, and row keyboard state.
 - prototype fixture는 1,000 row 중 visible window 40 row만 렌더링하고 `aria-rowcount`, absolute `aria-rowindex`, `aria-activedescendant`를 검증합니다. / The prototype fixture renders only a 40-row visible window from 1,000 rows and verifies `aria-rowcount`, absolute `aria-rowindex`, and `aria-activedescendant`.
