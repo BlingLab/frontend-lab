@@ -9,7 +9,7 @@ export interface CheckboxProps extends Omit<InputHTMLAttributes<HTMLInputElement
 }
 
 export function Checkbox({
-  label = "Checkbox",
+  label = "체크박스 / Checkbox",
   description,
   indeterminate = false,
   disabled,

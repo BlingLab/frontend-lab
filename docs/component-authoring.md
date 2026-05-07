@@ -60,15 +60,13 @@ Every component documents the items below before implementation.
 
 ## export 규칙 / Export Rules
 
-루트 export는 `packages/ui/src/index.ts`에서만 관리합니다.
-Root exports are managed only in `packages/ui/src/index.ts`.
+루트 export는 `packages/ui/src/index.ts`에서만 관리합니다. / Root exports are managed only in `packages/ui/src/index.ts`.
 
 ```ts
 export { Button, type ButtonProps } from "./components/actions/button";
 ```
 
-컴포넌트 폴더의 `index.ts`는 자기 구현만 다시 export합니다.
-Each component folder's `index.ts` re-exports only its own implementation.
+컴포넌트 폴더의 `index.ts`는 자기 구현만 다시 export합니다. / Each component folder's `index.ts` re-exports only its own implementation.
 
 ```ts
 export { Button, type ButtonProps } from "./button";

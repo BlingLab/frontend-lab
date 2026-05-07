@@ -63,8 +63,7 @@ Verify `packages/ui/package.json` export paths against real output with `npm run
 
 ## 배포 전 판단 / Pre-Release Decision
 
-이 레포는 현재 workspace 기반 베이스입니다. 실제 npm 또는 GitHub Packages 배포는 [릴리즈 정책](./release-policy.md)을 기준으로 별도 위험 변경 PR에서 결정합니다.
-This repo is currently a workspace-based foundation. Publishing to npm or GitHub Packages should be decided in a separate risky-change PR using [Release Policy](./release-policy.md).
+이 레포는 현재 workspace 기반 베이스입니다. 실제 npm 또는 GitHub Packages 배포는 [릴리즈 정책](./release-policy.md)을 기준으로 별도 위험 변경 PR에서 결정합니다. / This repo is currently a workspace-based foundation. Publishing to npm or GitHub Packages should be decided in a separate risky-change PR using [Release Policy](./release-policy.md).
 
 ## 실제 publish 전 확인 / Before Real Publish
 

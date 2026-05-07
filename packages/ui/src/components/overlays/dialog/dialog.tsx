@@ -97,11 +97,11 @@ export function Dialog({
         }}
       >
         <div className="ds-Dialog-header">
-          <h3 className="ds-Dialog-title" id={titleId}>{title ?? "Dialog"}</h3>
+          <h3 className="ds-Dialog-title" id={titleId}>{title ?? "대화상자 / Dialog"}</h3>
           <IconButton label={closeLabel} icon={<Icon name="x" />} onClick={close} />
         </div>
         {description ? <p className="ds-Dialog-description" id={descriptionId}>{description}</p> : null}
-        <div className="ds-Dialog-body">{children ?? "Dialog content"}</div>
+        <div className="ds-Dialog-body">{children ?? "대화상자 내용 / Dialog content"}</div>
         <div className="ds-Dialog-actions">
           {actions.map(renderAction)}
           <Button variant="outline" tone="neutral" onClick={close}>{closeLabel}</Button>

@@ -7,8 +7,8 @@ import { Button as ButtonEntry } from "@bling-lab/ui/components/actions/button";
 import { DataGrid as DataGridEntry } from "@bling-lab/ui/components/data-display/data-grid";
 
 const rows = [
-  { id: "ready", name: "Root export", status: "통과 / Pass" },
-  { id: "entry", name: "Per-component export", status: "통과 / Pass" }
+  { id: "ready", name: "루트 export / Root export", status: "통과 / Pass" },
+  { id: "entry", name: "개별 component export / Per-component export", status: "통과 / Pass" }
 ];
 
 function ConsumerFixture() {
