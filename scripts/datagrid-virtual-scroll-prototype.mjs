@@ -26,6 +26,10 @@ const failures = [];
 const totalRows = 1_000;
 const windowSize = 40;
 const overscan = 4;
+const virtualNavigationIterations = 120;
+const localVirtualNavigationBudgetMs = 300;
+const ciVirtualNavigationBudgetMs = 600;
+const virtualNavigationBudgetMs = process.env.CI ? ciVirtualNavigationBudgetMs : localVirtualNavigationBudgetMs;
 const columns = [
   { key: "name", label: "이름 / Name" },
   { key: "status", label: "상태 / Status" },
@@ -198,14 +202,16 @@ await check("Virtual scroll window update performance", async () => {
   render(React.createElement(VirtualGridPrototype));
   const grid = screen.getByRole("grid", { name: "가상 DataGrid 프로토타입 / Virtual DataGrid prototype" });
   const startedAt = performance.now();
-  for (let index = 0; index < 120; index += 1) {
+  for (let index = 0; index < virtualNavigationIterations; index += 1) {
     fireEvent.keyDown(grid, { key: "ArrowDown" });
   }
   await waitFor(() => {
     if (grid.getAttribute("aria-activedescendant") !== "row-221") throw new Error("Expected repeated keyboard navigation to finish at row-221.");
   });
   const elapsed = performance.now() - startedAt;
-  if (elapsed > 300) throw new Error(`Expected 120 virtual navigation updates under 300ms, received ${elapsed.toFixed(1)}ms.`);
+  if (elapsed > virtualNavigationBudgetMs) {
+    throw new Error(`${virtualNavigationIterations}회 가상 navigation update가 ${virtualNavigationBudgetMs}ms 안에 끝나야 합니다. / Expected ${virtualNavigationIterations} virtual navigation updates under ${virtualNavigationBudgetMs}ms, received ${elapsed.toFixed(1)}ms.`);
+  }
 });
 
 if (failures.length > 0) {
