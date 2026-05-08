@@ -25,7 +25,7 @@ virtualization을 도입하려면 아래 목표를 먼저 충족해야 합니다
 - current baseline은 500 row DataGrid가 `aria-rowcount`, selection column 포함 `aria-colcount`, row keyboard state를 유지하는지 확인합니다. / The current baseline checks that a 500-row DataGrid keeps `aria-rowcount`, `aria-colcount` including the selection column, and row keyboard state.
 - prototype fixture는 1,000 row 중 visible window 40 row만 렌더링하고 `aria-rowcount`, absolute `aria-rowindex`, `aria-activedescendant`를 검증합니다. / The prototype fixture renders only a 40-row visible window from 1,000 rows and verifies `aria-rowcount`, absolute `aria-rowindex`, and `aria-activedescendant`.
 - keyboard navigation은 window 밖으로 이동해도 active row를 mount 상태로 유지하고 selection은 rowKey로 보존해야 합니다. / Keyboard navigation must keep the active row mounted after moving beyond the current window, and selection must persist by rowKey.
-- 성능 smoke는 120회 keyboard window update가 300ms 안에 끝나는지 확인합니다. / The performance smoke checks that 120 keyboard window updates finish within 300ms.
+- 성능 smoke는 120회 keyboard window update가 로컬 300ms, CI 600ms 안에 끝나는지 확인합니다. CI는 hosted runner 부하에 민감하므로 회귀 감지 기준은 유지하되 false negative를 줄입니다. / The performance smoke checks that 120 keyboard window updates finish within 300ms locally and 600ms in CI. CI is sensitive to hosted runner load, so the check keeps a regression budget while reducing false negatives.
 
 ## 접근성 영향 / Accessibility Impact
 
