@@ -94,21 +94,21 @@ async function captureTarget(page, target, viewport, theme) {
   await locator.waitFor({ state: "visible" });
   await assertLayout(page, target);
 
-  const 스크린샷Path = join(outputDir, `${target.name}-${viewport.name}-${theme}.png`);
-  await locator.스크린샷({ path: 스크린샷Path, animations: "disabled" });
-  const 스크린샷Stat = await stat(스크린샷Path);
-  if (스크린샷Stat.size < 5_000) {
+  const screenshotPath = join(outputDir, `${target.name}-${viewport.name}-${theme}.png`);
+  await locator.screenshot({ path: screenshotPath, animations: "disabled" });
+  const screenshotStat = await stat(screenshotPath);
+  if (screenshotStat.size < 5_000) {
     failures.push(`${target.name}/${viewport.name}/${theme}: 스크린샷 파일이 너무 작습니다.`);
   }
 
-  await compareBaseline(스크린샷Path, `${target.name}-${viewport.name}-${theme}.png`);
+  await compareBaseline(screenshotPath, `${target.name}-${viewport.name}-${theme}.png`);
 }
 
-async function compareBaseline(스크린샷Path, fileName) {
+async function compareBaseline(screenshotPath, fileName) {
   const baselinePath = join(baselineDir, fileName);
   if (updateBaselines) {
     await mkdir(baselineDir, { recursive: true });
-    await copyFile(스크린샷Path, baselinePath);
+    await copyFile(screenshotPath, baselinePath);
     return;
   }
 
@@ -120,7 +120,7 @@ async function compareBaseline(스크린샷Path, fileName) {
     return;
   }
 
-  const actual = PNG.sync.read(await readFile(스크린샷Path));
+  const actual = PNG.sync.read(await readFile(screenshotPath));
   const baseline = PNG.sync.read(baselineBuffer);
   if (actual.width !== baseline.width || actual.height !== baseline.height) {
     failures.push(`${fileName}: baseline 크기 ${baseline.width}x${baseline.height}와 실제 크기 ${actual.width}x${actual.height}가 다릅니다.`);
@@ -169,9 +169,9 @@ if (failures.length > 0) {
   process.exit(1);
 }
 
-const 스크린샷Count = viewports.length * themes.length * targets.length;
+const screenshotCount = viewports.length * themes.length * targets.length;
 if (updateBaselines) {
-  console.log(`시각 회귀 baseline ${스크린샷Count}개를 갱신했습니다.`);
+  console.log(`시각 회귀 baseline ${screenshotCount}개를 갱신했습니다.`);
 } else {
-  console.log(`시각 회귀 스크린샷 ${스크린샷Count}개를 생성하고 baseline과 비교했습니다.`);
+  console.log(`시각 회귀 스크린샷 ${screenshotCount}개를 생성하고 baseline과 비교했습니다.`);
 }

@@ -1,10 +1,10 @@
-name: Release / 배포
+name: 배포
 
 on:
   workflow_dispatch:
     inputs:
       mode:
-        description: "dry-run 또는 publish / dry-run or publish"
+        description: "dry-run 또는 publish"
         required: true
         default: "dry-run"
         type: choice
@@ -12,13 +12,13 @@ on:
           - dry-run
           - publish
       confirm:
-        description: "publish 실행 시 'publish @bling-lab/ui' 입력 / Enter 'publish @bling-lab/ui' to publish"
+        description: "publish 실행 시 'publish @bling-lab/ui' 입력"
         required: false
         default: ""
 
 jobs:
   release:
-    name: 릴리즈 / Release
+    name: 릴리즈
     runs-on: ubuntu-latest
     permissions:
       contents: read
@@ -26,38 +26,38 @@ jobs:
     environment: npm-release
 
     steps:
-      - name: 체크아웃 / Checkout
+      - name: 체크아웃
         uses: actions/checkout@v4
 
-      - name: Node 설정 / Setup Node
+      - name: Node 설정
         uses: actions/setup-node@v4
         with:
           node-version: 22
           cache: npm
           registry-url: "https://registry.npmjs.org"
 
-      - name: 의존성 설치 / Install dependencies
+      - name: 의존성 설치
         run: npm ci
 
-      - name: Playwright 브라우저 설치 / Install Playwright browser
+      - name: Playwright 브라우저 설치
         run: npx playwright install --with-deps chromium
 
-      - name: 릴리즈 dry-run / Release dry-run
+      - name: 릴리즈 dry-run
         run: npm run release:dry-run
 
-      - name: publish 확인 / Confirm publish
+      - name: publish 확인
         if: inputs.mode == 'publish' && inputs.confirm != 'publish @bling-lab/ui'
         run: |
-          echo "publish confirm 값이 올바르지 않습니다. / Publish confirm value is not correct."
+          echo "publish confirm 값이 올바르지 않습니다."
           exit 1
 
-      - name: publish 준비 조건 검증 / Verify publish readiness
+      - name: publish 준비 조건 검증
         if: inputs.mode == 'publish'
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
         run: npm run release:publish-verify
 
-      - name: npm publish / npm publish
+      - name: npm publish
         if: inputs.mode == 'publish'
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
