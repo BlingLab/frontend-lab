@@ -8,7 +8,7 @@
 
 ## 언어 기준
 
-모든 문서, 주석, TODO, 개발자-facing 메시지는 한글을 먼저 쓰고 바로 뒤에 영문을 병기합니다.
+모든 문서, 주석, TODO, 개발자-facing 메시지는 한글만 사용합니다.
 
 세부 기준은 [언어 정책](./docs/language-policy.md)을 따릅니다.
 
@@ -46,11 +46,11 @@ http://localhost:5173
 ```text
 .
 ├── apps/
-│   └── docs/                    # Vite React 문서 및 로컬 쇼케이스 앱
-├── docs/                        # 제품 개요, 아키텍처, 로드맵, 작성 규약, 접근성 체크리스트, architecture, roadmap, authoring rules, accessibility checklist
+│   └── docs/                    # Vite React 문서와 로컬 쇼케이스 앱
+├── docs/                        # 제품 개요, 아키텍처, 로드맵, 작성 규약, 접근성 체크리스트
 ├── packages/
 │   ├── ui/                      # React + TypeScript 컴포넌트 패키지
-│   └── tokens/                  # color, spacing, typography 등 디자인 토큰, spacing, typography, and more
+│   └── tokens/                  # color, spacing, typography 등 디자인 토큰
 ├── scripts/                     # 컴포넌트 문서 스캐폴드 및 검증 스크립트
 ├── package.json
 └── README.md
@@ -85,25 +85,25 @@ http://localhost:5173
 
 ## 문서 시작점
 
-- [언어 정책
-- [제품 개요
-- [시스템 아키텍처
-- [컴포넌트 로드맵
-- [컴포넌트 작성 규약
-- [변경 흐름
-- [Prop API 설계 가이드
-- [명명 규칙
-- [토큰 계약
-- [테마 시스템
-- [패키지 사용 가이드
-- [릴리즈 체크리스트
-- [릴리즈 정책
-- [시각 회귀 기준
-- [브랜치 보호 기준
-- [리뷰와 이슈 보드
-- [접근성 체크리스트
-- [반응형 검증 기준
-- [반응형 레이아웃 방향
+- [언어 정책](./docs/language-policy.md)
+- [제품 개요](./docs/product-brief.md)
+- [시스템 아키텍처](./docs/system-architecture.md)
+- [컴포넌트 로드맵](./docs/component-roadmap.md)
+- [컴포넌트 작성 규약](./docs/component-authoring.md)
+- [변경 흐름](./docs/change-workflow.md)
+- [Prop API 설계 가이드](./docs/prop-api-guidelines.md)
+- [명명 규칙](./docs/naming-conventions.md)
+- [토큰 계약](./docs/token-contract.md)
+- [테마 시스템](./docs/theme-system.md)
+- [패키지 사용 가이드](./docs/package-consumption.md)
+- [릴리즈 체크리스트](./docs/release-checklist.md)
+- [릴리즈 정책](./docs/release-policy.md)
+- [시각 회귀 기준](./docs/visual-regression.md)
+- [브랜치 보호 기준](./docs/branch-protection.md)
+- [리뷰와 이슈 보드](./docs/review-and-issue-board.md)
+- [접근성 체크리스트](./docs/accessibility-checklist.md)
+- [반응형 검증 기준](./docs/responsive-qa.md)
+- [반응형 레이아웃 방향](./docs/responsive-layout-system.md)
 
 ## 명령어
 
@@ -141,7 +141,7 @@ npm run components:scaffold
 npm run components:scaffold -- --force-docs
 ```
 
-기존 컴포넌트 문서를 카탈로그 기준 병기 형식으로 다시 생성합니다. 수동 수정이 있는지 먼저 확인합니다.
+기존 컴포넌트 문서를 카탈로그 기준 한글 전용 형식으로 다시 생성합니다. 수동 수정이 있는지 먼저 확인합니다.
 
 ```bash
 npm run components:validate

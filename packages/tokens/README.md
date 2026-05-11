@@ -63,4 +63,4 @@ export function App() {
 
 raw color 값은 token source에서만 관리하고, UI component CSS에는 직접 쓰지 않습니다.
 
-상세 기준은 [테마 시스템
+상세 기준은 [테마 시스템](../../docs/theme-system.md)을 따릅니다.

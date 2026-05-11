@@ -158,7 +158,7 @@ container, gutter, breakpoint는 token source에서 관리합니다.
 - 새 theme set은 component CSS를 수정하지 않고 semantic token만 override합니다.
 - 같은 화면 안에서 중첩 theme를 사용할 수 있어야 하므로 `[data-ds-theme="normal"]`도 semantic token을 명시적으로 reset합니다.
 
-자세한 적용 방식은 [테마 시스템
+자세한 적용 방식은 [테마 시스템](./theme-system.md)을 따릅니다.
 
 ## 규칙
 
