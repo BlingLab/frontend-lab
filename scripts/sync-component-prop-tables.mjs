@@ -8,22 +8,22 @@ const rootDir = fileURLToPath(new URL("..", import.meta.url));
 const checkOnly = process.argv.includes("--check") || process.argv.includes("--dry-run");
 
 function renderBlock(component) {
-  return `## Prop 표 / Prop Table\n\n${renderComponentPropTable(component)}\n`;
+  return `## Prop 표\n\n${renderComponentPropTable(component)}\n`;
 }
 
 function upsertPropTable(content, component) {
   const block = renderBlock(component);
-  const propTablePattern = /## Prop 표 \/ Prop Table\n\n[\s\S]*?(?=\n## |$)/;
+  const propTablePattern = /## Prop 표(?: \/ Prop Table)?\n\n[\s\S]*?(?=\n## |$)/;
   if (propTablePattern.test(content)) {
     return content.replace(propTablePattern, `${block.trimEnd()}\n`);
   }
 
-  const propAxesPattern = /(## Prop 축 \/ Prop Axes\n\n[\s\S]*?)(?=\n## |$)/;
+  const propAxesPattern = /(## Prop 축(?: \/ Prop Axes)?\n\n[\s\S]*?)(?=\n## |$)/;
   if (propAxesPattern.test(content)) {
     return content.replace(propAxesPattern, (match) => `${match.trimEnd()}\n\n${block}`);
   }
 
-  const apiSurfacePattern = /(## API 표면 \/ API Surface\n\n[\s\S]*?)(?=\n## |$)/;
+  const apiSurfacePattern = /(## API 표면(?: \/ API Surface)?\n\n[\s\S]*?)(?=\n## |$)/;
   if (apiSurfacePattern.test(content)) {
     return content.replace(apiSurfacePattern, (match) => `${match.trimEnd()}\n\n${block}`);
   }
@@ -52,7 +52,7 @@ for (const component of componentCatalog.filter((item) => item.status === "ready
 }
 
 if (checkOnly && changedFiles.length > 0) {
-  console.error("component prop table drift가 있습니다. / Component prop table drift detected:");
+  console.error("컴포넌트 prop 표 차이가 있습니다.");
   for (const changedFile of changedFiles) {
     console.error(`- ${changedFile}`);
   }
@@ -60,7 +60,7 @@ if (checkOnly && changedFiles.length > 0) {
 }
 
 if (checkOnly) {
-  console.log("component prop table drift가 없습니다. / No component prop table drift detected.");
+  console.log("컴포넌트 prop 표 차이가 없습니다.");
 } else {
-  console.log(`${written}개 component prop table 문서를 동기화했습니다. / Synced ${written} component prop table document(s).`);
+  console.log(`${written}개 컴포넌트 prop 표 문서를 동기화했습니다.`);
 }

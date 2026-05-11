@@ -1,75 +1,75 @@
-# CommandPalette 명세 / CommandPalette Spec
+# CommandPalette 명세
 
-## 목적 / Purpose
+## 목적
 
-빠른 이동, 명령 검색, shortcut 기반 작업 실행을 한 곳에서 제공할 때 사용합니다. / Use for global command discovery, quick navigation, and shortcut-driven actions.
+빠른 이동, 명령 검색, shortcut 기반 작업 실행을 한 곳에서 제공할 때 사용합니다.
 
-## API 표면 / API Surface
+## API 표면
 
 - public component: `CommandPalette`
 - folder slug: `command-palette`
 - category: `overlays`
-- priority/status: `P1` / `ready`
+- 우선순위/상태: `P1`, `ready`
 - props: `title`, `triggerLabel`, `commands`, `open`, `defaultOpen`, `placeholder`, `emptyMessage`, `onOpenChange`, `onCommandSelect`
 
-## Prop 표 / Prop Table
+## Prop 표
 
-| Prop | Type | Default | 설명 / Description |
+| Prop | Type | Default | 설명 |
 | --- | --- | --- | --- |
-| `title` | `ReactNode` | `"명령 팔레트 / Command palette"` | dialog 제목입니다. / Dialog title. |
-| `triggerLabel` | `ReactNode` | `"명령 열기 / Open commands"` | palette를 여는 trigger button label입니다. / Trigger button label that opens the palette. |
-| `commands` | `CommandPaletteCommand[]` | `[]` | 검색하고 실행할 command 목록입니다. / Commands available for search and execution. |
-| `open` | `boolean` | `-` | controlled open 상태입니다. / Controlled open state. |
-| `defaultOpen` | `boolean` | `false` | uncontrolled 초기 open 상태입니다. / Initial uncontrolled open state. |
-| `placeholder` | `string` | `"명령 검색 / Search commands"` | 검색 input placeholder입니다. / Search input placeholder. |
-| `emptyMessage` | `ReactNode` | `"명령이 없습니다. / No commands."` | 검색 결과가 없을 때 표시합니다. / Shown when no commands match. |
-| `onOpenChange` | `(open: boolean) => void` | `-` | open 상태가 바뀔 때 호출됩니다. / Called when open state changes. |
-| `onCommandSelect` | `(command: CommandPaletteCommand) => void` | `-` | command가 선택될 때 호출됩니다. / Called when a command is selected. |
+| `title` | `ReactNode` | `"명령 팔레트"` | dialog 제목입니다. |
+| `triggerLabel` | `ReactNode` | `"명령 열기"` | palette를 여는 trigger button label입니다. |
+| `commands` | `CommandPaletteCommand[]` | `[]` | 검색하고 실행할 command 목록입니다. |
+| `open` | `boolean` | `-` | controlled open 상태입니다. |
+| `defaultOpen` | `boolean` | `false` | uncontrolled 초기 open 상태입니다. |
+| `placeholder` | `string` | `"명령 검색"` | 검색 input placeholder입니다. |
+| `emptyMessage` | `ReactNode` | `"명령이 없습니다."` | 검색 결과가 없을 때 표시합니다. |
+| `onOpenChange` | `(open: boolean) => void` | `-` | open 상태가 바뀔 때 호출됩니다. |
+| `onCommandSelect` | `(command: CommandPaletteCommand) => void` | `-` | command가 선택될 때 호출됩니다. |
 
-## 변형 / Variants
+## 변형
 
-- 시각 변형은 이미 정의된 `variant`, `tone`, `size`, `density`, `orientation` prop이 있을 때만 사용합니다. / Visual variants use existing props such as `variant`, `tone`, `size`, `density`, and `orientation` only when they are defined.
-- 새로운 변형은 product use case와 접근성 영향이 명확할 때만 추가합니다. / Add new variants only when the product use case and accessibility impact are clear.
-- 색상 차이는 theme token으로 처리하고 component CSS에서 theme name을 직접 분기하지 않습니다. / Color differences are handled by theme tokens, and component CSS does not branch on theme names.
+- 시각 변형은 이미 정의된 `variant`, `tone`, `size`, `density`, `orientation` prop이 있을 때만 사용합니다.
+- 새로운 변형은 product use case와 접근성 영향이 명확할 때만 추가합니다.
+- 색상 차이는 theme token으로 처리하고 component CSS에서 theme name을 직접 분기하지 않습니다.
 
-## 상태 동작 / State Behavior
+## 상태 동작
 
-- `closed`: 상태는 시각 스타일과 접근성 신호가 함께 유지되어야 합니다. / This state must keep visual styling and accessibility signals aligned.
-- `open`: 상태는 시각 스타일과 접근성 신호가 함께 유지되어야 합니다. / This state must keep visual styling and accessibility signals aligned.
-- `filtered`: 상태는 시각 스타일과 접근성 신호가 함께 유지되어야 합니다. / This state must keep visual styling and accessibility signals aligned.
-- `highlighted`: 상태는 시각 스타일과 접근성 신호가 함께 유지되어야 합니다. / This state must keep visual styling and accessibility signals aligned.
-- `empty`: 상태는 시각 스타일과 접근성 신호가 함께 유지되어야 합니다. / This state must keep visual styling and accessibility signals aligned.
+- `closed`: 상태는 시각 스타일과 접근성 신호가 함께 유지되어야 합니다.
+- `open`: 상태는 시각 스타일과 접근성 신호가 함께 유지되어야 합니다.
+- `filtered`: 상태는 시각 스타일과 접근성 신호가 함께 유지되어야 합니다.
+- `highlighted`: 상태는 시각 스타일과 접근성 신호가 함께 유지되어야 합니다.
+- `empty`: 상태는 시각 스타일과 접근성 신호가 함께 유지되어야 합니다.
 
-## 상호작용 / Interaction
+## 상호작용
 
-- pointer hover는 `--ds-state-hover-bg` 또는 component semantic token으로 표현합니다. / Pointer hover uses `--ds-state-hover-bg` or component semantic tokens.
-- active/pressed/selected 상태는 `data-*` attribute와 ARIA state가 필요한 경우 함께 갱신합니다. / Active, pressed, and selected states update `data-*` attributes and ARIA state together when needed.
-- disabled 상태는 native `disabled` 또는 `aria-disabled`를 사용하고 opacity만으로 의미를 전달하지 않습니다. / Disabled state uses native `disabled` or `aria-disabled` and never relies on opacity alone.
+- pointer hover는 `--ds-state-hover-bg` 또는 component semantic token으로 표현합니다.
+- active/pressed/selected 상태는 `data-*` attribute와 ARIA state가 필요한 경우 함께 갱신합니다.
+- disabled 상태는 native `disabled` 또는 `aria-disabled`를 사용하고 opacity만으로 의미를 전달하지 않습니다.
 
-## 접근성 계약 / Accessibility Contract
+## 접근성 계약
 
-- 기준 문서 / Reference: [https://www.w3.org/WAI/ARIA/apg/patterns/dialog-modal/](https://www.w3.org/WAI/ARIA/apg/patterns/dialog-modal/)
-- keyboard focus는 항상 보이고 DOM 순서와 화면 순서가 어긋나지 않아야 합니다. / Keyboard focus must remain visible, and DOM order must match visual order.
-- interactive child가 있는 경우 role 중첩과 tab stop 수를 검토합니다. / When interactive children exist, review role nesting and tab stop count.
-- 상태 변화가 사용자에게 중요하면 visible text 또는 live region으로 전달합니다. / Important state changes are communicated through visible text or a live region.
+- 기준 문서
+- keyboard focus는 항상 보이고 DOM 순서와 화면 순서가 어긋나지 않아야 합니다.
+- interactive child가 있는 경우 role 중첩과 tab stop 수를 검토합니다.
+- 상태 변화가 사용자에게 중요하면 visible text 또는 live region으로 전달합니다.
 
-## 토큰 계약 / Token Contract
+## 토큰 계약
 
 - `--ds-z-dialog`
 - `--ds-shadow-raised`
 - `--ds-focus-ring`
 
-- component CSS에서는 raw hex, raw rgba, 임의 spacing 값을 쓰지 않습니다. / Component CSS does not use raw hex, raw rgba, or arbitrary spacing values.
-- theme override는 semantic token을 통해 상속되어야 합니다. / Theme overrides must be inherited through semantic tokens.
+- component CSS에서는 raw hex, raw rgba, 임의 spacing 값을 쓰지 않습니다.
+- theme override는 semantic token을 통해 상속되어야 합니다.
 
-## 검증 체크리스트 / Validation Checklist
+## 검증 체크리스트
 
-- docs app에서 기본 예시가 렌더링됩니다. / The basic example renders in the docs app.
-- `npm run components:validate`가 통과합니다. / `npm run components:validate` passes.
-- keyboard focus, hover, disabled, selected 또는 open 상태가 시각적으로 구분됩니다. / Keyboard focus, hover, disabled, selected, or open states are visually distinct.
-- narrow viewport에서 text overflow와 horizontal scroll이 의도한 영역에만 생깁니다. / In narrow viewports, text overflow and horizontal scroll appear only where intended.
+- 문서 앱에서 기본 예시가 렌더링됩니다.
+- `npm run components:validate`가 통과합니다.
+- keyboard focus, hover, disabled, selected 또는 open 상태가 시각적으로 구분됩니다.
+- narrow viewport에서 text overflow와 horizontal scroll이 의도한 영역에만 생깁니다.
 
-## 결정 기록 / Decisions
+## 결정 기록
 
-- 이 컴포넌트는 `dialog with combobox-style command list` primitive를 기준으로 구현합니다. / This component is implemented around the `dialog with combobox-style command list` primitive.
-- public API는 catalog의 props 목록을 기준으로 유지하고 breaking change는 release note에 기록합니다. / The public API follows the catalog prop list, and breaking changes are recorded in release notes.
+- 이 컴포넌트는 `dialog with combobox-style command list` primitive를 기준으로 구현합니다.
+- public API는 catalog의 props 목록을 기준으로 유지하고 breaking change는 release note에 기록합니다.

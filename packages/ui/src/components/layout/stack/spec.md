@@ -1,40 +1,40 @@
-# Stack 명세 / Stack Spec
+# Stack 명세
 
-## 목적 / Purpose
+## 목적
 
-반복되는 세로 간격을 token 기반으로 통일합니다. / Standardizes repeated vertical spacing with tokens.
+반복되는 세로 간격을 token 기반으로 통일합니다.
 
-## API 표면 / API Surface
+## API 표면
 
 - public component: `Stack`
 - folder slug: `stack`
 - category: `layout`
-- priority/status: `P0` / `ready`
+- 우선순위/상태: `P0`, `ready`
 - props: `gap`, `align`
 
-## Prop 표 / Prop Table
+## Prop 표
 
-| Prop | Type | Default | 설명 / Description |
+| Prop | Type | Default | 설명 |
 | --- | --- | --- | --- |
-| `gap` | `"sm" \| "md" \| "lg"` | `"md"` | 자식 요소 사이 간격입니다. / Gap between child elements. |
-| `align` | `"start" \| "center" \| "end" \| "stretch"` | `"stretch"` | 교차축 정렬입니다. / Cross-axis alignment. |
+| `gap` | `"sm" \| "md" \| "lg"` | `"md"` | 자식 요소 사이 간격입니다. |
+| `align` | `"start" \| "center" \| "end" \| "stretch"` | `"stretch"` | 교차축 정렬입니다. |
 
-## 상태 동작 / State Behavior
+## 상태 동작
 
-- `gap`과 `align`은 `data-*` 속성으로 CSS에 전달됩니다. / `gap` and `align` are passed to CSS through `data-*` attributes.
+- `gap`과 `align`은 `data-*` 속성으로 CSS에 전달됩니다.
 
-## 접근성 계약 / Accessibility Contract
+## 접근성 계약
 
-- 기준 문서 / Reference: native semantic HTML
-- children의 semantic element와 accessible name을 변경하지 않습니다. / It does not alter child semantic elements or accessible names.
+- 기준 문서
+- children의 semantic element와 accessible name을 변경하지 않습니다.
 
-## 토큰 계약 / Token Contract
+## 토큰 계약
 
 - `--ds-layout-gap-sm`
 - `--ds-layout-gap-md`
 - `--ds-layout-gap-lg`
 
-## 검증 체크리스트 / Validation Checklist
+## 검증 체크리스트
 
-- `npm run components:validate`가 통과합니다. / `npm run components:validate` passes.
-- nested Stack에서도 간격이 예측 가능하게 유지됩니다. / Spacing remains predictable in nested Stack usage.
+- `npm run components:validate`가 통과합니다.
+- nested Stack에서도 간격이 예측 가능하게 유지됩니다.

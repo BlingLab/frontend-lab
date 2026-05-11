@@ -34,7 +34,7 @@ export function Alert({
   variant = "soft",
   actionsPlacement = "end",
   dismissible = false,
-  dismissLabel = "닫기 / Dismiss",
+  dismissLabel = "닫기",
   onDismiss,
   className,
   ...props

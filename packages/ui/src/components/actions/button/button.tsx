@@ -55,7 +55,7 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(function Button
     >
       {loading ? <span className="ds-Spinner" aria-hidden="true" /> : null}
       {iconStart ? <span className="ds-Icon" aria-hidden="true">{iconStart}</span> : null}
-      {children ?? label ?? "버튼 / Button"}
+      {children ?? label ?? "버튼"}
       {iconEnd ? <span className="ds-Icon" aria-hidden="true">{iconEnd}</span> : null}
     </button>
   );

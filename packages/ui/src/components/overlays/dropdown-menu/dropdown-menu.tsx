@@ -20,7 +20,7 @@ export interface DropdownMenuProps extends HTMLAttributes<HTMLDivElement> {
   onOpenChange?: (open: boolean) => void;
 }
 
-export function DropdownMenu({ triggerLabel = "메뉴 / Menu", items = [], open, defaultOpen = false, placement = "bottom-start", onOpenChange, className, ...props }: DropdownMenuProps) {
+export function DropdownMenu({ triggerLabel = "메뉴", items = [], open, defaultOpen = false, placement = "bottom-start", onOpenChange, className, ...props }: DropdownMenuProps) {
   const [currentOpen, setOpen] = useControllableState({
     value: open,
     defaultValue: defaultOpen,

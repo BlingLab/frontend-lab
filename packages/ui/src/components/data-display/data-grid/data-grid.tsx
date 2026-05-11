@@ -67,7 +67,7 @@ export function DataGrid<Row extends Record<string, unknown>>({
   striped = true,
   stickyHeader = false,
   loading = false,
-  emptyMessage = "데이터가 없습니다. / No data.",
+  emptyMessage = "데이터가 없습니다.",
   rowKey,
   rowActions,
   sortState,
@@ -223,7 +223,7 @@ export function DataGrid<Row extends Record<string, unknown>>({
 
   return (
     <div className={classNames("ds-DataGrid", className)} data-loading={loading ? "true" : undefined} aria-busy={loading ? "true" : undefined} {...props}>
-      {loading ? <div className="ds-DataGrid-loading">불러오는 중 / Loading</div> : null}
+      {loading ? <div className="ds-DataGrid-loading">불러오는 중</div> : null}
       <div className="ds-TableWrap ds-DataGrid-wrap">
         <table className="ds-Table ds-DataGrid-table" role="grid" data-density={density} data-selection-mode={selectionMode} data-striped={striped ? "true" : undefined} data-hoverable="true" data-sticky-header={stickyHeader ? "true" : undefined} aria-rowcount={rows.length} aria-colcount={totalColumnCount}>
           {caption ? <caption>{caption}</caption> : null}
@@ -234,7 +234,7 @@ export function DataGrid<Row extends Record<string, unknown>>({
                   <Checkbox
                     checked={allRowsSelected}
                     indeterminate={someRowsSelected}
-                    label="전체 행 선택 / Select all rows"
+                    label="전체 행 선택"
                     onChange={(event) => toggleAllRows(event.currentTarget.checked)}
                   />
                 </th>
@@ -251,7 +251,7 @@ export function DataGrid<Row extends Record<string, unknown>>({
                   <th key={column.key} scope="col" role="columnheader" data-align={column.align} data-resizable={canResize ? "true" : undefined} style={getColumnStyle(column)} aria-sort={sortDirection}>
                     <span className="ds-DataGrid-columnHeader">
                       {sortable || column.sortable ? (
-                        <button className="ds-Table-sort" type="button" aria-label={`${sortLabel} 정렬 / Sort ${sortLabel}`} onClick={() => toggleSort(column.key)}>
+                        <button className="ds-Table-sort" type="button" aria-label={`${sortLabel} 정렬`} onClick={() => toggleSort(column.key)}>
                           {column.label} <span aria-hidden="true">{sortDirection ? (sortDirection === "ascending" ? "↑" : "↓") : "↕"}</span>
                         </button>
                       ) : <span className="ds-DataGrid-columnLabel">{column.label}</span>}
@@ -260,13 +260,13 @@ export function DataGrid<Row extends Record<string, unknown>>({
                           className="ds-DataGrid-resizeHandle"
                           type="button"
                           role="separator"
-                          aria-label={`${sortLabel} 열 너비 조절 / Resize ${sortLabel} column`}
+                          aria-label={`${sortLabel} 열 너비 조절`}
                           aria-orientation="vertical"
                           aria-valuemin={resizeMinWidth}
                           aria-valuemax={resizeMaxWidth}
                           aria-valuenow={resizeWidth}
                           aria-valuetext={`${resizeWidth}px`}
-                          title="방향키: 16px, Shift+방향키: 48px / ArrowLeft/ArrowRight: 16px, Shift+Arrow: 48px"
+                          title="방향키: 16px, Shift+방향키: 48px"
                           onKeyDown={(event) => onColumnResizeKeyDown(event, column)}
                           onPointerDown={(event) => startColumnResize(event, column)}
                         />
@@ -275,7 +275,7 @@ export function DataGrid<Row extends Record<string, unknown>>({
                   </th>
                 );
               })}
-              {rowActions ? <th scope="col" role="columnheader" aria-label="행 작업 / Row actions" /> : null}
+              {rowActions ? <th scope="col" role="columnheader" aria-label="행 작업" /> : null}
             </tr>
           </thead>
           <tbody>
@@ -309,7 +309,7 @@ export function DataGrid<Row extends Record<string, unknown>>({
                 >
                   {selectionMode === "multiple" ? (
                     <td role="gridcell">
-                      <Checkbox checked={selected} label={`${rowIndex + 1}행 선택 / Select row ${rowIndex + 1}`} onChange={(event) => toggleRow(row, rowIndex, event.currentTarget.checked)} />
+                      <Checkbox checked={selected} label={`${rowIndex + 1}행 선택`} onChange={(event) => toggleRow(row, rowIndex, event.currentTarget.checked)} />
                     </td>
                   ) : null}
                   {columns.map((column) => <td key={column.key} role="gridcell" data-align={column.align} style={getColumnStyle(column)}>{column.renderCell?.(row, rowIndex) ?? row[column.key] as ReactNode}</td>)}

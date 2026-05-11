@@ -13,9 +13,9 @@ const tokensCss = await readFile(tokensCssPath, "utf8");
 const uiCss = await readFile(uiCssPath, "utf8");
 
 function getRequiredSemanticTokens() {
-  const match = tokenContract.match(/## 필수 의미 토큰 \/ Required Semantic Tokens[\s\S]*?```text\n([\s\S]*?)```/);
+  const match = tokenContract.match(/## 필수 의미 토큰[\s\S]*?```text\n([\s\S]*?)```/);
   if (!match) {
-    failures.push("필수 의미 토큰 목록을 token contract에서 찾지 못했습니다. / Required semantic token list was not found in the token contract.");
+    failures.push("필수 의미 토큰 목록을 토큰 계약 문서에서 찾지 못했습니다.");
     return [];
   }
   return match[1].split("\n").map((line) => line.trim()).filter((line) => line.startsWith("--ds-"));
@@ -56,9 +56,9 @@ const normalTokenMap = { ...rootTokens, ...normalTokens };
 const darkTokenMap = { ...rootTokens, ...darkTokens };
 
 for (const tokenName of requiredSemanticTokens) {
-  if (!rootTokens[tokenName]) failures.push(`${tokenName}가 :root에 없습니다. / ${tokenName} is missing from :root.`);
-  if (!normalTokens[tokenName]) failures.push(`${tokenName}가 normal theme에 없습니다. / ${tokenName} is missing from the normal theme.`);
-  if (!darkTokens[tokenName]) failures.push(`${tokenName}가 dark theme에 없습니다. / ${tokenName} is missing from the dark theme.`);
+  if (!rootTokens[tokenName]) failures.push(`${tokenName}가 :root에 없습니다.`);
+  if (!normalTokens[tokenName]) failures.push(`${tokenName}가 normal 테마에 없습니다.`);
+  if (!darkTokens[tokenName]) failures.push(`${tokenName}가 dark 테마에 없습니다.`);
 }
 
 const mustDifferBetweenNormalAndDark = [
@@ -74,7 +74,7 @@ for (const tokenName of mustDifferBetweenNormalAndDark) {
   const normalValue = resolveTokenValue(tokenName, normalTokenMap);
   const darkValue = resolveTokenValue(tokenName, darkTokenMap);
   if (normalValue === darkValue) {
-    failures.push(`${tokenName}의 normal/dark 값이 같습니다. / ${tokenName} resolves to the same value in normal and dark themes.`);
+    failures.push(`${tokenName}의 normal/dark 값이 같습니다.`);
   }
 }
 
@@ -84,21 +84,21 @@ for (const [tokenName, value] of Object.entries(rootTokens)) {
   if (!componentTokenPrefixes.some((prefix) => tokenName.startsWith(prefix))) continue;
   if (!semanticComponentTokenPattern.test(tokenName)) continue;
   if (!/var\(--ds-(color|state|radius|shadow)-/.test(value)) {
-    failures.push(`${tokenName}는 semantic token을 바라봐야 합니다. / ${tokenName} should resolve through semantic tokens.`);
+    failures.push(`${tokenName}는 의미 토큰을 바라봐야 합니다.`);
   }
 }
 
 if (/\[data-ds-theme=|\.ds-theme-/.test(uiCss)) {
-  failures.push("UI CSS에서 theme name selector를 직접 사용했습니다. / UI CSS directly uses a theme-name selector.");
+  failures.push("UI CSS에서 테마 이름 selector를 직접 사용했습니다.");
 }
 
 const rawColorPattern = /#[0-9a-fA-F]{3,8}\b|rgba?\(|hsla?\(/;
 for (const [index, line] of uiCss.split("\n").entries()) {
   if (rawColorPattern.test(line)) {
-    failures.push(`UI CSS ${index + 1}행에 raw color가 있습니다. / UI CSS line ${index + 1} contains a raw color.`);
+    failures.push(`UI CSS ${index + 1}행에 원시 색상 값이 있습니다.`);
   }
   if (!line.trim().startsWith("@") && /:\s*[^;]*\b\d*\.?\d+(px|rem|em)\b/.test(line)) {
-    failures.push(`UI CSS ${index + 1}행에 raw size 값이 있습니다. / UI CSS line ${index + 1} contains a raw size value.`);
+    failures.push(`UI CSS ${index + 1}행에 원시 크기 값이 있습니다.`);
   }
 }
 
@@ -107,4 +107,4 @@ if (failures.length > 0) {
   process.exit(1);
 }
 
-console.log(`theme/token 회귀 검증 완료: ${requiredSemanticTokens.length}개 필수 semantic token. / Theme/token regression verified: ${requiredSemanticTokens.length} required semantic tokens.`);
+console.log(`테마/토큰 회귀 검증 완료: ${requiredSemanticTokens.length}개 필수 의미 토큰.`);

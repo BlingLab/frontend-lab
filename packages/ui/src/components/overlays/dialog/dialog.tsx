@@ -28,7 +28,7 @@ function renderAction(action: ReactNode | ButtonProps, index: number): ReactNode
 }
 
 export function Dialog({
-  triggerLabel = "열기 / Open",
+  triggerLabel = "열기",
   title,
   description,
   children,
@@ -39,7 +39,7 @@ export function Dialog({
   size = "md",
   modal = true,
   initialFocus,
-  closeLabel = "닫기 / Close",
+  closeLabel = "닫기",
   closeOnBackdropClick = true,
   className,
   ...props
@@ -60,7 +60,7 @@ export function Dialog({
   };
 
   useEffect(() => {
-    // native dialog의 open 상태를 React controlled prop과 동기화합니다. / Synchronize the native dialog open state with the React controlled prop.
+    // native dialog의 open 상태를 React controlled prop과 동기화합니다.
     const dialog = dialogRef.current;
     if (!dialog) return;
 
@@ -97,11 +97,11 @@ export function Dialog({
         }}
       >
         <div className="ds-Dialog-header">
-          <h3 className="ds-Dialog-title" id={titleId}>{title ?? "대화상자 / Dialog"}</h3>
+          <h3 className="ds-Dialog-title" id={titleId}>{title ?? "대화상자"}</h3>
           <IconButton label={closeLabel} icon={<Icon name="x" />} onClick={close} />
         </div>
         {description ? <p className="ds-Dialog-description" id={descriptionId}>{description}</p> : null}
-        <div className="ds-Dialog-body">{children ?? "대화상자 내용 / Dialog content"}</div>
+        <div className="ds-Dialog-body">{children ?? "대화상자 내용"}</div>
         <div className="ds-Dialog-actions">
           {actions.map(renderAction)}
           <Button variant="outline" tone="neutral" onClick={close}>{closeLabel}</Button>

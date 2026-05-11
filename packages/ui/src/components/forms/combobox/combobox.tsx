@@ -37,8 +37,8 @@ export function Combobox({
   value,
   defaultValue = "",
   options = [],
-  placeholder = "검색 또는 선택 / Search or select",
-  emptyMessage = "결과가 없습니다. / No results.",
+  placeholder = "검색 또는 선택",
+  emptyMessage = "결과가 없습니다.",
   size = "md",
   width = "auto",
   disabled = false,
@@ -140,7 +140,7 @@ export function Combobox({
           onFocus={openListbox}
           onKeyDown={onInputKeyDown}
         />
-        <button className="ds-Combobox-toggle" type="button" disabled={disabled} aria-label="옵션 열기 / Open options" onMouseDown={(event) => event.preventDefault()} onClick={() => setOpen((currentOpen) => !currentOpen)}>
+        <button className="ds-Combobox-toggle" type="button" disabled={disabled} aria-label="옵션 열기" onMouseDown={(event) => event.preventDefault()} onClick={() => setOpen((currentOpen) => !currentOpen)}>
           <Icon name="chevron-down" />
         </button>
         <div className="ds-Combobox-listbox" id={listboxId} role="listbox" hidden={!open}>

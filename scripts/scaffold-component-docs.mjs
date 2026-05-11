@@ -11,7 +11,6 @@ const forceDocs = process.argv.includes("--force-docs");
 const dryRun = process.argv.includes("--dry-run");
 const manualStartMarker = "<!-- ds-manual-start -->";
 const manualEndMarker = "<!-- ds-manual-end -->";
-const categoryLabels = new Map(componentCategories.map((category) => [category.id, category.label]));
 const categoryKoreanLabels = new Map([
   ["actions", "액션"],
   ["forms", "폼"],
@@ -134,119 +133,118 @@ function renderList(items) {
 }
 
 function renderReadme(component) {
-  const categoryLabel = categoryLabels.get(component.category) || component.category;
   const categoryKoreanLabel = categoryKoreanLabels.get(component.category) || component.category;
   const copy = componentKoreanCopy[component.slug] || {
     purpose: "이 컴포넌트가 해결하는 UI 문제를 설명합니다.",
     summary: "컴포넌트의 역할과 사용 맥락을 요약합니다."
   };
   const apgLine = component.apg
-    ? `- 참고 pattern / Reference pattern: ${component.apg}`
-    : "- 참고 pattern / Reference pattern: native semantic HTML을 우선하고, behavior가 필요할 때만 ARIA를 추가합니다. / Prefer native semantic HTML and add ARIA only when behavior requires it.";
+    ? `- 참고 pattern: ${component.apg}`
+    : "- 참고 pattern: native semantic HTML을 우선하고, behavior가 필요할 때만 ARIA를 추가합니다.";
 
-  return `# ${component.name} 컴포넌트 / ${component.name}
+  return `# ${component.name} 컴포넌트
 
-> 상태 / Status: \`${component.status}\` | 우선순위 / Priority: \`${component.priority}\` | 카테고리 / Category: ${categoryKoreanLabel} / ${categoryLabel}
+> 상태: \`${component.status}\` | 우선순위: \`${component.priority}\` | 카테고리: ${categoryKoreanLabel}
 
-## 목적 / Purpose
+## 목적
 
 ${copy.purpose}
 ${component.purpose}
 
-## 요약 / Summary
+## 요약
 
 ${copy.summary}
 ${component.summary}
 
-## 공개 API 초안 / Public API Draft
+## 공개 API 초안
 
 ${renderList(component.props)}
 
-## Prop 표 / Prop Table
+## Prop 표
 
 ${renderComponentPropTable(component)}
 
-## 상태 / States
+## 상태
 
 ${renderList(component.states)}
 
-## 접근성 계약 / Accessibility Contract
+## 접근성 계약
 
-- 기본 primitive / Base primitive: \`${component.primitive}\`
+- 기본 primitive: \`${component.primitive}\`
 ${apgLine}
-- visible label이 충분하지 않으면 accessible name을 반드시 제공합니다. / Must expose an accessible name whenever the visible label is not enough.
-- 컴포넌트가 \`ready\`로 이동하기 전 keyboard operation을 지원해야 합니다. / Must support keyboard operation before the component can move to \`ready\`.
-- content를 open, close, select, dismiss할 때 focus movement를 문서화합니다. / Must document focus movement when the component opens, closes, selects, or dismisses content.
+- visible label이 충분하지 않으면 accessible name을 반드시 제공합니다.
+- 컴포넌트가 \`ready\`로 이동하기 전 keyboard operation을 지원해야 합니다.
+- content를 open, close, select, dismiss할 때 focus movement를 문서화합니다.
 
-## 토큰 hook / Token Hooks
+## 토큰 hook
 
 ${renderList(component.tokens)}
 
-## 구현 메모 / Implementation Notes
+## 구현 메모
 
-- source는 이 폴더 안에 colocate합니다. / Keep source colocated in this folder.
-- custom ARIA widget보다 native element를 우선합니다. / Prefer native elements before custom ARIA widgets.
-- styling state에는 \`data-state\`, \`data-disabled\`, \`data-invalid\`, \`data-orientation\`, \`data-size\`를 사용합니다. / Use \`data-state\`, \`data-disabled\`, \`data-invalid\`, \`data-orientation\`, and \`data-size\` for styling state.
-- hard-coded color, spacing, radius, z-index 값은 피하고 \`--ds-*\` token을 사용합니다. / Avoid hard-coded color, spacing, radius, or z-index values; use \`--ds-*\` tokens.
+- source는 이 폴더 안에 colocate합니다.
+- custom ARIA widget보다 native element를 우선합니다.
+- styling state에는 \`data-state\`, \`data-disabled\`, \`data-invalid\`, \`data-orientation\`, \`data-size\`를 사용합니다.
+- hard-coded color, spacing, radius, z-index 값은 피하고 \`--ds-*\` token을 사용합니다.
 
-## 예시 / Examples
+## 예시
 
-TODO: 구현 시작 시 사용 예시를 추가합니다. / TODO: Add usage examples when implementation starts.
+TODO: 구현 시작 시 사용 예시를 추가합니다.
 
-## 열린 질문 / Open Questions
+## 열린 질문
 
-- TODO: 제품 사용처에 필요한 variant를 확인합니다. / TODO: Confirm required variants with product usage.
-- TODO: mobile density와 keyboard behavior를 확인합니다. / TODO: Confirm mobile density and keyboard behavior.
+- TODO: 제품 사용처에 필요한 variant를 확인합니다.
+- TODO: mobile density와 keyboard behavior를 확인합니다.
 `;
 }
 
 function renderSpec(component) {
-  return `# ${component.name} 스펙 / ${component.name} Spec
+  return `# ${component.name} 스펙
 
-## 구조 / Anatomy
+## 구조
 
-- 루트 / Root
-- 콘텐츠 / Content
-- 선택적 accessory 또는 action 영역 / Optional accessory or action region
+- 루트
+- 콘텐츠
+- 선택적 accessory 또는 action 영역
 
-## variant / Variants
+## variant
 
-TODO: 허용되는 variant와 각 variant가 적합한 상황을 정의합니다. / TODO: Define allowed variants and when each one is appropriate.
+TODO: 허용되는 variant와 각 variant가 적합한 상황을 정의합니다.
 
-## 동작 / Behavior
+## 동작
 
-- 기본 상태 / Default state: TODO
-- 상호작용 / Interaction: TODO
-- disabled/read-only 동작 / Disabled/read-only behavior: TODO
-- validation 또는 error 동작 / Validation or error behavior: TODO
+- 기본 상태: TODO
+- 상호작용: TODO
+- disabled/read-only 동작: TODO
+- validation 또는 error 동작: TODO
 
-## 접근성 / Accessibility
+## 접근성
 
-- primitive / Primitive: \`${component.primitive}\`
-- 참고 pattern / Pattern reference: ${component.apg || "native semantic HTML"}
-- 키보드 지원 / Keyboard support: TODO
-- 포커스 관리 / Focus management: TODO
-- 스크린 리더 알림 / Screen reader announcement: TODO
+- primitive: \`${component.primitive}\`
+- 참고 pattern: ${component.apg || "native semantic HTML"}
+- 키보드 지원: TODO
+- 포커스 관리: TODO
+- 스크린 리더 알림: TODO
 
-## 토큰 / Tokens
+## 토큰
 
 ${renderList(component.tokens)}
 
-## Prop 표 / Prop Table
+## Prop 표
 
 ${renderComponentPropTable(component)}
 
-## 테스트 계획 / Test Plan
+## 테스트 계획
 
-- 단위 동작 / Unit behavior: TODO
-- 키보드 내비게이션 / Keyboard navigation: TODO
-- focus-visible 상태 / Focus visible state: TODO
-- 고대비와 reduced motion / High contrast and reduced motion: TODO
-- 반응형 레이아웃 / Responsive layout: TODO
+- 단위 동작: TODO
+- 키보드 내비게이션: TODO
+- focus-visible 상태: TODO
+- 고대비와 reduced motion: TODO
+- 반응형 레이아웃: TODO
 
-## 결정 기록 / Decision Log
+## 결정 기록
 
-- TODO: 구현 전에 API와 behavior 결정을 기록합니다. / TODO: Record API and behavior decisions before implementation.
+- TODO: 구현 전에 API와 behavior 결정을 기록합니다.
 `;
 }
 
@@ -279,7 +277,7 @@ function preserveManualBlock(currentContent, nextContent) {
 
   const nextBlock = getManualBlock(nextContent);
   if (nextBlock) return nextContent.replace(nextBlock, currentBlock);
-  return `${nextContent.trimEnd()}\n\n## 수동 보호 구간 / Manual Protected Section\n\n${currentBlock}\n`;
+  return `${nextContent.trimEnd()}\n\n## 수동 보호 구간\n\n${currentBlock}\n`;
 }
 
 async function planWrite(path, content, options = {}) {
@@ -348,9 +346,9 @@ for (const component of componentCatalog) {
 
 if (dryRun) {
   if (plannedWrites.length === 0) {
-    console.log("변경될 컴포넌트 파일이 없습니다. / No component files would change.");
+    console.log("변경될 컴포넌트 파일이 없습니다.");
   } else {
-    console.log("변경 예정 컴포넌트 파일 / Component files that would change:");
+    console.log("변경 예정 컴포넌트 파일:");
     for (const plannedWrite of plannedWrites) {
       console.log(`- ${plannedWrite.path}: ${plannedWrite.reason}`);
     }
@@ -359,5 +357,5 @@ if (dryRun) {
   for (const plannedWrite of plannedWrites) {
     await writeFile(plannedWrite.path, plannedWrite.content, "utf8");
   }
-  console.log(`${written}개 컴포넌트 파일을 작성했습니다. / ${written} component file(s) written.`);
+  console.log(`${written}개 컴포넌트 파일을 작성했습니다.`);
 }

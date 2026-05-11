@@ -60,7 +60,7 @@ async function waitForServer(server) {
       await new Promise((resolve) => setTimeout(resolve, 250));
     }
   }
-  throw new Error("문서 앱 서버가 30초 안에 시작되지 않았습니다. / Docs app server did not start within 30 seconds.");
+  throw new Error("문서 앱 서버가 30초 안에 시작되지 않았습니다.");
 }
 
 async function assertLayout(page, target) {
@@ -76,9 +76,9 @@ async function assertLayout(page, target) {
     };
   }, target.selector);
 
-  if (!result.hasTarget) failures.push(`${target.name}: 대상 selector를 찾지 못했습니다. / Target selector was not found.`);
-  if (result.targetWidth <= 0 || result.targetHeight <= 0) failures.push(`${target.name}: screenshot 대상 크기가 비어 있습니다. / Screenshot target has an empty size.`);
-  if (result.pageOverflow > 4) failures.push(`${target.name}: page horizontal overflow ${result.pageOverflow}px. / Page has horizontal overflow ${result.pageOverflow}px.`);
+  if (!result.hasTarget) failures.push(`${target.name}: 대상 selector를 찾지 못했습니다.`);
+  if (result.targetWidth <= 0 || result.targetHeight <= 0) failures.push(`${target.name}: 스크린샷 대상 크기가 비어 있습니다.`);
+  if (result.pageOverflow > 4) failures.push(`${target.name}: 페이지 가로 넘침 ${result.pageOverflow}px.`);
 }
 
 async function captureTarget(page, target, viewport, theme) {
@@ -98,7 +98,7 @@ async function captureTarget(page, target, viewport, theme) {
   await locator.screenshot({ path: screenshotPath, animations: "disabled" });
   const screenshotStat = await stat(screenshotPath);
   if (screenshotStat.size < 5_000) {
-    failures.push(`${target.name}/${viewport.name}/${theme}: screenshot 파일이 너무 작습니다. / Screenshot file is unexpectedly small.`);
+    failures.push(`${target.name}/${viewport.name}/${theme}: 스크린샷 파일이 너무 작습니다.`);
   }
 
   await compareBaseline(screenshotPath, `${target.name}-${viewport.name}-${theme}.png`);
@@ -116,14 +116,14 @@ async function compareBaseline(screenshotPath, fileName) {
   try {
     baselineBuffer = await readFile(baselinePath);
   } catch {
-    failures.push(`${fileName}: baseline이 없습니다. \`npm run test:visual -- --update-baselines\`로 기준 이미지를 생성하세요. / Missing baseline. Generate it with \`npm run test:visual -- --update-baselines\`.`);
+    failures.push(`${fileName}: baseline이 없습니다. \`npm run test:visual -- --update-baselines\`로 기준 이미지를 생성하세요.`);
     return;
   }
 
   const actual = PNG.sync.read(await readFile(screenshotPath));
   const baseline = PNG.sync.read(baselineBuffer);
   if (actual.width !== baseline.width || actual.height !== baseline.height) {
-    failures.push(`${fileName}: baseline 크기 ${baseline.width}x${baseline.height}와 실제 크기 ${actual.width}x${actual.height}가 다릅니다. / Baseline size ${baseline.width}x${baseline.height} differs from actual size ${actual.width}x${actual.height}.`);
+    failures.push(`${fileName}: baseline 크기 ${baseline.width}x${baseline.height}와 실제 크기 ${actual.width}x${actual.height}가 다릅니다.`);
     return;
   }
 
@@ -134,7 +134,7 @@ async function compareBaseline(screenshotPath, fileName) {
     await mkdir(diffDir, { recursive: true });
     const diffPath = join(diffDir, fileName);
     await writeFile(diffPath, PNG.sync.write(diff));
-    failures.push(`${fileName}: pixel diff ${(diffRatio * 100).toFixed(2)}%가 허용치 ${(maxDiffRatio * 100).toFixed(2)}%를 넘었습니다. diff: ${diffPath} / Pixel diff ${(diffRatio * 100).toFixed(2)}% exceeds ${(maxDiffRatio * 100).toFixed(2)}%. diff: ${diffPath}`);
+    failures.push(`${fileName}: pixel diff ${(diffRatio * 100).toFixed(2)}%가 허용치 ${(maxDiffRatio * 100).toFixed(2)}%를 넘었습니다. diff: ${diffPath}`);
   }
 }
 
@@ -171,7 +171,7 @@ if (failures.length > 0) {
 
 const screenshotCount = viewports.length * themes.length * targets.length;
 if (updateBaselines) {
-  console.log(`시각 회귀 baseline ${screenshotCount}개를 갱신했습니다. / Updated ${screenshotCount} visual regression baselines.`);
+  console.log(`시각 회귀 baseline ${screenshotCount}개를 갱신했습니다.`);
 } else {
-  console.log(`시각 회귀 screenshot ${screenshotCount}개를 생성하고 baseline과 비교했습니다. / Generated ${screenshotCount} visual regression screenshots and compared them with baselines.`);
+  console.log(`시각 회귀 스크린샷 ${screenshotCount}개를 생성하고 baseline과 비교했습니다.`);
 }

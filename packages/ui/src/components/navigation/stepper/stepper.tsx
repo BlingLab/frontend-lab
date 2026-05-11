@@ -58,7 +58,7 @@ export function Stepper({ steps = [], value, defaultValue, orientation = "horizo
   };
 
   return (
-    <nav className={classNames("ds-Stepper", className)} data-orientation={orientation} data-variant={variant} aria-label="단계 / Steps" {...props}>
+    <nav className={classNames("ds-Stepper", className)} data-orientation={orientation} data-variant={variant} aria-label="단계" {...props}>
       <ol className="ds-Stepper-list" ref={listRef}>
         {steps.map((step, index) => {
           const status = step.status ?? (index < activeIndex ? "complete" : index === activeIndex ? "active" : "pending");

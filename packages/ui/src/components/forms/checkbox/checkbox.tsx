@@ -9,7 +9,7 @@ export interface CheckboxProps extends Omit<InputHTMLAttributes<HTMLInputElement
 }
 
 export function Checkbox({
-  label = "체크박스 / Checkbox",
+  label = "체크박스",
   description,
   indeterminate = false,
   disabled,
@@ -20,7 +20,7 @@ export function Checkbox({
   const inputRef = useRef<HTMLInputElement>(null);
 
   useEffect(() => {
-    // indeterminate는 HTML attribute가 아니라 DOM property입니다. / `indeterminate` is a DOM property, not an HTML attribute.
+    // indeterminate는 HTML attribute가 아니라 DOM property입니다.
     if (inputRef.current) {
       inputRef.current.indeterminate = indeterminate;
     }

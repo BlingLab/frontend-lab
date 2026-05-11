@@ -1,42 +1,42 @@
-# ComponentName 컴포넌트 / ComponentName
+# ComponentName 컴포넌트
 
-> 상태 / Status: `planned` | 우선순위 / Priority: `P0` | 카테고리 / Category: CategoryName
+> 상태: `planned` | 우선순위: `P0` | 카테고리: CategoryName
 
-## 목적 / Purpose
+## 목적
 
-TODO: 이 컴포넌트가 해결하는 UI 문제를 한글로 먼저 설명합니다. / TODO: Explain the UI problem this component solves, Korean first.
+TODO: 이 컴포넌트가 해결하는 UI 문제를 한글로 먼저 설명합니다.
 
-## 요약 / Summary
+## 요약
 
-TODO: 컴포넌트의 역할과 사용 맥락을 요약합니다. / TODO: Summarize the component role and usage context.
+TODO: 컴포넌트의 역할과 사용 맥락을 요약합니다.
 
-## 공개 API 초안 / Public API Draft
+## 공개 API 초안
 
 - `propName`
 
-## 상태 / States
+## 상태
 
 - `default`
 
-## 접근성 계약 / Accessibility Contract
+## 접근성 계약
 
-- 기본 primitive / Base primitive: TODO
-- 참고 pattern / Pattern reference: TODO
-- 키보드 지원 / Keyboard support: TODO
-- 포커스 관리 / Focus management: TODO
+- 기본 primitive
+- 참고 pattern
+- 키보드 지원
+- 포커스 관리
 
-## 토큰 hook / Token Hooks
+## 토큰 hook
 
 - `--ds-*`
 
-## 구현 메모 / Implementation Notes
+## 구현 메모
 
-TODO: 구현상 주의할 점을 한글 우선, 영문 병기로 적습니다. / TODO: Write implementation notes in Korean first, followed by English.
+TODO: 구현상 주의할 점을 한글로 적습니다.
 
-## 예시 / Examples
+## 예시
 
-TODO: 구현 시작 시 사용 예시를 추가합니다. / TODO: Add usage examples when implementation starts.
+TODO: 구현 시작 시 사용 예시를 추가합니다.
 
-## 열린 질문 / Open Questions
+## 열린 질문
 
-- TODO: 확정되지 않은 제품 요구와 접근성 결정을 남깁니다. / TODO: Record unresolved product requirements and accessibility decisions.
+- TODO: 확정되지 않은 제품 요구와 접근성 결정을 남깁니다.

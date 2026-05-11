@@ -1,62 +1,62 @@
-# Progress 컴포넌트 / Progress Component
+# Progress 컴포넌트
 
-작업 진행률 또는 대기 상태를 전달하는 표시 컴포넌트입니다. / Determinate or indeterminate task progress.
+작업 진행률 또는 대기 상태를 전달하는 표시 컴포넌트입니다.
 
-## 역할 / Role
+## 역할
 
-완료율, 업로드, 처리 중 상태처럼 시간이 걸리는 작업의 진행을 보여줄 때 사용합니다. / Use when users need to understand task completion or waiting state.
+완료율, 업로드, 처리 중 상태처럼 시간이 걸리는 작업의 진행을 보여줄 때 사용합니다.
 
-## 사용 기준 / Usage Criteria
+## 사용 기준
 
-- 우선순위는 `P1`, 상태는 `ready`입니다. / Priority is `P1`, and status is `ready`.
-- 카테고리는 `feedback` (Feedback)입니다. / Category is `feedback` (Feedback).
-- 기본 primitive는 `progress`입니다. / Base primitive is `progress`.
-- 테마와 색상은 component-local 값이 아니라 semantic token을 상속합니다. / Theme and color inherit semantic tokens instead of component-local values.
+- 우선순위는 `P1`, 상태는 `ready`입니다.
+- 카테고리는 `feedback` (Feedback)입니다.
+- 기본 primitive는 `progress`입니다.
+- 테마와 색상은 component-local 값이 아니라 semantic token을 상속합니다.
 
-## Prop 축 / Prop Axes
+## Prop 축
 
 `value`, `max`, `label`, `indeterminate`, `tone`
 
-## Prop 표 / Prop Table
+## Prop 표
 
-| Prop | Type | Default | 설명 / Description |
+| Prop | Type | Default | 설명 |
 | --- | --- | --- | --- |
-| `value` | `string \| number` | `-` | controlled 값입니다. / Controlled value. |
-| `max` | `number` | `100` | 허용되는 최대 값입니다. / Maximum allowed value. |
-| `label` | `ReactNode` | `-` | 사용자에게 보이는 label 또는 accessible name입니다. / Visible label or accessible name. |
-| `indeterminate` | `boolean` | `false` | 부분 선택 상태를 표시합니다. / Shows a partially selected state. |
-| `tone` | `tone` | `-` | semantic color tone입니다. / Semantic color tone. |
+| `value` | `string \| number` | `-` | controlled 값입니다. |
+| `max` | `number` | `100` | 허용되는 최대 값입니다. |
+| `label` | `ReactNode` | `-` | 사용자에게 보이는 label 또는 accessible name입니다. |
+| `indeterminate` | `boolean` | `false` | 부분 선택 상태를 표시합니다. |
+| `tone` | `tone` | `-` | semantic color tone입니다. |
 
-## 상태 / States
+## 상태
 
 - `determinate`
 - `indeterminate`
 - `complete`
 
-## 접근성 / Accessibility
+## 접근성
 
-- 기본 기준 / Base reference: 해당 없음 또는 네이티브 HTML 기준을 따릅니다. / Not applicable or follows native HTML behavior.
-- accessible name이 필요한 control은 `label`, `aria-label`, visible text 중 하나로 이름을 제공합니다. / Controls that need an accessible name receive it through `label`, `aria-label`, or visible text.
-- focus-visible은 `--ds-focus-ring`을 사용하고 keyboard navigation에서 사라지지 않아야 합니다. / Focus-visible uses `--ds-focus-ring` and must remain visible during keyboard navigation.
+- 기본 기준
+- accessible name이 필요한 control은 `label`, `aria-label`, visible text 중 하나로 이름을 제공합니다.
+- focus-visible은 `--ds-focus-ring`을 사용하고 키보드 이동에서 사라지지 않아야 합니다.
 
-## 토큰 / Tokens
+## 토큰
 
 - `--ds-color-action-primary-bg`
 - `--ds-color-bg-muted`
 - `--ds-motion-duration-normal`
 
-## 예시 / Example
+## 예시
 
 ```tsx
 import { Progress } from "@bling-lab/ui/components/feedback/progress";
 
 export function Example() {
-  return <Progress label="완료율 / Completion" value={64} />;
+  return <Progress label="완료율" value={64} />;
 }
 ```
 
-## 구현 메모 / Implementation Notes
+## 구현 메모
 
-- 구현 파일은 `progress.tsx`, public entry는 `index.ts`입니다. / Implementation lives in `progress.tsx`, and the public entry is `index.ts`.
-- controlled/uncontrolled 값이 있는 경우 `onValueChange`, `onOpenChange`, `onSelectionChange`처럼 `onPascalCase` event prop을 사용합니다. / Controlled or uncontrolled values use `onPascalCase` event props such as `onValueChange`, `onOpenChange`, and `onSelectionChange`.
-- hover, active, selected, disabled는 shared state token과 `data-*` hook으로 표현합니다. / Hover, active, selected, and disabled are represented with shared state tokens and `data-*` hooks.
+- 구현 파일은 `progress.tsx`, public entry는 `index.ts`입니다.
+- controlled/uncontrolled 값이 있는 경우 `onValueChange`, `onOpenChange`, `onSelectionChange`처럼 `onPascalCase` event prop을 사용합니다.
+- hover, active, selected, disabled는 shared state token과 `data-*` hook으로 표현합니다.

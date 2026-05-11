@@ -21,7 +21,7 @@ export interface RadioGroupProps extends Omit<HTMLAttributes<HTMLFieldSetElement
 }
 
 export function RadioGroup({
-  label = "라디오 그룹 / Radio group",
+  label = "라디오 그룹",
   description,
   value,
   defaultValue,

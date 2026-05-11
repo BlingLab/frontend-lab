@@ -1,40 +1,40 @@
-# Container 명세 / Container Spec
+# Container 명세
 
-## 목적 / Purpose
+## 목적
 
-페이지 콘텐츠 폭과 gutter를 예측 가능하게 제한합니다. / Constrains page content width and gutters predictably.
+페이지 콘텐츠 폭과 gutter를 예측 가능하게 제한합니다.
 
-## API 표면 / API Surface
+## API 표면
 
 - public component: `Container`
 - folder slug: `container`
 - category: `layout`
-- priority/status: `P0` / `ready`
+- 우선순위/상태: `P0`, `ready`
 - props: `size`
 
-## Prop 표 / Prop Table
+## Prop 표
 
-| Prop | Type | Default | 설명 / Description |
+| Prop | Type | Default | 설명 |
 | --- | --- | --- | --- |
-| `size` | `"sm" \| "md" \| "lg" \| "xl" \| "2xl"` | `"lg"` | 적용할 container 최대 폭입니다. / Maximum container width to apply. |
+| `size` | `"sm" \| "md" \| "lg" \| "xl" \| "2xl"` | `"lg"` | 적용할 container 최대 폭입니다. |
 
-## 상태 동작 / State Behavior
+## 상태 동작
 
-- `size`는 `data-size`로 노출되고 CSS container token에 매핑됩니다. / `size` is exposed through `data-size` and maps to CSS container tokens.
+- `size`는 `data-size`로 노출되고 CSS container token에 매핑됩니다.
 
-## 접근성 계약 / Accessibility Contract
+## 접근성 계약
 
-- 기준 문서 / Reference: native semantic HTML
-- 별도 role을 추가하지 않고 children의 의미를 보존합니다. / It adds no extra role and preserves child semantics.
+- 기준 문서
+- 별도 role을 추가하지 않고 children의 의미를 보존합니다.
 
-## 토큰 계약 / Token Contract
+## 토큰 계약
 
 - `--ds-container-sm`
 - `--ds-container-md`
 - `--ds-container-lg`
 - `--ds-page-gutter`
 
-## 검증 체크리스트 / Validation Checklist
+## 검증 체크리스트
 
-- `npm run components:validate`가 통과합니다. / `npm run components:validate` passes.
-- narrow viewport에서 horizontal overflow가 생기지 않습니다. / No horizontal overflow appears in narrow viewports.
+- `npm run components:validate`가 통과합니다.
+- narrow viewport에서 가로 넘침가 생기지 않습니다.

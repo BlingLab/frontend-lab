@@ -66,9 +66,9 @@ function SmokeApp() {
   return (
     <main className="smoke-page">
       <header>
-        <h1>컴포넌트 smoke 확인 / Component Smoke Check</h1>
-        <p>이 화면은 실제 `@bling-lab/ui` React export만 사용합니다. / This page uses only real `@bling-lab/ui` React exports.</p>
-        <nav className="smoke-doc-links" aria-label="컴포넌트 문서 링크 / Component documentation links">
+        <h1>컴포넌트 smoke 확인</h1>
+        <p>이 화면은 실제 `@bling-lab/ui` React export만 사용합니다.`@bling-lab/ui` React exports.</p>
+        <nav className="smoke-doc-links" aria-label="컴포넌트 문서 링크">
           {componentCatalog.map((component) => (
             <a href={getComponentReadmeUrl(component)} key={component.name} target="_blank" rel="noreferrer">{component.name}</a>
           ))}
@@ -76,19 +76,19 @@ function SmokeApp() {
       </header>
       <section className="smoke-grid" id="smoke-root">
         <SmokeCard title="Button">
-          <Button iconStart={<Icon name="plus" />}>저장 / Save</Button>
+          <Button iconStart={<Icon name="plus" />}>저장</Button>
         </SmokeCard>
         <SmokeCard title="IconButton">
-          <IconButton label="검색 / Search" icon={<Icon name="search" />} />
+          <IconButton label="검색" icon={<Icon name="search" />} />
         </SmokeCard>
         <SmokeCard title="Badge">
-          <Badge label="준비 / Ready" tone="success" />
+          <Badge label="준비" tone="success" />
         </SmokeCard>
         <SmokeCard title="Alert">
-          <Alert title="상태 / Status" description="정상 렌더링입니다. / Rendered correctly." />
+          <Alert title="상태" description="정상 렌더링입니다." />
         </SmokeCard>
         <SmokeCard title="Progress">
-          <Progress label="완료율 / Completion" value={72} />
+          <Progress label="완료율" value={72} />
         </SmokeCard>
         <SmokeCard title="Skeleton">
           <Stack gap="sm">
@@ -97,94 +97,94 @@ function SmokeApp() {
           </Stack>
         </SmokeCard>
         <SmokeCard title="Toast">
-          <Toast title="저장됨 / Saved" description="작업 결과입니다. / This is a task result." />
+          <Toast title="저장됨" description="작업 결과입니다." />
         </SmokeCard>
         <SmokeCard title="TextField">
-          <TextField label="이름 / Name" defaultValue="frontend-lab" />
+          <TextField label="이름" defaultValue="frontend-lab" />
         </SmokeCard>
         <SmokeCard title="Textarea">
-          <Textarea label="메모 / Note" defaultValue="긴 설명 / Long note" />
+          <Textarea label="메모" defaultValue="긴 설명" />
         </SmokeCard>
         <SmokeCard title="Select">
-          <Select label="상태 / Status" defaultValue="ready" options={[{ label: "준비 / Ready", value: "ready" }]} />
+          <Select label="상태" defaultValue="ready" options={[{ label: "준비", value: "ready" }]} />
         </SmokeCard>
         <SmokeCard title="Checkbox">
-          <Checkbox label="알림 / Notifications" defaultChecked />
+          <Checkbox label="알림" defaultChecked />
         </SmokeCard>
         <SmokeCard title="RadioGroup">
-          <RadioGroup label="밀도 / Density" options={[{ label: "기본 / Default", value: "default" }]} />
+          <RadioGroup label="밀도" options={[{ label: "기본", value: "default" }]} />
         </SmokeCard>
         <SmokeCard title="Switch">
-          <Switch label="자동 저장 / Autosave" defaultChecked />
+          <Switch label="자동 저장" defaultChecked />
         </SmokeCard>
         <SmokeCard title="DatePicker">
-          <DatePicker label="시작일 / Start date" defaultValue="2026-04-29" />
+          <DatePicker label="시작일" defaultValue="2026-04-29" />
         </SmokeCard>
         <SmokeCard title="Combobox">
-          <Combobox label="담당자 / Owner" options={[{ label: "디자인 / Design", value: "design" }, { label: "프론트엔드 / Frontend", value: "frontend" }]} />
+          <Combobox label="담당자" options={[{ label: "디자인", value: "design" }, { label: "프론트엔드", value: "frontend" }]} />
         </SmokeCard>
         <SmokeCard title="FileUploader">
-          <FileUploader label="첨부 / Attachment" />
+          <FileUploader label="첨부" />
         </SmokeCard>
         <SmokeCard title="DropdownMenu">
-          <DropdownMenu triggerLabel="작업 / Actions" items={[{ label: "편집 / Edit" }, { label: "복제 / Duplicate" }, { label: "삭제 / Delete" }]} />
+          <DropdownMenu triggerLabel="작업" items={[{ label: "편집" }, { label: "복제" }, { label: "삭제" }]} />
         </SmokeCard>
         <SmokeCard title="Popover">
-          <Popover triggerLabel="필터 / Filter" title="필터 옵션 / Filter options">
-            <Alert title="옵션 표시 / Options visible" description="popover panel이 열렸습니다. / The popover panel is open." />
+          <Popover triggerLabel="필터" title="필터 옵션">
+            <Alert title="옵션 표시" description="popover panel이 열렸습니다." />
           </Popover>
         </SmokeCard>
         <SmokeCard title="Dialog">
           <Dialog
-            triggerLabel="다이얼로그 열기 / Open dialog"
-            title="확인 / Confirm"
-            description="dialog 동작 확인입니다. / Dialog behavior check."
-            actions={[{ label: "확인 / Confirm" }]}
+            triggerLabel="다이얼로그 열기"
+            title="확인"
+            description="dialog 동작 확인입니다."
+            actions={[{ label: "확인" }]}
           >
-            <TextField label="이름 / Name" defaultValue="frontend-lab" />
+            <TextField label="이름" defaultValue="frontend-lab" />
           </Dialog>
         </SmokeCard>
         <SmokeCard title="Tabs">
           <Tabs items={[
-            { label: "미리보기 / Preview", value: "preview", content: "첫 번째 panel / First panel" },
-            { label: "코드 / Code", value: "code", content: "두 번째 panel / Second panel" }
+            { label: "미리보기", value: "preview", content: "첫 번째 panel" },
+            { label: "코드", value: "code", content: "두 번째 panel" }
           ]} />
         </SmokeCard>
         <SmokeCard title="CommandPalette">
-          <CommandPalette commands={[{ label: "새 컴포넌트 / New component", value: "new" }]} />
+          <CommandPalette commands={[{ label: "새 컴포넌트", value: "new" }]} />
         </SmokeCard>
         <SmokeCard title="Stepper">
-          <Stepper steps={[{ label: "API", value: "api" }, { label: "검증 / Verify", value: "verify" }]} />
+          <Stepper steps={[{ label: "API", value: "api" }, { label: "검증", value: "verify" }]} />
         </SmokeCard>
         <SmokeCard title="NavigationRail">
-          <NavigationRail items={[{ label: "홈 / Home", value: "home" }, { label: "문서 / Docs", value: "docs" }]} />
+          <NavigationRail items={[{ label: "홈", value: "home" }, { label: "문서", value: "docs" }]} />
         </SmokeCard>
         <SmokeCard title="SideNav">
-          <SideNav sections={[{ title: "문서 / Docs", items: [{ label: "개요 / Overview", value: "overview" }] }]} />
+          <SideNav sections={[{ title: "문서", items: [{ label: "개요", value: "overview" }] }]} />
         </SmokeCard>
         <SmokeCard title="Breadcrumb">
-          <Breadcrumb items={[{ label: "홈 / Home", href: "#" }, { label: "현재 / Current", current: true }]} />
+          <Breadcrumb items={[{ label: "홈", href: "#" }, { label: "현재", current: true }]} />
         </SmokeCard>
         <SmokeCard title="Pagination">
           <Pagination totalPages={5} defaultPage={2} />
         </SmokeCard>
         <SmokeCard title="DataGrid">
-          <DataGrid columns={[{ key: "name", label: "이름 / Name" }]} rows={[{ name: "DatePicker" }]} />
+          <DataGrid columns={[{ key: "name", label: "이름" }]} rows={[{ name: "DatePicker" }]} />
         </SmokeCard>
         <SmokeCard title="Table">
-          <Table columns={[{ key: "name", label: "이름 / Name" }]} rows={[{ name: "Button" }]} />
+          <Table columns={[{ key: "name", label: "이름" }]} rows={[{ name: "Button" }]} />
         </SmokeCard>
         <SmokeCard title="EmptyState">
-          <EmptyState title="결과 없음 / No results" />
+          <EmptyState title="결과 없음" />
         </SmokeCard>
         <SmokeCard title="List">
-          <List items={[{ title: "Button", description: "명령 / Command" }]} />
+          <List items={[{ title: "Button", description: "명령" }]} />
         </SmokeCard>
         <SmokeCard title="Card">
-          <Card title="카드 / Card" description="surface 확인 / Surface check" />
+          <Card title="카드" description="surface 확인" />
         </SmokeCard>
         <SmokeCard title="Divider">
-          <Stack gap="sm"><span>위 / Top</span><Divider /><span>아래 / Bottom</span></Stack>
+          <Stack gap="sm"><span>위</span><Divider /><span>아래</span></Stack>
         </SmokeCard>
         <SmokeCard title="Container">
           <Container size="sm"><Alert title="Container" /></Container>
@@ -196,12 +196,12 @@ function SmokeApp() {
           <Inline gap="sm"><Badge label="A" /><Badge label="B" tone="brand" /></Inline>
         </SmokeCard>
         <SmokeCard title="Tooltip">
-          <Tooltip label="도움말 / Help" content="설명 / Description" />
+          <Tooltip label="도움말" content="설명" />
         </SmokeCard>
         <SmokeCard title="Stack">
           <Stack gap="sm">
-            <Button>저장 / Save</Button>
-            <Button variant="outline" tone="neutral">취소 / Cancel</Button>
+            <Button>저장</Button>
+            <Button variant="outline" tone="neutral">취소</Button>
           </Stack>
         </SmokeCard>
       </section>

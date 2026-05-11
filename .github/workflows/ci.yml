@@ -1,65 +1,60 @@
-name: CI / 검증
+name: CI 검증
 
 on:
-  push:
-    branches:
-      - main
-  pull_request:
-    branches:
-      - main
+  workflow_dispatch:
 
 jobs:
   verify:
-    name: 검증 / Verify
+    name: 검증
     runs-on: ubuntu-latest
 
     steps:
-      - name: 체크아웃 / Checkout
+      - name: 체크아웃
         uses: actions/checkout@v4
 
-      - name: Node 설정 / Setup Node
+      - name: Node 설정
         uses: actions/setup-node@v4
         with:
           node-version: 22
           cache: npm
 
-      - name: 의존성 설치 / Install dependencies
+      - name: 의존성 설치
         run: npm ci
 
-      - name: Lint와 format 검증 / Lint and format checks
+      - name: Lint와 format 검증
         run: npm run lint
 
-      - name: Markdown 내부 링크 검증 / Markdown internal link checks
+      - name: Markdown 내부 링크 검증
         run: npm run docs:links
 
-      - name: 컴포넌트 검증 / Component validation
+      - name: 컴포넌트 검증
         run: npm run test
 
-      - name: 타입 확인 / Typecheck
+      - name: 타입 확인
         run: npm run typecheck
 
-      - name: 문서 앱 빌드 / Build docs app
+      - name: 문서 앱 빌드
         run: npm --workspace @workspace/docs run build
 
-      - name: 소비자 fixture 빌드 / Build consumer fixture
+      - name: 소비자 fixture 빌드
         run: npm run test:consumer
 
-      - name: 테마 토큰 회귀 검증 / Theme token regression
+      - name: 테마 토큰 회귀 검증
         run: npm run test:tokens
 
-      - name: Public prop 타입 검증 / Public prop type checks
+      - name: Public prop 타입 검증
         run: npm run test:types
 
-      - name: Playwright 브라우저 설치 / Install Playwright browser
+      - name: Playwright 브라우저 설치
         run: npx playwright install --with-deps chromium
 
-      - name: 문서 앱 browser smoke 검증 / Docs app browser smoke
+      - name: 문서 앱 브라우저 스모크 검증
         run: npm run test:docs-smoke
 
-      - name: 시각 회귀 검증 / Visual regression
+      - name: 시각 회귀 검증
         run: npm run test:visual
 
-      - name: 시각 회귀 산출물 업로드 / Upload visual artifacts
+      - name: 시각 회귀 산출물 업로드
         if: always()
         uses: actions/upload-artifact@v4
         with:

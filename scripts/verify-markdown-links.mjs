@@ -95,12 +95,12 @@ for (const filePath of markdownFiles) {
 
     const absoluteTarget = resolve(dirname(filePath), normalizedTarget);
     if (!isInsideRoot(absoluteTarget)) {
-      failures.push(`${relativeFilePath}:${link.line}: repo 밖 Markdown link는 허용하지 않습니다. / Markdown link target outside the repo is not allowed: ${link.target}`);
+      failures.push(`${relativeFilePath}:${link.line}: repo 밖 Markdown link는 허용하지 않습니다.}`);
       continue;
     }
 
     if (!await pathExists(absoluteTarget)) {
-      failures.push(`${relativeFilePath}:${link.line}: Markdown link 대상이 없습니다. / Markdown link target does not exist: ${link.target}`);
+      failures.push(`${relativeFilePath}:${link.line}: Markdown link 대상이 없습니다.}`);
     }
   }
 }
@@ -110,4 +110,4 @@ if (failures.length > 0) {
   process.exit(1);
 }
 
-console.log(`Markdown 내부 링크 검증 완료: ${markdownFiles.length}개 파일. / Markdown internal links passed: ${markdownFiles.length} files.`);
+console.log(`Markdown 내부 링크 검증 완료: ${markdownFiles.length}개 파일.`);
