@@ -1,24 +1,24 @@
-# 브랜치 보호 기준
+# 브랜치 운영 기준
 
-main branch 보호는 저장소 운영 정책을 바꾸는 설정이므로 코드 PR과 별도로 확인 후 적용합니다.
+기본 브랜치는 개인 운영 속도를 우선해 보호 정책 없이 직접 올립니다.
 
 ## 현재 상태
 
-- 2026-04-29 기준 main branch는 GitHub branch protection이 적용되어 있지 않습니다.
-- 변경 흐름 문서는 즉시 처리도 branch protection 상태에 따라 짧은 PR로 기록할 수 있다고 정의합니다.
-- PR 리뷰 필수 규칙을 켜면 main direct push 예외를 GitHub label만으로 자동 허용할 수 없습니다.
+- 2026-05-11 기준 기본 브랜치 보호 설정은 꺼져 있습니다.
+- 저장소 규칙도 사용하지 않습니다.
+- 검증 자동화는 자동 실행 없이 수동 실행만 남깁니다.
+- 작업은 이슈에 연결하고 필요한 변경을 기본 브랜치에 바로 올립니다.
 
-## 권장 설정
+## 운영 기준
 
-- required status check는 `검증
-- 기능/구조 변경과 위험 변경은 PR을 필수로 둡니다.
-- 즉시 처리 direct push 정책을 유지하려면 branch protection 적용 전 운영자 결정을 먼저 기록합니다.
-- branch protection을 켜는 순간 즉시 처리도 `fast-track` 또는 `flow:direct` label을 붙인 짧은 PR로 처리하는 것이 가장 일관됩니다.
+- 간단한 문서, 문구, 작은 코드 수정은 바로 기본 브랜치에 커밋하고 올립니다.
+- 기능 변경도 이슈와 작업 요약을 남긴 뒤 기본 브랜치에 직접 반영합니다.
+- 위험한 변경은 `flow:risk` 라벨과 rollback 기준을 남긴 뒤 처리합니다.
+- 자동 검증이 필요할 때만 GitHub Actions를 수동 실행합니다.
 
 ## 적용 체크리스트
 
-- [ ] small change direct push 정책 유지 여부를 결정했습니다.
-- [ ] required check 이름을 `검증
-- [ ] 최소 1개 PR review requirement를 적용할지 결정했습니다.
-- [ ] admin bypass 허용 여부를 결정했습니다.
-- [ ] 적용 후 dummy PR로 merge 가능 여부를 확인했습니다.
+- [ ] 기본 브랜치 보호 설정이 꺼져 있습니다.
+- [ ] 저장소 규칙이 없습니다.
+- [ ] 검증 자동화가 `workflow_dispatch`만 사용합니다.
+- [ ] 작업 완료 후 관련 이슈를 닫습니다.

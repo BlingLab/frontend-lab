@@ -19,7 +19,7 @@
 - [릴리즈 체크리스트](./release-checklist.md)
 - [릴리즈 정책](./release-policy.md)
 - [시각 회귀 기준](./visual-regression.md)
-- [브랜치 보호 기준](./branch-protection.md)
+- [브랜치 운영 기준](./branch-protection.md)
 - [리뷰와 이슈 보드](./review-and-issue-board.md)
 - [접근성 체크리스트](./accessibility-checklist.md)
 - [반응형 레이아웃 시스템](./responsive-layout-system.md)

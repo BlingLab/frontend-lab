@@ -21,15 +21,15 @@
 - 텍스트는 control 또는 card 내부에서 잘리지 않고, 필요한 경우 줄바꿈됩니다.
 - focus-visible, hover, selected, disabled, loading 상태는 token 기반으로 구분됩니다.
 - raw color나 theme name 분기 없이 `--ds-*` token이 실제 색상 변화를 담당합니다.
-- 스크린샷 차이가 생기면 의도한 변경인지 PR description에 적습니다.
+- 스크린샷 차이가 생기면 의도한 변경인지 작업 요약과 이슈 코멘트에 적습니다.
 - pixel baseline comparison은 전체 pixel의 `1%` 초과 diff를 실패로 처리합니다.
 - anti-aliasing이나 font rendering 차이는 `pixelmatch` threshold `0.12` 안에서 흡수하고, 초과 diff는 `artifacts/visual-regression/diff`에 저장합니다.
 
 ## 기준선 운영
 
-- 기준 이미지는 `tests/visual-baselines`에 저장하고 PR에서 일반 파일처럼 review합니다.
+- 기준 이미지는 `tests/visual-baselines`에 저장하고 일반 파일 변경처럼 함께 확인합니다.
 - 의도한 시각 변경은 먼저 구현한 뒤 `npm run test:visual -- --update-baselines`로 기준 이미지를 갱신합니다.
-- baseline 갱신 PR에는 변경된 화면, theme, viewport와 의도한 이유를 적습니다.
+- baseline 갱신 commit에는 변경된 화면, theme, viewport와 의도한 이유를 적습니다.
 - 실패가 flake로 의심되면 같은 commit에서 한 번 재실행하고, 두 번째도 실패하면 diff artifact를 기준으로 UI 또는 baseline을 수정합니다.
 
 ## 자동화

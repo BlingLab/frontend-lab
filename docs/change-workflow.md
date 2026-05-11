@@ -16,7 +16,7 @@
 
 - 필요한 경우 관련 script만 실행합니다.
 - GitHub label은 `fast-track` 또는 `flow:direct`를 사용합니다.
-- main branch protection이 켜진 경우 즉시 처리도 짧은 PR로 기록합니다.
+- 기본 브랜치에 직접 반영하고 작업 요약에 실행한 검증을 남깁니다.
 
 ## 2. 가벼운 점검
 
@@ -30,10 +30,9 @@
 
 ### 확인
 
-- PR description은 `.github/pull_request_template.md`를 따릅니다.
-- 작성자는 Changes 탭에서 self-review를 진행하고, 의심되는 줄에는 comment를 남깁니다.
-- 관련 검증은 변경 범위에 맞게 고르고 결과를 PR 또는 작업 요약에 남깁니다.
-- GitHub label은 `light-review` 또는 `flow:pr`를 사용합니다.
+- 관련 검증은 변경 범위에 맞게 고르고 결과를 작업 요약에 남깁니다.
+- GitHub label은 `light-review` 또는 `flow:direct`를 사용합니다.
+- 변경이 커지면 이슈를 나눠 main commit 단위를 작게 유지합니다.
 
 ## 3. 정식 이슈급
 
@@ -42,7 +41,7 @@
 ### 기준
 
 - public API breaking change, token rename, theme contract change가 있습니다.
-- 릴리즈, 패키지 배포, dependency, CI required check를 바꿉니다.
+- 릴리즈, 패키지 배포, dependency, 수동 검증 workflow를 바꿉니다.
 - accessibility, focus management, keyboard behavior에 regression 위험이 큽니다.
 - 공통 컴포넌트 API, 디자인 시스템, 문서 재생성, 구조 변경에 영향을 줍니다.
 

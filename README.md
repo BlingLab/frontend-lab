@@ -99,7 +99,7 @@ http://localhost:5173
 - [릴리즈 체크리스트](./docs/release-checklist.md)
 - [릴리즈 정책](./docs/release-policy.md)
 - [시각 회귀 기준](./docs/visual-regression.md)
-- [브랜치 보호 기준](./docs/branch-protection.md)
+- [브랜치 운영 기준](./docs/branch-protection.md)
 - [리뷰와 이슈 보드](./docs/review-and-issue-board.md)
 - [접근성 체크리스트](./docs/accessibility-checklist.md)
 - [반응형 검증 기준](./docs/responsive-qa.md)

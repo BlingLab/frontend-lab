@@ -11,7 +11,7 @@
 ## Registry 기준
 
 - 공개 OSS 또는 외부 프로젝트 소비가 목표라면 npm public registry를 기본값으로 둡니다.
-- 사내/비공개 소비가 목표라면 GitHub Packages를 사용하되 `.npmrc`와 token 운영 문서를 별도 PR로 추가합니다.
+- 사내/비공개 소비가 목표라면 GitHub Packages를 사용하되 `.npmrc`와 token 운영 문서를 별도 이슈로 추가합니다.
 - 현재 자동화의 registry 대상은 npm public입니다. `packages/ui/package.json`은 `private=false`와 npm public `publishConfig`를 유지해야 합니다.
 - `@bling-lab/ui`는 2026-05-06 기준 npm registry에 기존 등록 패키지가 없음을 확인했습니다.
 
@@ -25,7 +25,7 @@
 
 - 모든 릴리즈 후보는 `CHANGELOG.md`의 `Unreleased` 아래에 기록합니다.
 - 항목은 Added, Changed, Fixed, Docs로 묶습니다.
-- PR description의 verification 결과를 changelog entry와 맞춥니다.
+- 작업 요약의 검증 결과를 changelog entry와 맞춥니다.
 
 ## 버전 준비
 
@@ -63,4 +63,4 @@ npm run release:dry-run
 
 - 잘못된 release는 같은 major/minor에서 patch version을 올려 수정 배포합니다.
 - npm unpublish는 소비자 영향을 만들 수 있으므로 보안 사고나 잘못된 secret 노출 같은 긴급 상황에서만 사용합니다.
-- rollback PR에는 영향받는 package version, 원인, 수정 commit, 소비자 조치가 포함되어야 합니다.
+- rollback commit과 이슈 코멘트에는 영향받는 package version, 원인, 수정 commit, 소비자 조치가 포함되어야 합니다.
