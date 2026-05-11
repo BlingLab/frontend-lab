@@ -52,7 +52,7 @@ export function Table<Row extends Record<string, unknown>>({
   striped = false,
   hoverable = true,
   stickyHeader = false,
-  emptyMessage = "데이터가 없습니다. / No data.",
+  emptyMessage = "데이터가 없습니다.",
   rowKey,
   rowActions,
   sortState,
@@ -117,7 +117,7 @@ export function Table<Row extends Record<string, unknown>>({
                 <Checkbox
                   checked={allRowsSelected}
                   indeterminate={someRowsSelected}
-                  label="전체 행 선택 / Select all rows"
+                  label="전체 행 선택"
                   onChange={(event) => toggleAllRows(event.currentTarget.checked)}
                 />
               </th>
@@ -129,7 +129,7 @@ export function Table<Row extends Record<string, unknown>>({
               return (
                 <th key={column.key} scope="col" data-align={column.align} style={{ width: column.width }} aria-sort={sortDirection}>
                   {sortable || column.sortable ? (
-                    <button className="ds-Table-sort" type="button" aria-label={`${sortLabel} 정렬 / Sort ${sortLabel}`} onClick={() => toggleSort(column.key)}>
+                    <button className="ds-Table-sort" type="button" aria-label={`${sortLabel} 정렬`} onClick={() => toggleSort(column.key)}>
                       {column.label} <span aria-hidden="true">{sortDirection ? (sortDirection === "ascending" ? "↑" : "↓") : "↕"}</span>
                     </button>
                   ) : column.label}
@@ -151,7 +151,7 @@ export function Table<Row extends Record<string, unknown>>({
             <tr key={getRowKey(row, rowIndex)}>
               {selectionMode === "multiple" ? (
                 <td>
-                  <Checkbox checked={selectedKeySet.has(getRowKey(row, rowIndex))} label={`${rowIndex + 1}행 선택 / Select row ${rowIndex + 1}`} onChange={(event) => toggleRow(row, rowIndex, event.currentTarget.checked)} />
+                  <Checkbox checked={selectedKeySet.has(getRowKey(row, rowIndex))} label={`${rowIndex + 1}행 선택`} onChange={(event) => toggleRow(row, rowIndex, event.currentTarget.checked)} />
                 </td>
               ) : null}
               {columns.map((column) => <td key={column.key} data-align={column.align}>{column.renderCell?.(row, rowIndex) ?? row[column.key] as ReactNode}</td>)}

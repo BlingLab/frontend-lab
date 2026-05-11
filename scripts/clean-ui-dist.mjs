@@ -9,4 +9,4 @@ const buildInfoPath = join(rootDir, "packages", "ui", "tsconfig.tsbuildinfo");
 await rm(distPath, { force: true, recursive: true });
 await rm(buildInfoPath, { force: true });
 
-console.log("UI dist 산출물을 정리했습니다. / UI dist output cleaned.");
+console.log("UI dist 산출물을 정리했습니다.");

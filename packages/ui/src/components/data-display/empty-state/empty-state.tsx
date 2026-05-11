@@ -17,7 +17,7 @@ function renderAction(action: ReactNode | ButtonProps, index: number): ReactNode
     : action as ReactNode;
 }
 
-export function EmptyState({ title = "비어 있습니다 / Empty state", description, icon = "-", actions = [], tone = "neutral", className, ...props }: EmptyStateProps) {
+export function EmptyState({ title = "비어 있습니다", description, icon = "-", actions = [], tone = "neutral", className, ...props }: EmptyStateProps) {
   return (
     <section className={classNames("ds-EmptyState", className)} data-tone={tone} {...props}>
       {icon ? <div className="ds-EmptyState-icon" aria-hidden="true">{icon}</div> : null}

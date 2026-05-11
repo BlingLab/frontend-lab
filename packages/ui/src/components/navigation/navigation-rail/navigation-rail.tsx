@@ -19,7 +19,7 @@ export interface NavigationRailProps extends Omit<HTMLAttributes<HTMLElement>, "
   onValueChange?: (value: string) => void;
 }
 
-export function NavigationRail({ items = [], value, defaultValue, label = "주요 내비게이션 / Primary navigation", collapsed = false, onValueChange, className, ...props }: NavigationRailProps) {
+export function NavigationRail({ items = [], value, defaultValue, label = "주요 내비게이션", collapsed = false, onValueChange, className, ...props }: NavigationRailProps) {
   const [currentValue, setCurrentValue] = useControllableState({ value, defaultValue: defaultValue ?? items[0]?.value ?? "", onChange: onValueChange });
   const navRef = useRef<HTMLElement>(null);
   const enabledItems = items

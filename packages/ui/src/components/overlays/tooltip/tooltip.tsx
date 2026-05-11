@@ -11,7 +11,7 @@ export interface TooltipProps extends Omit<HTMLAttributes<HTMLSpanElement>, "con
   trigger?: ReactNode;
 }
 
-export function Tooltip({ label = "?", content = "툴팁 설명 / Tooltip", placement = "top", delay = 300, disabled = false, trigger, className, ...props }: TooltipProps) {
+export function Tooltip({ label = "?", content = "툴팁 설명", placement = "top", delay = 300, disabled = false, trigger, className, ...props }: TooltipProps) {
   const [open, setOpen] = useState(false);
   const tooltipId = useId();
   const openTimer = useRef<number | undefined>(undefined);
@@ -24,7 +24,7 @@ export function Tooltip({ label = "?", content = "툴팁 설명 / Tooltip", plac
   const show = () => {
     if (disabled) return;
     clearOpenTimer();
-    // 짧은 hover 통과에는 tooltip이 열리지 않도록 지연합니다. / Delay opening so brief hover passes do not show the tooltip.
+    // 짧은 hover 통과에는 tooltip이 열리지 않도록 지연합니다.
     openTimer.current = window.setTimeout(() => setOpen(true), delay);
   };
   const hide = () => {

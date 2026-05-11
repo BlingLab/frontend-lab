@@ -67,7 +67,7 @@ async function waitForServer(server) {
       await new Promise((resolve) => setTimeout(resolve, 250));
     }
   }
-  throw new Error("문서 앱 서버가 30초 안에 시작되지 않았습니다. / Docs app server did not start within 30 seconds.");
+  throw new Error("문서 앱 서버가 30초 안에 시작되지 않았습니다.");
 }
 
 async function assertResponsiveLayout(page, viewport) {
@@ -124,24 +124,24 @@ async function assertResponsiveLayout(page, viewport) {
   }, { containers: layoutContainers, required: requiredSelectors });
 
   if (result.documentOverflow > 4) {
-    failures.push(`${viewport.name}: page horizontal overflow ${result.documentOverflow}px. / Page has horizontal overflow ${result.documentOverflow}px.`);
+    failures.push(`${viewport.name}: 페이지 가로 넘침 ${result.documentOverflow}px.`);
   }
 
   for (const item of result.requiredRects) {
     if (!item.rect) {
-      failures.push(`${viewport.name}: ${item.selector} selector를 찾지 못했습니다. / ${item.selector} selector was not found.`);
+      failures.push(`${viewport.name}: ${item.selector} selector를 찾지 못했습니다.`);
       continue;
     }
     if (item.rect.width <= 0 || item.rect.height <= 0) {
-      failures.push(`${viewport.name}: ${item.selector} 영역이 비어 있습니다. / ${item.selector} has an empty layout box.`);
+      failures.push(`${viewport.name}: ${item.selector} 영역이 비어 있습니다.`);
     }
     if (item.rect.left < -4 || item.rect.right > viewport.width + 4) {
-      failures.push(`${viewport.name}: ${item.selector}가 viewport 밖으로 벗어났습니다. / ${item.selector} extends outside the viewport.`);
+      failures.push(`${viewport.name}: ${item.selector}가 viewport 밖으로 벗어났습니다.`);
     }
   }
 
   for (const overlap of result.overlapGroups) {
-    failures.push(`${viewport.name}: ${overlap.selector} child overlap ${overlap.x}x${overlap.y} (${overlap.first} / ${overlap.second}). / ${overlap.selector} children overlap.`);
+    failures.push(`${viewport.name}: ${overlap.selector} 하위 요소 겹침 ${overlap.x}x${overlap.y} (${overlap.first}, ${overlap.second}).`);
   }
 }
 
@@ -155,10 +155,10 @@ async function assertThemeSwitch(page) {
   const afterDark = await page.locator(".shell").evaluate((element) => getComputedStyle(element).backgroundColor);
   const shellTheme = await page.locator(".shell").evaluate((element) => element.getAttribute("data-ds-theme"));
   if (shellTheme !== "dark") {
-    failures.push("theme switch: `.shell` data-ds-theme가 dark로 바뀌지 않았습니다. / `.shell` data-ds-theme did not switch to dark.");
+    failures.push("테마 전환: `.shell` data-ds-theme가 dark로 바뀌지 않았습니다.");
   }
   if (before === afterDark) {
-    failures.push("theme switch: DARK 적용 후 shell background가 바뀌지 않았습니다. / Shell background did not change after applying DARK.");
+    failures.push("테마 전환: DARK 적용 후 shell 배경이 바뀌지 않았습니다.");
   }
 
   await page.getByRole("button", { name: /NORMAL/ }).first().click();
@@ -209,7 +209,7 @@ async function assertNaturalTabEntry(browser) {
         await focusPage.waitForTimeout(120);
         const hashFocus = await getFocusedElementState(focusPage);
         if (!hashFocus.visible || !hashFocus.withinViewport) {
-          failures.push(`natural tab: hash route 이후 Tab이 visible focus로 이동하지 않았습니다. / Tab after hash route did not move to visible focus: ${JSON.stringify({ hashFocus, url })}`);
+          failures.push(`natural tab: hash route 이후 Tab이 visible focus로 이동하지 않았습니다: ${JSON.stringify({ hashFocus, url })}`);
         }
         await focusPage.close();
         continue;
@@ -219,9 +219,9 @@ async function assertNaturalTabEntry(browser) {
       await focusPage.waitForTimeout(120);
 
       const firstFocus = await getFocusedElementState(focusPage);
-      const isSkipLink = firstFocus.label.includes("본문으로 이동") || firstFocus.label.includes("Skip to content");
+      const isSkipLink = firstFocus.label.includes("본문으로 이동");
       if (!isSkipLink || !firstFocus.visible || !firstFocus.withinViewport) {
-        failures.push(`natural tab: 첫 Tab이 visible skip link로 이동하지 않았습니다. / First Tab did not move to a visible skip link: ${JSON.stringify({ firstFocus, url })}`);
+        failures.push(`natural tab: 첫 Tab이 visible skip link로 이동하지 않았습니다: ${JSON.stringify({ firstFocus, url })}`);
       }
 
       await focusPage.keyboard.press("Enter");
@@ -229,7 +229,7 @@ async function assertNaturalTabEntry(browser) {
       const skippedFocus = await getFocusedElementState(focusPage);
       const mainTopVisible = skippedFocus.rect && skippedFocus.rect.top >= -4 && skippedFocus.rect.top <= 4;
       if (skippedFocus.tagName !== "MAIN" || !skippedFocus.visible || !mainTopVisible) {
-        failures.push(`natural tab: skip link가 main content focus로 이동하지 않았습니다. / Skip link did not move focus to main content: ${JSON.stringify({ skippedFocus, url })}`);
+        failures.push(`natural tab: skip link가 main content focus로 이동하지 않았습니다: ${JSON.stringify({ skippedFocus, url })}`);
       }
       await focusPage.close();
     }
@@ -263,12 +263,12 @@ async function assertTabFocus(browser) {
 
   const navSteps = focusSteps.slice(0, 8);
   const invalidSteps = navSteps.filter((step) => step.tagName === "BODY" || !step.visible || !step.withinViewport);
-  const reachedPrimaryAction = focusSteps.some((step) => step.label.includes("컴포넌트 보기") || step.label.includes("View components"));
+  const reachedPrimaryAction = focusSteps.some((step) => step.label.includes("컴포넌트 보기"));
   if (invalidSteps.length > 0) {
-    failures.push(`tab focus: 보이지 않거나 viewport 밖인 focus step이 있습니다. / Some Tab focus steps are invisible or outside the viewport: ${JSON.stringify({ invalidSteps, focusSteps })}`);
+    failures.push(`Tab 포커스: 보이지 않거나 viewport 밖인 포커스 단계가 있습니다: ${JSON.stringify({ invalidSteps, focusSteps })}`);
   }
   if (!reachedPrimaryAction) {
-    failures.push(`tab focus: 상단 navigation에서 primary action까지 도달하지 못했습니다. / Tab focus did not reach the primary action from the top navigation: ${JSON.stringify(focusSteps)}`);
+    failures.push(`Tab 포커스: 상단 내비게이션에서 주요 액션까지 도달하지 못했습니다: ${JSON.stringify(focusSteps)}`);
   }
 }
 
@@ -302,4 +302,4 @@ if (failures.length > 0) {
   process.exit(1);
 }
 
-console.log(`문서 앱 browser smoke 검증 완료: viewport ${viewports.length}개, theme switch, Tab focus. / Docs app browser smoke passed: ${viewports.length} viewports, theme switch, and Tab focus.`);
+console.log(`문서 앱 브라우저 스모크 검증 완료: viewport ${viewports.length}개, 테마 전환, Tab 포커스.`);

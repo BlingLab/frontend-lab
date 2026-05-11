@@ -33,7 +33,7 @@ export function List({ items = [], density = "md", dividers = true, selectionMod
           ) : renderItem?.(item, index) ?? <ListItemContent item={item} />}
         </li>
       ))}
-      {items.length === 0 ? <li className="ds-List-empty">목록이 비어 있습니다. / The list is empty.</li> : null}
+      {items.length === 0 ? <li className="ds-List-empty">목록이 비어 있습니다.</li> : null}
     </ul>
   );
 }

@@ -75,9 +75,9 @@ const implementationPaths = new Map([
   ["Stack", ["layout", "stack"]],
   ["Inline", ["layout", "inline"]]
 ]);
-const propTableHeader = "| Prop | Type | Default | 설명 / Description |";
-const usageCriteriaPattern = (priority, status) => new RegExp(`우선순위는 \`${priority}\`, 상태는 \`${status}\`입니다\\. / Priority is \`${priority}\`, and status is \`${status}\`\\.`);
-const apiSurfacePattern = (priority, status) => new RegExp(`priority/status: \`${priority}\` / \`${status}\``);
+const propTableHeader = "| Prop | Type | Default | 설명 |";
+const usageCriteriaPattern = (priority, status) => new RegExp(`우선순위는 \`${priority}\`, 상태는 \`${status}\`입니다\\.`);
+const apiSurfacePattern = (priority, status) => new RegExp(`우선순위/상태: \`${priority}\`, \`${status}\``);
 
 function extractInterfacePropNames(source, interfaceName) {
   const interfaceIndex = source.indexOf(`interface ${interfaceName}`);
@@ -105,37 +105,37 @@ async function mustExist(path) {
   try {
     await access(path);
   } catch {
-    failures.push(`필수 파일이 없습니다. / Missing required file: ${path}`);
+    failures.push(`필수 파일이 없습니다: ${path}`);
   }
 }
 
 for (const component of componentCatalog) {
   if (!/^[A-Z][A-Za-z0-9]*$/.test(component.name)) {
-    failures.push(`${component.name} 이름은 PascalCase여야 합니다. / Component name must be PascalCase: ${component.name}`);
+    failures.push(`${component.name} 이름은 PascalCase여야 합니다.`);
   }
 
   if (!categoryIds.has(component.category)) {
-    failures.push(`${component.name}의 category를 알 수 없습니다. / ${component.name} has unknown category: ${component.category}`);
+    failures.push(`${component.name}의 category를 알 수 없습니다: ${component.category}`);
   }
 
   if (!statusIds.has(component.status)) {
-    failures.push(`${component.name}의 status를 알 수 없습니다. / ${component.name} has unknown status: ${component.status}`);
+    failures.push(`${component.name}의 status를 알 수 없습니다: ${component.status}`);
   }
 
   if (!/^[a-z0-9]+(?:-[a-z0-9]+)*$/.test(component.slug)) {
-    failures.push(`${component.name} slug는 kebab-case여야 합니다. / ${component.name} slug must be kebab-case: ${component.slug}`);
+    failures.push(`${component.name} slug는 kebab-case여야 합니다: ${component.slug}`);
   }
 
   for (const prop of component.props) {
     if (prop.startsWith("on") && !/^on[A-Z][A-Za-z0-9]*$/.test(prop)) {
-      failures.push(`${component.name}의 event prop은 onPascalCase 형식이어야 합니다. / ${component.name} event prop must use onPascalCase: ${prop}`);
+      failures.push(`${component.name}의 event prop은 onPascalCase 형식이어야 합니다: ${prop}`);
     }
   }
 
   const propDocNames = new Set(getComponentPropDocs(component).map((propDoc) => propDoc.name));
   for (const prop of component.props) {
     if (!propDocNames.has(prop)) {
-      failures.push(`${component.name} prop 문서에 catalog prop이 없습니다. / ${component.name} prop docs are missing catalog prop: ${prop}`);
+      failures.push(`${component.name} prop 문서에 카탈로그 prop이 없습니다: ${prop}`);
     }
   }
 
@@ -157,8 +157,8 @@ for (const component of componentCatalog) {
 
 for (const [componentName, propDocs] of Object.entries(componentPropDocs)) {
   for (const propDoc of propDocs) {
-    if (!propDoc.description.includes(" / ")) {
-      failures.push(`${componentName}.${propDoc.name} prop 설명은 한글 우선/영문 병기를 유지해야 합니다. / ${componentName}.${propDoc.name} prop description must keep Korean-first English-paired writing.`);
+    if (/ \/ [A-Z]/.test(propDoc.description)) {
+      failures.push(`${componentName}.${propDoc.name} prop 설명에 불필요한 영어 설명이 남아 있습니다.`);
     }
   }
 }
@@ -177,14 +177,14 @@ const stylesCss = await readFile(stylesPath, "utf8");
 
 for (const tokenName of requiredTokenNames) {
   if (!tokensCss.includes(tokenName)) {
-    failures.push(`필수 토큰이 없습니다. / Missing required token: ${tokenName}`);
+    failures.push(`필수 토큰이 없습니다: ${tokenName}`);
   }
 }
 
 for (const exportName of requiredExports) {
   const implementationPath = implementationPaths.get(exportName);
   if (!implementationPath) {
-    failures.push(`구현 경로를 알 수 없습니다. / Missing implementation path mapping: ${exportName}`);
+    failures.push(`구현 경로를 알 수 없습니다: ${exportName}`);
     continue;
   }
 
@@ -202,37 +202,37 @@ for (const exportName of requiredExports) {
   const catalogItem = componentCatalog.find((component) => component.name === exportName);
 
   if (!componentSource.includes(`export function ${exportName}`) && !componentSource.includes(`export const ${exportName}`)) {
-    failures.push(`${exportName} 구현은 자기 폴더의 ${slug}.tsx에서 named export여야 합니다. / ${exportName} implementation must be a named export in its own ${slug}.tsx file.`);
+    failures.push(`${exportName} 구현은 자기 폴더의 ${slug}.tsx에서 named export여야 합니다.`);
   }
   if (!entrySource.includes(`./${slug}`)) {
-    failures.push(`${exportName} index.ts는 같은 폴더의 ${slug}.tsx를 export해야 합니다. / ${exportName} index.ts must export from ./${slug}.`);
+    failures.push(`${exportName} index.ts는 같은 폴더의 ${slug}.tsx를 export해야 합니다.`);
   }
   if (!indexTs.includes(exportName)) {
-    failures.push(`index.ts에서 컴포넌트를 export해야 합니다. / index.ts must export component: ${exportName}`);
+    failures.push(`index.ts에서 컴포넌트를 export해야 합니다: ${exportName}`);
   }
 
   if (catalogItem && !usageCriteriaPattern(catalogItem.priority, catalogItem.status).test(readmeSource)) {
-    failures.push(`${exportName} README의 priority/status가 catalog와 다릅니다. / ${exportName} README priority/status must match the catalog.`);
+    failures.push(`${exportName} README의 우선순위/상태가 catalog와 다릅니다.`);
   }
   if (catalogItem && !apiSurfacePattern(catalogItem.priority, catalogItem.status).test(specSource)) {
-    failures.push(`${exportName} spec의 priority/status가 catalog와 다릅니다. / ${exportName} spec priority/status must match the catalog.`);
+    failures.push(`${exportName} spec의 우선순위/상태가 catalog와 다릅니다.`);
   }
 
   if (catalogItem?.status === "ready") {
     const propDocs = getComponentPropDocs(catalogItem);
-    const readmeHasPropTable = readmeSource.includes("## Prop 표 / Prop Table") && readmeSource.includes(propTableHeader);
+    const readmeHasPropTable = readmeSource.includes("## Prop 표") && readmeSource.includes(propTableHeader);
     if (!readmeHasPropTable) {
-      failures.push(`${exportName} README에 Prop 표가 없습니다. / ${exportName} README is missing a prop table.`);
+      failures.push(`${exportName} README에 Prop 표가 없습니다.`);
     }
-    if (!specSource.includes("## Prop 표 / Prop Table") || !specSource.includes(propTableHeader)) {
-      failures.push(`${exportName} spec에 Prop 표가 없습니다. / ${exportName} spec is missing a prop table.`);
+    if (!specSource.includes("## Prop 표") || !specSource.includes(propTableHeader)) {
+      failures.push(`${exportName} spec에 Prop 표가 없습니다.`);
     }
     for (const propDoc of propDocs) {
       if (!readmeSource.includes(`| \`${propDoc.name}\``)) {
-        failures.push(`${exportName} README Prop 표에 prop이 없습니다. / ${exportName} README prop table is missing prop: ${propDoc.name}`);
+        failures.push(`${exportName} README Prop 표에 prop이 없습니다: ${propDoc.name}`);
       }
       if (!specSource.includes(`| \`${propDoc.name}\``)) {
-        failures.push(`${exportName} spec Prop 표에 prop이 없습니다. / ${exportName} spec prop table is missing prop: ${propDoc.name}`);
+        failures.push(`${exportName} spec Prop 표에 prop이 없습니다: ${propDoc.name}`);
       }
     }
   }
@@ -242,11 +242,11 @@ for (const exportName of requiredExports) {
     const sourceProps = extractInterfacePropNames(componentSource, `${exportName}Props`);
     for (const sourceProp of sourceProps) {
       if (!documentedProps.has(sourceProp)) {
-        failures.push(`${exportName} prop table에 source prop이 없습니다. / ${exportName} prop table is missing source prop: ${sourceProp}`);
+        failures.push(`${exportName} prop table에 source prop이 없습니다: ${sourceProp}`);
       }
     }
-    if (!readmeSource.includes("## Prop 표 / Prop Table") || !readmeSource.includes(propTableHeader)) {
-      failures.push(`${exportName} README에 Prop 표가 없습니다. / ${exportName} README is missing a prop table.`);
+    if (!readmeSource.includes("## Prop 표") || !readmeSource.includes(propTableHeader)) {
+      failures.push(`${exportName} README에 Prop 표가 없습니다.`);
     }
   }
 }
@@ -254,22 +254,22 @@ for (const exportName of requiredExports) {
 const forbiddenMonolithPath = join(rootDir, "packages", "ui", "src", "components.tsx");
 try {
   await access(forbiddenMonolithPath);
-  failures.push("컴포넌트 구현을 src/components.tsx 한 파일에 모으지 않습니다. / Do not centralize component implementations in src/components.tsx.");
+  failures.push("컴포넌트 구현을 src/components.tsx 한 파일에 모으지 않습니다.");
 } catch {
-  // 파일이 없으면 정상입니다. / Missing file is expected.
+  // 파일이 없으면 정상입니다.
 }
 
 const rawUiValuePattern = /#[0-9a-fA-F]{3,8}\b|rgba?\(/g;
 const rawUiValues = stylesCss.match(rawUiValuePattern) || [];
 if (rawUiValues.length > 0) {
-  failures.push(`UI CSS에는 raw color 값을 직접 쓰지 않습니다. tokens.css로 옮기세요. / UI CSS must not include raw color values: ${[...new Set(rawUiValues)].join(", ")}`);
+  failures.push(`UI CSS에는 raw color 값을 직접 쓰지 않습니다. tokens.css로 옮기세요: ${[...new Set(rawUiValues)].join(", ")}`);
 }
 
 const publicClassPattern = /\.ds-([A-Za-z0-9-]+)/g;
 for (const match of stylesCss.matchAll(publicClassPattern)) {
   const className = match[1];
   if (!/^[A-Z][A-Za-z0-9]*(?:-[a-z][A-Za-z0-9]*)*$/.test(className)) {
-    failures.push(`공개 CSS class는 ds-PascalCase 또는 ds-PascalCase-element 형식이어야 합니다. / Public CSS class must use ds-PascalCase or ds-PascalCase-element: ds-${className}`);
+    failures.push(`공개 CSS class는 ds-PascalCase 또는 ds-PascalCase-element 형식이어야 합니다: ds-${className}`);
   }
 }
 
@@ -278,4 +278,4 @@ if (failures.length > 0) {
   process.exit(1);
 }
 
-console.log(`컴포넌트 시스템 검증 완료: ${componentCatalog.length}개 컴포넌트. / Component system validated: ${componentCatalog.length} components.`);
+console.log(`컴포넌트 시스템 검증 완료: ${componentCatalog.length}개 컴포넌트.`);

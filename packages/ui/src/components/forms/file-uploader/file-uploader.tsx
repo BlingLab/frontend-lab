@@ -17,10 +17,10 @@ export interface FileUploaderProps extends Omit<InputHTMLAttributes<HTMLInputEle
 }
 
 export function FileUploader({
-  label = "파일 업로드 / Upload files",
+  label = "파일 업로드",
   description,
   error,
-  helperText = "파일을 선택하거나 여기에 끌어오세요. / Choose files or drag them here.",
+  helperText = "파일을 선택하거나 여기에 끌어오세요.",
   files,
   defaultFiles = [],
   maxFiles,

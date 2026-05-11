@@ -24,7 +24,7 @@ export function Toast({
   description,
   duration,
   dismissible = true,
-  dismissLabel = "닫기 / Dismiss",
+  dismissLabel = "닫기",
   actions = [],
   onDismiss,
   className,

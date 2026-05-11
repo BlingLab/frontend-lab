@@ -41,21 +41,21 @@ for (const filePath of files) {
   const lines = content.split("\n");
 
   if (content.includes("\r\n")) {
-    failures.push(`${relativePath}: CRLF 줄바꿈을 사용합니다. / Uses CRLF line endings.`);
+    failures.push(`${relativePath}: CRLF 줄바꿈을 사용합니다.`);
   }
   if (/^(<<<<<<< |=======|>>>>>>> )/m.test(content)) {
-    failures.push(`${relativePath}: merge conflict marker가 남아 있습니다. / Contains merge conflict markers.`);
+    failures.push(`${relativePath}: merge conflict marker가 남아 있습니다.`);
   }
   if (!content.endsWith("\n")) {
-    failures.push(`${relativePath}: 파일 끝 newline이 없습니다. / Missing trailing newline.`);
+    failures.push(`${relativePath}: 파일 끝 newline이 없습니다.`);
   }
 
   lines.forEach((line, index) => {
     if (/[ \t]+$/.test(line)) {
-      failures.push(`${relativePath}:${index + 1}: trailing whitespace가 있습니다. / Contains trailing whitespace.`);
+      failures.push(`${relativePath}:${index + 1}: trailing whitespace가 있습니다.`);
     }
     if (scope.name !== "Markdown" && /^\t+/.test(line)) {
-      failures.push(`${relativePath}:${index + 1}: tab indentation을 사용합니다. / Uses tab indentation.`);
+      failures.push(`${relativePath}:${index + 1}: tab indentation을 사용합니다.`);
     }
   });
 }
@@ -68,4 +68,4 @@ if (failures.length > 0) {
 const summary = Array.from(scopeCounts.entries())
   .map(([scopeName, count]) => `${scopeName} ${count}`)
   .join(", ");
-console.log(`품질 게이트 검증 완료: ${summary}. / Quality gates passed: ${summary}.`);
+console.log(`품질 게이트 검증 완료: ${summary}.`);

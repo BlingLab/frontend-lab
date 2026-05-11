@@ -19,7 +19,7 @@ export function Breadcrumb({ items = [], separator = "/", maxItems = Infinity, c
     : items;
 
   return (
-    <nav className={classNames("ds-Breadcrumb", className)} aria-label="이동 경로 / Breadcrumb" {...props}>
+    <nav className={classNames("ds-Breadcrumb", className)} aria-label="이동 경로" {...props}>
       <ol className="ds-Breadcrumb-list">
         {visibleItems.map((item, index) => {
           const current = index === visibleItems.length - 1 || item.current;

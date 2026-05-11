@@ -25,7 +25,7 @@ export interface SideNavProps extends Omit<HTMLAttributes<HTMLElement>, "default
   onValueChange?: (value: string) => void;
 }
 
-export function SideNav({ sections = [], value, defaultValue, label = "사이드 내비게이션 / Side navigation", collapsible = false, collapsed = false, onValueChange, className, ...props }: SideNavProps) {
+export function SideNav({ sections = [], value, defaultValue, label = "사이드 내비게이션", collapsible = false, collapsed = false, onValueChange, className, ...props }: SideNavProps) {
   const flatItems = sections.flatMap((section) => section.items);
   const fallbackValue = defaultValue ?? flatItems[0]?.value ?? "";
   const [currentValue, setCurrentValue] = useControllableState({ value, defaultValue: fallbackValue, onChange: onValueChange });

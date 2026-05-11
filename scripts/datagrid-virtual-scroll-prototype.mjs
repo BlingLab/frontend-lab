@@ -31,15 +31,15 @@ const localVirtualNavigationBudgetMs = 300;
 const ciVirtualNavigationBudgetMs = 600;
 const virtualNavigationBudgetMs = process.env.CI ? ciVirtualNavigationBudgetMs : localVirtualNavigationBudgetMs;
 const columns = [
-  { key: "name", label: "이름 / Name" },
-  { key: "status", label: "상태 / Status" },
-  { key: "owner", label: "담당 / Owner" }
+  { key: "name", label: "이름" },
+  { key: "status", label: "상태" },
+  { key: "owner", label: "담당" }
 ];
 const largeRows = Array.from({ length: totalRows }, (_, index) => ({
   id: `row-${index + 1}`,
-  name: `항목 ${index + 1} / Item ${index + 1}`,
-  status: index % 2 === 0 ? "준비 / Ready" : "대기 / Waiting",
-  owner: index % 3 === 0 ? "디자인 / Design" : "프론트엔드 / Frontend"
+  name: `항목 ${index + 1}}`,
+  status: index % 2 === 0 ? "준비" : "대기",
+  owner: index % 3 === 0 ? "디자인" : "프론트엔드"
 }));
 
 async function check(name, fn) {
@@ -95,7 +95,7 @@ function VirtualGridPrototype() {
       {
         role: "grid",
         tabIndex: 0,
-        "aria-label": "가상 DataGrid 프로토타입 / Virtual DataGrid prototype",
+        "aria-label": "가상 DataGrid 프로토타입",
         "aria-rowcount": totalRows + 1,
         "aria-colcount": columns.length,
         "aria-activedescendant": activeKey,
@@ -147,10 +147,10 @@ function VirtualGridPrototype() {
   );
 }
 
-await check("DataGrid large dataset baseline smoke", async () => {
+await check("DataGrid 대량 데이터셋 baseline smoke", async () => {
   const startedAt = performance.now();
   render(React.createElement(DataGrid, {
-    caption: "대량 데이터 기준 / Large dataset baseline",
+    caption: "대량 데이터 기준",
     columns,
     rows: largeRows.slice(0, 500),
     rowKey: (row) => row.id,
@@ -159,58 +159,58 @@ await check("DataGrid large dataset baseline smoke", async () => {
     defaultActiveRowKey: "row-1"
   }));
   const elapsed = performance.now() - startedAt;
-  const grid = screen.getByRole("grid", { name: "대량 데이터 기준 / Large dataset baseline" });
-  if (grid.getAttribute("aria-rowcount") !== "500") throw new Error("Expected current DataGrid to expose the rendered row count.");
-  if (grid.getAttribute("aria-colcount") !== "4") throw new Error("Expected selection column to be included in aria-colcount.");
-  if (elapsed > 1_500) throw new Error(`Expected 500 row render smoke under 1500ms, received ${elapsed.toFixed(1)}ms.`);
+  const grid = screen.getByRole("grid", { name: "대량 데이터 기준" });
+  if (grid.getAttribute("aria-rowcount") !== "500") throw new Error("현재 DataGrid는 렌더링된 행 수를 노출해야 합니다.");
+  if (grid.getAttribute("aria-colcount") !== "4") throw new Error("선택 열은 aria-colcount에 포함되어야 합니다.");
+  if (elapsed > 1_500) throw new Error(`500행 렌더 스모크는 1500ms 안에 끝나야 합니다. 실제 시간: ${elapsed.toFixed(1)}ms.`);
 });
 
-await check("Virtual scroll ARIA window strategy", async () => {
+await check("가상 스크롤 ARIA 창 전략", async () => {
   render(React.createElement(VirtualGridPrototype));
-  const grid = screen.getByRole("grid", { name: "가상 DataGrid 프로토타입 / Virtual DataGrid prototype" });
-  if (grid.getAttribute("aria-rowcount") !== "1001") throw new Error("Expected aria-rowcount to include the header row and all data rows.");
-  if (grid.getAttribute("aria-activedescendant") !== "row-101") throw new Error("Expected active descendant to point at the active row key.");
-  if (!screen.getByText("101-140행 / 전체 1000행")) throw new Error("Expected visible status text to describe the current virtual window.");
+  const grid = screen.getByRole("grid", { name: "가상 DataGrid 프로토타입" });
+  if (grid.getAttribute("aria-rowcount") !== "1001") throw new Error("aria-rowcount는 헤더 행과 모든 데이터 행을 포함해야 합니다.");
+  if (grid.getAttribute("aria-activedescendant") !== "row-101") throw new Error("활성 descendant는 활성 행 키를 가리켜야 합니다.");
+  if (!screen.getByText("101-140행 / 전체 1000행")) throw new Error("표시 상태 텍스트는 현재 가상 창을 설명해야 합니다.");
 
   const activeRow = document.getElementById("row-101");
-  if (activeRow?.getAttribute("aria-rowindex") !== "102") throw new Error("Expected virtual row aria-rowindex to reflect the absolute row position.");
-  if (activeRow?.getAttribute("aria-selected") !== "true") throw new Error("Expected selected state to survive virtual row rendering.");
+  if (activeRow?.getAttribute("aria-rowindex") !== "102") throw new Error("가상 행 aria-rowindex는 절대 행 위치를 반영해야 합니다.");
+  if (activeRow?.getAttribute("aria-selected") !== "true") throw new Error("선택 상태는 가상 행 렌더링 뒤에도 유지되어야 합니다.");
 });
 
-await check("Virtual scroll keyboard and selection persistence", async () => {
+await check("가상 스크롤 키보드 이동과 선택 유지", async () => {
   render(React.createElement(VirtualGridPrototype));
-  const grid = screen.getByRole("grid", { name: "가상 DataGrid 프로토타입 / Virtual DataGrid prototype" });
+  const grid = screen.getByRole("grid", { name: "가상 DataGrid 프로토타입" });
   grid.focus();
   for (let index = 0; index < 45; index += 1) {
     fireEvent.keyDown(grid, { key: "ArrowDown" });
   }
 
   await waitFor(() => {
-    if (grid.getAttribute("aria-activedescendant") !== "row-146") throw new Error(`Expected active row row-146, received ${grid.getAttribute("aria-activedescendant")}.`);
-    if (!document.getElementById("row-146")) throw new Error("Expected active row to remain mounted after window shift.");
-    if (!screen.getByRole("status").textContent?.includes("111-150행")) throw new Error(`Expected window status to shift around active row, received ${screen.getByRole("status").textContent}.`);
+    if (grid.getAttribute("aria-activedescendant") !== "row-146") throw new Error(`활성 행은 row-146이어야 합니다. 실제 값: ${grid.getAttribute("aria-activedescendant")}.`);
+    if (!document.getElementById("row-146")) throw new Error("활성 행은 가상 창 이동 뒤에도 마운트되어 있어야 합니다.");
+    if (!screen.getByRole("status").textContent?.includes("111-150행")) throw new Error(`창 상태는 활성 행 주변으로 이동해야 합니다. 실제 값: ${screen.getByRole("status").textContent}.`);
   });
 
   fireEvent.keyDown(grid, { key: " " });
   await waitFor(() => {
     const selectedRow = document.getElementById("row-146");
-    if (selectedRow?.getAttribute("aria-selected") !== "true") throw new Error("Expected Space to persist selection by row key.");
+    if (selectedRow?.getAttribute("aria-selected") !== "true") throw new Error("Space는 행 키 기준 선택을 유지해야 합니다.");
   });
 });
 
-await check("Virtual scroll window update performance", async () => {
+await check("가상 스크롤 창 갱신 성능", async () => {
   render(React.createElement(VirtualGridPrototype));
-  const grid = screen.getByRole("grid", { name: "가상 DataGrid 프로토타입 / Virtual DataGrid prototype" });
+  const grid = screen.getByRole("grid", { name: "가상 DataGrid 프로토타입" });
   const startedAt = performance.now();
   for (let index = 0; index < virtualNavigationIterations; index += 1) {
     fireEvent.keyDown(grid, { key: "ArrowDown" });
   }
   await waitFor(() => {
-    if (grid.getAttribute("aria-activedescendant") !== "row-221") throw new Error("Expected repeated keyboard navigation to finish at row-221.");
+    if (grid.getAttribute("aria-activedescendant") !== "row-221") throw new Error("반복 키보드 이동은 row-221에서 끝나야 합니다.");
   });
   const elapsed = performance.now() - startedAt;
   if (elapsed > virtualNavigationBudgetMs) {
-    throw new Error(`${virtualNavigationIterations}회 가상 navigation update가 ${virtualNavigationBudgetMs}ms 안에 끝나야 합니다. / Expected ${virtualNavigationIterations} virtual navigation updates under ${virtualNavigationBudgetMs}ms, received ${elapsed.toFixed(1)}ms.`);
+    throw new Error(`${virtualNavigationIterations}회 가상 이동 갱신이 ${virtualNavigationBudgetMs}ms 안에 끝나야 합니다. 실제 ${elapsed.toFixed(1)}ms.`);
   }
 });
 
@@ -219,4 +219,4 @@ if (failures.length > 0) {
   process.exit(1);
 }
 
-console.log("DataGrid 가상 스크롤 ARIA/성능 프로토타입 검증 완료. / DataGrid virtual scroll ARIA/performance prototype checks passed.");
+console.log("DataGrid 가상 스크롤 ARIA/성능 프로토타입 검증 완료.");

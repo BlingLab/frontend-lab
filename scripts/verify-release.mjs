@@ -13,7 +13,7 @@ async function mustExist(label, path) {
   try {
     await access(path);
   } catch {
-    failures.push(`${label} 파일이 없습니다. / Missing ${label} file: ${path}`);
+    failures.push(`${label} 파일이 없습니다: ${path}`);
   }
 }
 
@@ -24,16 +24,16 @@ const changelog = await readFile(join(rootDir, "CHANGELOG.md"), "utf8");
 const requiredRootScripts = ["test", "typecheck", "test:consumer", "test:tokens", "test:types", "test:visual", "release:dry-run", "release:publish-verify"];
 for (const scriptName of requiredRootScripts) {
   if (!rootPackage.scripts?.[scriptName]) {
-    failures.push(`${scriptName} script가 package.json에 없습니다. / ${scriptName} script is missing from package.json.`);
+    failures.push(`${scriptName} script가 package.json에 없습니다.`);
   }
 }
 
 if (!uiPackage.peerDependencies?.react || !uiPackage.peerDependencies?.["react-dom"]) {
-  failures.push("React peer dependency가 누락되었습니다. / React peer dependencies are missing.");
+  failures.push("React peer dependency가 누락되었습니다.");
 }
 
 if (!uiPackage.files?.includes("dist") || !uiPackage.files?.includes("README.md")) {
-  failures.push("packages/ui files 목록에 dist와 README.md가 필요합니다. / packages/ui files must include dist and README.md.");
+  failures.push("packages/ui files 목록에 dist와 README.md가 필요합니다.");
 }
 
 await mustExist("UI dist index", join(rootDir, "packages", "ui", "dist", "index.js"));
@@ -42,9 +42,9 @@ await mustExist("UI dist styles", join(rootDir, "packages", "ui", "dist", "style
 
 const unreleasedMatch = changelog.match(/## Unreleased([\s\S]*?)(?:\n## |\n$)/);
 if (!unreleasedMatch) {
-  failures.push("CHANGELOG.md에 Unreleased 섹션이 없습니다. / CHANGELOG.md is missing the Unreleased section.");
-} else if (!/- .+ \/ .+/.test(unreleasedMatch[1])) {
-  failures.push("CHANGELOG.md Unreleased에 한글/영문 병기 항목이 필요합니다. / CHANGELOG.md Unreleased needs Korean/English paired entries.");
+  failures.push("CHANGELOG.md에 Unreleased 섹션이 없습니다.");
+} else if (!/- .+/.test(unreleasedMatch[1])) {
+  failures.push("CHANGELOG.md Unreleased에 변경 항목이 필요합니다.");
 }
 
 if (failures.length > 0) {
@@ -52,4 +52,4 @@ if (failures.length > 0) {
   process.exit(1);
 }
 
-console.log("릴리즈 메타데이터 검증 완료. / Release metadata checks passed.");
+console.log("릴리즈 메타데이터 검증 완료.");

@@ -27,9 +27,9 @@ export function Pagination({ page, defaultPage = 1, totalPages = 1, siblingCount
   };
 
   return (
-    <nav className={classNames("ds-Pagination", className)} aria-label="페이지 / Pagination" {...props}>
+    <nav className={classNames("ds-Pagination", className)} aria-label="페이지" {...props}>
       <div className="ds-Pagination-list">
-        <Button label="이전 / Prev" variant="outline" tone="neutral" size="sm" disabled={disabled || currentPage === 1} onClick={() => go(currentPage - 1)} />
+        <Button label="이전" variant="outline" tone="neutral" size="sm" disabled={disabled || currentPage === 1} onClick={() => go(currentPage - 1)} />
         {pages.map((pageNumber) => (
           <Button
             key={pageNumber}
@@ -43,7 +43,7 @@ export function Pagination({ page, defaultPage = 1, totalPages = 1, siblingCount
             {pageNumber}
           </Button>
         ))}
-        <Button label="다음 / Next" variant="outline" tone="neutral" size="sm" disabled={disabled || currentPage === totalPages} onClick={() => go(currentPage + 1)} />
+        <Button label="다음" variant="outline" tone="neutral" size="sm" disabled={disabled || currentPage === totalPages} onClick={() => go(currentPage + 1)} />
       </div>
     </nav>
   );

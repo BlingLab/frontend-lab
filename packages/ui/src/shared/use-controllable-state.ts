@@ -6,7 +6,7 @@ export interface UseControllableStateOptions<Value> {
   onChange?: (value: Value) => void;
 }
 
-// controlled prop이 있으면 외부 값을 따르고, 없으면 내부 state를 사용합니다. / When a controlled prop exists, follow it; otherwise use internal state.
+// controlled prop이 있으면 외부 값을 따르고, 없으면 내부 state를 사용합니다.
 export function useControllableState<Value>({
   value,
   defaultValue,

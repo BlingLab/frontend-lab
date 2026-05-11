@@ -28,13 +28,13 @@ export interface CommandPaletteProps extends Omit<HTMLAttributes<HTMLDivElement>
 }
 
 export function CommandPalette({
-  title = "명령 팔레트 / Command palette",
-  triggerLabel = "명령 열기 / Open commands",
+  title = "명령 팔레트",
+  triggerLabel = "명령 열기",
   commands = [],
   open,
   defaultOpen = false,
-  placeholder = "명령 검색 / Search commands",
-  emptyMessage = "명령이 없습니다. / No commands.",
+  placeholder = "명령 검색",
+  emptyMessage = "명령이 없습니다.",
   onOpenChange,
   onCommandSelect,
   className,
@@ -114,7 +114,7 @@ export function CommandPalette({
       <dialog className="ds-CommandPalette" data-state={currentOpen ? "open" : "closed"} ref={dialogRef} aria-labelledby={titleId} onCancel={closePalette} onClose={() => setOpen(false)}>
         <div className="ds-CommandPalette-header">
           <h3 id={titleId}>{title}</h3>
-          <button className="ds-CommandPalette-close" type="button" aria-label="닫기 / Close" onClick={closePalette}>
+          <button className="ds-CommandPalette-close" type="button" aria-label="닫기" onClick={closePalette}>
             <Icon name="x" />
           </button>
         </div>

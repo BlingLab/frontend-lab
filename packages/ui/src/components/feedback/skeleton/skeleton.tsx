@@ -9,7 +9,7 @@ export interface SkeletonProps extends HTMLAttributes<HTMLSpanElement> {
   label?: string;
 }
 
-export function Skeleton({ shape = "rect", width, height, animated = true, label = "콘텐츠 로딩 중 / Loading content", className, style, ...props }: SkeletonProps) {
+export function Skeleton({ shape = "rect", width, height, animated = true, label = "콘텐츠 로딩 중", className, style, ...props }: SkeletonProps) {
   return (
     <span
       className={classNames("ds-Skeleton", className)}
