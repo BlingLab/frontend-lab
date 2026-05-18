@@ -145,6 +145,19 @@ export const componentPropDocs: Record<string, ComponentPropDoc[]> = {
     { name: "onOpenChange", type: "(open: boolean) => void", defaultValue: "-", description: "open 상태가 바뀔 때 호출됩니다." },
     { name: "onCommandSelect", type: "(command: CommandPaletteCommand) => void", defaultValue: "-", description: "command가 선택될 때 호출됩니다." }
   ],
+  Spinner: [
+    { name: "size", type: "Size", defaultValue: "\"md\"", description: "스피너 크기입니다." },
+    { name: "tone", type: "Tone", defaultValue: "\"neutral\"", description: "상태 색상 tone입니다." },
+    { name: "label", type: "string", defaultValue: "\"불러오는 중\"", description: "상태 전달용 접근성 문구입니다." },
+    { name: "status", type: "\"status\" | \"decorative\"", defaultValue: "\"status\"", description: "보조기술에 상태를 전달할지 장식으로 숨길지 결정합니다." }
+  ],
+  InlineLoading: [
+    { name: "label", type: "ReactNode", defaultValue: "\"불러오는 중\"", description: "사용자에게 표시하고 전달할 상태 문구입니다." },
+    { name: "description", type: "ReactNode", defaultValue: "-", description: "상태를 보강하는 짧은 설명입니다." },
+    { name: "size", type: "Size", defaultValue: "\"md\"", description: "표시 밀도와 아이콘 크기입니다." },
+    { name: "tone", type: "Tone", defaultValue: "\"neutral\"", description: "loading 상태의 색상 tone입니다." },
+    { name: "status", type: "\"loading\" | \"success\" | \"error\"", defaultValue: "\"loading\"", description: "현재 인라인 상태입니다." }
+  ],
   DataGrid: [
     { name: "caption", type: "ReactNode", defaultValue: "-", description: "table caption입니다." },
     { name: "columns", type: "Array<DataGridColumn<Row>>", defaultValue: "[]", description: "column 구조와 render 설정입니다." },

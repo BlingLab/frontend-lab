@@ -54,6 +54,8 @@
 | Forms | Textarea | 긴 텍스트 입력입니다.|
 | Feedback | Toast | 전역 작업 결과 알림입니다.|
 | Feedback | Progress | 비동기 작업 상태 표시입니다.|
+| Feedback | Spinner | 짧은 대기 상태 표시입니다.|
+| Feedback | InlineLoading | 텍스트를 포함한 인라인 대기 상태 표시입니다.|
 | Feedback | Skeleton | loading layout 안정화입니다.|
 | Overlays | Dialog | blocking task와 confirmation의 기준입니다.|
 | Overlays | Popover | contextual surface입니다.|

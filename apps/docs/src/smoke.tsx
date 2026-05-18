@@ -24,6 +24,7 @@ import {
   FileUploader,
   Icon,
   IconButton,
+  InlineLoading,
   Inline,
   List,
   NavigationRail,
@@ -35,6 +36,7 @@ import {
   Select,
   SideNav,
   Skeleton,
+  Spinner,
   Stack,
   Stepper,
   Switch,
@@ -67,7 +69,7 @@ function SmokeApp() {
     <main className="smoke-page">
       <header>
         <h1>컴포넌트 smoke 확인</h1>
-        <p>이 화면은 실제 `@bling-lab/ui` React export만 사용합니다.`@bling-lab/ui` React exports.</p>
+        <p>이 화면은 실제 `@bling-lab/ui` React export만 사용합니다.</p>
         <nav className="smoke-doc-links" aria-label="컴포넌트 문서 링크">
           {componentCatalog.map((component) => (
             <a href={getComponentReadmeUrl(component)} key={component.name} target="_blank" rel="noreferrer">{component.name}</a>
@@ -89,6 +91,12 @@ function SmokeApp() {
         </SmokeCard>
         <SmokeCard title="Progress">
           <Progress label="완료율" value={72} />
+        </SmokeCard>
+        <SmokeCard title="Spinner">
+          <Spinner label="목록을 불러오는 중" tone="brand" />
+        </SmokeCard>
+        <SmokeCard title="InlineLoading">
+          <InlineLoading label="저장 중" description="상태를 확인하고 있습니다." tone="brand" />
         </SmokeCard>
         <SmokeCard title="Skeleton">
           <Stack gap="sm">

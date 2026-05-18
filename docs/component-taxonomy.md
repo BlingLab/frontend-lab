@@ -42,6 +42,8 @@ UI 전체의 기반입니다.
 - Toast
 - Badge
 - Progress
+- Spinner
+- InlineLoading
 - Skeleton
 
 ## 오버레이
@@ -88,13 +90,13 @@ UI 전체의 기반입니다.
 
 ## 현재 카탈로그
 
-현재 public catalog는 40개 ready 컴포넌트로 구성됩니다.
+현재 public catalog는 42개 ready 컴포넌트로 구성됩니다.
 
 | 분류 | 컴포넌트 | 기준 |
 | --- | --- | --- |
 | Actions | Button, IconButton, Icon | 명령 실행과 명령 UI에 필요한 시각 primitive입니다. |
 | Forms | Field, TextField, Textarea, Select, DatePicker, Combobox, Checkbox, RadioGroup, Switch, FileUploader | 값 입력, 값 선택, 검증 관계를 담당합니다. |
-| Feedback | Alert, Toast, Badge, Progress, Skeleton | 상태, 결과, 진행, 로딩 placeholder를 전달합니다. |
+| Feedback | Alert, Toast, Badge, Progress, Spinner, InlineLoading, Skeleton | 상태, 결과, 진행, 짧은 대기, 로딩 placeholder를 전달합니다. |
 | Overlays | Dialog, Popover, Tooltip, DropdownMenu, CommandPalette | 현재 surface 위에 임시 계층을 만들고 focus/dismiss 계약을 가집니다. |
 | Navigation | Tabs, Breadcrumb, Pagination, Stepper, NavigationRail, SideNav | 위치 이동, 단계 진행, 같은 맥락의 panel 전환을 담당합니다. |
 | Layout | Container, Row, Col, Stack, Inline, Card, Divider | page width, grid, spacing, surface, 구획을 담당합니다. |

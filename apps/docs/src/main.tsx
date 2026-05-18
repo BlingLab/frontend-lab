@@ -24,6 +24,7 @@ import {
   FileUploader,
   Icon,
   IconButton,
+  InlineLoading,
   Inline,
   List,
   NavigationRail,
@@ -35,6 +36,7 @@ import {
   Select,
   SideNav,
   Skeleton,
+  Spinner,
   Stack,
   Stepper,
   Switch,
@@ -81,7 +83,7 @@ const responsiveMatrix = [
 const roadmapGroups = [
   { category: "액션", priority: "P0/P1", components: ["Button", "Icon", "IconButton"] },
   { category: "폼", priority: "P0/P1", components: ["Field", "TextField", "DatePicker", "Combobox", "Select", "Checkbox", "RadioGroup", "Switch", "FileUploader"] },
-  { category: "피드백", priority: "P0/P1", components: ["Alert", "Badge", "Toast", "Progress", "Skeleton"] },
+  { category: "피드백", priority: "P0/P1", components: ["Alert", "Badge", "Toast", "Progress", "Spinner", "InlineLoading", "Skeleton"] },
   { category: "오버레이", priority: "P1", components: ["Dialog", "Popover", "Tooltip", "DropdownMenu", "CommandPalette"] },
   { category: "내비게이션", priority: "P0/P1", components: ["Tabs", "Breadcrumb", "Pagination", "Stepper", "NavigationRail", "SideNav"] },
   { category: "레이아웃", priority: "P0/P1", components: ["Container", "Row", "Col", "Stack", "Inline", "Card", "Divider"] },
@@ -182,6 +184,25 @@ const showcase: Record<string, { preview: ReactNode; code: string }> = {
   Progress: {
     preview: <Progress label="완료율" value={64} />,
     code: `import { Progress } from "@bling-lab/ui";`
+  },
+  Spinner: {
+    preview: (
+      <Inline gap="sm" justify="center">
+        <Spinner label="목록을 불러오는 중" tone="brand" />
+        <Spinner status="decorative" tone="success" size="sm" />
+        <Spinner status="decorative" tone="danger" size="lg" />
+      </Inline>
+    ),
+    code: `import { Spinner } from "@bling-lab/ui";\n\n<Spinner label="목록을 불러오는 중" />`
+  },
+  InlineLoading: {
+    preview: (
+      <Stack gap="sm">
+        <InlineLoading label="저장 중" description="변경 사항을 동기화하고 있습니다." tone="brand" />
+        <InlineLoading label="저장 완료" status="success" />
+      </Stack>
+    ),
+    code: `import { InlineLoading } from "@bling-lab/ui";\n\n<InlineLoading label="저장 중" />`
   },
   Skeleton: {
     preview: (

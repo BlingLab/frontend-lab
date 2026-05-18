@@ -27,6 +27,8 @@ export { Toast, type ToastProps } from "./components/feedback/toast";
 export { Badge, type BadgeProps } from "./components/feedback/badge";
 export { Progress, type ProgressProps } from "./components/feedback/progress";
 export { Skeleton, type SkeletonProps } from "./components/feedback/skeleton";
+export { Spinner, type SpinnerProps, type SpinnerStatus } from "./components/feedback/spinner";
+export { InlineLoading, type InlineLoadingProps, type InlineLoadingStatus } from "./components/feedback/inline-loading";
 
 export { Dialog, type DialogProps } from "./components/overlays/dialog";
 export { Popover, type PopoverProps } from "./components/overlays/popover";

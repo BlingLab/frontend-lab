@@ -45,6 +45,8 @@ const requiredExports = [
   "Badge",
   "Progress",
   "Skeleton",
+  "Spinner",
+  "InlineLoading",
   "Dialog",
   "Popover",
   "Tooltip",

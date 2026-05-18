@@ -9,7 +9,9 @@ import {
   DropdownMenu,
   Icon,
   IconButton,
+  InlineLoading,
   Popover,
+  Spinner,
   TextField
 } from "../packages/ui/dist/index.js";
 
@@ -42,6 +44,29 @@ assertMarkup(
   [
     ["아이콘 버튼은 accessible name을 가져야 합니다.", (markup) => markup.includes("aria-label=\"검색\"")],
     ["시각 아이콘 wrapper는 숨겨야 합니다.", (markup) => markup.includes("aria-hidden=\"true\"")]
+  ]
+);
+
+assertMarkup(
+  "Spinner",
+  React.createElement("div", null, [
+    React.createElement(Spinner, { key: "status", label: "목록을 불러오는 중" }),
+    React.createElement(Spinner, { key: "decorative", status: "decorative" })
+  ]),
+  [
+    ["상태 전달용 스피너는 role=status를 가져야 합니다.", (markup) => markup.includes("role=\"status\"")],
+    ["상태 전달용 스피너는 접근성 문구를 포함해야 합니다.", (markup) => markup.includes("목록을 불러오는 중")],
+    ["장식용 스피너는 보조기술에서 숨겨야 합니다.", (markup) => markup.includes("aria-hidden=\"true\"")]
+  ]
+);
+
+assertMarkup(
+  "InlineLoading",
+  React.createElement(InlineLoading, { label: "저장 중", description: "잠시만 기다려 주세요.", tone: "brand" }),
+  [
+    ["인라인 로딩은 status region이어야 합니다.", (markup) => markup.includes("role=\"status\"")],
+    ["상태 문구를 visible text로 렌더링해야 합니다.", (markup) => markup.includes("저장 중")],
+    ["내부 스피너는 중복 안내를 피하도록 숨겨야 합니다.", (markup) => markup.includes("aria-hidden=\"true\"")]
   ]
 );
 

@@ -306,6 +306,34 @@ export const componentCatalog: ComponentCatalogItem[] = [
     tokens: ["--ds-color-action-primary-bg", "--ds-color-bg-muted", "--ds-motion-duration-normal"]
   },
   {
+    name: "Spinner",
+    slug: "spinner",
+    category: "feedback",
+    priority: "P1",
+    status: "ready",
+    summary: "짧은 대기 상태를 보여주는 원형 진행 표시입니다.",
+    purpose: "레이아웃을 유지할 필요는 작고, 사용자가 짧은 비동기 대기 상태만 알아야 할 때 사용합니다.",
+    primitive: "status span or decorative span",
+    apg: "https://www.w3.org/WAI/ARIA/apg/practices/names-and-descriptions/",
+    props: ["size", "tone", "label", "status"],
+    states: ["status", "decorative", "animated"],
+    tokens: ["--ds-size-icon-sm", "--ds-size-icon-md", "--ds-size-icon-lg", "--ds-motion-duration-normal"]
+  },
+  {
+    name: "InlineLoading",
+    slug: "inline-loading",
+    category: "feedback",
+    priority: "P1",
+    status: "ready",
+    summary: "스피너와 텍스트를 함께 보여주는 인라인 상태 표시입니다.",
+    purpose: "버튼 밖의 짧은 대기, 저장 중, 동기화 결과처럼 텍스트 상태를 함께 전달해야 할 때 사용합니다.",
+    primitive: "role='status'",
+    apg: "https://www.w3.org/WAI/ARIA/apg/patterns/alert/",
+    props: ["label", "description", "size", "tone", "status"],
+    states: ["loading", "success", "error"],
+    tokens: ["--ds-color-text-primary", "--ds-color-text-muted", "--ds-motion-duration-normal"]
+  },
+  {
     name: "Skeleton",
     slug: "skeleton",
     category: "feedback",

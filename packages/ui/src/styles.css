@@ -214,12 +214,51 @@
 }
 
 .ds-Spinner {
+  display: inline-block;
   inline-size: var(--ds-size-icon-sm);
   block-size: var(--ds-size-icon-sm);
   border: calc(var(--ds-size-1) * 2) solid currentColor;
   border-inline-end-color: transparent;
   border-radius: var(--ds-radius-pill);
   animation: ds-spin 720ms linear infinite;
+}
+
+.ds-Spinner[data-size="md"] {
+  inline-size: var(--ds-size-icon-md);
+  block-size: var(--ds-size-icon-md);
+}
+
+.ds-Spinner[data-size="lg"] {
+  inline-size: var(--ds-size-icon-lg);
+  block-size: var(--ds-size-icon-lg);
+  border-width: calc(var(--ds-size-1) * 3);
+}
+
+.ds-Spinner[data-tone="brand"],
+.ds-InlineLoading[data-tone="brand"] {
+  color: var(--ds-color-action-primary-bg);
+}
+
+.ds-Spinner[data-tone="info"],
+.ds-InlineLoading[data-tone="info"] {
+  color: var(--ds-color-feedback-info-text);
+}
+
+.ds-Spinner[data-tone="success"],
+.ds-InlineLoading[data-tone="success"],
+.ds-InlineLoading[data-status="success"] {
+  color: var(--ds-color-feedback-success-text);
+}
+
+.ds-Spinner[data-tone="warning"],
+.ds-InlineLoading[data-tone="warning"] {
+  color: var(--ds-color-feedback-warning-text);
+}
+
+.ds-Spinner[data-tone="danger"],
+.ds-InlineLoading[data-tone="danger"],
+.ds-InlineLoading[data-status="error"] {
+  color: var(--ds-color-feedback-danger-text);
 }
 
 @keyframes ds-spin {
@@ -789,6 +828,55 @@
 
 .ds-Skeleton[data-animated="true"] {
   animation: ds-skeleton 1.3s ease-in-out infinite;
+}
+
+.ds-InlineLoading {
+  display: inline-flex;
+  max-inline-size: 100%;
+  align-items: flex-start;
+  gap: var(--ds-space-2);
+  color: var(--ds-color-text-muted);
+  font-size: var(--ds-font-size-14);
+  line-height: var(--ds-line-height-body);
+}
+
+.ds-InlineLoading[data-size="sm"] {
+  font-size: var(--ds-font-size-13);
+}
+
+.ds-InlineLoading[data-size="lg"] {
+  font-size: var(--ds-font-size-16);
+}
+
+.ds-InlineLoading-indicator {
+  display: inline-flex;
+  flex: 0 0 auto;
+  min-block-size: var(--ds-size-icon-md);
+  align-items: center;
+}
+
+.ds-InlineLoading[data-size="sm"] .ds-InlineLoading-indicator {
+  min-block-size: var(--ds-size-icon-sm);
+}
+
+.ds-InlineLoading[data-size="lg"] .ds-InlineLoading-indicator {
+  min-block-size: var(--ds-size-icon-lg);
+}
+
+.ds-InlineLoading-copy {
+  display: grid;
+  min-inline-size: var(--ds-size-0);
+  gap: var(--ds-space-1);
+}
+
+.ds-InlineLoading-label {
+  color: var(--ds-color-text-primary);
+  font-weight: 700;
+}
+
+.ds-InlineLoading-description {
+  color: var(--ds-color-text-muted);
+  font-size: var(--ds-font-size-13);
 }
 
 @keyframes ds-skeleton {
@@ -2094,6 +2182,7 @@
   .ds-Switch-thumb,
   .ds-Skeleton,
   .ds-Spinner,
+  .ds-InlineLoading,
   .ds-Card,
   .ds-DropdownMenu-item,
   .ds-Tabs-tab,

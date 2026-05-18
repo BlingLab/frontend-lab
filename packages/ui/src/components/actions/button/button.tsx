@@ -1,4 +1,5 @@
 import { forwardRef, type ButtonHTMLAttributes, type ReactNode } from "react";
+import { Spinner } from "../../feedback/spinner";
 import type { ActionTone, Justify, Size, Variant } from "../../../shared/types";
 import { classNames, dataFlag } from "../../../shared/utils";
 
@@ -53,7 +54,7 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(function Button
       aria-pressed={selected || undefined}
       {...props}
     >
-      {loading ? <span className="ds-Spinner" aria-hidden="true" /> : null}
+      {loading ? <Spinner size="sm" status="decorative" /> : null}
       {iconStart ? <span className="ds-Icon" aria-hidden="true">{iconStart}</span> : null}
       {children ?? label ?? "버튼"}
       {iconEnd ? <span className="ds-Icon" aria-hidden="true">{iconEnd}</span> : null}
