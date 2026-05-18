@@ -8,6 +8,7 @@ export type IconName =
   | "chevron-left"
   | "chevron-right"
   | "command"
+  | "external-link"
   | "menu"
   | "plus"
   | "search"
@@ -27,6 +28,7 @@ const iconPaths: Record<IconName, string[]> = {
   "chevron-left": ["m15 18-6-6 6-6"],
   "chevron-right": ["m9 18 6-6-6-6"],
   command: ["M8 8h8v8H8z", "M8 8H6a2 2 0 1 1 2-2v2Z", "M16 8V6a2 2 0 1 1 2 2h-2Z", "M8 16v2a2 2 0 1 1-2-2h2Z", "M16 16h2a2 2 0 1 1-2 2v-2Z"],
+  "external-link": ["M14 4h6v6", "M10 14 20 4", "M20 14v4a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h4"],
   menu: ["M4 6h16", "M4 12h16", "M4 18h16"],
   plus: ["M12 5v14", "M5 12h14"],
   search: ["m21 21-4.3-4.3", "M10.8 18a7.2 7.2 0 1 1 0-14.4 7.2 7.2 0 0 1 0 14.4Z"],

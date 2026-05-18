@@ -26,6 +26,7 @@ import {
   IconButton,
   InlineLoading,
   Inline,
+  Link,
   List,
   NavigationRail,
   Pagination,
@@ -82,6 +83,9 @@ function SmokeApp() {
         </SmokeCard>
         <SmokeCard title="IconButton">
           <IconButton label="검색" icon={<Icon name="search" />} />
+        </SmokeCard>
+        <SmokeCard title="Link">
+          <Link href="/docs" external>문서 열기</Link>
         </SmokeCard>
         <SmokeCard title="Badge">
           <Badge label="준비" tone="success" />

@@ -10,6 +10,7 @@ export {
 export { Button, type ButtonProps } from "./components/actions/button";
 export { Icon, type IconName, type IconProps } from "./components/actions/icon";
 export { IconButton, type IconButtonProps } from "./components/actions/icon-button";
+export { Link, type LinkProps, type LinkVariant } from "./components/actions/link";
 
 export { Field, type FieldProps } from "./components/forms/field";
 export { TextField, type TextFieldProps } from "./components/forms/text-field";

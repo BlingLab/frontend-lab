@@ -6,6 +6,7 @@
 
 - 시각 형태는 `variant`, 의미 색상은 `tone`, 크기는 `size`, 밀도는 `density`, 너비는 `width`로 표현합니다.
 - 상태는 임의 class보다 `selected`, `disabled`, `invalid`, `loading`, `open`, `dismissible` 같은 prop으로 받고, DOM에는 `data-*` 속성으로 노출합니다.
+- 명령 실행은 `Button`, 위치 이동은 `Link`로 분리합니다.
 - 장식 또는 보조 영역은 `iconStart`, `iconEnd`, `prefix`, `suffix`, `leading`, `trailing`, `media`, `meta`, `footer`, `actions`처럼 slot prop으로 분리합니다.
 - 렌더링 확장이 필요한 collection 컴포넌트는 `renderItem`, `renderCell`, `rowActions`처럼 render prop을 제공합니다.
 - collection state는 key 기반 prop을 우선합니다. 예: `selectedRowKeys`, `defaultSelectedRowKeys`, `sortState`, `defaultSortState`.

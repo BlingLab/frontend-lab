@@ -118,6 +118,19 @@ export const componentPropDocs: Record<string, ComponentPropDoc[]> = {
     { name: "align", type: "\"start\" | \"center\" | \"end\" | \"stretch\"", defaultValue: "\"center\"", description: "교차축 정렬입니다." },
     { name: "justify", type: "\"start\" | \"center\" | \"end\" | \"between\"", defaultValue: "\"start\"", description: "주축 정렬입니다." }
   ],
+  Link: [
+    { name: "href", type: "string", defaultValue: "-", description: "이동할 주소입니다." },
+    { name: "children", type: "ReactNode", defaultValue: "-", description: "링크 안에 표시할 내용입니다." },
+    { name: "label", type: "ReactNode", defaultValue: "-", description: "children이 없을 때 사용할 링크 내용입니다." },
+    { name: "variant", type: "\"inline\" | \"standalone\" | \"button\"", defaultValue: "\"inline\"", description: "링크의 시각 표현 방식입니다." },
+    { name: "tone", type: "Tone", defaultValue: "\"brand\"", description: "링크 색상 tone입니다." },
+    { name: "size", type: "Size", defaultValue: "\"md\"", description: "링크 글자와 버튼형 높이입니다." },
+    { name: "iconStart", type: "ReactNode", defaultValue: "-", description: "content 앞에 표시할 icon입니다." },
+    { name: "iconEnd", type: "ReactNode", defaultValue: "-", description: "content 뒤에 표시할 icon입니다." },
+    { name: "external", type: "boolean", defaultValue: "false", description: "외부 링크 표시와 새 창 열림 속성을 적용합니다." },
+    { name: "externalLabel", type: "string", defaultValue: "\"새 창에서 열림\"", description: "외부 링크의 추가 접근성 문구입니다." },
+    { name: "disabled", type: "boolean", defaultValue: "false", description: "링크 이동과 포커스를 비활성화합니다." }
+  ],
   Combobox: [
     { name: "label", type: "ReactNode", defaultValue: "-", description: "필드 label입니다." },
     { name: "description", type: "ReactNode", defaultValue: "-", description: "보조 설명입니다." },

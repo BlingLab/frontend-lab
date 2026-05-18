@@ -110,6 +110,20 @@ export const componentCatalog: ComponentCatalogItem[] = [
     tokens: ["--ds-size-icon-sm", "--ds-size-icon-md", "--ds-size-icon-lg"]
   },
   {
+    name: "Link",
+    slug: "link",
+    category: "actions",
+    priority: "P1",
+    status: "ready",
+    summary: "실제 위치 이동을 담당하는 native anchor 기반 컴포넌트입니다.",
+    purpose: "페이지, 문서, 외부 주소처럼 사용자가 다른 위치로 이동해야 할 때 사용합니다.",
+    primitive: "a",
+    apg: "https://html.spec.whatwg.org/multipage/text-level-semantics.html#the-a-element",
+    props: ["href", "children", "label", "variant", "tone", "size", "iconStart", "iconEnd", "external", "externalLabel", "disabled"],
+    states: ["default", "hover", "focus-visible", "external", "disabled"],
+    tokens: ["--ds-color-action-primary-bg", "--ds-color-text-primary", "--ds-focus-ring"]
+  },
+  {
     name: "Field",
     slug: "field",
     category: "forms",

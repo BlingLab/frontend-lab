@@ -1,5 +1,6 @@
 .ds-Button,
 .ds-IconButton,
+.ds-Link,
 .ds-DropdownMenu-item,
 .ds-List-action,
 .ds-Table-sort {
@@ -140,6 +141,7 @@
 }
 
 .ds-Button:focus-visible,
+.ds-Link:focus-visible,
 .ds-DropdownMenu-item:focus-visible,
 .ds-List-action:focus-visible,
 .ds-Tabs-tab:focus-visible,
@@ -185,6 +187,93 @@
 
 .ds-IconButton[data-shape="circle"] {
   border-radius: var(--ds-radius-pill);
+}
+
+.ds-Link {
+  display: inline-flex;
+  max-inline-size: 100%;
+  align-items: center;
+  gap: var(--ds-space-1);
+  border-radius: var(--ds-radius-4);
+  color: var(--ds-color-action-primary-bg);
+  cursor: pointer;
+  font-weight: 700;
+  line-height: var(--ds-line-height-tight);
+  text-decoration: underline;
+  text-underline-offset: calc(var(--ds-size-1) * 3);
+}
+
+.ds-Link[data-tone="neutral"] {
+  color: var(--ds-color-text-primary);
+}
+
+.ds-Link[data-tone="info"] {
+  color: var(--ds-color-feedback-info-text);
+}
+
+.ds-Link[data-tone="success"] {
+  color: var(--ds-color-feedback-success-text);
+}
+
+.ds-Link[data-tone="warning"] {
+  color: var(--ds-color-feedback-warning-text);
+}
+
+.ds-Link[data-tone="danger"] {
+  color: var(--ds-color-feedback-danger-text);
+}
+
+.ds-Link[data-size="sm"] {
+  font-size: var(--ds-font-size-13);
+}
+
+.ds-Link[data-size="lg"] {
+  font-size: var(--ds-font-size-16);
+}
+
+.ds-Link[data-variant="standalone"] {
+  text-decoration: none;
+}
+
+.ds-Link[data-variant="standalone"]:hover {
+  text-decoration: underline;
+}
+
+.ds-Link[data-variant="button"] {
+  min-block-size: var(--ds-size-control-md);
+  border: var(--ds-size-1) solid var(--ds-color-border-default);
+  padding-inline: var(--ds-space-3);
+  text-decoration: none;
+}
+
+.ds-Link[data-variant="button"][data-size="sm"] {
+  min-block-size: var(--ds-size-control-sm);
+  padding-inline: var(--ds-space-2);
+}
+
+.ds-Link[data-variant="button"][data-size="lg"] {
+  min-block-size: var(--ds-size-control-lg);
+  padding-inline: var(--ds-space-4);
+}
+
+.ds-Link[data-tone="brand"]:hover:not([data-disabled="true"]) {
+  color: var(--ds-color-action-primary-bg-hover);
+}
+
+.ds-Link[data-disabled="true"] {
+  cursor: not-allowed;
+  opacity: var(--ds-state-disabled-opacity);
+  text-decoration: none;
+}
+
+.ds-Link-label {
+  min-inline-size: var(--ds-size-0);
+}
+
+.ds-Link-icon {
+  display: inline-flex;
+  flex: 0 0 auto;
+  align-items: center;
 }
 
 .ds-Icon {

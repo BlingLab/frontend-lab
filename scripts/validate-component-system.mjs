@@ -30,6 +30,7 @@ const requiredExports = [
   "Button",
   "Icon",
   "IconButton",
+  "Link",
   "Field",
   "TextField",
   "Textarea",

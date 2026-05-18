@@ -10,6 +10,7 @@ import {
   Icon,
   IconButton,
   InlineLoading,
+  Link,
   Popover,
   Spinner,
   TextField
@@ -44,6 +45,21 @@ assertMarkup(
   [
     ["아이콘 버튼은 accessible name을 가져야 합니다.", (markup) => markup.includes("aria-label=\"검색\"")],
     ["시각 아이콘 wrapper는 숨겨야 합니다.", (markup) => markup.includes("aria-hidden=\"true\"")]
+  ]
+);
+
+assertMarkup(
+  "Link",
+  React.createElement("div", null, [
+    React.createElement(Link, { key: "external", href: "https://example.com", external: true }, "외부 문서"),
+    React.createElement(Link, { key: "disabled", href: "/settings", disabled: true }, "비활성 링크")
+  ]),
+  [
+    ["외부 링크는 새 창 target을 가져야 합니다.", (markup) => markup.includes("target=\"_blank\"")],
+    ["외부 링크는 안전한 rel 값을 가져야 합니다.", (markup) => markup.includes("rel=\"noopener noreferrer\"")],
+    ["외부 링크는 새 창 안내 문구를 포함해야 합니다.", (markup) => markup.includes("새 창에서 열림")],
+    ["비활성 링크는 aria-disabled를 노출해야 합니다.", (markup) => markup.includes("aria-disabled=\"true\"")],
+    ["비활성 링크는 href를 제거해야 합니다.", (markup) => !markup.includes("href=\"/settings\"")]
   ]
 );
 

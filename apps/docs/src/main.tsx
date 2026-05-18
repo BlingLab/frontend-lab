@@ -26,6 +26,7 @@ import {
   IconButton,
   InlineLoading,
   Inline,
+  Link,
   List,
   NavigationRail,
   Pagination,
@@ -121,6 +122,16 @@ const showcase: Record<string, { preview: ReactNode; code: string }> = {
       </Inline>
     ),
     code: `import { Icon } from "@bling-lab/ui";\n\n<Icon name="search" label="검색" />`
+  },
+  Link: {
+    preview: (
+      <Inline gap="sm" justify="center">
+        <Link href="/docs">문서 보기</Link>
+        <Link href="https://github.com/BlingLab/frontend-lab" external variant="standalone">저장소 열기</Link>
+        <Link href="/settings" variant="button" tone="neutral">설정으로 이동</Link>
+      </Inline>
+    ),
+    code: `import { Link } from "@bling-lab/ui";\n\n<Link href="/docs">문서 보기</Link>`
   },
   Field: {
     preview: <TextField label="프로젝트" description="Field composition으로 label 관계를 고정합니다." defaultValue="frontend-lab" />,
