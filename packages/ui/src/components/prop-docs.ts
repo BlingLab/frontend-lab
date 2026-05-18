@@ -131,6 +131,24 @@ export const componentPropDocs: Record<string, ComponentPropDoc[]> = {
     { name: "externalLabel", type: "string", defaultValue: "\"새 창에서 열림\"", description: "외부 링크의 추가 접근성 문구입니다." },
     { name: "disabled", type: "boolean", defaultValue: "false", description: "링크 이동과 포커스를 비활성화합니다." }
   ],
+  SearchField: [
+    { name: "label", type: "ReactNode", defaultValue: "\"검색\"", description: "검색 필드 label입니다." },
+    { name: "description", type: "ReactNode", defaultValue: "-", description: "보조 설명입니다." },
+    { name: "error", type: "ReactNode", defaultValue: "-", description: "오류 메시지이며 invalid 상태를 만듭니다." },
+    { name: "value", type: "string", defaultValue: "-", description: "controlled 검색어입니다." },
+    { name: "defaultValue", type: "string", defaultValue: "\"\"", description: "uncontrolled 초기 검색어입니다." },
+    { name: "onValueChange", type: "(value: string) => void", defaultValue: "-", description: "검색어가 바뀔 때 호출됩니다." },
+    { name: "onClear", type: "() => void", defaultValue: "-", description: "clear 버튼으로 검색어를 지운 뒤 호출됩니다." },
+    { name: "placeholder", type: "string", defaultValue: "\"검색어 입력\"", description: "입력 전 표시할 placeholder입니다." },
+    { name: "size", type: "Size", defaultValue: "\"md\"", description: "control 높이와 밀도입니다." },
+    { name: "width", type: "FieldWidth", defaultValue: "\"auto\"", description: "Field wrapper 폭입니다." },
+    { name: "fieldProps", type: "Omit<FieldProps, ...>", defaultValue: "-", description: "Field wrapper에 전달할 추가 설정입니다." },
+    { name: "inputClassName", type: "string", defaultValue: "-", description: "실제 input에 전달할 추가 CSS class입니다." },
+    { name: "resultsId", type: "string", defaultValue: "-", description: "검색 결과 영역과 연결할 id입니다." },
+    { name: "clearLabel", type: "string", defaultValue: "\"검색어 지우기\"", description: "clear 버튼의 접근성 이름입니다." },
+    { name: "disabled", type: "boolean", defaultValue: "false", description: "입력과 clear 버튼을 비활성화합니다." },
+    { name: "required", type: "boolean", defaultValue: "false", description: "필수 입력 상태를 표시합니다." }
+  ],
   Combobox: [
     { name: "label", type: "ReactNode", defaultValue: "-", description: "필드 label입니다." },
     { name: "description", type: "ReactNode", defaultValue: "-", description: "보조 설명입니다." },

@@ -152,6 +152,20 @@ export const componentCatalog: ComponentCatalogItem[] = [
     tokens: ["--ds-color-bg-surface", "--ds-color-border-default", "--ds-focus-ring"]
   },
   {
+    name: "SearchField",
+    slug: "search-field",
+    category: "forms",
+    priority: "P1",
+    status: "ready",
+    summary: "검색 입력과 clear 동작을 표준화한 단일 행 검색 필드입니다.",
+    purpose: "목록, 테이블, 명령 영역에서 검색어를 입력하고 결과 영역과 연결해야 할 때 사용합니다.",
+    primitive: "input[type='search']",
+    apg: "https://html.spec.whatwg.org/multipage/input.html#text-(type=text)-state-and-search-state-(type=search)",
+    props: ["label", "description", "error", "value", "defaultValue", "onValueChange", "onClear", "placeholder", "size", "width", "fieldProps", "inputClassName", "resultsId", "clearLabel", "disabled", "required"],
+    states: ["empty", "filled", "focus-visible", "disabled", "invalid"],
+    tokens: ["--ds-color-bg-surface", "--ds-color-border-default", "--ds-focus-ring"]
+  },
+  {
     name: "Textarea",
     slug: "textarea",
     category: "forms",

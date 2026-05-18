@@ -13,6 +13,7 @@ import {
   Link,
   Popover,
   Spinner,
+  SearchField,
   TextField
 } from "../packages/ui/dist/index.js";
 
@@ -92,6 +93,16 @@ assertMarkup(
   [
     ["label은 input id와 연결되어야 합니다.", (markup) => /<label[^>]+for="textfield-/.test(markup) && /<input[^>]+id="textfield-/.test(markup)],
     ["오류 상태는 aria-invalid로 노출해야 합니다.", (markup) => markup.includes("aria-invalid=\"true\"")]
+  ]
+);
+
+assertMarkup(
+  "SearchField",
+  React.createElement(SearchField, { label: "컴포넌트 검색", defaultValue: "button", resultsId: "component-results" }),
+  [
+    ["검색 입력은 searchbox role을 가져야 합니다.", (markup) => markup.includes("role=\"searchbox\"")],
+    ["검색 입력은 결과 영역과 연결되어야 합니다.", (markup) => markup.includes("aria-controls=\"component-results\"")],
+    ["clear 버튼은 접근성 이름을 가져야 합니다.", (markup) => markup.includes("aria-label=\"검색어 지우기\"")]
   ]
 );
 

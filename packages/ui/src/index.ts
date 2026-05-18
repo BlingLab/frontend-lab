@@ -14,6 +14,7 @@ export { Link, type LinkProps, type LinkVariant } from "./components/actions/lin
 
 export { Field, type FieldProps } from "./components/forms/field";
 export { TextField, type TextFieldProps } from "./components/forms/text-field";
+export { SearchField, type SearchFieldProps } from "./components/forms/search-field";
 export { Textarea, type TextareaProps } from "./components/forms/textarea";
 export { Select, type SelectOption, type SelectProps } from "./components/forms/select";
 export { DatePicker, type DatePickerProps } from "./components/forms/date-picker";

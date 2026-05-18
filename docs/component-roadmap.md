@@ -52,6 +52,7 @@
 | 분류| 컴포넌트| 이유|
 | --- | --- | --- |
 | Actions | Link | 실제 위치 이동과 command 실행의 경계를 명확히 합니다.|
+| Forms | SearchField | 목록과 테이블 검색 입력의 clear 동작과 결과 연결 기준입니다.|
 | Forms | Textarea | 긴 텍스트 입력입니다.|
 | Feedback | Toast | 전역 작업 결과 알림입니다.|
 | Feedback | Progress | 비동기 작업 상태 표시입니다.|

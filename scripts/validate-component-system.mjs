@@ -33,6 +33,7 @@ const requiredExports = [
   "Link",
   "Field",
   "TextField",
+  "SearchField",
   "Textarea",
   "Select",
   "DatePicker",

@@ -60,6 +60,7 @@ const {
   Pagination,
   Popover,
   RadioGroup,
+  SearchField,
   Select,
   SideNav,
   Stepper,
@@ -75,6 +76,7 @@ const interactionCoverageNames = [
   "IconButton",
   "Select",
   "DatePicker",
+  "SearchField",
   "Combobox",
   "Checkbox",
   "RadioGroup",
@@ -149,6 +151,33 @@ await check("DatePicker 포커스와 Enter 확정", async () => {
   await waitFor(() => {
     if (document.activeElement !== input) throw new Error("Enter 입력 뒤 날짜 입력 포커스가 유지되어야 합니다.");
     if (input.value !== "2026-04-29") throw new Error(`날짜 값이 확정되어야 합니다. 실제 값: ${input.value}`);
+  });
+});
+
+await check("SearchField 값 변경과 clear", async () => {
+  let value = "";
+  let cleared = 0;
+  render(React.createElement(SearchField, {
+    label: "컴포넌트 검색",
+    resultsId: "component-results",
+    onValueChange: (nextValue) => {
+      value = nextValue;
+    },
+    onClear: () => {
+      cleared += 1;
+    }
+  }));
+
+  const input = screen.getByRole("searchbox", { name: "컴포넌트 검색" });
+  fireEvent.change(input, { target: { value: "button" } });
+
+  const clearButton = screen.getByRole("button", { name: "검색어 지우기" });
+  fireEvent.click(clearButton);
+
+  await waitFor(() => {
+    if (input.getAttribute("aria-controls") !== "component-results") throw new Error("검색 입력은 결과 영역과 연결되어야 합니다.");
+    if (value !== "") throw new Error(`clear 뒤 검색어는 빈 문자열이어야 합니다. 실제 값: ${value}`);
+    if (cleared !== 1) throw new Error(`clear callback은 한 번 실행되어야 합니다. 실제 횟수: ${cleared}`);
   });
 });
 

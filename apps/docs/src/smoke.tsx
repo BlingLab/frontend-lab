@@ -34,6 +34,7 @@ import {
   Progress,
   RadioGroup,
   Row,
+  SearchField,
   Select,
   SideNav,
   Skeleton,
@@ -113,6 +114,9 @@ function SmokeApp() {
         </SmokeCard>
         <SmokeCard title="TextField">
           <TextField label="이름" defaultValue="frontend-lab" />
+        </SmokeCard>
+        <SmokeCard title="SearchField">
+          <SearchField label="컴포넌트 검색" defaultValue="button" resultsId="smoke-results" />
         </SmokeCard>
         <SmokeCard title="Textarea">
           <Textarea label="메모" defaultValue="긴 설명" />

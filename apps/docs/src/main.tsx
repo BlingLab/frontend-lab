@@ -34,6 +34,7 @@ import {
   Progress,
   RadioGroup,
   Row,
+  SearchField,
   Select,
   SideNav,
   Skeleton,
@@ -83,7 +84,7 @@ const responsiveMatrix = [
 
 const roadmapGroups = [
   { category: "액션", priority: "P0/P1", components: ["Button", "Icon", "IconButton"] },
-  { category: "폼", priority: "P0/P1", components: ["Field", "TextField", "DatePicker", "Combobox", "Select", "Checkbox", "RadioGroup", "Switch", "FileUploader"] },
+  { category: "폼", priority: "P0/P1", components: ["Field", "TextField", "SearchField", "DatePicker", "Combobox", "Select", "Checkbox", "RadioGroup", "Switch", "FileUploader"] },
   { category: "피드백", priority: "P0/P1", components: ["Alert", "Badge", "Toast", "Progress", "Spinner", "InlineLoading", "Skeleton"] },
   { category: "오버레이", priority: "P1", components: ["Dialog", "Popover", "Tooltip", "DropdownMenu", "CommandPalette"] },
   { category: "내비게이션", priority: "P0/P1", components: ["Tabs", "Breadcrumb", "Pagination", "Stepper", "NavigationRail", "SideNav"] },
@@ -140,6 +141,10 @@ const showcase: Record<string, { preview: ReactNode; code: string }> = {
   TextField: {
     preview: <TextField label="이름" description="한 줄 입력입니다." defaultValue="Design System" prefix="Aa" suffix="필수" width="full" />,
     code: `import { TextField } from "@bling-lab/ui";\n\n<TextField label="이름" prefix="Aa" suffix="필수" width="full" />`
+  },
+  SearchField: {
+    preview: <SearchField label="컴포넌트 검색" defaultValue="button" resultsId="component-results" width="full" />,
+    code: `import { SearchField } from "@bling-lab/ui";\n\n<SearchField label="컴포넌트 검색" resultsId="component-results" />`
   },
   Textarea: {
     preview: <Textarea label="메모" defaultValue="긴 설명을 입력합니다." rows={4} />,
@@ -600,7 +605,7 @@ function App() {
               </p>
               <Row gap="md">
                 <Col span={12} md={6}>
-                  <TextField label="검색어" placeholder="컴포넌트 검색" width="full" />
+                  <SearchField label="검색어" placeholder="컴포넌트 검색" width="full" resultsId="component-list" />
                 </Col>
                 <Col span={12} md={6}>
                   <Select label="상태" width="full" options={[{ label: "준비", value: "ready" }, { label: "안정", value: "stable" }]} />
